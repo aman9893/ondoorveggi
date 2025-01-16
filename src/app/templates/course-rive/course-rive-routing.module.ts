@@ -10,19 +10,13 @@ const routes: Routes = [
     component: CourseRivePage,
   },
   {
-    path: 'on-boarding',
-    loadChildren: () =>
-      import('./views/on-boarding/on-boarding.module').then(
-        (m) => m.OnBoardingPageModule
-      ),
-  },
-  {
     path: 'content-view',
     loadChildren: () =>
       import('./views/content-view/content-view.module').then(
         (m) => m.ContentViewPageModule
       ),
   },
+  
 ];
 
 @NgModule({

@@ -13,11 +13,14 @@ export class SignInComponent implements OnInit {
   email = '';
   password = '';
   isLoading = false;
+  screen: any = 'signin';
 
   constructor() {}
 
   ngOnInit() {}
-
+  change(event: any){
+    this.screen = event;
+  }
   signIn(
     success: RiveSMInput,
     failure: RiveSMInput,

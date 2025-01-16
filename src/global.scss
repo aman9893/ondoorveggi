@@ -35,6 +35,9 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
-body {
-    font-family: 'Roboto';font-size: 22px;
-}
+
+// global app styles
+@import "./theme/app.scss";
+
+// Course-Rive (./app/templates/course-rive) Template styles
+@import "./theme/course-rive.scss";

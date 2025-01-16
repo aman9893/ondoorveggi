@@ -132,37 +132,35 @@ screen: any = 'signin';
   }
 
   onSubmit() {
+    if(this.sginupForm.valid){
     let userData = {
-      name: this.sginupForm['controls']['name'].value,
+      username: this.sginupForm['controls']['username'].value,
       email: this.sginupForm['controls']['email'].value,
       password: this.sginupForm['controls']['password'].value,
-      company_name: this.sginupForm['controls']['company_name'].value,
-      phone_number: this.sginupForm['controls']['phone_number'].value,
-      shop_address: this.sginupForm['controls']['shop_address'].value,
-      company_logo: '',
-      username: '',
-      gst_num: '',
-      user_expiry_date: new Date(),
-      trial_days: 14,
-      rolename_id: 1,
+      mobile: this.sginupForm['controls']['phone_number'].value,
+      dervice_token :'1'
     };
     this.dataService.registerData(userData).subscribe(
       (data: any) => this.closeDialog(data),
       (err: any) => console.log(err)
     );
-    this.sginupForm.reset();
+  }
   }
 
   closeDialog(data: any) {
-    if (data.status === true) {
-      this.loginFormFlg = true;
-      this.registerFormFlg = false;
-      this.openSnackBar(data.message, 'Dismiss');
+    if (data.message === 'successfully') {
+    
+      this.setOpen(true);
+      this.sginupForm.reset();
+      this.change('signin')
     }
     if (data.status === false) {
       this.openSnackBar(data.message, 'Dismiss');
     }
   }
+
+
+
   onLogin() {
     let userData = {
       email: this.loginForm['controls']['emailid'].value,
@@ -187,8 +185,12 @@ screen: any = 'signin';
       this.authService.sendToken( this.loginData.auth_token);
       this.authService.setuserData( this.loginData.user_id);
       this.authService.setuserInfo( this.loginData);
-      this.setOpen(true);
       
+      this.setOpen(true);
+      setTimeout(() => {
+        this.myRoute.navigateByUrl('/');
+  
+        }, 2000);
     }
     if (data.status === false) {
       this.setOpen(true);
@@ -197,10 +199,7 @@ screen: any = 'signin';
   setOpen(isOpen: boolean) {
     this.isToastOpen = isOpen;
     if(true){
-      setTimeout(() => {
-      this.myRoute.navigateByUrl('/');
-
-      }, 2000);
+ 
     }
   }
 }

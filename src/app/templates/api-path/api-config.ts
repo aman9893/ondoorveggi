@@ -4,7 +4,7 @@ export const apiConfig = {
     localhostUrl:"http://localhost:3001/",
 
 
-    registerData: '/api/app/login',
+    registerData: 'api/app/sign_up',
     loginData: 'api/app/login',
     updateUser:'api/update_user',
     getAdminProfile: 'api/get_admin_profile',

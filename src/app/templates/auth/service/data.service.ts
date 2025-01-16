@@ -1,15 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from  '@angular/common/http';
 import { apiConfig } from '../../api-path/api-config';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  constructor(private http :HttpClient) { 
+  constructor(private http :HttpClient,private snackBar: MatSnackBar) { 
   }
   
+openSnackBar(message: string, action: string) {
+  this.snackBar.open(message, action, {
+    duration: 3000,
+    panelClass: ['app-bottom-snackbar'],
+  });
+}
   registerData(data:any) {
     return this.http.post(apiConfig.localhostUrl + apiConfig.registerData, data);
   }

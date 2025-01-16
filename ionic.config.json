@@ -1,0 +1,7 @@
+{
+  "name": "ondoorveggi",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

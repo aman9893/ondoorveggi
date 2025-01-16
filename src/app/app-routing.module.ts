@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { SignInComponent } from './templates/course-rive/views/on-boarding/sign-in/sign-in.component';
+import { AuthGuard } from './templates/auth/auth.guard';
 
 const routes: Routes = [
   // {
@@ -11,7 +12,7 @@ const routes: Routes = [
   { path: 'login', component: SignInComponent, },
 
   {
-    path: '',
+    path: '', canActivate: [AuthGuard],
     loadChildren: () =>
       import('./templates/course-rive/course-rive.module').then(
         (m) => m.CourseRivePageModule

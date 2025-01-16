@@ -3,14 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { RiveModule, RIVE_FOLDER } from 'ng-rive';
 
 import { CourseRivePage } from './course-rive.page';
+import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: CourseRivePage,
+    component: CourseRivePage, canActivate: [AuthGuard],
   },
   {
-    path: 'content-view',
+    path: 'home', canActivate: [AuthGuard],
     loadChildren: () =>
       import('./views/content-view/content-view.module').then(
         (m) => m.ContentViewPageModule

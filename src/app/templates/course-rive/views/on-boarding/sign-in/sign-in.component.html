@@ -3,10 +3,10 @@
     <ion-text class="font-largeTitle">Sign in</ion-text>
     <ion-text class="font-headline subtitle">
       <p>
-  Ondoor<span class="font-headlinecolor">Veggi</span>
+      Ondoor<span class="font-headlinecolor">Veggi</span>
       </p>
     </ion-text>
-
+    <form [formGroup]="loginForm" novalidate class="form" autocomplete="off">
     <ion-text class="font-subheadline input-title">
       <p>Email</p>
     </ion-text>
@@ -17,7 +17,7 @@
         autocomplete="email"
         inputmode="email"
         enterkeyhint="next"
-        [(ngModel)]="email"
+        formControlName="emailid"
       ></ion-input>
     </ion-item>
 
@@ -26,16 +26,14 @@
     </ion-text>
     <ion-item class="input-container" lines="none">
       <ion-img src="assets/course_rive/icon_lock.svg"></ion-img>
-      <ion-input type="password" [(ngModel)]="password"></ion-input>
+      <ion-input type="password"formControlName="password"></ion-input>
     </ion-item>
 
     <ion-button
       class="sign-in-button font-headline"
       expand="block"
       type="submit"
-      (click)="
-        signIn(triggerSuccess, triggerError, triggerReset, triggerConfetti)
-      "
+      (click)="onLogin()"
     >
       <ion-icon class="icon" name="arrow-forward-outline"></ion-icon>
       Sign In
@@ -51,34 +49,21 @@
       <p class="signup-text">I'm a new user&nbsp;<a (click)="change('signup')">Sign Up?</a></p>
     </ion-text>
     <p class="forget-text"><a (click)="change('forget')">Forgot Password?</a></p>
-   
-    <!-- <ion-row class="footer-container">
-      <ion-img src="assets/course_rive/logos/logo_email.svg"></ion-img>
-      <ion-img src="assets/course_rive/logos/logo_apple.svg"></ion-img>
-      <ion-img src="assets/course_rive/logos/logo_google.svg"></ion-img>
-    </ion-row> -->
-
-    <div class="rive-auth-indicator-container">
-      <canvas riv="check" width="100" height="100" [hidden]="!isLoading">
-        <riv-state-machine name="State Machine 1" play>
-          <riv-input #triggerSuccess="rivInput" name="Check"></riv-input>
-          <riv-input #triggerError="rivInput" name="Error"></riv-input>
-          <riv-input #triggerReset="rivInput" name="Reset"></riv-input>
-        </riv-state-machine>
-      </canvas>
-      <canvas class="rive-confetti" riv="confetti" width="1500" height="1500">
-        <riv-state-machine name="State Machine 1" play>
-          <riv-input
-            #triggerConfetti="rivInput"
-            name="Trigger explosion"
-          ></riv-input>
-        </riv-state-machine>
-      </canvas>
-    </div>
+    </form>
   </div>
 </div>
-<!-- ______________________ -->
+<ion-toast
+    [isOpen]="isToastOpen"
+    message="Successfully Logged In"
+    [duration]="3000"
+    (didDismiss)="setOpen(false)"
+    position="top"
+  ></ion-toast>
 
+
+
+<!-- ______________________ -->
+<!-- 
 
 <div  *ngIf="screen == 'signup'" class="gradient-border">
   <div class="sign-in-container">
@@ -133,11 +118,7 @@
     </ion-text>
     <p class="forget-text"><a (click)="change('forget')">Forgot Password?</a></p>
    
-    <!-- <ion-row class="footer-container">
-      <ion-img src="assets/course_rive/logos/logo_email.svg"></ion-img>
-      <ion-img src="assets/course_rive/logos/logo_apple.svg"></ion-img>
-      <ion-img src="assets/course_rive/logos/logo_google.svg"></ion-img>
-    </ion-row> -->
+  
 
     <div class="rive-auth-indicator-container">
       <canvas riv="check" width="100" height="100" [hidden]="!isLoading">
@@ -159,7 +140,6 @@
   </div>
 </div>
 
-<!-- ______________________ -->
 
 <div  *ngIf="screen == 'forget'"class="gradient-border">
   <div class="sign-in-container">
@@ -206,12 +186,7 @@
     </ion-text>
     <p class="forget-text"><a (click)="change('forget')">Forgot Password?</a></p>
    
-    <!-- <ion-row class="footer-container">
-      <ion-img src="assets/course_rive/logos/logo_email.svg"></ion-img>
-      <ion-img src="assets/course_rive/logos/logo_apple.svg"></ion-img>
-      <ion-img src="assets/course_rive/logos/logo_google.svg"></ion-img>
-    </ion-row> -->
-
+ 
     <div class="rive-auth-indicator-container">
       <canvas riv="check" width="100" height="100" [hidden]="!isLoading">
         <riv-state-machine name="State Machine 1" play>
@@ -230,4 +205,4 @@
       </canvas>
     </div>
   </div>
-</div>
+</div> -->

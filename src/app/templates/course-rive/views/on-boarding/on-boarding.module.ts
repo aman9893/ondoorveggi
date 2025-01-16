@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -14,7 +14,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
     CommonModule,
     FormsModule,
     IonicModule,
-    OnBoardingPageRoutingModule,
+    OnBoardingPageRoutingModule,ReactiveFormsModule 
   ],
   exports: [OnBoardingPage],
   declarations: [OnBoardingPage, SignInComponent],

@@ -2,8 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators,FormBuilder} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/auth.service';
-import { DataService } from '../../service/data.service';
+import { AuthService } from 'src/app/templates/auth/auth.service';
+import { DataService } from 'src/app/templates/auth/service/data.service';
+
 
 @Component({
   selector: 'app-login',

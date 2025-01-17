@@ -12,13 +12,15 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
-import { AuthService } from 'src/app/auth.service';
-import { DataService } from 'src/app/service/data.service';
+
 import { ConfrimBoxComponent } from '../../confrim-box/confrim-box.component';
+import { DataService } from 'src/app/templates/auth/service/data.service';
+import { AuthService } from 'src/app/templates/auth/auth.service';
 @Component({
   selector: 'app-create-bill',
   templateUrl: './create-bill.component.html',
   styleUrls: ['./create-bill.component.css'],
+  standalone: false,
 })
 export class CreateBillComponent implements OnInit {
   orderForm!: FormGroup;

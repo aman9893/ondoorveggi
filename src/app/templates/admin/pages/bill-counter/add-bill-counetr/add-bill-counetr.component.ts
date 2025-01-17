@@ -10,13 +10,14 @@ import {
 import {
   MatDialog,
 } from '@angular/material/dialog';
-import { AuthService } from 'src/app/auth.service';
-import { DataService } from 'src/app/service/data.service';
+
 import { CreateBillComponent } from '../../bill/create-bill/create-bill.component';
 import { ConfrimBoxComponent } from '../../confrim-box/confrim-box.component';
 import { InvoiceComponent } from '../../bill/invoice/invoice.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { flatMap } from 'rxjs';
+import { DataService } from 'src/app/templates/auth/service/data.service';
+import { AuthService } from 'src/app/templates/auth/auth.service';
 export interface Cart {
   productName: string;
   productImage: string;
@@ -27,7 +28,8 @@ export interface Cart {
 @Component({
   selector: 'app-add-bill-counetr',
   templateUrl: './add-bill-counetr.component.html',
-  styleUrls: ['./add-bill-counetr.component.scss']
+  styleUrls: ['./add-bill-counetr.component.scss'],
+  standalone:false
 })
 export class AddBillCounetrComponent implements OnInit {
   orderForm!: FormGroup;
@@ -52,7 +54,7 @@ export class AddBillCounetrComponent implements OnInit {
   Bill_id: any;
   term: any;
   listView: boolean = false;
-  GirdView: boolean = false;
+  GirdView: boolean = true;
   categoryDataList: any;
   conatctBookList: any;
   discount: any;

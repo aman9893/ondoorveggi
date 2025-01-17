@@ -8,16 +8,18 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
-import { AuthService } from 'src/app/auth.service';
-import { DataService } from 'src/app/service/data.service';
+
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfrimBoxComponent } from '../confrim-box/confrim-box.component';
+import { DataService } from 'src/app/templates/auth/service/data.service';
+import { AuthService } from 'src/app/templates/auth/auth.service';
 
 @Component({
   selector: 'app-tax',
   templateUrl: './tax.component.html',
-  styleUrl: './tax.component.scss'
+  styleUrl: './tax.component.scss',
+  standalone: false,
 })
 export class TaxComponent implements OnInit {
 

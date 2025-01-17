@@ -37,9 +37,7 @@ import { AddContactBookComponent } from './templates/admin/pages/contact-book/ad
 import { ListContactBookComponent } from './templates/admin/pages/contact-book/list-contact-book/list-contact-book.component';
 import { DashbordComponent } from './templates/admin/pages/dashbord/dashbord.component';
 import { LayoutComponent } from './templates/admin/pages/dashbord/layout/layout.component';
-import { MenuItemComponent } from './templates/admin/pages/dashbord/menu-item/menu-item.component';
 import { PageHeaderComponent } from './templates/admin/pages/dashbord/page-header/page-header.component';
-import { HeaderComponent } from './templates/admin/pages/header/header.component';
 import { AddKhataComponent } from './templates/admin/pages/khatabook/add-khata/add-khata.component';
 import { AddkhataAmtComponent } from './templates/admin/pages/khatabook/addkhata-amt/addkhata-amt.component';
 import { ListKhataComponent } from './templates/admin/pages/khatabook/list-khata/list-khata.component';
@@ -49,15 +47,20 @@ import { LoaderInterceptor } from './templates/auth/service/service/LoaderInterc
 import { TokenInterService } from './templates/auth/token-inter.service';
 import { CourseRivePageModule } from './templates/course-rive/course-rive.module';
 import { MenulistComponent } from './templates/admin/pages/menulist/menulist.component';
+import { ProfileComponent } from './templates/admin/pages/profile/profile.component';
+import { TaxComponent } from './templates/admin/pages/tax/tax.component';
+import { BillCounterComponent } from './templates/admin/pages/bill-counter/bill-counter.component';
+import { AddBillCounetrComponent } from './templates/admin/pages/bill-counter/add-bill-counetr/add-bill-counetr.component';
+import { CreateBillComponent } from './templates/admin/pages/bill/create-bill/create-bill.component';
 
 
 @NgModule({
-  declarations: [AppComponent, MenulistComponent, CategiresComponent, HeaderComponent, AddContactBookComponent, ConfrimBoxComponent, PageHeaderComponent,
-    ListContactBookComponent, AddKhataComponent, DashbordComponent, LayoutComponent, InvoiceComponent,
+  declarations: [AppComponent, MenulistComponent, CategiresComponent, AddContactBookComponent, ConfrimBoxComponent, PageHeaderComponent,CreateBillComponent,
+    ListContactBookComponent, AddKhataComponent, DashbordComponent, LayoutComponent, InvoiceComponent,ProfileComponent,TaxComponent,BillCounterComponent,
+    AddBillCounetrComponent,
     MoreHisabComponent,
     ListKhataComponent,
     SearchpipeComponent,
-    MenuItemComponent,
     AddkhataAmtComponent,],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, MatButtonModule, ReactiveFormsModule, CourseRivePageModule,
     MatInputModule, ReactiveFormsModule, MatToolbarModule, MatProgressSpinnerModule, CanvasJSAngularChartsModule,

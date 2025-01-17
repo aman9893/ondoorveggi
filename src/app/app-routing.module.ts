@@ -9,6 +9,12 @@ import { ListContactBookComponent } from './templates/admin/pages/contact-book/l
 import { ListKhataComponent } from './templates/admin/pages/khatabook/list-khata/list-khata.component';
 import { DashbordComponent } from './templates/admin/pages/dashbord/dashbord.component';
 import { LayoutComponent } from './templates/admin/pages/dashbord/layout/layout.component';
+import { HelprequestComponent } from './templates/admin/pages/unprotected-component/helprequest/helprequest.component';
+import { ProfileComponent } from './templates/admin/pages/profile/profile.component';
+import { TaxComponent } from './templates/admin/pages/tax/tax.component';
+import { BillCounterComponent } from './templates/admin/pages/bill-counter/bill-counter.component';
+import { AddBillCounetrComponent } from './templates/admin/pages/bill-counter/add-bill-counetr/add-bill-counetr.component';
+
 
 const routes: Routes = [
   // {
@@ -23,7 +29,13 @@ const routes: Routes = [
   { path: 'Khatabook', component: ListKhataComponent   },
   { path: 'login', component: SignInComponent, },
   { path: 'product', component: MenulistComponent, },
-  { path: 'categires', component: CategiresComponent, },
+  { path: 'category', component: CategiresComponent, },
+  { path: 'help', component: HelprequestComponent, },
+  { path: 'profile', component: ProfileComponent, },
+  { path: 'tax', component: TaxComponent, },
+  { path: 'bill', component: BillCounterComponent, },
+  { path: 'counterbill', component: AddBillCounetrComponent, },
+  
     ]
   },
   {

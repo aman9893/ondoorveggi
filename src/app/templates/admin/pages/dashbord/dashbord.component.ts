@@ -32,8 +32,9 @@ export class DashbordComponent implements OnInit {
   shopType: any;
   chartOptions2: any
   showdata: boolean =false;
+  date: Date;
   constructor(public dataService: DataService, public authService: AuthService, public dialog: MatDialog,) {
-
+    this.date =new Date()
   }
   
   @ViewChild(MatSort) sort = {} as MatSort;

@@ -1,7 +1,7 @@
 .drawer {
   position: fixed;
   height: 100vh;
-  min-width: 25%;
+  min-width: 16%;
   border-right: 1px solid #ccc;
 }
 .drawer .header {
@@ -10,7 +10,7 @@
   justify-content: space-between;
 }
 .drawer .contents {
-  padding: 16px;
+  margin-top: 50px;
 }
 
 .main {
@@ -29,6 +29,7 @@
   min-height: 100vh;
   margin-top: 64px; /* height of header */
   padding: 16px;
+  
 }
 
 .main.footer {
@@ -38,3 +39,10 @@
   width: 100%;
 }
 
+.itemvalue{
+  display: flex;
+  span{
+    padding-left: 17px;
+    font-size: 15px;
+  }
+}

@@ -3,12 +3,12 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DataService } from 'src/app/service/data.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { ConfrimBoxComponent } from '../../confrim-box/confrim-box.component';
 import { UpdateComponent } from '../../update/update.component';
+import { DataService } from 'src/app/templates/auth/service/data.service';
 
 @Component({
   selector: 'app-admin-userlist',

@@ -1,7 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { DialogPosition, MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DataService } from 'src/app/service/data.service';
 import { ConfrimBoxComponent } from '../confrim-box/confrim-box.component';
 import { AddBillCounetrComponent } from './add-bill-counetr/add-bill-counetr.component';
 import { MatSort } from '@angular/material/sort';
@@ -9,11 +8,13 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { InvoiceComponent } from '../bill/invoice/invoice.component';
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/templates/auth/service/data.service';
 
 @Component({
   selector: 'app-bill-counter',
   templateUrl: './bill-counter.component.html',
-  styleUrls: ['./bill-counter.component.scss']
+  styleUrls: ['./bill-counter.component.scss'],
+  standalone:false
 })
 export class BillCounterComponent implements OnInit,AfterViewInit {
   searchView: boolean | undefined;

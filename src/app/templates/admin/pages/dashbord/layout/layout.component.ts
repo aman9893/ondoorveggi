@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
+import { AuthService } from 'src/app/templates/auth/auth.service';
 import { DataService } from 'src/app/templates/auth/service/data.service';
 export interface MenuItem {
   title?: string;
@@ -22,20 +24,24 @@ export type Menu = MenuItem[];
   standalone: false,
 })
 export class LayoutComponent implements OnInit {
-  opened = true;
-  shopType: any | null;
-  menu:any
-  mobileview: boolean =false;
+  @ViewChild('drawer') drawer!: MatSidenav ;
 
-      showFiller = false;
-    constructor(private router: Router,private cdref: ChangeDetectorRef,public dataService: DataService, ) {
+
+  UserId: any;
+  userData: any;
+  opened = false;
+  shopType: any | null;
+  menulist:any=[]
+  mobileview: boolean =false;
+  showFiller = false;
+    constructor(private router: Router,private cdref: ChangeDetectorRef,public dataService: DataService,public authService: AuthService, ) {
     this.mobileview =this.dataService.getIsMobileResolution();
 
     router.events.subscribe((val:any) => {
       if (val instanceof NavigationEnd) {
         console.log(val.url)
         if(this.mobileview || val.url==='/addcounterbill' || val.url==='/addcustombill'){
-          this.opened =false;
+          this.drawer.close()
           this.cdref.detectChanges();
         }
       }
@@ -43,9 +49,11 @@ export class LayoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.UserId = this.authService.getUserId();
+    this.getResgiterDataById();
     this.shopType= localStorage.getItem('shop_type')
     if(this.shopType === 'restaurant'){
-      this.menu = [
+      this.menulist = [
         {
           title: 'Home',
           icon: 'home',
@@ -56,33 +64,33 @@ export class LayoutComponent implements OnInit {
         {
           title: 'Counter Billing',
           icon: 'restaurant_menu',
-          link: '/addcounterbill',
+          link: '/bill',
           color: '##000'
         },
-        {
-          title: 'Custom Billing',
-          icon: 'restaurant_menu',
-          link: '/addcustombill',
-          color: '##000'
-        },
-        {
-          title: 'Table Billing',
-          icon: 'table_chart',
-          link: '/tablebill',
-          color: '##000'
-        },
-        {
-          title: 'Billing List',
-          icon: 'receipt',
-          link: '/counterbill',
-          color: '##000'
-        },
-        {
-          title: 'Table Billing List',
-          icon: 'receipt',
-          link: '/tablebillList',
-          color: '##000'
-        },
+        // {
+        //   title: 'Custom Billing',
+        //   icon: 'restaurant_menu',
+        //   link: '/addcustombill',
+        //   color: '##000'
+        // },
+        // {
+        //   title: 'Table Billing',
+        //   icon: 'table_chart',
+        //   link: '/tablebill',
+        //   color: '##000'
+        // },
+        // {
+        //   title: 'Billing List',
+        //   icon: 'receipt',
+        //   link: '/counterbill',
+        //   color: '##000'
+        // },
+        // {
+        //   title: 'Table Billing List',
+        //   icon: 'receipt',
+        //   link: '/tablebillList',
+        //   color: '##000'
+        // },
         
         {
           title: 'Khatabook',
@@ -91,47 +99,37 @@ export class LayoutComponent implements OnInit {
           color: '##000'
         },
         {
-          title: 'Contact',
+          title: 'Contact Management',
           icon: 'person_add',
           link: '/contact',
           color: '##000'
         },
+    
         {
-          title: 'More',
-          icon: 'bar_chart',
+          title: 'Category Management',
+          icon: 'event_note',
           color: '##000',
-          subMenu: [
-            {
-              title: 'Add Category',
-              icon: 'event_note',
-              color: '##000',
-              link: '/category'
-            },
-            {
-              title: 'Add Item',
-              icon: 'restaurant_menu',
-              link: '/menu',
-              color: '##000'
-            },
+          link: '/category'
+        },
+        {
+          title: 'Product Management',
+          icon: 'restaurant_menu',
+          link: '/product',
+          color: '##000'
+        },
         
-            {
-              title: 'Add Table',
-              icon: 'store_mall_directory',
-              color: '##000',
-              link: '/table'
-            },
             {
               title: 'Add Tax',
               icon: 'store_mall_directory',
               color: '##000',
               link: '/tax'
             },
-            {
-              title: 'Add Attender',
-              icon: 'person_pin',
-              color: '##000',
-              link: '/attender'
-            },
+            // {
+            //   title: 'Add Attender',
+            //   icon: 'person_pin',
+            //   color: '##000',
+            //   link: '/attender'
+            // },
             // {
             //   title: 'Add Printer',
             //   icon: 'picture_as_pdf',
@@ -145,12 +143,11 @@ export class LayoutComponent implements OnInit {
               link: '/help'
             },
           ]
-        }
     
-      ];
     }
     else{
-      this.menu = [
+      this.menulist = [
+        
         {
           title: 'Home',
           icon: 'home',
@@ -158,69 +155,43 @@ export class LayoutComponent implements OnInit {
           color: '##000'
         },
         {
-          title: 'Counter Billing',
+          title: 'Billing',
           icon: 'restaurant_menu',
-          link: '/addcounterbill',
+          link: '/bill',
           color: '##000'
         },
+       
         {
-          title: 'Custom Billing',
-          icon: 'restaurant_menu',
-          link: '/addcustombill',
-          color: '##000'
-        },
-        {
-          title: 'Bill List',
-          icon: 'assignment',
-          link: '/counterbill',
-          color: '##000'
-        },
-    
-         {
           title: 'Khatabook',
           icon: 'assignment',
           link: '/Khatabook',
           color: '##000'
         },
-    
         {
-          title: 'Contact',
+          title: 'Contact Management',
           icon: 'person_add',
           link: '/contact',
           color: '##000'
         },
-        {
-          title: 'More',
-          icon: 'bar_chart',
-          color: '##000',
-          subMenu: [
-      
-         
+    
             {
-              title: 'Add Category',
+              title: 'Category Management',
               icon: 'event_note',
               color: '##000',
               link: '/category'
             },
-            {
-              title: 'Add Item',
-              icon: 'restaurant_menu',
-              link: '/menu',
-              color: '##000'
-            },
-        
             {
               title: 'Add Tax',
               icon: 'store_mall_directory',
               color: '##000',
               link: '/tax'
             },
-            // {
-            //   title: 'Add Printer',
-            //   icon: 'picture_as_pdf',
-            //   color: '##000',
-            //   link: '/printer'
-            // },
+            {
+              title: 'Product Management',
+              icon: 'restaurant_menu',
+              link: '/product',
+              color: '##000'
+            },
             
             {
               title: 'Help',
@@ -228,8 +199,6 @@ export class LayoutComponent implements OnInit {
               color: '##000',
               link: '/help'
             },
-          ]
-        }
     
       ];
     }
@@ -237,7 +206,22 @@ export class LayoutComponent implements OnInit {
 
  
 
+  getResgiterDataById() {
+    this.dataService.getAdminProfileDataById(this.UserId)
+      .subscribe(
+        data => this.getRegisterData(data),
+      )
+  }
 
+  getRegisterData(data: any) {
+    this.userData = data[0];
+    this.dataService.userData = this.userData;
+    this.cdref.detectChanges();
+
+  }
+  logout() {
+    this.authService.logout();
+  }
 
   toggle(): void {
     this.opened = !this.opened;

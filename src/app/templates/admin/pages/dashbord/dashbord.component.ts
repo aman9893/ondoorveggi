@@ -1,16 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AuthService } from 'src/app/auth.service';
-import { DataService } from 'src/app/service/data.service';
-import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { InvoiceComponent } from '../bill/invoice/invoice.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DataService } from 'src/app/templates/auth/service/data.service';
+import { AuthService } from 'src/app/templates/auth/auth.service';
 @Component({
   selector: 'app-dashbord',
   templateUrl: './dashbord.component.html',
-  styleUrls: ['./dashbord.component.scss']
+  styleUrls: ['./dashbord.component.scss'],
+  standalone: false
+  
 })
 export class DashbordComponent implements OnInit {
   countData: any;
@@ -32,7 +33,9 @@ export class DashbordComponent implements OnInit {
   chartOptions2: any
   showdata: boolean =false;
   constructor(public dataService: DataService, public authService: AuthService, public dialog: MatDialog,) {
+
   }
+  
   @ViewChild(MatSort) sort = {} as MatSort;
   @ViewChild(MatPaginator) paginator = {} as MatPaginator;
   ngOnInit(): void {

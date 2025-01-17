@@ -1,12 +1,15 @@
-
-<div>
-  <app-page-header icon="home"  >
-    <h3 routerLink="/home">Home</h3>
-    <button mat-flat-button color="primary" class="action"   (click)="additemStcok('save')">
-     <mat-icon>note</mat-icon> New Khata Customer 
-    </button>
+<app-page-header icon="home"  >
+  <h3 routerLink="/home">Home</h3>
+  <span  class="centertext">
+    Khata Book Management
+  </span>
   </app-page-header>
-
+<ion-content class="ion-padding ">
+  <div class="paddingheade">
+    <button mat-flat-button color="primary" class="action" (click)="additemStcok('save')">
+      <mat-icon>note</mat-icon> New Khata Customer
+    </button>
+  </div>
   <mat-accordion class="example-headers-align">
     <mat-expansion-panel *ngFor="let khatabook of khataItemlist | searchFilter:searchedKeyword  let myIndex = index;"
       (opened)="getkhatamountItem(khatabook.khatanum)">
@@ -15,52 +18,52 @@
           <span> {{myIndex +1}} . &nbsp; {{khatabook.customer_name}}</span>
         </mat-panel-title>
         <mat-panel-description>
-          {{khatabook.customer_number}}
           <mat-icon class="iconmob" (click)="addAmount(khatabook.khatanum);$event.stopPropagation();">add</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
-     
+
       <div *ngIf=" khataAmountItemlist">
         <div class="total">
           <button *ngIf="TotalValueLenaHai != ''" mat-stroked-button color="primary">
-           Total
+            Total
             <span *ngIf="TotalValueLenaHai != ''">{{TotalValueLenaHai}} Rs Give Amount (राशि देना) </span>
           </button>
           <button *ngIf="TotalValueDenaHai != ''" mat-stroked-button color="warn">
             Total
             <span *ngIf="TotalValueDenaHai != ''">{{TotalValueDenaHai}} Rs Taking Amount (राशि लेना ) </span>
           </button>
-          <button *ngIf="totalSumvalue == 0"
-             mat-stroked-button color="primary">
+          <button *ngIf="totalSumvalue == 0" mat-stroked-button color="primary">
             0 rs
           </button>
-          <button  mat-icon-button style="float: right;" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <button mat-icon-button style="float: right;" [matMenuTriggerFor]="menu"
+            aria-label="Example icon-button with a menu">
             <mat-icon>more_vert</mat-icon>
           </button>
-          <mat-menu  #menu="matMenu">
+          <mat-menu #menu="matMenu">
             <!-- (click)="createPdf(khatabook)" -->
             <!-- <button mat-menu-item  *ngIf="khataAmountItemlist && khataAmountItemlist.length > 0"  >
               <mat-icon>picture_as_pdf</mat-icon>
               <span>   Export Pdf</span>
             </button> -->
-            <button mat-menu-item  *ngIf="khataAmountItemlist && khataAmountItemlist.length > 0"   (click)="deleteAllHisab(khatabook.khatanum)">
+            <button mat-menu-item *ngIf="khataAmountItemlist && khataAmountItemlist.length > 0"
+              (click)="deleteAllHisab(khatabook.khatanum)">
               <mat-icon>delete</mat-icon>
               <span> Delete All Amount</span>
             </button>
             <button mat-menu-item (click)="deleteCustomer(khatabook.khatanum);$event.stopPropagation();">
-              <mat-icon class="iconmobde" >delete</mat-icon>
+              <mat-icon class="iconmobde">delete</mat-icon>
               <span>Delete Customer</span>
             </button>
           </mat-menu>
         </div>
-        <table  *ngIf="khataAmountItemlist && khataAmountItemlist.length > 0" class="table">
+
+        <table *ngIf="khataAmountItemlist && khataAmountItemlist.length > 0" class="table">
           <thead>
             <tr>
               <th>Status</th>
               <th>Date</th>
               <th>Amount</th>
               <th>Amount Type</th>
-
             </tr>
           </thead>
           <tbody>
@@ -68,7 +71,7 @@
               <td>
                 <mat-icon
                   [ngClass]="{'my-classred': khataAmount.amount_status == 1, 'my-classgreen': khataAmount.amount_status == 2 }">
-                  account_balance_wallet</mat-icon>
+                  remove_red_eye</mat-icon>
               </td>
               <td>{{khataAmount.amount_date | date}}</td>
               <td
@@ -80,7 +83,8 @@
             </tr>
           </tbody>
         </table>
-        <table style="display: none;" id="khataid" #khataid *ngIf="khataAmountItemlist && khataAmountItemlist.length > 0" class="table">
+        <table style="display: none;" id="khataid" #khataid
+          *ngIf="khataAmountItemlist && khataAmountItemlist.length > 0" class="table">
           <thead>
             <tr>
               <th>Date</th>
@@ -96,33 +100,30 @@
                 [ngClass]="{'my-classred': khataAmount.amount_status == 1, 'my-classgreen': khataAmount.amount_status == 2 }">
                 {{khataAmount.amount}} Rs</td>
               <td><span *ngIf=" khataAmount.amount_status == 1">You Gave - (udhar diya)</span>
-                <span *ngIf=" khataAmount.amount_status == 2 "> You Got It  - (udhar vavis mila)</span>
+                <span *ngIf=" khataAmount.amount_status == 2 "> You Got It - (udhar vavis mila)</span>
               </td>
               <td>{{khataAmount.description}}</td>
             </tr>
           </tbody>
-  
+
         </table>
       </div>
-      <span class="textcenter" *ngIf="khataAmountItemlist && khataAmountItemlist.length == 0"> No Khata Hisab Yet - "अभी तक कोई खाता हिसाब नहीं"</span>
+      <span class="textcenter" *ngIf="khataAmountItemlist && khataAmountItemlist.length == 0"> No Khata Hisab Yet - "अभी
+        तक कोई खाता हिसाब नहीं"</span>
     </mat-expansion-panel>
   </mat-accordion>
-
-  <div *ngIf="khataItemlist && khataItemlist.length === 0" class="width_100">
-    <div class="empty-state">
-        <div class="empty-state__content">
-            <div class="empty-state__icon">
-                <img src="https://cdni.iconscout.com/illustration/premium/thumb/sorry-item-not-found-3328225-2809510.png"
-                    alt>
-            </div>
-            <div class="empty-state__message">No records has been added
-                yet.</div>
-            <div class="empty-state__help">
-                Add a new Item 
-            </div>
-        </div>
+</ion-content>
+<div *ngIf="khataItemlist && khataItemlist.length === 0" class="width_100">
+  <div class="empty-state">
+    <div class="empty-state__content">
+      <div class="empty-state__icon">
+        <img src="https://cdni.iconscout.com/illustration/premium/thumb/sorry-item-not-found-3328225-2809510.png" alt>
+      </div>
+      <div class="empty-state__message">No records has been added
+        yet.</div>
+      <div class="empty-state__help">
+        Add a new Item
+      </div>
     </div>
-
-</div>
-
+  </div>
 </div>

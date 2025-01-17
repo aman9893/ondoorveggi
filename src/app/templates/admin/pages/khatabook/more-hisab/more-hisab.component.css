@@ -8,10 +8,10 @@
 .emp_details_header_wrapper {
     float: left;
     width: 100%;
-    background: #2c3881;
-    height: 80px;
+    background: #d7d8da;
+    /* height: 58px; */
     padding: 16px;
-    color: white;
+    color: #1e2023;
 }
 
 

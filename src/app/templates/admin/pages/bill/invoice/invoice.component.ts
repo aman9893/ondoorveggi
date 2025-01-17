@@ -1,11 +1,11 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import * as pdfMake from 'pdfmake/build/pdfmake';
-import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-import { DataService } from 'src/app/service/data.service';
+
 import { ConfrimBoxComponent } from '../../confrim-box/confrim-box.component';
-import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/templates/auth/service/data.service';
+import { AuthService } from 'src/app/templates/auth/auth.service';
 
 class Invoice {
   customerName!: string;
@@ -19,7 +19,8 @@ class Invoice {
 @Component({
   selector: 'app-invoice',
   templateUrl: './invoice.component.html',
-  styleUrls: ['./invoice.component.css']
+  styleUrls: ['./invoice.component.css'],
+  standalone: false
 })
 export class InvoiceComponent implements OnInit {
   billorder: any;
@@ -36,7 +37,6 @@ export class InvoiceComponent implements OnInit {
     public dialogRef: MatDialogRef<InvoiceComponent>, public dataService: DataService,private router: Router ,
     @Inject(MAT_DIALOG_DATA) public tabledata: any, public dialog: MatDialog, public authService: AuthService,
   ) {
-    (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
     this.user_id = this.authService.getUserId();
   }
   ngOnInit() {
@@ -311,12 +311,12 @@ export class InvoiceComponent implements OnInit {
       };
     }
     if (action === 'Download') {
-      pdfMake.createPdf(this.docDefinition).download();
+      // pdfMake.createPdf(this.docDefinition).download();
 
     } else if (action === 'Print') {
-      pdfMake.createPdf(this.docDefinition).print();
+      // pdfMake.createPdf(this.docDefinition).print();
     } else {
-      pdfMake.createPdf(this.docDefinition).open();
+      // pdfMake.createPdf(this.docDefinition).open();
     }
   }
 

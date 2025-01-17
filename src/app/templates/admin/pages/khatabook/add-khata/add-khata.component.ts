@@ -2,13 +2,15 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AuthService } from 'src/app/auth.service';
-import { DataService } from 'src/app/service/data.service';
+import { AuthService } from 'src/app/templates/auth/auth.service';
+import { DataService } from 'src/app/templates/auth/service/data.service';
+
 
 @Component({
   selector: 'app-add-khata',
   templateUrl: './add-khata.component.html',
-  styleUrls: ['./add-khata.component.css']
+  styleUrls: ['./add-khata.component.css'],
+  standalone:false
 })
 export class AddKhataComponent implements OnInit {
   user_id: any;

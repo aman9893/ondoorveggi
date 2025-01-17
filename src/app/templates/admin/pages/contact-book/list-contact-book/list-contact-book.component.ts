@@ -1,17 +1,18 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DataService } from 'src/app/service/data.service';
 import { ConfrimBoxComponent } from '../../confrim-box/confrim-box.component';
 import { AddContactBookComponent } from '../add-contact-book/add-contact-book.component';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { DataService } from 'src/app/templates/auth/service/data.service';
 
 @Component({
   selector: 'app-list-contact-book',
   templateUrl: './list-contact-book.component.html',
-  styleUrls: ['./list-contact-book.component.css']
+  styleUrls: ['./list-contact-book.component.css'],
+  standalone:false
 })
 export class ListContactBookComponent implements OnInit ,AfterViewInit{
   searchView: boolean | undefined;

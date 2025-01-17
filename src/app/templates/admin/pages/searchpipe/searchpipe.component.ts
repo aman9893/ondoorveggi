@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-  name: "searchFilter"
+  name: "searchFilter",
+  standalone: false
 })
 export class SearchpipeComponent implements PipeTransform {
   transform(value: any, args?: any): any {

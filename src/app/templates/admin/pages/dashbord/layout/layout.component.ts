@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { DataService } from 'src/app/service/data.service';
+import { DataService } from 'src/app/templates/auth/service/data.service';
 export interface MenuItem {
   title?: string;
   icon?: string;
@@ -18,7 +18,8 @@ export type Menu = MenuItem[];
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  styleUrls: ['./layout.component.scss'],
+  standalone: false,
 })
 export class LayoutComponent implements OnInit {
   opened = true;
@@ -26,10 +27,9 @@ export class LayoutComponent implements OnInit {
   menu:any
   mobileview: boolean =false;
 
-    
+      showFiller = false;
     constructor(private router: Router,private cdref: ChangeDetectorRef,public dataService: DataService, ) {
     this.mobileview =this.dataService.getIsMobileResolution();
-
 
     router.events.subscribe((val:any) => {
       if (val instanceof NavigationEnd) {
@@ -38,7 +38,6 @@ export class LayoutComponent implements OnInit {
           this.opened =false;
           this.cdref.detectChanges();
         }
-
       }
     });
   }

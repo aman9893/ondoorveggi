@@ -1,13 +1,14 @@
 <app-page-header icon="eye">
   <h3 routerLink="/home">Home</h3>
   <span class="centertext">
-    Contact's
+    Contact Book
   </span>
-  <button mat-flat-button color="primary" class="action" (click)="addContact('save','data')">
-    <mat-icon class="mr-2">add</mat-icon>
-    <span> Add Contact </span>
-  </button>
 </app-page-header>
+<ion-content class="ion-padding">
+<button mat-flat-button color="primary" class="action" (click)="addContact('save','data')">
+  <mat-icon class="mr-2">add</mat-icon>
+  <span> Add Contact </span>
+</button>
 <section class="divmain">
   <section class="wrapper" id="goUp">
     <!-- <div class="title">
@@ -92,6 +93,7 @@
     </div>
   </section>
 </section>
+</ion-content>
 
 <div *ngIf="ConatctBookData">
   <div *ngIf="ConatctBookData.length === 0">

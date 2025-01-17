@@ -1,17 +1,15 @@
 .itemvalue{
-    display: flex;
-    padding: 3px;
-    padding: 6px;
-    cursor: pointer;
-    font-size: 12px;
-    color: #fff;
-    background: rgba(18, 30, 157, 0.9098039216);
-    overflow-x: none;
-    border-radius: 5px;
-    width: 141px;
+    display: flex ;
+        padding: 3px;
+        /* padding: 6px; */
+        cursor: pointer;
+        font-size: 14px;
+        color: #222428;
+        /* background: rgba(18, 30, 157, 0.9098039216); */
+        overflow-x: none;
+        border-radius: 5px;
 
     span{
-    margin-left: 13px;
 
     }
 }

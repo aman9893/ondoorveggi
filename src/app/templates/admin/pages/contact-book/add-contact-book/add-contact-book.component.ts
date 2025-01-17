@@ -1,13 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AuthService } from 'src/app/auth.service';
-import { DataService } from 'src/app/service/data.service';
+import { AuthService } from 'src/app/templates/auth/auth.service';
+import { DataService } from 'src/app/templates/auth/service/data.service';
+
 
 @Component({
   selector: 'app-add-contact-book',
   templateUrl: './add-contact-book.component.html',
-  styleUrls: ['./add-contact-book.component.css']
+  styleUrls: ['./add-contact-book.component.css'],
+  standalone:false
 })
 export class AddContactBookComponent implements OnInit {
   ContactForm!: FormGroup;

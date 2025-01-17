@@ -1,12 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { DataService } from 'src/app/service/data.service';
+import { DataService } from 'src/app/templates/auth/service/data.service';
 
 
 @Component({
   selector: 'app-more-hisab',
   templateUrl: './more-hisab.component.html',
-  styleUrls: ['./more-hisab.component.css']
+  styleUrls: ['./more-hisab.component.css'],
+  standalone:false
 })
 export class MoreHisabComponent implements OnInit {
 

@@ -8,7 +8,8 @@
   <base href="/" />
 
   <meta name="color-scheme" content="light dark" />
-  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport"
+    content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="msapplication-tap-highlight" content="no" />
 
@@ -19,7 +20,42 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var modeSwitch = document.querySelector('.mode-switch');
+
+      modeSwitch.addEventListener('click', function () {
+        document.documentElement.classList.toggle('dark');
+        modeSwitch.classList.toggle('active');
+      });
+
+      var listView = document.querySelector('.list-view');
+      var gridView = document.querySelector('.grid-view');
+      var projectsList = document.querySelector('.project-boxes');
+
+      listView.addEventListener('click', function () {
+        gridView.classList.remove('active');
+        listView.classList.add('active');
+        projectsList.classList.remove('jsGridView');
+        projectsList.classList.add('jsListView');
+      });
+
+      gridView.addEventListener('click', function () {
+        gridView.classList.add('active');
+        listView.classList.remove('active');
+        projectsList.classList.remove('jsListView');
+        projectsList.classList.add('jsGridView');
+      });
+
+      document.querySelector('.messages-btn').addEventListener('click', function () {
+        document.querySelector('.messages-section').classList.add('show');
+      });
+
+      document.querySelector('.messages-close').addEventListener('click', function () {
+        document.querySelector('.messages-section').classList.remove('show');
+      });
+    });
+  </script>
 
 <body>
   <app-root></app-root>

@@ -5,16 +5,18 @@ import { AddkhataAmtComponent } from '../addkhata-amt/addkhata-amt.component';
 // import 'jspdf-autotable';
 import { MoreHisabComponent } from '../more-hisab/more-hisab.component';
 import { MatDialog } from '@angular/material/dialog';
-import { DataService } from 'src/app/service/data.service';
-import { AuthService } from 'src/app/auth.service';
+
 import { ConfrimBoxComponent } from '../../confrim-box/confrim-box.component';
+import { DataService } from 'src/app/templates/auth/service/data.service';
+import { AuthService } from 'src/app/templates/auth/auth.service';
 @Component({
   selector: 'app-list-khata',
   templateUrl: './list-khata.component.html',
-  styleUrls: ['./list-khata.component.css']
+  styleUrls: ['./list-khata.component.css'],
+  standalone: false
 })
 export class ListKhataComponent implements OnInit {
-  searchedKeyword:any
+  searchedKeyword: any
   khataItemlist: any;
   showDataLoader: boolean = true
   totalSum!: number;
@@ -60,7 +62,7 @@ export class ListKhataComponent implements OnInit {
       )
   }
   khataAmountItemData(data: Object) {
-    if(data){
+    if (data) {
       var debitsum = 0;
       var creditsum = 0;
       this.TotalValueDenaHai = '';
@@ -133,7 +135,7 @@ export class ListKhataComponent implements OnInit {
 
   deleteAllHisab(id: any) {
     let data = {
-      flag:'delete',
+      flag: 'delete',
       body: 'Want to delete All Khata Amount? '
     }
     const dialogRef = this.dialog.open(ConfrimBoxComponent, {
@@ -161,11 +163,11 @@ export class ListKhataComponent implements OnInit {
       this.getkhataItem()
     }
   }
-// ////////////////////////////////////////////
-  
+  // ////////////////////////////////////////////
+
   deleteCustomer(id: any) {
     let deletedata = {
-      flag:'delete',
+      flag: 'delete',
       body: 'Want to delete Khata Item? '
     };
     const dialogRef = this.dialog.open(ConfrimBoxComponent, {
@@ -206,7 +208,7 @@ export class ListKhataComponent implements OnInit {
   //   doc.text(30, 60, 'Customer Name  :' + '  ' + khatabook.customer_name);
   //   doc.text(30, 80, 'phone Number :' + '  ' + khatabook.customer_number);
   //   doc.text(30, 100, 'Date :' + '  ' + new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }).split(',')[0]);
-    
+
   //   doc.text(400, 60, 'Phone Number :' + '  ' + this.shopphone_number);
   //   doc.text(400, 80, 'Email :' + '  ' + this.email);
   //   if(this.TotalValueDenaHai != ''){
@@ -219,8 +221,8 @@ export class ListKhataComponent implements OnInit {
   //   doc.setFontSize(15);
   //   doc.text(300, 20, this.company_name, 'center');
   //   doc.text(300, 40, this.shop_address, 'center');
- 
-    
+
+
   //   var elem = document.getElementById("khataid");
   //   var res1 = doc.autoTableHtmlToJson(elem);
   //   var cols = res1.columns;
@@ -237,7 +239,7 @@ export class ListKhataComponent implements OnInit {
   //     });
   //     doc.save(khatabook.customer_name + '- KhataHisab');
   // }
-  moreInfo(data: any){
+  moreInfo(data: any) {
     const dialogRef = this.dialog.open(MoreHisabComponent, {
       data: data
     });

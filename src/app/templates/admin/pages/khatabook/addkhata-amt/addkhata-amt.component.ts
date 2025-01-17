@@ -2,13 +2,15 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AuthService } from 'src/app/auth.service';
-import { DataService } from 'src/app/service/data.service';
+import { AuthService } from 'src/app/templates/auth/auth.service';
+import { DataService } from 'src/app/templates/auth/service/data.service';
+
 
 @Component({
   selector: 'app-addkhata-amt',
   templateUrl: './addkhata-amt.component.html',
-  styleUrls: ['./addkhata-amt.component.css']
+  styleUrls: ['./addkhata-amt.component.css'],
+  standalone:false
 })
 export class AddkhataAmtComponent implements OnInit {
   user_id: any;

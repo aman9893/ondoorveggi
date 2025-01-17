@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { ContentViewPageRoutingModule } from './content-view-routing.module';
 
 import { ContentViewPage } from './content-view.page';
-import { ShuffleArrayPipe } from '../../helper/shuffle-array/shuffle-array.pipe';
 
 @NgModule({
   imports: [
@@ -17,6 +16,6 @@ import { ShuffleArrayPipe } from '../../helper/shuffle-array/shuffle-array.pipe'
     ContentViewPageRoutingModule,
   ],
   exports: [ContentViewPage],
-  declarations: [ContentViewPage, ShuffleArrayPipe],
+  declarations: [ContentViewPage,],
 })
 export class ContentViewPageModule {}

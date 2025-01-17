@@ -14,37 +14,18 @@ import { ProfileComponent } from './templates/admin/pages/profile/profile.compon
 import { TaxComponent } from './templates/admin/pages/tax/tax.component';
 import { BillCounterComponent } from './templates/admin/pages/bill-counter/bill-counter.component';
 import { AddBillCounetrComponent } from './templates/admin/pages/bill-counter/add-bill-counetr/add-bill-counetr.component';
+import { AppAdminRoutingModule } from './templates/admin/pages/adminroute';
 
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   loadChildren: () =>
-  //     import('./drawer/drawer.module').then((m) => m.DrawerPageModule),
-  // },
-  {path: '',component: LayoutComponent,
-    children: [
-  { path: 'home', component: DashbordComponent, },
-  { path: 'contact', component: ListContactBookComponent, },
-  { path: 'Khatabook', component: ListKhataComponent   },
-  { path: 'login', component: SignInComponent, },
-  { path: 'product', component: MenulistComponent, },
-  { path: 'category', component: CategiresComponent, },
-  { path: 'help', component: HelprequestComponent, },
-  { path: 'profile', component: ProfileComponent, },
-  { path: 'tax', component: TaxComponent, },
-  { path: 'bill', component: BillCounterComponent, },
-  { path: 'counterbill', component: AddBillCounetrComponent, },
-  
-    ]
-  },
   {
-    path: '', 
+    path: '/home', 
     loadChildren: () =>
       import('./templates/course-rive/course-rive.module').then(
         (m) => m.CourseRivePageModule
       ),
   },
+ 
 ];
 
 @NgModule({

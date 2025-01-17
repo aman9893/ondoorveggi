@@ -52,6 +52,7 @@ import { TaxComponent } from './templates/admin/pages/tax/tax.component';
 import { BillCounterComponent } from './templates/admin/pages/bill-counter/bill-counter.component';
 import { AddBillCounetrComponent } from './templates/admin/pages/bill-counter/add-bill-counetr/add-bill-counetr.component';
 import { CreateBillComponent } from './templates/admin/pages/bill/create-bill/create-bill.component';
+import { AppAdminRoutingModule } from './templates/admin/pages/adminroute';
 
 
 @NgModule({
@@ -63,7 +64,7 @@ import { CreateBillComponent } from './templates/admin/pages/bill/create-bill/cr
     SearchpipeComponent,
     AddkhataAmtComponent,],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, MatButtonModule, ReactiveFormsModule, CourseRivePageModule,
-    MatInputModule, ReactiveFormsModule, MatToolbarModule, MatProgressSpinnerModule, CanvasJSAngularChartsModule,
+    MatInputModule, ReactiveFormsModule, MatToolbarModule, MatProgressSpinnerModule, CanvasJSAngularChartsModule,AppAdminRoutingModule,
     MatSnackBarModule,
     FormsModule,
     MatIconModule,
@@ -76,7 +77,9 @@ import { CreateBillComponent } from './templates/admin/pages/bill/create-bill/cr
     MatSidenavModule, MatListModule, MatExpansionModule, MatRadioModule, MatCheckboxModule
   ],
 
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideAnimationsAsync(), { provide: HTTP_INTERCEPTORS, useClass: TokenInterService, multi: true }, { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+     provideAnimationsAsync(), { provide: HTTP_INTERCEPTORS, useClass: TokenInterService, multi: true },
+      { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {

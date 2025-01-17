@@ -19,7 +19,7 @@
       <div class="spacer"></div>
       <ion-row class="avatar-container">
         <ion-img
-          *ngFor="let number of [1, 2, 3] | shuffleArray; let i = index; trackBy: trackAvatarItems"
+          *ngFor="let number of [1, 2, 3]  let i = index; trackBy: trackAvatarItems"
           [style.transform]="'translateX(calc(' + i + ' * -20px))'"
           src="assets/course_rive/avatars/avatar_{{number}}.svg"
         ></ion-img>

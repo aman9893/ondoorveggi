@@ -58,14 +58,11 @@
       <div class="icon-container">
         <canvas
           riv="icons"
-          [artboard]="menuItems3[0].artboard"
           width="32"
           height="32"
           *ngIf="menuItems3[0].show"
         >
-          <riv-state-machine [name]="menuItems3[0].stateMachine" play>
-            <riv-input name="active" [value]="menuItems3[0].status"></riv-input>
-          </riv-state-machine>
+         
         </canvas>
       </div>
       <ion-toggle

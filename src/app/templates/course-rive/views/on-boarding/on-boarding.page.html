@@ -12,7 +12,6 @@
     [height]="platform.height()"
     *ngIf="showRiveAsset"
   >
-    <riv-animation name="Animation 1" play></riv-animation>
   </canvas>
 
   <!-- Main Content -->
@@ -32,13 +31,7 @@
     <ion-buttons class="startCoursebtn" (click)="startCoursePressed()">
       <div class="contained shadow"></div>
       <canvas class="contained" riv="button" width="236" height="64">
-        <riv-player
-          name="active"
-          [(play)]="buttonToggle"
-          autoreset
-          mode="one-shot"
-          *ngIf="showRiveAsset"
-        ></riv-player>
+       
       </canvas>
       <div class="contained btnContent">
         <ion-icon class="arrow" name="arrow-forward-outline"></ion-icon>

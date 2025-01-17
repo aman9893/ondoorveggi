@@ -45,7 +45,6 @@ import { MoreHisabComponent } from './templates/admin/pages/khatabook/more-hisab
 import { SearchpipeComponent } from './templates/admin/pages/searchpipe/searchpipe.component';
 import { LoaderInterceptor } from './templates/auth/service/service/LoaderInterceptor';
 import { TokenInterService } from './templates/auth/token-inter.service';
-import { CourseRivePageModule } from './templates/course-rive/course-rive.module';
 import { MenulistComponent } from './templates/admin/pages/menulist/menulist.component';
 import { ProfileComponent } from './templates/admin/pages/profile/profile.component';
 import { TaxComponent } from './templates/admin/pages/tax/tax.component';
@@ -53,6 +52,14 @@ import { BillCounterComponent } from './templates/admin/pages/bill-counter/bill-
 import { AddBillCounetrComponent } from './templates/admin/pages/bill-counter/add-bill-counetr/add-bill-counetr.component';
 import { CreateBillComponent } from './templates/admin/pages/bill/create-bill/create-bill.component';
 import { AppAdminRoutingModule } from './templates/admin/pages/adminroute';
+import { CourseRivePage } from './templates/course-rive/course-rive.page';
+import { ContentViewPage } from './templates/course-rive/views/content-view/content-view.page';
+import { SignInComponent } from './templates/course-rive/views/on-boarding/sign-in/sign-in.component';
+import { HelprequestComponent } from './templates/admin/pages/unprotected-component/helprequest/helprequest.component';
+import { OnBoardingPage } from './templates/course-rive/views/on-boarding/on-boarding.page';
+import { BottomTabBarComponent } from './templates/course-rive/navigation/bottom-tab-bar/bottom-tab-bar.component';
+import { MenuRowComponent } from './templates/course-rive/navigation/side-menu/menu-row/menu-row.component';
+import { SideMenuComponent } from './templates/course-rive/navigation/side-menu/side-menu.component';
 
 
 @NgModule({
@@ -61,9 +68,13 @@ import { AppAdminRoutingModule } from './templates/admin/pages/adminroute';
     AddBillCounetrComponent,
     MoreHisabComponent,
     ListKhataComponent,
-    SearchpipeComponent,
-    AddkhataAmtComponent,],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, MatButtonModule, ReactiveFormsModule, CourseRivePageModule,
+    SearchpipeComponent,OnBoardingPage,
+    AddkhataAmtComponent,
+    CourseRivePage ,ContentViewPage,SignInComponent,
+    BottomTabBarComponent,
+    MenuRowComponent,SideMenuComponent
+  ],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, MatButtonModule, ReactiveFormsModule,
     MatInputModule, ReactiveFormsModule, MatToolbarModule, MatProgressSpinnerModule, CanvasJSAngularChartsModule,AppAdminRoutingModule,
     MatSnackBarModule,
     FormsModule,

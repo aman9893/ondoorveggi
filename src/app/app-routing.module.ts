@@ -15,17 +15,15 @@ import { TaxComponent } from './templates/admin/pages/tax/tax.component';
 import { BillCounterComponent } from './templates/admin/pages/bill-counter/bill-counter.component';
 import { AddBillCounetrComponent } from './templates/admin/pages/bill-counter/add-bill-counetr/add-bill-counetr.component';
 import { AppAdminRoutingModule } from './templates/admin/pages/adminroute';
+import { CourseRivePage } from './templates/course-rive/course-rive.page';
 
 
 const routes: Routes = [
+
   {
-    path: '/home', 
-    loadChildren: () =>
-      import('./templates/course-rive/course-rive.module').then(
-        (m) => m.CourseRivePageModule
-      ),
+    path: '',
+    component: CourseRivePage
   },
- 
 ];
 
 @NgModule({

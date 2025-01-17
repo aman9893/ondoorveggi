@@ -1,0 +1,23 @@
+.itemvalue{
+    display: flex;
+    padding: 3px;
+    padding: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #fff;
+    background: rgba(18, 30, 157, 0.9098039216);
+    overflow-x: none;
+    border-radius: 5px;
+    width: 141px;
+
+    span{
+    margin-left: 13px;
+
+    }
+}
+
+.itemvalue :hover{
+    // border: 1px dotted;
+
+
+}

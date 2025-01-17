@@ -8,10 +8,10 @@ import { AuthGuard } from '../auth/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    component: CourseRivePage, canActivate: [AuthGuard],
+    component: CourseRivePage
   },
   {
-    path: 'home', canActivate: [AuthGuard],
+    path: 'home',
     loadChildren: () =>
       import('./views/content-view/content-view.module').then(
         (m) => m.ContentViewPageModule

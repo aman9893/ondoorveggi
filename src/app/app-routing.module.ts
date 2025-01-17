@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { SignInComponent } from './templates/course-rive/views/on-boarding/sign-in/sign-in.component';
 import { AuthGuard } from './templates/auth/auth.guard';
-import { MenulistComponent } from './templates/admin/menulist/menulist.component';
+import { CategiresComponent } from './templates/admin/pages/categires/categires.component';
+import { SignInComponent } from './templates/course-rive/views/on-boarding/sign-in/sign-in.component';
+import { MenulistComponent } from './templates/admin/pages/menulist/menulist.component';
 
 const routes: Routes = [
   // {
@@ -12,8 +13,12 @@ const routes: Routes = [
   // },
   { path: 'login', component: SignInComponent, },
   { path: 'product', component: MenulistComponent, },
+  { path: 'categires', component: CategiresComponent, },
+  
+
+
   {
-    path: '', canActivate: [AuthGuard],
+    path: '', 
     loadChildren: () =>
       import('./templates/course-rive/course-rive.module').then(
         (m) => m.CourseRivePageModule

@@ -41,3 +41,373 @@
 
 // Course-Rive (./app/templates/course-rive) Template styles
 @import "./theme/course-rive.scss";
+/* You can add global styles to this file, and also import other style files */
+
+
+// table page and menu page css 
+
+table {
+  width: 100%;
+}
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+// .divmain{
+//   display: grid;
+//   height: auto;
+//   width: 100%;
+//   place-items: center;
+//   background: #f2f2f2;
+//   padding: 20px;
+// }
+
+.fiter{
+  width: 100% !important;
+  padding-top: 2px;
+}
+
+.wrapper{
+  background: #fff;
+  box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+  padding: 0px;
+}
+.wrapper .title{
+  font-size: 17px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 44px;
+    color: #fff;
+    -webkit-user-select: none;
+    user-select: none;
+    border-radius: 15px 15px 0 0;
+    background: linear-gradient(-135deg, #c850c0, #4158d0);
+}
+.wrapper form{
+  // padding: 0px 10px 23px 14px;
+}
+.mat-expansion-panel-body {
+  padding: 0px !important;
+}
+.wrapper form .field{
+  height: 35px;
+  width: 32%;
+  position: relative;
+  margin-top: 2px !important;
+  float: left;
+  margin: 4px;
+}
+.wrapper form .field input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 11px;
+  padding-left: 20px;
+  border: 2px solid #01120f;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  margin: 3px;
+}
+.wrapper form .field select{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 11px;
+  padding-left: 20px;
+  border: 2px solid #01120f;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  margin: 3px;
+}
+.wrapper form .field input:focus{
+  border: 2px solid #000000;
+
+}
+.wrapper form .field label{
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  color: #999999;
+  font-weight: 400;
+  font-size: 17px;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+}
+form .field input:focus ~ label,
+form .field input:valid ~ label{
+  top: 0%;
+  font-size: 16px;
+  color: #4158d0;
+  background: #fff;
+  transform: translateY(-50%);
+}
+form .content{
+  display: flex;
+  width: 100%;
+  height: 50px;
+  font-size: 16px;
+  align-items: center;
+  justify-content: space-around;
+}
+form .content .checkbox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+form .content input{
+  width: 15px;
+  height: 15px;
+  background: red;
+}
+form .content label{
+  color: #262626;
+  user-select: none;
+  padding-left: 5px;
+}
+form .content .pass-link{
+  color: "";
+}
+.btn{
+    line-height: 35px;
+    margin-top: 4px;
+    width: 25%;
+    position: relative;
+    color: #fff;
+    border: none;
+    /* padding-left: 0; */
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    background: linear-gradient(313deg, #1d3ee9, #4e5b9b);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    border-radius: 6px;
+}
+form .field input[type="submit"]:active{
+  transform: scale(0.95);
+}
+
+
+a{
+  cursor: pointer;
+}
+.empty-state {
+  margin: 0px auto;
+  background: #ffffff;
+  box-shadow: 1px 2px 10px #e1e3ec;
+  border-radius: 4px;
+  height: 358px;
+
+  &__content {
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .empty-state__icon {
+      width: 150px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      border-radius: 200px;
+      justify-content: center;
+      background-color: #f7fafc;
+      box-shadow: 0px 2px 1px #e1e3ec;
+
+      img {
+        width: 170px;
+      }
+    }
+
+    .empty-state__message {
+      color: #38a169;
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-top: 0.85rem;
+    }
+
+    .empty-state__help {
+      color: #a2a5b9;
+      font-size: 0.875rem;
+      margin: 11px;
+    }
+  }
+}
+
+.credit {
+  color: #A2A5B9;
+  font-size: .75rem;
+  text-align: center;
+  
+  a {
+    color: #444;
+  }
+}
+
+// end the page 
+
+.container-search .form-input{
+    height: 35px;
+    text-indent: 33px;
+    border-radius: 4px !important;
+    margin-top: 5px;
+    border: 2px solid rgba(187, 187, 187, 0.8196078431) !important;
+    margin-left: 6px;
+    width: 95%;
+}
+
+.wrapper form .field {
+  height: 35px;
+  width: 95%;
+  position: relative;
+  margin-top: 8px;
+  float: left;
+  margin-top: 19px;
+}
+
+
+
+.floatleft{
+  float: left;
+  width: 100%;
+}
+
+  
+  
+  
+  @media only screen and (max-width: 450px) {
+      
+    .cardbox .calculator .calculator-keys {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+       grid-gap: 0px !important; 
+      padding: 0px !important;
+  }
+  .cardbox .calculator button {
+
+    width: 50px !important;
+}
+.price{
+    width: 17% !important;
+    float: left;
+  }
+  .input-mobile {
+	padding: 4px !important;
+    width: 117% !important;
+    margin-left: -9px !important;
+    margin-top: 7px !important;
+    font-size: 11px;
+    text-align: center;
+}
+  .button{
+    font: inherit;
+    color: inherit;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1em;
+    height: 23px;
+    border-radius: 8px;
+    line-height: 1;
+    border: 1px solid #3f51b5 !important;
+    color: #404089;
+    font-size: 0.875rem;
+    transition: 0.15s ease;
+    background-color: #ffffff;
+    font-size: 7px !important;
+}
+  .circle {
+    width: 300px;
+    height: 300px;
+    background: #0d6efd08;
+    border-radius: 50%;
+    text-align: center;
+    padding: m;
+    /* padding: 50px; */
+    font-size: 14px;
+    font-weight: 500;
+    color: green;
+    padding-top: 129px;
+    position: fixed !important;
+    top: 159px !important;
+    margin-left: 40px !important;
+	left: 0 !important;
+}
+  .mat-dialog-content {
+    display: block;
+    margin: 0 -24px;
+    padding: 0px 10px !important;
+  }
+  .mat-dialog-title {
+    margin: 0 0 0px !important;
+    display: block;
+  }
+  .headtitlte{
+    font-size: 11px !important;
+    margin-right: 25px !important;
+    margin-top: 1px !important;
+    color: #013f7c !important;
+    font-weight: 500 !important;
+    border-bottom: 1px solid !important;
+    /* border-radius: 12px; */
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    height: 32px !important;
+  
+    
+  }
+
+  .empty-state__content .empty-state__message {
+    color: #38a169;
+    font-size: 17px;
+    font-weight: 500;
+    margin-top: 0.85rem;
+}
+  .icon{
+    font-size: 10px !important;
+    float: left;
+    /* background: #028f6ce8 !important; */
+    border-radius: 19px !important;
+    text-align: center !important;
+    height: 14px !important;
+    width: 14px !important;
+    margin: 0px !important;
+    cursor: pointer !important;
+    padding: 2px !important;
+    margin-top: 10px !important;
+    color: white !important;
+  }
+  .qty{
+	width: 11% !important;
+    text-align: center;
+    float: left;
+  }
+  .pbutton{
+      font: inherit;
+      color: inherit;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px !important;
+      height: 22px !important;
+      border-radius: 12px !important;
+      line-height: 1;
+      border: 1px solid #eff1f6;
+      color: white;
+      font-size: 0.875rem;
+      transition: 0.15s ease;
+      background-color: #009665;
+      font-size: 9px !important;
+      margin-top: 6px !important;
+      margin-left: 4px !important;
+      width: 86px !important;
+  }
+
+
+}

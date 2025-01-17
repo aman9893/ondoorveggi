@@ -1,0 +1,564 @@
+<app-page-header icon="home">
+    <h3 routerLink="/counterbill">Bill List</h3>
+    <span *ngIf="GirdView" class="centertext">
+        Counter Bill
+    </span>
+    <span *ngIf="listView" class="centertext">
+        Custom Bill
+    </span>
+    <button mat-flat-button color="primary" class="action" routerLink="/counterbill" >
+        <mat-icon class="mr-2">note</mat-icon>
+        <span>  Bill List </span>
+    </button>
+</app-page-header>
+<div *ngIf="showData">
+    <div *ngIf="showData && GirdView && !mobileview"class="alfawra">
+        <span   *ngFor="let letter of letterArray " (click)="letterdata(letter)">{{letter}}</span>
+      </div>
+<div *ngIf="menuDataList && menuDataList.length > 0">
+<div *ngIf="GirdView" class="row gridviewwrap">
+    <div class="col-md-6  border-right">
+        <div>
+            <div *ngIf="!mobileview && menuDataList.length>0" >
+                <div class="container-search">
+                    <div class="row height d-flex justify-content-left align-items-left">
+                            <div class="form">
+                                <i class="fa fa-search"></i>
+                                <input type="text" [(ngModel)]="searchText" class="form-control form-input" placeholder="Search Item Name...">
+                            </div>
+                    </div>
+                </div>
+            
+                <section  id="sidebar">
+                    <div class="py-1">
+                        <ul class="list-group">
+                            <li (click)="getmenuData()"
+                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center category">
+                                <span>All Items </span>
+                            </li>
+                            <li *ngFor="let item of categoryDataList" (click)="filtercate(item.category_id)"
+                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center category">
+                                {{item.category_name | titlecase }}</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <div class="buttonsbox1"  *ngIf="menuDataList[0].menu_name !== 'NoItem'">
+                     
+                    <div *ngFor="let menu of menuDataList | searchFilter: searchText " class="box2 active">
+                        <div (click)="addProduct(menu)">
+                            <mat-card class="menuboxovrflow" title="{{menu.menu_name}}">
+                                <div *ngIf="menu.menu_url" class="image-container img-one">
+                                    <img src="{{menu.menu_url}}" alt="tennis" />
+                                </div>
+                                <p *ngIf="!menu.menu_url" style="text-transform: capitalize; margin-top: 10px;">
+                                    {{menu.menu_name}} </p>
+                                <span *ngIf="menu.menu_url" style="text-transform: capitalize;"> {{menu.menu_name}}ddfd
+                                </span>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttonsbox1" *ngIf="menuDataList[0].menu_name === 'NoItem'">
+                    <h4 class="box2 active"> No Item Found</h4>
+               </div>
+            </div>
+
+            <!-- mobile view only -->
+
+            <div *ngIf="mobileview && menuDataList.length>0">
+                <div class="filters">
+                    <div class="container-search">
+                        <div class="row height d-flex justify-content-left align-items-left">
+                                <div class="form">
+                                    <i class="fa fa-search"></i>
+                                    <input type="text" [(ngModel)]="searchText" class="form-control form-input" placeholder="Search Item Name...">
+                                </div>
+                        </div>
+                    </div>
+                    <mat-tab-group (selectedTabChange)="ontabChange($event)">
+                        <mat-tab label="All Item">
+                            <div class="mobile_menu">
+                                <div class="mobile_menusub" *ngFor="let menu of menuDataList  | searchFilter: searchText"
+                                    (click)="addProduct(menu)">
+                                    <span title={{menu.menu_name}}>{{menu.menu_name}}</span>
+                                </div>
+                            </div>
+                        </mat-tab>
+                        <mat-tab *ngFor="let item of categoryDataList" label={{item.category_name}}>
+                            <div *ngIf="menuDataList[0].menu_name !== 'NoItem'">
+                                <div class="mobile_menu"  *ngFor="let menu of menuDataList ">
+                                    <div  class="mobile_menusub"
+                                        (click)="addProduct(menu)">
+                                        <span  title={{menu.menu_name}}>{{menu.menu_name}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="menuDataList[0].menu_name === 'NoItem'">
+                                 <h4> No Item Found</h4>
+                            </div>
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <form *ngIf="menuDataList " [formGroup]="orderForm" (keydown.enter)="$event.preventDefault()">
+            <div class="row maindiv">
+                <div *ngIf="!mobileview && DesktopProducts.length !==0 " class="width_100">
+                    <div class="width_50 newinput">
+                        <input type="number" formControlName="cutomer_number" (change)="onChangeDataset()"
+                            placeholder="Customer Number" list="cutomer_number"   class="custom-select custom-select-sm">
+                        <datalist id="cutomer_number">
+                            <option class="optionLIST" *ngFor="let item of conatctBookList"
+                                [value]="item.contact_number">
+                        </datalist>
+                    </div>
+                    <div class="width_50 newinput">
+                        <input type="text" formControlName="cutomer_name" placeholder="Customer Name">
+                    </div>
+                </div>
+                <div *ngIf="mobileview && DesktopProducts.length !==0 " class="width_100">
+                    <div class="width_50  newinput">
+                        <input type="number" formControlName="cutomer_number" (change)="onChangeDataset()"
+                            placeholder="Customer Number" list="cutomer_number">
+                        <datalist id="cutomer_number">
+                            <option class="optionLIST" *ngFor="let item of conatctBookList"
+                                [value]="item.contact_number">
+                        </datalist>
+                    </div>
+                    <div class="width_50 newinput">
+                        <input type="text" formControlName="cutomer_name" placeholder="Customer Name">
+                    </div>
+                </div>
+                <div>
+                    <div class="cardcart">
+                        <div class="card-body-cart p-0 table-responsive">
+                            <table class="table cart-table mb-0 " *ngIf="menuDataList && menuDataList.length >0">
+                                <tbody *ngIf="DesktopProducts.length ===0 ">
+                                    <tr>
+                                        <td colSpan="6">
+                                            <div class="cart-empty">
+                                                <i class="fa fa-shopping-cart"></i>
+                                                <p>Your Cart Is empty</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table *ngIf="DesktopProducts.length !==0 " class="table cart-table mb-0 ">
+                                <thead>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th style="padding-left: 30px;">Qty</th>
+                                        <th>Total Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of DesktopProducts">
+                                        <td>
+                                            <button class="prdct-qty-close" type="button" (click)="removeProduct(item)">
+                                                <mat-icon>close</mat-icon>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <div class="product-name">
+                                                <p>{{item.menu_name}}</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="product-name">
+                                                <p>{{item.menu_price}}</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="prdct-qty-wrp-m">
+                                                <button class="prdct-qty-btn" type="button" (click)="decrease(item)">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                                <input type="text" name="qty" [value]="item.qty" class="qty-input-box"
+                                                    disabled />
+                                                <button class="prdct-qty-btn" (click)="increase(item)" type="button">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td>{{item.qty * item.menu_price}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div  *ngIf="DesktopProducts.length !==0  && !mobileview">
+                        <div *ngIf="DesktopProducts &&DesktopProducts.length !==0  && !mobileview " class="listwrapp">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th width="5%"> Items</th>
+                                        <th width="5%">Subtotal </th>
+                                        <th width="15%"> Token No</th>
+                                        <th width="15%">Discount </th>
+                                        <th width="15%">Payment.T</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="">
+                                        <td class="subtitiletable">
+                                            {{DesktopProducts.length}}
+                                        </td>
+                                        <td  class="subtitiletable">
+                                            {{this.subtotal}} ₹
+                                        </td>
+                                        <td >
+                                            <input  class="inp"  id="last"  type="text" formControlName="token_no" />
+                                        </td>
+                                        <td>
+                                            <input class="inp"  id="first"  type="text" formControlName="discount"
+                                            (change)="discountchange('grid')"  />  ₹
+                                        </td>
+                                        <td>
+                                            <select style="    width: 100px;
+                                            border: 2px solid gray;
+                                            border-radius: 3px; padding: 6px;" formControlName="payment_type">
+                                                <option value="Payment Type">Payment Type</option>
+                                                <option value="UPI">UPI</option>
+                                                <option value="CASH">CASH</option>
+                                                <option value="Bank">Bank</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div *ngIf="tax" class="width_100  checktax" >
+                                <div class="form-check">
+                                    <input class="form-check-input"  formControlName="gst_amt"   (change)="onCheckChange($event)"   type="checkbox" [value]="gstDatalist[0].total_tax">
+                                    <label class="form-check-label"  for="flexCheckDefault">
+                                      Add Tax (GST) -  {{gstDatalist[0].total_tax}} % - Tax calculated in percentage
+                                    </label>
+                                  </div>
+                            </div>
+                            <div class="divtotal">
+                                Grand Total - {{allProductsDesktopTotal}} ₹
+                            </div>
+                            <div class="wrapperdivbtn">
+                                <div>
+                                    <button class="bbutton" (click)="onDesktopBillSubmit()">Save Bill </button>
+                                </div>
+                                <div>
+                                    <button class="bbutton" (click)="onDesktopBillSubmit()">Save & Print </button>
+                                </div>
+                                <div>
+                                    <button class="bbutton" (click)="onDesktopBillSubmit()">KOT & Print </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div *ngIf="DesktopProducts &&DesktopProducts.length !==0 && mobileview " class="listwrapp">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th width="5%"> Items</th>
+                                    <th width="5%">Subtotal </th>
+                                    <th width="15%"> Token No</th>
+                                    <th width="15%">Discount </th>
+                                    <th width="15%">Payment.T</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="">
+                                    <td class="subtitiletable">
+                                        {{DesktopProducts.length}}
+                                    </td>
+                                    <td  class="subtitiletable">
+                                        {{this.subtotal}} 
+                                    </td>
+                                    <td >
+                                        <input  style="width: 61px;" id="last" class="form-label" type="text" formControlName="token_no" />
+                                    </td>
+                                    <td>
+                                        <input   style="width: 61px;"  id="first" class="form-label" type="text" placeholder="0Rs" formControlName="discount"
+                                        (change)="discountchange('grid')"  />
+                                    </td>
+                                    <td>
+                                        <select style="padding: 5px;  width: 63px;" formControlName="payment_type">
+                                            <option value="Payment Type">Payment Type</option>
+                                            <option value="UPI">UPI</option>
+                                            <option value="CASH">CASH</option>
+                                            <option value="Bank">Bank</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div *ngIf="tax" class="width_100  checktax" >
+                            <div class="form-check">
+                                <input class="form-check-input"  formControlName="gst_amt"   (change)="onCheckChange($event)"   type="checkbox" [value]="gstDatalist[0].total_tax">
+                                <label class="form-check-label"  for="flexCheckDefault">
+                                  Add Tax (GST) -  {{gstDatalist[0].total_tax}} % - Tax calculated in percentage
+                                </label>
+                              </div>
+                        </div>
+                        <div class="divtotalmobile">
+                            Grand Total -{{allProductsDesktopTotal}} ₹
+                        </div>
+                        <div class="wrapperdivbtn">
+                            <div>
+                                <button class="bbuttonmobile" (click)="onDesktopBillSubmit()">Save Bill </button>
+                            </div>
+                            <div>
+                                <button class="bbuttonmobile" (click)="onDesktopBillSubmit()">Save & Print </button>
+                            </div>
+                            <div>
+                                <button class="bbuttonmobile" (click)="onDesktopBillSubmit()">KOT & Print </button>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<!-- List view Code -->
+<div *ngIf="listView" class="listwrap">
+    <form *ngIf="menuDataList " [formGroup]="orderForm" (keydown.enter)="$event.preventDefault()">
+        <div class="width_100">
+            <div class="width_50  newinput">
+                <input type="number" formControlName="cutomer_number" (change)="onChangeDataset()"
+                    placeholder="Customer Number" list="languages"   class="custom-select custom-select-sm">
+                <datalist id="languages">
+                    <option class="optionLIST" *ngFor="let item of conatctBookList" [value]="item.contact_number">
+                </datalist>
+            </div>
+            <div class="width_50 newinput">
+                <input type="text" formControlName="cutomer_name" placeholder="Customer Name">
+            </div>
+        </div>
+        <div>
+        </div>
+        <div class="listwarpfixed">
+            <button class="btnadd" mat-raised-button (click)="addItem()">ADD
+                ITEM <mat-icon> add</mat-icon></button>
+            <div>
+                <table class="table" *ngIf="items">
+                    <thead>
+                        <tr>
+                            <th width="2%">Action</th>
+                            <th width="38%">Items </th>
+                            <th width="22%">Price</th>
+                            <th width="20%">Qty</th>
+                            <th width="25%">T.Amt</th>
+                        </tr>
+                    </thead>
+                    <tbody formArrayName="items" *ngFor="let item of items.controls; index as idx">
+                        <tr [formGroupName]="idx">
+                            <td>
+                                <button class="prdct-qty-close" type="button" (click)="removeGroup(idx)">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </td>
+                            <td>
+                                <div class="product-name">
+                                    <input list="encodings" formControlName="name" (change)="onBookChange($event,item)"
+                                        class="custom-select custom-select-sm">
+                                    <datalist id="encodings">
+                                        <option *ngFor="let stock of menuDataList"  [value]="stock.menu_name">
+                                            {{stock.menu_name}}-
+                                            {{stock.menu_price | currency:'INR'}}</option>
+                                    </datalist>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="product-name" *ngIf="!manualView">
+                                    <input class="form-control" formControlName="itemprice" placeholder="0" readonly>
+                                </div>
+                                <div class="product-name" *ngIf="manualView">
+                                    <input class="form-control" formControlName="itemprice"  (change)="onPriceChange($event,item)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="prdct-qty-wrp-count" *ngIf="!manualView">
+                                    <button class="prdct-qty-btn" type="button" (click)="onKeyUpEvent(item,'remove')">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <input placeholder="qty" class="qty-input-box" formControlName="qty" readonly>
+                                    <button class="prdct-qty-btn" (click)="onKeyUpEvent(item,'add')" type="button">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                                <div class="prdct-qty-wrp-count" *ngIf="manualView">
+                                    <button class="prdct-qty-btn" type="button" (click)="onMaualKeyUpEvent(item,'remove')">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <input placeholder="0" class="qty-input-box" formControlName="qty" readonly>
+                                    <button class="prdct-qty-btn" (click)="onMaualKeyUpEvent(item,'add')" type="button">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="product-name">
+                                    <input class="form-control" placeholder="0" formControlName="price" readonly>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div *ngIf="items &&items.length !==0  && !mobileview" class="listwrapp">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th width="15%"> Items</th>
+                        <th width="15%">Subtotal </th>
+                        <th width="10%"> Token No</th>
+                        <th width="10%">Discount </th>
+                        <th width="15%">Payment Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="wrapperdiscountlist">
+                        <td class="subtitiletable">
+                            {{items.length}}
+                        </td>
+                        <td  class="subtitiletable">
+                            {{this.ListViewTotalBill}} ₹
+                        </td>
+                        <td>
+                            <input id="last" class="form-label" type="text" formControlName="token_no" />
+                        </td>
+                        <td>
+                            <input id="first" class="form-label" type="text" placeholder="0 Rs" formControlName="discount"
+                                (change)="discountListchange()" />
+                        </td>
+                        <td>
+                            <select style="padding: 5px;  width: 63px;" formControlName="payment_type">
+                                <option value="Payment Type">Payment Type</option>
+                                <option value="UPI">UPI</option>
+                                <option value="CASH">CASH</option>
+                                <option value="Bank">Bank</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div *ngIf="tax" class="width_100  checktax" >
+                <div class="form-check">
+                    <input class="form-check-input"  formControlName="gst_amt"   (change)="onCheckChange($event)"   type="checkbox" [value]="gstDatalist[0].total_tax">
+                    <label class="form-check-label"  for="flexCheckDefault">
+                      Add Tax (GST) -  {{gstDatalist[0].total_tax}} % - Tax calculated in percentage
+                    </label>
+                  </div>
+            </div>
+            <div class="divtotal">
+                Grand Total - {{GrandtotalListViewbill}} ₹
+            </div>
+            <div class="wrapperdivbtn">
+                <div>
+                    <button class="bbutton" (click)="onSubmit()">Save Bill </button>
+                </div>
+                <div>
+                    <button class="bbutton" (click)="onSubmit()">Save & Print </button>
+                </div>
+                <div>
+                    <button class="bbutton" (click)="onSubmit()">KOT & Print </button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="items &&items.length !==0 && mobileview " class="listwrapp">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th width="5%">  Items</th>
+                        <th width="5%">Subtotal </th>
+                        <th width="15%"> Token No</th>
+                        <th width="15%">Discount </th>
+                        <th width="15%">Payment.T</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="mobilewrplist">
+                        <td class="subtitiletable">
+                            {{items.length}}
+                        </td>
+                        <td  class="subtitiletable">
+                            {{this.ListViewTotalBill}}
+                        </td>
+                        <td >
+                            <input   id="last" class="form-label" type="text" formControlName="token_no" />
+                        </td>
+                        <td>
+                            <input  id="first" class="form-label" type="text" placeholder="0 Rs" formControlName="discount"
+                                (change)="discountListchange()" />
+                        </td>
+                        <td>
+                            <select formControlName="payment_type">
+                                <option value="Payment Type">Payment Type</option>
+                                <option value="UPI">UPI</option>
+                                <option value="CASH">CASH</option>
+                                <option value="Bank">Bank</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div *ngIf="tax" class="width_100  checktax" >
+                <div class="form-check">
+                    <input class="form-check-input"  formControlName="gst_amt"   (change)="onCheckChange($event)"   type="checkbox" [value]="gstDatalist[0].total_tax">
+                    <label class="form-check-label"  for="flexCheckDefault">
+                      Add Tax (GST) -  {{gstDatalist[0].total_tax}} % - Tax calculated in percentage
+                    </label>
+                  </div>
+            </div>
+            <div class="divtotalmobile">
+                Grand Total - {{GrandtotalListViewbill}} ₹
+            </div>
+            <div class="wrapperdivbtn">
+                <div>
+                    <button class="bbuttonmobile" (click)="onSubmit()">Save Bill </button>
+                </div>
+                <div>
+                    <button class="bbuttonmobile" (click)="onSubmit()">Save & Print </button>
+                </div>
+                <div>
+                    <button class="bbuttonmobile" (click)="onSubmit()">KOT & Print </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div *ngIf="menuDataList && menuDataList.length === 0 && !listView">
+    <div class="empty-state">
+      <div class="empty-state__content">
+        <div class="empty-state__icon">
+          <img
+            src="https://cdni.iconscout.com/illustration/premium/thumb/sorry-item-not-found-3328225-2809510.png"
+            alt>
+        </div>
+        <div class="empty-state__message">No  Item Found .</div>
+        <div class="empty-state__help">
+               Simpley clicking <a routerLink="/menu">Add ITEM  </a> and Add Item firstly
+        </div>
+
+        <div class="empty-state__help">
+          Want to Create Manual Bill Please Click  
+          <button mat-flat-button color="primary" class="action" (click)="showListView()">
+            <mat-icon class="mr-2">add</mat-icon>
+            <span> Add Custom Bill </span>
+        </button>
+         </div>
+      </div>
+    </div>
+</div>
+</div>

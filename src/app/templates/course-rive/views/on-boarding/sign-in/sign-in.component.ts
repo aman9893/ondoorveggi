@@ -176,24 +176,39 @@ screen: any = 'signin';
     }
   }
   isToastOpen = false;
-  closeLoginDialog(data: any) {
-    console.log(data)
-    if (data.message === 'successfully') {
-      console.log(data)
-      this.loginData =data.payload;
-      this.openSnackBar(data.message, 'Dismiss');
-      this.authService.sendToken( this.loginData.auth_token);
-      this.authService.setuserData( this.loginData.user_id);
-      this.authService.setuserInfo( this.loginData);
+  // closeLoginDialog(data: any) {
+  //   console.log(data)
+  //   if (data.message === 'successfully') {
+  //     console.log(data)
+  //     this.loginData =data.payload;
+  //     this.openSnackBar(data.message, 'Dismiss');
+  //     this.authService.sendToken( this.loginData.auth_token);
+  //     this.authService.setuserData( this.loginData.user_id);
+  //     this.authService.setuserInfo( this.loginData);
       
-      this.setOpen(true);
-      setTimeout(() => {
-        this.myRoute.navigateByUrl('/');
+  //     this.setOpen(true);
+  //     setTimeout(() => {
+  //       this.myRoute.navigateByUrl('/');
   
-        }, 2000);
+  //       }, 2000);
+  //   }
+  //   if (data.status === false) {
+  //     this.setOpen(true);
+  //   }
+  // }
+  closeLoginDialog(data: any) {
+    if (data.status === true) {
+      this.loginForm.reset();
+      this.loginData =data;
+      this.openSnackBar(data.message, 'Dismiss');
+      this.authService.sendToken( this.loginData.token);
+      this.authService.setuserData( this.loginData.data.id);
+      localStorage.setItem('shop_type',this.loginData.data.shop_type)
+      // this.authService.setuserInfo( this.loginData.data);
+      this.myRoute.navigateByUrl('/home');
     }
     if (data.status === false) {
-      this.setOpen(true);
+      this.openSnackBar(data.message, 'Dismiss');
     }
   }
   setOpen(isOpen: boolean) {

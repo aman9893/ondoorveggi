@@ -1,0 +1,43 @@
+.fixed-footer{
+    position: absolute !important;
+    width: 100%;
+    text-align: center;
+    height: 28px;
+    color: white;
+    background: linear-gradient(-135deg, #212529, #71789b);
+    padding-top: 6px;
+    font-size: 12px;
+    bottom: 0;
+  }
+  
+  
+.width100{
+  float: left;
+  width: 100%;
+}
+
+.width30{
+  width: 48%;
+  float: left;
+  margin: 1%;
+}
+
+.container-search{ 
+  float: left;
+  width: 90%;
+  margin: 5px;
+  
+  .form-input {
+
+      height: 35px;
+      text-indent: 33px;
+      border-radius: 10px;
+      margin-top: 5px;
+      margin-left: 14px;
+      border: 2px solid rgba(0, 0, 0, 0.38);
+
+      margin-left: 2px;
+  }
+  
+  }
+  

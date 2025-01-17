@@ -1,0 +1,122 @@
+<app-page-header icon="home">
+    <h3 routerLink="/home">Home</h3>
+    <span class="centertext">
+        Product Management
+    </span>
+</app-page-header>
+<ion-content class="ion-padding">
+
+<section class="divmain">
+    <section class="wrapper" id="goUp">
+        <!-- <div class="title">
+            Add Item Name
+        </div> -->
+        <form class="menu-container" [formGroup]="tableForm" autocomplete="off" novalidate>
+            <div class="field">
+                <input type="text" formControlName="menu_name" placeholder="Enter Item Name" required>
+                <div *ngIf="submitted && tableForm['controls']['menu_name'].errors" >
+                    <div class="errormsg" *ngIf="tableForm.controls['menu_name'].errors['required']">*Item  Name is required</div>
+                  </div>
+            </div>
+            <div class="field">
+                <input type="number" formControlName="menu_price" placeholder="Enter Item Price">
+                <div *ngIf="submitted && tableForm['controls']['menu_price'].errors" >
+                    <div class="errormsg" *ngIf="tableForm.controls['menu_price'].errors['required']">*Item  Price is required</div>
+                  </div>
+            </div>
+     
+            <div class="field" *ngIf="categoryDataList">
+                <select formControlName="menu_categories" placeholder="Enter Item Categories">
+                    <option *ngIf="categoryDataList.length >0" selected disabled value="0" >Please Select Category</option>
+                    <option *ngIf="categoryDataList.length ===0" selected disabled  value="0" >Please Add The   Category First</option>
+                    <option *ngFor="let item of categoryDataList" value="{{item.category_id}}">{{item.category_name}}
+                    </option>
+                </select>
+                <div *ngIf="submitted && tableForm['controls']['menu_categories'].errors" >
+                    <div class="errormsg" *ngIf="tableForm.controls['menu_categories'].errors['required']">*Please Select Category</div>
+                </div>
+            </div>
+            <div class="field">
+                <input type="text" formControlName="menu_url" placeholder="Enter Item Product Image Url">
+            </div>
+            <div class="field">
+                <button *ngIf="!updatebtn" class="btn" type="submit" (click)="onSubmit()">Save</button>
+                <button *ngIf="updatebtn" class="btn" type="submit" (click)="update()">Update</button>
+            </div>
+            <div *ngIf="billData && billData.length>0" class="grid-wrapper">
+                <div class="container-search">
+                    <div class="row height d-flex justify-content-left align-items-left">
+                        <div class="col-md-6">
+                            <div class="form">
+                                <i class="fa fa-search"></i>
+                                <input type="text" (keyup)="applyFilter($event)" class="form-control form-input"
+                                    placeholder="Search Item Name...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mat-elevation-z8" *ngIf="dataSource">
+                    <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" matSortmatSortStart="desc"
+                        matSort>
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="menu_id">
+                            <th mat-header-cell *matHeaderCellDef> Action </th>
+                            <td mat-cell *matCellDef="let element"> <mat-icon style="color: gery;" class="icons"
+                                    (click)="edit(element)"> edit</mat-icon>
+                                <mat-icon style="color: #c84874;" class="icons" (click)="deleteValue(element.menu_id)">
+                                    delete</mat-icon>
+                            </td>
+                        </ng-container>
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="menu_name">
+                            <th mat-header-cell mat-sort-header *matHeaderCellDef>  Name </th>
+                            <td mat-cell *matCellDef="let element let i = index" >
+                                {{i + 1}} - {{element.menu_name}} </td>
+                        </ng-container>
+                        
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="menu_price">
+                            <th mat-header-cell mat-sort-header *matHeaderCellDef>  Price </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.menu_price}}  ₹ </td>
+                        </ng-container>
+                        <ng-container matColumnDef="menu_categories">
+                            <th mat-header-cell mat-sort-header *matHeaderCellDef>  Category </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.menu_categories}}  </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[5, 10, 20,50,100,150]" showFirstLastButtons
+                        aria-label="Select page of periodic elements">
+                    </mat-paginator>
+                </div>
+            </div>
+        </form>
+    </section>
+    <div *ngIf="billData && billData.length === 0" class="width_100">
+        <div class="empty-state">
+            <div class="empty-state__content">
+                <div class="empty-state__icon">
+                    <img src="https://cdni.iconscout.com/illustration/premium/thumb/sorry-item-not-found-3328225-2809510.png"
+                        alt>
+                </div>
+                <div class="empty-state__message">No records has been added
+                    yet.</div>
+                <div class="empty-state__help">
+                    Add a new Item 
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+</section>
+</ion-content>
+<!-- <div class="loaderwrap" *ngIf="showDataLoader === true">
+    <div class="loader">
+        <mat-spinner [diameter]="60" mode="indeterminate"></mat-spinner>
+    </div>
+</div> -->

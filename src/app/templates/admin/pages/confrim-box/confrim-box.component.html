@@ -1,0 +1,36 @@
+<div class="model_delete" *ngIf="confrimdata.flag !== 'delete'">
+  <mat-icon style="float: right;
+  cursor: pointer;" (click)="deleteResponse('no')"> close</mat-icon>
+  <h2 class="" *ngIf="confrimdata.flag != 'warn'"> Alert</h2>
+
+    <div  *ngIf="confrimdata.flag === 'warn'" >
+     <h1>Alert</h1>
+  </div>
+  <div class="Modal_content" *ngIf="confrimdata.flag === 'warn'">
+    <div class="Modal_explanation">
+      {{this.confrimdata.body}}
+    </div>
+  </div>
+  <div class="Modal_content" *ngIf="confrimdata.flag !== 'warn'">
+    <div class="Modal_explanation">
+      {{this.confrimdata.body}}?
+    </div>
+  </div>
+  <div class="Modal_delete_footer" *ngIf="confrimdata.flag != 'warn'">
+      <button mat-stroked-button color="primary" (click)="deleteResponse('no')" class="cancle_deelete_button">Cancel</button>
+      <button  mat-stroked-button color="warn"(click)="deleteResponse('yes')" class="uppercase_button">Completed</button>
+  </div>
+  </div>
+  
+  <div class="model_delete" *ngIf="confrimdata.flag === 'delete'">
+    <mat-icon style="float: right;
+    cursor: pointer;" (click)="deleteResponse('no')"> close</mat-icon>
+      <h2 >Delete </h2>
+
+       <p>{{confrimdata.body}}</p>
+
+    <div class="Modal_delete_footer" >
+        <button mat-stroked-button color="primary" (click)="deleteResponse('no')" class="cancle_deelete_button">No</button>
+        <button  mat-stroked-button color="warn"(click)="deleteResponse('yes')" class="uppercase_button">Yes</button>
+    </div>
+    </div>

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './templates/auth/auth.guard';
 import { CategiresComponent } from './templates/admin/pages/categires/categires.component';
-import { SignInComponent } from './templates/course-rive/views/on-boarding/sign-in/sign-in.component';
 import { MenulistComponent } from './templates/admin/pages/menulist/menulist.component';
 import { AddContactBookComponent } from './templates/admin/pages/contact-book/add-contact-book/add-contact-book.component';
 import { ListContactBookComponent } from './templates/admin/pages/contact-book/list-contact-book/list-contact-book.component';
@@ -15,27 +14,18 @@ import { TaxComponent } from './templates/admin/pages/tax/tax.component';
 import { BillCounterComponent } from './templates/admin/pages/bill-counter/bill-counter.component';
 import { AddBillCounetrComponent } from './templates/admin/pages/bill-counter/add-bill-counetr/add-bill-counetr.component';
 import { AppAdminRoutingModule } from './templates/admin/pages/adminroute';
-import { CourseRivePage } from './templates/course-rive/course-rive.page';
-
+import { LayoutComponentUser } from './templates/userapp/dashbord/layout/layout.component';
+import { DashbordComponentUser } from './templates/userapp/dashbord/dashbord.component';
 
 const routes: Routes = [
+  {path: '',component: LayoutComponentUser,
+    children: [
+        { path: '', redirectTo: 'main-page', pathMatch: 'full' },
+        { path: 'user', component: DashbordComponentUser, },
 
-  {
-    path: '',
-    component: CourseRivePage
+    ]
   },
-  // {
-  //   path: '',
-  //   loadChildren: () => import('./templates/userapp/tabs/tabs.module').then(m => m.TabsPageModule)
-  // },
-  // {
-  //   path: 'add-to-cart',
-  //   loadChildren: () => import('./templates/userapp/pages/add-to-cart/add-to-cart.module').then( m => m.AddToCartPageModule)
-  // },
-  // {
-  //   path: 'product-filter',
-  //   loadChildren: () => import('./templates/userapp/pages/product-filter/product-filter.module').then( m => m.ProductFilterPageModule)
-  // }
+
 ];
 
 @NgModule({

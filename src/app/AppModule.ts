@@ -52,17 +52,17 @@ import { BillCounterComponent } from './templates/admin/pages/bill-counter/bill-
 import { AddBillCounetrComponent } from './templates/admin/pages/bill-counter/add-bill-counetr/add-bill-counetr.component';
 import { CreateBillComponent } from './templates/admin/pages/bill/create-bill/create-bill.component';
 import { AppAdminRoutingModule } from './templates/admin/pages/adminroute';
-import { CourseRivePage } from './templates/course-rive/course-rive.page';
-import { ContentViewPage } from './templates/course-rive/views/content-view/content-view.page';
-import { SignInComponent } from './templates/course-rive/views/on-boarding/sign-in/sign-in.component';
 import { HelprequestComponent } from './templates/admin/pages/unprotected-component/helprequest/helprequest.component';
-import { OnBoardingPage } from './templates/course-rive/views/on-boarding/on-boarding.page';
-import { BottomTabBarComponent } from './templates/course-rive/navigation/bottom-tab-bar/bottom-tab-bar.component';
-import { MenuRowComponent } from './templates/course-rive/navigation/side-menu/menu-row/menu-row.component';
-import { SideMenuComponent } from './templates/course-rive/navigation/side-menu/side-menu.component';
-import { Tab1Page } from './templates/userapp/tab1/tab1.page';
 import { ProductFilterPage } from './templates/userapp/pages/product-filter/product-filter.page';
 import { AddToCartPage } from './templates/userapp/pages/product-filter/add-to-cart/add-to-cart.page';
+import { TabsPage } from './templates/userapp/tabs/tabs.page';
+import { Tab3Page } from './templates/userapp/tab3/tab3.page';
+import { Tab2Page } from './templates/userapp/tab2/tab2.page';
+import { Tab1Page } from './templates/userapp/tab1/tab1.page';
+import { LayoutComponentUser } from './templates/userapp/dashbord/layout/layout.component';
+import { PageHeaderComponentUser } from './templates/userapp/dashbord/page-header/page-header.component';
+import { DashbordComponentUser } from './templates/userapp/dashbord/dashbord.component';
+
 
 
 @NgModule({
@@ -71,17 +71,11 @@ import { AddToCartPage } from './templates/userapp/pages/product-filter/add-to-c
     AddBillCounetrComponent,
     MoreHisabComponent,
     ListKhataComponent,
-    SearchpipeComponent,OnBoardingPage,
-    AddkhataAmtComponent,
-    CourseRivePage ,ContentViewPage,SignInComponent,
-    BottomTabBarComponent,
-    MenuRowComponent,SideMenuComponent,
-    Tab1Page,ProductFilterPage,AddToCartPage
+    SearchpipeComponent,
+    AddkhataAmtComponent
+    ,ProductFilterPage,AddToCartPage,TabsPage,Tab3Page,Tab2Page,Tab1Page,LayoutComponentUser,PageHeaderComponentUser,DashbordComponentUser
   ],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, MatButtonModule, ReactiveFormsModule,
-
-
-    
     MatInputModule, ReactiveFormsModule, MatToolbarModule, MatProgressSpinnerModule, CanvasJSAngularChartsModule,AppAdminRoutingModule,
     MatSnackBarModule,
     FormsModule,
@@ -98,6 +92,7 @@ import { AddToCartPage } from './templates/userapp/pages/product-filter/add-to-c
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
      provideAnimationsAsync(), { provide: HTTP_INTERCEPTORS, useClass: TokenInterService, multi: true },
       { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }],
+  
   bootstrap: [AppComponent],
 })
 export class AppModule {

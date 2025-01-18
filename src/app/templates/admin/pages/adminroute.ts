@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './dashbord/layout/layout.component';
-import { SignInComponent } from '../../course-rive/views/on-boarding/sign-in/sign-in.component';
 import { AddBillCounetrComponent } from './bill-counter/add-bill-counetr/add-bill-counetr.component';
 import { BillCounterComponent } from './bill-counter/bill-counter.component';
 import { CategiresComponent } from './categires/categires.component';
@@ -20,7 +19,6 @@ const routes: Routes = [
   { path: 'home', component: DashbordComponent, },
   { path: 'contact', component: ListContactBookComponent, },
   { path: 'Khatabook', component: ListKhataComponent   },
-  { path: 'login', component: SignInComponent, },
   { path: 'product', component: MenulistComponent, },
   { path: 'category', component: CategiresComponent, },
   { path: 'help', component: HelprequestComponent, },

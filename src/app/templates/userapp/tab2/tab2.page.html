@@ -40,8 +40,8 @@
       <ion-col class="p-12-15">
         <div>
           <h2 class="heading">Order Info</h2>
-          <p class="mb-1">Total Quantity : {{ cart?.total_cart_qty }}</p>
-          <p class="mt-1">Total Price    : {{ cart?.total_price | currency: 'USD' }}</p>
+          <p class="mb-1">Total Quantity : {{ cart.total_cart_qty }}</p>
+          <p class="mt-1">Total Price    : {{ cart.total_price | currency: 'USD' }}</p>
         </div>
         <ion-button mode="ios" color="danger" expand="full" (click)="placeOrder()"> Place Order </ion-button>
       </ion-col>

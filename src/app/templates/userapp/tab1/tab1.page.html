@@ -1,20 +1,7 @@
-<ion-header>
-  <ion-toolbar color="danger">
-    <div slot="start" style="padding: 0px 10px;">
-      <img src="assets/images/logo.svg" alt="" srcset="" style="width: 30px;">
-    </div>
-    
-    <ion-searchbar mode="ios" (ionChange)="search($event)" debounce="500" style="padding: 16px 0px;"></ion-searchbar>
 
-    <ion-buttons slot="end">
-      <!-- <app-notification-bell></app-notification-bell> -->
-    </ion-buttons>
-    
-  </ion-toolbar>
-  
-</ion-header>
 
 <ion-content [fullscreen]="true">
+    <ion-searchbar mode="ios" (ionChange)="search($event)" debounce="500" style="padding: 16px 0px;"></ion-searchbar>
   <!-- <ion-slides pager="true" [options]="slideOpts" *ngIf="bannerImages && bannerImages.length">
     <ion-slide *ngFor="let image of bannerImages">  
       <img class="banner-image" [src]="image?.imgurl || 'assets/imgs/divisions.svg'"/>
@@ -47,7 +34,8 @@
           </ion-card-header>
           <ion-card-content>
             <div class="ion-color-dark">{{ product?.price | currency: 'USD' }}</div>
-            <div><ion-button data-cy="cart-btn" expand="full" color="danger" size="small" (click)="addToCartModal(product)">
+            <div>
+              <ion-button data-cy="cart-btn" expand="full" color="danger" size="small" (click)="addToCartModal(product)">
               {{ cart.isAddedToCart(product?.id) ? 'Added' : 'Add to cart' }}
             </ion-button></div>
           </ion-card-content>

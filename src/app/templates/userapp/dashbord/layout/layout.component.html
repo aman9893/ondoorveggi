@@ -1,0 +1,87 @@
+
+<mat-drawer-container [class.drawer-opened]="drawer.opened" class="example-container">
+  <mat-drawer #drawer class="drawer" mode="side" opened="false">
+    <mat-toolbar class="header">
+      <button class="profile-btn">
+        <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" />
+        <span *ngIf="userData && userData.company_name" class="title" routerLink="/">{{userData.company_name |
+          titlecase}}</span>
+      </button>
+      <mat-icon class="close" (click)="drawer.close()">close</mat-icon>
+    </mat-toolbar>
+    <div class="contents">
+      <mat-list>
+        <ng-container *ngFor="let item of menulist">
+          <!-- If the item doesn't have children show it as list item-->
+          <ng-container *ngIf="item.subMenu === undefined">
+            <mat-list-item
+              *ngIf="item.title"
+              [routerLink]="item.link"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <div class="itemvalue" >
+          <mat-icon [style.color]="item.color" >
+                {{ item.icon }}
+              </mat-icon>
+          <span> {{ item.title }}</span>
+        </div>
+            </mat-list-item>
+          </ng-container>
+        </ng-container>
+      </mat-list>
+    </div>
+  </mat-drawer>
+
+  <mat-toolbar class="main header">
+   
+    <div class="app-header">
+      <div class="app-header-left">
+        <mat-icon *ngIf="!drawer.opened" (click)="drawer.toggle()">
+          menu
+        </mat-icon>
+        <ion-text class="font-largeTitle"> Ondoor<span class="font-headlinecolor">Veggi</span> </ion-text>
+        <p class="app-name"><span *ngIf="userData && userData.company_name" class="title"
+            routerLink="/">{{userData.company_name | titlecase}}</span></p>
+      
+      </div>
+      <div class="app-header-right">
+        <button class="mode-switch" title="Switch Theme">
+          <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
+            <defs></defs>
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+          </svg>
+        </button>
+
+        <button class="notification-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-bell">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+          </svg>
+        </button>
+
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/profile">
+            <mat-icon>person</mat-icon><span>Profile</span>
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>power_settings_new</mat-icon> <span>Logout</span>
+          </button>
+        </mat-menu>
+        <button  [matMenuTriggerFor]="menu" class="profile-btn">
+          <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" />
+        </button>
+      </div>
+
+    </div>
+  </mat-toolbar>
+
+  <div class="main contents">
+    <router-outlet></router-outlet>
+  </div>
+
+
+</mat-drawer-container>

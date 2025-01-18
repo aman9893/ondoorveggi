@@ -1,22 +1,32 @@
 
 
 <ion-content [fullscreen]="true">
-    <ion-searchbar mode="ios" (ionChange)="search($event)" debounce="500" style="padding: 16px 0px;"></ion-searchbar>
-  <!-- <ion-slides pager="true" [options]="slideOpts" *ngIf="bannerImages && bannerImages.length">
-    <ion-slide *ngFor="let image of bannerImages">  
-      <img class="banner-image" [src]="image?.imgurl || 'assets/imgs/divisions.svg'"/>
-    </ion-slide>
-  </ion-slides> -->
+    <div class="container-search ">
+      <div class="row height justify-content-left align-items-left">
+          <div class="form">
+            <div class="search-wrapper ">
+              <input class="search-input" type="text"  (ionChange)="search($event)"  placeholder="Search">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search"
+                viewBox="0 0 24 24">
+                <defs></defs>
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="M21 21l-4.35-4.35"></path>
+              </svg>
+            </div>
+        </div>
 
-  <div class="result-label" *ngIf="productService.show_result_size">
-    <span>{{ productService.products.length }} Results </span> 
-  </div>
+      </div>
+    </div>
 
+
+<!-- 
   <ion-grid>
-    <ion-row class="ion-justify-content-between ion-padding-vertical">
-      <ion-col size="4">
-        <div class="font-bold">
-          Flash Sale
+    <ion-row class="ion-justify-content-between ">
+      <ion-col size="3">
+        <div style="font-size: 10px;
+    color: green;" class="font-500">
+          Fresh Vegetables
         </div>
       </ion-col>
       <ion-col size="6" class="ion-text-right">
@@ -47,5 +57,166 @@
         <h1>Oops!</h1>
       </div>
     </ion-row>
-  </ion-grid>
-</ion-content>
+  </ion-grid> -->
+
+
+
+
+  <!-- <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-buttons class="backbtn" routerLink="/home" routerDirection="back">
+          <img src="../../assets/back-dark.svg" />
+        </ion-buttons>
+      </ion-buttons>
+  
+      <ion-buttons slot="end">
+        <ion-button class="notification">
+          <ion-icon name="notifications-outline" color="dark"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header> -->
+  
+  
+    <!-- <div class="cart-items">
+      <ion-card mode="ios">
+        <ion-card-content>
+          <div class="item-img">
+            <img src="../../assets/cart/cart1.png" />
+          </div>
+  
+          <div class="item-info">
+            <p>Women t-shirt</p>
+            <p>Lotto.LTD</p>
+            <p>$34.00</p>
+  
+            <div class="qty-selector">
+              <ion-button fill="clear">-</ion-button>
+              <ion-label>1</ion-label>
+              <ion-button fill="clear">+</ion-button>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+  
+      <ion-card mode="ios">
+        <ion-card-content>
+          <div class="item-img">
+            <img src="../../assets/cart/cart2.png" />
+          </div>
+  
+          <div class="item-info">
+            <p>Female t-shirt</p>
+            <p>Bata</p>
+            <p>$44.00</p>
+  
+            <div class="qty-selector">
+              <ion-button fill="clear">-</ion-button>
+              <ion-label>1</ion-label>
+              <ion-button fill="clear">+</ion-button>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div> -->
+
+  
+  
+ 
+
+ <div class="flex overflow-x-auto pb-4 pt-4">
+     
+       
+        <div class="flex-none w-28 mx-2">
+            <div class="p-4  rounded-lg shadow">
+                <img src="https://cdn-icons-png.flaticon.com/256/8980/8980191.png" alt="Fruits and Vegetables" class="w-full">
+            </div>
+            <p class="text-center mt-2 text-purple-600 font-semibold">Vegetables</p>
+        </div>
+        <div class="flex-none w-28 mx-2">
+          <div class="p-4 bg-white rounded-lg shadow">
+              <img src="https://cdn-icons-png.flaticon.com/256/5473/5473851.png" alt="Grocery and Kitchen items" class="w-full">
+          </div>
+          <p class="text-center mt-2 text-gray-600">Fruits </p>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+        <div class="bg-white rounded-lg shadow p-4">
+            <div class="relative">
+                <img src="https://cdn-icons-png.flaticon.com/256/4977/4977383.png" alt="Capsicum Green" class="rounded-lg w-full">
+                <span class="absolute top-2 left-2 bg-purple-600 text-white text-sm px-2 py-1 rounded-full">46% Off</span>
+            </div>
+            <div class="flex justify-between items-center mt-2">
+                <p class="text-gray-600 flex items-center"><i class="fas fa-clock mr-1"></i>6 Mins</p>
+                <div class="flex items-center">
+                    <button class="bg-pink-600 text-white rounded-full w-6 h-6 text-center">-</button>
+                    <span class="mx-2">1</span>
+                    <button class="bg-pink-600 text-white rounded-full w-6 h-6 text-center">+</button>
+                </div>
+            </div>
+            <p class="mt-2 text-gray-800">Capsicum Green</p>
+            <p class="text-gray-500">500 g</p>
+            <div class="flex items-baseline">
+                <p class="text-lg font-bold">₹56</p>
+                <p class="text-gray-500 ml-2 line-through">₹105</p>
+            </div>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+            <div class="relative">
+                <img src="https://cdn-icons-png.flaticon.com/256/6531/6531396.png" alt="Onion" class="rounded-lg w-full">
+                <span class="absolute top-2 left-2 bg-purple-600 text-white text-sm px-2 py-1 rounded-full">38% Off</span>
+            </div>
+            <div class="flex justify-between items-center mt-2">
+                <p class="text-gray-600 flex items-center"><i class="fas fa-clock mr-1"></i>6 Mins</p>
+                <div class="flex items-center">
+                    <button class="bg-pink-600 text-white rounded-full w-6 h-6 text-center">-</button>
+                    <span class="mx-2">1</span>
+                    <button class="bg-pink-600 text-white rounded-full w-6 h-6 text-center">+</button>
+                </div>
+            </div>
+            <p class="mt-2 text-gray-800">Onion</p>
+            <p class="text-gray-500">1 kg</p>
+            <div class="flex items-baseline">
+                <p class="text-lg font-bold">₹65</p>
+                <p class="text-gray-500 ml-2 line-through">₹106</p>
+            </div>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+            <div class="relative">
+                <img src="https://cdn-icons-png.flaticon.com/256/9531/9531437.png" alt="Bananas" class="rounded-lg w-full">
+            </div>
+            <div class="flex justify-between items-center mt-2">
+                <p class="text-gray-600 flex items-center"><i class="fas fa-clock mr-1"></i>6 Mins</p>
+                <div class="flex items-center">
+                    <button class="bg-pink-600 text-white rounded-full w-6 h-6 text-center">+</button>
+                </div>
+            </div>
+            <p class="mt-2 text-gray-800">Allu</p>
+            <p class="text-gray-500">1 kg</p>
+            <div class="flex items-baseline">
+                <p class="text-lg font-bold">₹65</p>
+                <p class="text-gray-500 ml-2 line-through">₹106</p>
+            </div>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+            <div class="relative">
+                <img src="https://www.bigbasket.com/media/uploads/p/l/40240452_2-fresho-baby-bottle-gourdlauki-organically-grown-good-for-heart.jpg" alt="Apples" class="rounded-lg w-full">
+                <span class="absolute top-2 left-2 bg-purple-600 text-white text-sm px-2 py-1 rounded-full">9% Off</span>
+            </div>
+            <div class="flex justify-between items-center mt-2">
+              <p class="text-gray-600 flex items-center"><i class="fas fa-clock mr-1"></i>6 Mins</p>
+              <div class="flex items-center">
+                  <button class="bg-pink-600 text-white rounded-full w-6 h-6 text-center">-</button>
+                  <span class="mx-2">1</span>
+                  <button class="bg-pink-600 text-white rounded-full w-6 h-6 text-center">+</button>
+              </div>
+          </div>
+          <p class="mt-2 text-gray-800">Onion</p>
+          <p class="text-gray-500">1 kg</p>
+          <div class="flex items-baseline">
+              <p class="text-lg font-bold">₹65</p>
+              <p class="text-gray-500 ml-2 line-through">₹106</p>
+          </div>
+        </div>
+    </div>

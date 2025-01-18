@@ -40,10 +40,19 @@
 
 // Course-Rive (./app/templates/course-rive) Template styles
 /* You can add global styles to this file, and also import other style files */
-
+.title{
+  font-size: 20px;
+  margin-left: 12px;
+  font-weight: 500;
+}
+.headlinecolor{
+  color: green;
+}
 
 // table page and menu page css 
-
+.button{
+  height: 20px;
+}
 table {
   width: 100%;
 }

@@ -31,7 +31,7 @@ export class ProductsService {
   products = [
     {
       id : 1,
-      imgurl: 'assets/images/slide1.jpg',
+      imgurl: 'https://rahath.in/wp-content/uploads/2024/03/Fresh-Potato-OR-Aalu.png',
       name: 'Multi color bags',
       category: 'shopping',
       price: 67,

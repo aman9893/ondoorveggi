@@ -40,16 +40,24 @@
           },
           "configurations": {
             "production": {
+              
+              "optimization": { 
+                "scripts": true, 
+                "styles": { 
+                 "minify": true, 
+                 "inlineCritical": false 
+                }
+               },
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "4mb",
+                  "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "150kb",
-                  "maximumError": "150kb"
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ],
               "fileReplacements": [
@@ -62,7 +70,13 @@
             },
             "development": {
               "buildOptimizer": false,
-              "optimization": false,
+              "optimization": { 
+                "scripts": true, 
+                "styles": { 
+                 "minify": true, 
+                 "inlineCritical": false 
+                }
+               },
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,

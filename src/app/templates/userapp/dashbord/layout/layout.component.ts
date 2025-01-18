@@ -56,14 +56,19 @@ export class LayoutComponentUser implements OnInit {
         {
           title: 'Home',
           icon: 'home',
-          link: '/home',
+          link: '/user',
           color: '##000'
         },
-      
         {
-          title: 'Counter Billing',
+          title: 'Cart',
+          icon: 'add_shopping_cart',
+          link: '/cart',
+          color: '##000'
+        },
+        {
+          title: 'Profile',
           icon: 'restaurant_menu',
-          link: '/bill',
+          link: '/',
           color: '##000'
         },
       ]  

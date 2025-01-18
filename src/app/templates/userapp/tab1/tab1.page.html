@@ -142,16 +142,14 @@
       </div>
     </div>
     <div class="grid grid-cols-2 gap-4">
-        <div class="bg-white rounded-lg shadow p-4">
+        <div class="bg-white rounded-lg shadow p-4" *ngFor='let product of productService.products' >
             <div class="relative">
                 <img src="https://cdn-icons-png.flaticon.com/256/4977/4977383.png" alt="Capsicum Green" class="rounded-lg w-full">
                 <span class="absolute top-2 left-2 bg-purple-600 text-white text-sm px-2 py-1 rounded-full">46% Off</span>
             </div>
             <div class="flex justify-between items-center mt-2">
                 <p class="text-gray-600 flex items-center"><i class="fas fa-clock mr-1"></i>6 Mins</p>
-                <div class="flex items-center">
-                    <button class="bg-pink-600 text-white rounded-full w-6 h-6 text-center">-</button>
-                    <span class="mx-2">1</span>
+                <div class="flex items-center" (click)="addToCartModal(product)">
                     <button class="bg-pink-600 text-white rounded-full w-6 h-6 text-center">+</button>
                 </div>
             </div>
@@ -162,7 +160,7 @@
                 <p class="text-gray-500 ml-2 line-through">₹105</p>
             </div>
         </div>
-        <div class="bg-white rounded-lg shadow p-4">
+        <!-- <div class="bg-white rounded-lg shadow p-4">
             <div class="relative">
                 <img src="https://cdn-icons-png.flaticon.com/256/6531/6531396.png" alt="Onion" class="rounded-lg w-full">
                 <span class="absolute top-2 left-2 bg-purple-600 text-white text-sm px-2 py-1 rounded-full">38% Off</span>
@@ -218,5 +216,5 @@
               <p class="text-lg font-bold">₹65</p>
               <p class="text-gray-500 ml-2 line-through">₹106</p>
           </div>
-        </div>
+        </div> -->
     </div>

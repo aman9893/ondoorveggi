@@ -5,7 +5,6 @@
   border-right: 1px solid #ccc;
 }
 .drawer .header {
-  position: absolute;
   right: 0;
   justify-content: space-between;
 }
@@ -46,3 +45,6 @@
   }
 }
 
+.mat-list-item{
+  margin-top: 120px;
+}

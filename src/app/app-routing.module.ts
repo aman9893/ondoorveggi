@@ -16,12 +16,16 @@ import { AddBillCounetrComponent } from './templates/admin/pages/bill-counter/ad
 import { AppAdminRoutingModule } from './templates/admin/pages/adminroute';
 import { LayoutComponentUser } from './templates/userapp/dashbord/layout/layout.component';
 import { DashbordComponentUser } from './templates/userapp/dashbord/dashbord.component';
+import { Tab2Page } from './templates/userapp/tab2/tab2.page';
 
 const routes: Routes = [
   {path: '',component: LayoutComponentUser,
     children: [
-        { path: '', redirectTo: 'main-page', pathMatch: 'full' },
+        { path: '', redirectTo: 'user', pathMatch: 'full' },
         { path: 'user', component: DashbordComponentUser, },
+        { path: 'cart', component: Tab2Page, },
+
+        
 
     ]
   },

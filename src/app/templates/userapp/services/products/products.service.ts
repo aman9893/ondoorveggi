@@ -31,28 +31,28 @@ export class ProductsService {
   products = [
     {
       id : 1,
-      imgurl: 'https://rahath.in/wp-content/uploads/2024/03/Fresh-Potato-OR-Aalu.png',
+      imgurl: 'https://cdn-icons-png.flaticon.com/256/6531/6531396.png',
       name: 'Multi color bags',
       category: 'shopping',
       price: 67,
       totalStock: 10
     }, {
       id : 2,
-      imgurl: 'assets/images/slide3.jpg',
+      imgurl: 'https://cdn-icons-png.flaticon.com/256/6531/6531396.png',
       name: 'Daily use bags',
       category: 'routine',
       price: 37,
       totalStock: 10
     }, {
       id : 3,
-      imgurl: 'assets/images/slide2.jpg',
+      imgurl: 'https://cdn-icons-png.flaticon.com/256/6531/6531396.png',
       name: 'Real Value',
       category: 'folk',
       price: 77,
       totalStock: 10
     }, {
       id : 4,
-      imgurl: 'assets/images/slide1.jpg',
+      imgurl: 'https://cdn-icons-png.flaticon.com/256/6531/6531396.png',
       name: 'Vosto bags',
       category: 'shopping',
       price: 65,

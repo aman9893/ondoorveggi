@@ -60,6 +60,9 @@ import { OnBoardingPage } from './templates/course-rive/views/on-boarding/on-boa
 import { BottomTabBarComponent } from './templates/course-rive/navigation/bottom-tab-bar/bottom-tab-bar.component';
 import { MenuRowComponent } from './templates/course-rive/navigation/side-menu/menu-row/menu-row.component';
 import { SideMenuComponent } from './templates/course-rive/navigation/side-menu/side-menu.component';
+import { Tab1Page } from './templates/userapp/tab1/tab1.page';
+import { ProductFilterPage } from './templates/userapp/pages/product-filter/product-filter.page';
+import { AddToCartPage } from './templates/userapp/pages/product-filter/add-to-cart/add-to-cart.page';
 
 
 @NgModule({
@@ -72,9 +75,13 @@ import { SideMenuComponent } from './templates/course-rive/navigation/side-menu/
     AddkhataAmtComponent,
     CourseRivePage ,ContentViewPage,SignInComponent,
     BottomTabBarComponent,
-    MenuRowComponent,SideMenuComponent
+    MenuRowComponent,SideMenuComponent,
+    Tab1Page,ProductFilterPage,AddToCartPage
   ],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, MatButtonModule, ReactiveFormsModule,
+
+
+    
     MatInputModule, ReactiveFormsModule, MatToolbarModule, MatProgressSpinnerModule, CanvasJSAngularChartsModule,AppAdminRoutingModule,
     MatSnackBarModule,
     FormsModule,

@@ -24,6 +24,18 @@ const routes: Routes = [
     path: '',
     component: CourseRivePage
   },
+  // {
+  //   path: '',
+  //   loadChildren: () => import('./templates/userapp/tabs/tabs.module').then(m => m.TabsPageModule)
+  // },
+  // {
+  //   path: 'add-to-cart',
+  //   loadChildren: () => import('./templates/userapp/pages/add-to-cart/add-to-cart.module').then( m => m.AddToCartPageModule)
+  // },
+  // {
+  //   path: 'product-filter',
+  //   loadChildren: () => import('./templates/userapp/pages/product-filter/product-filter.module').then( m => m.ProductFilterPageModule)
+  // }
 ];
 
 @NgModule({

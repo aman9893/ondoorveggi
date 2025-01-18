@@ -303,24 +303,7 @@ a{
     font-size: 11px;
     text-align: center;
 }
-  .button{
-    font: inherit;
-    color: inherit;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 1em;
-    height: 23px;
-    border-radius: 8px;
-    line-height: 1;
-    border: 1px solid #3f51b5 !important;
-    color: #404089;
-    font-size: 0.875rem;
-    transition: 0.15s ease;
-    background-color: #ffffff;
-    font-size: 7px !important;
-}
+
   .circle {
     width: 300px;
     height: 300px;
@@ -1358,6 +1341,12 @@ button, a {
     background: #dee2e68a;
   }
   
+
+
+
+
+
+  
   
   .center {
     display: flex;
@@ -1378,3 +1367,46 @@ button, a {
     float: left;
     margin-left: 5px;
 }
+
+
+
+.font-size-1 {
+  font-size: 1rem;
+}
+
+.text-small {
+  font-size: 0.8rem;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.ion-color-dark {
+  color: var(--ion-color-dark);
+}
+
+.text-right {
+  text-align: right;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.font-gray {
+  color: gray;
+}
+
+.add-to-cart-modal {
+  --width: 70%;
+  --height: 185px;
+}
+/* Global modal transparent*/
+.sc-ion-modal-md-h {
+  --background: none;
+}
+.sc-ion-modal-ios-h {
+  --background: none;
+}
+/* End Global modal transparent */

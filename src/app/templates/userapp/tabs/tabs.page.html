@@ -1,21 +1,49 @@
-<ion-tabs>
 
-  <ion-tab-bar color="danger" slot="bottom">
-    <ion-tab-button layout="label-hide" tab="tab1">
-      <ion-icon name="home"></ion-icon>
-      <ion-label>Home</ion-label>
-    </ion-tab-button>
 
-    <ion-tab-button layout="label-hide" tab="tab2">
-      <ion-icon name="cart"></ion-icon>
-      <ion-label>Cart</ion-label>
-      <ion-badge *ngIf="cart.unseen > 0" color="warning">{{ cart.unseen }}</ion-badge>
-    </ion-tab-button>
-
-    <ion-tab-button layout="label-hide" tab="tab3">
-      <ion-icon name="person"></ion-icon>
-      <ion-label>Account</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-
-</ion-tabs>
+<header>
+  <app-page-header-user icon="home"  >
+    <h3 routerLink="/home">Home</h3>
+    <span  class="centertext">
+      Orders
+    </span>
+    </app-page-header-user>
+  </header>
+  <!-- Main Content -->
+  <ion-content class="bg-gray">
+<div class="w-3/4 p-5 mt-10">
+  <!-- Orders List -->
+  <div class="space-y-5">
+      
+      <!-- Order 1 -->
+      <div class="bg-white rounded-lg p-4 shadow">
+          <div class="flex justify-between items-center">
+              <div class="flex space-x-3">
+                  <img src="https://placehold.co/50x50" alt="Product image" class="rounded">
+                  <img src="https://placehold.co/50x50" alt="Product image" class="rounded">
+              </div>
+              <span class="text-xl font-bold">₹703.71 </span>
+          </div>
+          <div class="mt-2">
+              <p class="font-semibold">Order delivered <i class="fas fa-check-circle text-green-500"></i></p>
+              <p class="text-gray-500">Placed at 25th Dec 2024, 11:31 pm</p>
+          </div>
+      </div>
+      
+      <!-- Order 2 -->
+      <div class="bg-white rounded-lg p-4 shadow">
+          <div class="flex justify-between items-center">
+              <div class="flex space-x-3">
+                  <img src="https://placehold.co/50x50" alt="Product image" class="rounded">
+                  <img src="https://placehold.co/50x50" alt="Product image" class="rounded">
+              </div>
+              <span class="text-xl font-bold">₹884.48 </span>
+          </div>
+          <div class="mt-2">
+              <p class="font-semibold">Order delivered <i class="fas fa-check-circle text-green-500"></i></p>
+              <p class="text-gray-500">Placed at 29th Nov 2024, 12:42 pm</p>
+          </div>
+      </div>
+  
+  </div>
+</div>
+</ion-content>

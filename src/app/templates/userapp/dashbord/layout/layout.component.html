@@ -40,10 +40,8 @@
         <mat-icon *ngIf="!drawer.opened" (click)="drawer.toggle()">
           menu
         </mat-icon>
-        <ion-text class="title"> Ondoor<span class="headlinecolor">Veggi</span> </ion-text>
-        <p class="app-name"><span *ngIf="userData && userData.company_name" class="title"
-            routerLink="/">{{userData.company_name | titlecase}}</span></p>
-      
+        <ion-text class="titlehed"> Ondoor<span class="headlinecolor">Veggi</span> </ion-text>
+        
       </div>
       <div class="app-header-right">
         <mat-icon routerLink="/cart">add_shopping_cart</mat-icon>

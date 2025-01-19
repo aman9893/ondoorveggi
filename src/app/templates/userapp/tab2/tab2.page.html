@@ -1,19 +1,90 @@
 
 
+<header>
+<app-page-header-user icon="home"  >
+  <h3 routerLink="/home">Home</h3>
+  <span  class="centertext">
+   My Cart
+  </span>
+  </app-page-header-user>
+</header>
+
 <ion-content class="bg-gray">
-  <ion-header>
-    <ion-toolbar color="danger">
-      <ion-title>
-        My Cart
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <div *ngIf="cart.items.length < 1" class="noitem">
+
+  <!-- <div *ngIf="cart.items.length < 1" class="noitem">
     <img  src="assets/images/empty-cart.svg" />
     <h1>Oops!</h1>
-  </div>
+  </div> -->
 
-  <ion-list *ngIf="cart.items.length > 0" class="bg-gray" data-cy="cart-list">
+  <div class="max-w-md mx-auto mt-10 p-4 bg-white rounded-lg shadow-lg">
+    <div class="flex items-center justify-between">
+        <h1 class="text-lg font-bold"><i class="fas fa-shopping-cart"></i> Your Cart</h1>
+        <div class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded">
+            SAVED ₹47.09
+        </div>
+    </div>
+    <p class="text-green-500 mt-2"><i class="fas fa-check-circle"></i> Free Delivery unlocked, apply coupon to avail</p>
+
+    <div class="bg-blue-50 mt-4 p-4 rounded">
+        <div class="flex items-center">
+            <div class="bg-teal-500 text-white rounded-full p-2">
+                <i class="far fa-clock"></i>
+            </div>
+            <h2 class="ml-2 font-semibold text-gray-800">Delivery in 6 mins</h2>
+        </div>
+
+        <div class="mt-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-start">
+                    <img src="https://placehold.co/50" alt="Image of Blueberry Imported" class="w-10 h-10">
+                    <div class="ml-2">
+                        <p class="text-sm font-medium text-gray-900">Blueberry Imported</p>
+                        <p class="text-xs text-gray-500">120 g</p>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <button class="text-red-500 text-lg px-2">-</button>
+                    <span class="px-2">1</span>
+                    <button class="text-pink-500 text-lg px-2">+</button>
+                    <div class="ml-4 text-right">
+                        <p class="text-gray-900">₹248</p>
+                        <p class="text-xs line-through text-gray-500">₹255</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between mt-4">
+                <div class="flex items-start">
+                    <img src="https://placehold.co/50" alt="Image of Grapes Green Sonaka Seedless" class="w-10 h-10">
+                    <div class="ml-2">
+                        <p class="text-sm font-medium text-gray-900">Grapes Green Sonaka Seedless</p>
+                        <p class="text-xs text-gray-500">500 g</p>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <button class="text-red-500 text-lg px-2">-</button>
+                    <span class="px-2">1</span>
+                    <button class="text-pink-500 text-lg px-2">+</button>
+                    <div class="ml-4 text-right">
+                        <p class="text-gray-900">₹116</p>
+                        <p class="text-xs line-through text-gray-500">₹150</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p class="mt-4 font-medium">Missed something?</p>
+    <button class="bg-black text-white font-medium text-sm mt-2 px-4 py-2 rounded flex items-center">
+        <i class="fas fa-plus-circle mr-2"></i> Add More Items
+    </button>
+
+    <button class="mt-8 w-full bg-pink-600 text-white font-medium py-3 rounded">
+        Add Address to proceed
+    </button>
+</div>
+
+  <!-- <ion-list *ngIf="cart.items.length > 0" class="bg-gray" data-cy="cart-list">
     <ion-row *ngFor="let product of cart.items;let i = index;" class="rrow" class="ion-no-padding mt-1 bg-white">
         <ion-col size="3">
             <img src="{{product.imgurl || 'assets/images/products.svg'}}" style="height: 100%;"/>
@@ -30,11 +101,11 @@
             </ion-row>
         </ion-col>
     </ion-row>
-  </ion-list>
+  </ion-list> -->
   
 </ion-content>
 
-<ion-footer class="ion-no-border">
+<!-- <ion-footer class="ion-no-border">
   <ion-toolbar class="bg-gray" *ngIf="cart.items.length > 0">
     <ion-row class="footer-bar">
       <ion-col class="p-12-15">
@@ -47,4 +118,4 @@
       </ion-col>
     </ion-row>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

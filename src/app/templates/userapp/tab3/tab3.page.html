@@ -1,11 +1,77 @@
-<ion-header>
-  <ion-toolbar color="danger">
-    <ion-title>
-      Profile
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+
+
+<header>
+  <app-page-header-user icon="home"  >
+    <h3 routerLink="/home">Home</h3>
+    <span  class="centertext">
+     My Cart
+    </span>
+    </app-page-header-user>
+  </header>
+  
 
 <ion-content>
- 
+  <div class="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+    <!-- Image Section -->
+    <div class="relative">
+      <img src="https://placehold.co/500x300" alt="Bag of Hawaiian Barbeque Cheese Popcorn surrounded by ingredients" class="w-full">
+      <button class="absolute left-2 top-2 w-8 h-8 bg-white text-gray-700 rounded-full flex items-center justify-center shadow-md">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <button class="absolute right-2 top-2 w-8 h-8 bg-white text-gray-700 rounded-full flex items-center justify-center shadow-md">
+        <i class="fas fa-heart"></i>
+      </button>
+      <button class="absolute right-2 top-12 w-8 h-8 bg-white text-gray-700 rounded-full flex items-center justify-center shadow-md">
+        <i class="fas fa-share-alt"></i>
+      </button>
+    </div>
+    
+    <!-- Product Details Section -->
+    <div class="p-4">
+      <h2 class="text-lg font-semibold mb-1">4700BC Popcorn Hawaiian Barbeque Cheese Pouch</h2>
+      <p class="text-gray-500 mb-2">Net Qty: 35 g</p>
+      <div class="flex items-center mb-2">
+        <p class="text-lg font-bold text-green-600 mr-2">₹37</p>
+        <p class="text-sm text-green-600 font-semibold mr-2">24% Off</p>
+        <p class="text-sm text-gray-400 line-through">MRP ₹49</p>
+        <p class="text-xs text-gray-400">(incl. of all taxes)</p>
+      </div>
+      <div class="flex items-center text-green-600 mb-2">
+        <i class="fas fa-bolt mr-2"></i>
+        <p class="text-sm">Get it in 6 minutes</p>
+      </div>
+      <button class="w-full py-2 text-green-700 bg-green-100 rounded flex items-center justify-center">
+        View all 4700BC products
+      </button>
+    </div>
+
+    <!-- Coupons & Offers Section -->
+    <div class="p-4 bg-gray-50">
+      <h3 class="text-md font-semibold mb-3">Coupons & Offers</h3>
+      <div class="flex items-center bg-white p-3 mb-3 rounded shadow">
+        <div class="w-2/3">
+          <p class="text-sm font-semibold">Get flat 12% discount with Kotak Credit Card</p>
+        </div>
+        <div class="w-1/3 flex justify-center">
+          <button class="text-blue-600 font-semibold">Get : CRE</button>
+        </div>
+      </div>
+      <button class="w-full py-2 text-red-600 hover:text-red-700 font-semibold">
+        View all coupons
+      </button>
+    </div>
+
+    <!-- View Cart Section -->
+    <div class="p-4 bg-white flex justify-between items-center">
+      <button class="flex items-center font-semibold text-lg text-red-600">
+        <i class="fas fa-shopping-cart mr-2"></i>
+        View Cart
+      </button>
+      <div class="flex items-center">
+        <button class="p-2 text-xl bg-gray-200 rounded-tl rounded-bl"><i class="fas fa-minus"></i></button>
+        <span class="px-4 py-2 text-lg font-medium">1</span>
+        <button class="p-2 text-xl bg-gray-200 rounded-tr rounded-br"><i class="fas fa-plus"></i></button>
+      </div>
+    </div>
+  </div>
 </ion-content>

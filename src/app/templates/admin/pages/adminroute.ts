@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'home', component: DashbordComponent, },
   { path: 'contact', component: ListContactBookComponent, },
   { path: 'Khatabook', component: ListKhataComponent   },
-  { path: 'product', component: MenulistComponent, },
+  { path: 'product-list', component: MenulistComponent, },
   { path: 'category', component: CategiresComponent, },
   { path: 'help', component: HelprequestComponent, },
   { path: 'profile', component: ProfileComponent, },

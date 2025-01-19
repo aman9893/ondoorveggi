@@ -114,7 +114,7 @@ export class LayoutComponent implements OnInit {
         {
           title: 'Product Management',
           icon: 'restaurant_menu',
-          link: '/product',
+          link: '/product-list',
           color: '##000'
         },
         
@@ -189,7 +189,7 @@ export class LayoutComponent implements OnInit {
             {
               title: 'Product Management',
               icon: 'restaurant_menu',
-              link: '/product',
+              link: '/product-list',
               color: '##000'
             },
             

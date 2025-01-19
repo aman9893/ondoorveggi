@@ -1,14 +1,25 @@
 
 <mat-drawer-container [class.drawer-opened]="drawer.opened" class="example-container">
   <mat-drawer #drawer class="drawer" mode="side" opened="false">
+    
     <mat-toolbar class="header">
-      <button class="profile-btn">
+      <div class=" sidehed flex items-center mb-8 mt-10">
+        <img src="https://placehold.co/50x50" alt="Profile icon" class="rounded-full">
+        <div class="ml-3">
+            <p class="font-bold">Aman jain</p>
+            <p>9806701954</p>
+        </div>
+    </div>
+      <!-- <button class="profile-btn">
+        <span *ngIf="userData && userData.company_name" class="title" routerLink="/"> Aman jain{{userData.company_name |
+          titlecase}}</span> Aman
         <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" />
-        <span *ngIf="userData && userData.company_name" class="title" routerLink="/">{{userData.company_name |
-          titlecase}}</span>
-      </button>
+
+      </button> -->
       <mat-icon class="close" (click)="drawer.close()">close</mat-icon>
     </mat-toolbar>
+
+
     <div class="contents">
       <mat-list>
         <ng-container *ngFor="let item of menulist">

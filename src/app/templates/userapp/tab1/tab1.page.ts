@@ -5,6 +5,7 @@ import { ProductFilterPage } from '../pages/product-filter/product-filter.page';
 import { CartService } from '../services/cart/cart.service';
 import { ProductsService } from '../services/products/products.service';
 import { AddToCartPage } from '../pages/product-filter/add-to-cart/add-to-cart.page';
+import { DataService } from '../../auth/service/data.service';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -25,6 +26,7 @@ export class Tab1Page {
   };
 
   bannerImages: any = [];
+  mobileview: boolean=false;
   //searchTerm: string;
 
   constructor(
@@ -33,8 +35,10 @@ export class Tab1Page {
     public modalCtrl : ModalController,
     public cart : CartService,
     private router: Router,
-    private actionSheetController: ActionSheetController
+    private actionSheetController: ActionSheetController,
+    private dataService: DataService
   ) {
+    this.mobileview = this.dataService.getIsMobileResolution();
     this.bannerImages = this.productService.bannerImages;
     this.productService.initProductList();
   }

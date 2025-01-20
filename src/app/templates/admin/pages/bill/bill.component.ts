@@ -1,11 +1,11 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/service/data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateBillComponent } from './create-bill/create-bill.component';
 import { FormControl } from '@angular/forms';
 import { ListBillComponent } from './list-bill/list-bill.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/templates/auth/service/data.service';
 
 @Component({
   selector: 'app-bill',

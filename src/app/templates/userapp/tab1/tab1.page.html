@@ -77,55 +77,10 @@
   </ion-header> -->
 
 
-  <!-- <div class="cart-items">
-      <ion-card mode="ios">
-        <ion-card-content>
-          <div class="item-img">
-            <img src="../../assets/cart/cart1.png" />
-          </div>
-  
-          <div class="item-info">
-            <p>Women t-shirt</p>
-            <p>Lotto.LTD</p>
-            <p>$34.00</p>
-  
-            <div class="qty-selector">
-              <ion-button fill="clear">-</ion-button>
-              <ion-label>1</ion-label>
-              <ion-button fill="clear">+</ion-button>
-            </div>
-          </div>
-        </ion-card-content>
-      </ion-card>
-  
-      <ion-card mode="ios">
-        <ion-card-content>
-          <div class="item-img">
-            <img src="../../assets/cart/cart2.png" />
-          </div>
-  
-          <div class="item-info">
-            <p>Female t-shirt</p>
-            <p>Bata</p>
-            <p>$44.00</p>
-  
-            <div class="qty-selector">
-              <ion-button fill="clear">-</ion-button>
-              <ion-label>1</ion-label>
-              <ion-button fill="clear">+</ion-button>
-            </div>
-          </div>
-        </ion-card-content>
-      </ion-card>
-    </div> -->
-
-
 
 
 
   <div class="flex overflow-x-auto pb-4 pt-4">
-
-
     <div class="flex-none w-28 mx-2">
       <div class="p-4  rounded-lg shadow">
         <img src="https://cdn-icons-png.flaticon.com/256/8980/8980191.png" alt="Fruits and Vegetables" class="w-full">
@@ -141,10 +96,9 @@
     </div>
   </div>
 
-
   <div *ngIf="mobileview" class="grid grid-cols-2 gap-4">
    
-    <div *ngFor='let product of this.productList' class="bg-white rounded-lg shadow p-4">
+    <div *ngFor='let product of this.productArray' class="bg-white rounded-lg shadow p-4">
       <div (click)="goToProductDetails(product.prod_id)" class="relative">
         <img
           src="{{product.nutrition_weight}}"
@@ -152,19 +106,13 @@
         <!-- <span class="absolute top-2 left-2 bg-purple-600 text-white text-sm px-2 py-1 rounded-full">9% Off</span> -->
       </div>
       <div class="flex justify-between items-center mt-2">
-        <p class="text-gray-600 flex items-center"><i class="fas fa-clock mr-1"></i>6 Mins</p>
         <div class="flex items-center">
-          <button class="bg-pink-600 text-white rounded-full w-6 h-6 text-center">-</button>
-          <span class="mx-2">1</span>
-          <button class="bg-pink-600 text-white rounded-full w-6 h-6 text-center">+</button>
+          <ion-button size="small"  (click)="addCart(product)">  {{ product.isAdded? 'Added' : 'Add to cart' }}</ion-button>
         </div>
       </div>
-      <p class="mt-2 text-gray-800">{{product.name}}</p>
-      <p class="text-gray-500">{{product.unit_name}} {{product.unit_value}}</p>
-      <div class="flex items-baseline">
-        <p class="text-lg font-bold">₹ {{product.price}}</p>
-        <!-- <p class="text-gray-500 ml-2 line-through">₹106</p> -->
-      </div>
+      <p class="mt-2 text-gray-800 ">{{product.name}}</p>
+      <p class="text-gray-500">{{product.unit_name}} {{product.unit_value}} - ₹ {{product.price}}</p>
+   
     </div>
   </div>
 

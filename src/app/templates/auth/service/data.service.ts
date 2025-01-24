@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from  '@angular/common/http';
 import { apiConfig } from '../../api-path/api-config';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-
 
   constructor(private http :HttpClient,private snackBar: MatSnackBar,) { 
     if (window.innerWidth < 768) {
@@ -20,7 +19,8 @@ export class DataService {
 
   cartDataList: any = [];
   productList = new BehaviorSubject<any>([]);
-
+  cartlist = new BehaviorSubject<any>([]);
+  cartSubject = new Subject<number>();
 
 
   inProduct(product:any) {
@@ -67,23 +67,20 @@ export class DataService {
   getProductData() {
     return this.productList.asObservable();
   }
-
-
-
   // Add products to cart
   addToCart(product: any) {
+    console.log(product);
     let isDuplicate = false;
     for(let i=0; i<this.cartDataList.length;i++){
-       if(product.menu_id == this.cartDataList[i].menu_id){
+       if(product.prod_id == this.cartDataList[i].prod_id){
         isDuplicate =true;
          break;
         }
-
    }
    if(!isDuplicate ){
     this.cartDataList.push(product);
+    console.log(this.cartDataList);
     this.productList.next(this.cartDataList);
-    this.getTotalAmount();
      }
 
   }
@@ -101,7 +98,7 @@ export class DataService {
   // Remove product one by one
   removeCartData(product: any) {
     this.cartDataList.map((a: any, index: any) => {
-      if (product.menu_id === a.menu_id) {
+      if (product.prod_id === a.prod_id) {
         this.cartDataList.splice(index, 1);
       }
     })

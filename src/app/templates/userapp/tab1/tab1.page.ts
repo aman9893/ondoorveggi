@@ -28,6 +28,8 @@ export class Tab1Page implements OnInit {
   bannerImages: any = [];
   mobileview: boolean = false;
   productList: any;
+  productArray: any;
+  getCartDetails: any;
   //searchTerm: string;
 
   constructor(
@@ -46,11 +48,11 @@ export class Tab1Page implements OnInit {
     this.bannerImages = this.productService.bannerImages;
     this.productService.initProductList();
     this.getProductApiCall();
+    this.cartNumberFunc();
 
   }
   search(event: any) {
     let term = event.target.value;
-    console.log({ term });
     this.productService.searchProducts(term);
   }
 
@@ -63,58 +65,129 @@ export class Tab1Page implements OnInit {
   }
   getProductData(data: any) {
     this.productList = data.payload;
-    console.log('this.productList :>> ', this.productList);
+    this.productArray = this.productList.map((prod: any) => { return { ...prod, qty: 1 } });
+    this.getCartDetails = JSON.parse(localStorage.getItem('localCart')!);
+
+    this.productArray.forEach((a: any) => {
+      this.getCartDetails.forEach((b: any) => {
+        if (a.prod_id === b.prod_id) {
+          a.isAdded =true
+        }
+      });
+    });
+
+
   }
-  goToProductDetails(id:any) {
+
+  inc(prod: any) {
+    prod.qty! += 1
+  }
+  dec(prod: any) {
+    if (prod.qty != 1) {
+      prod.qty! -= 1
+
+    }
+
+  }
+  itemsCart: any[] = [];
+  addCart(category: any) {
+   
+    console.log('esto es en addCart', this.productArray)
+    let cartDataNull =localStorage.getItem('localCart');
+    if (cartDataNull == null) {
+      let storeDataGet: any[] = [];
+      storeDataGet.push(category);
+      localStorage.setItem('localCart',JSON.stringify(storeDataGet));
+    }
+    else {
+      let id = category.prod_id;
+      let index: number = -1;
+      this.itemsCart =JSON.parse(localStorage.getItem('localCart')!);
+      for
+        (let i = 0; i < this.itemsCart.length;
+        i++) {
+        if (id ==this.itemsCart[i].prod_id) {
+          this.itemsCart[i].qty =
+          category.qty
+          index = i;
+          break;
+        }
+      }
+      if (index == -1) {
+        this.itemsCart.push(category);
+        localStorage.setItem
+          ('localCart', JSON.stringify
+            (this.itemsCart));
+      }
+      else {
+        localStorage.setItem
+          ('localCart', JSON.stringify
+            (this.itemsCart));
+      }
+    }
+    this.cartNumberFunc();
+  }
+
+  cartNumber: number = 0;
+
+  cartNumberFunc() {
+    let cartValue =
+      JSON.parse
+        (localStorage.getItem
+          ('localCart')!);
+    this.cartNumber =
+      cartValue.length;
+    this.dataService.cartSubject.next(this.cartNumber);
+    this. getProductApiCall()
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  goToProductDetails(id: any) {
     this.router.navigate(['/products', id]);
   }
 
+  addToCartproduct(item: any) {
+    this.productList.forEach((element: any) => {
+      if (element.prod_id == item.prod_id) {
+        element.isAdded = true;
+      }
+      else {
+        // element.isAdded = false;
+      }
 
-
-  async addToCartModal(item: { id: any; }) {
-    console.log('item_id :>> ', item);
-    let isAdded = this.cart.isAddedToCart(item.id);
-
-    if (!isAdded) {
-      this.cart.placeItem(item);
-      const modal = await this.modalCtrl.create({
-        component: AddToCartPage,
-        cssClass: 'add-to-cart-modal',
-        presentingElement: this.routerOutlet.nativeEl
-      });
-
-      await modal.present();
-
-      await modal.onWillDismiss().then((result) => {
-        console.log('result :>> ', result);
-      }).catch((err) => {
-        console.log('err :>> ', err);
-      });
-
-    } else {
-      this.router.navigate(['/tabs/tab2']);
-    }
-
+    });
+    this.dataService.addToCart(item);
   }
 
   async filterPage() {
     const modal = await this.modalCtrl.create({
       component: ProductFilterPage,
-      //cssClass: ,
       presentingElement: this.routerOutlet.nativeEl
     });
 
     await modal.present();
-
     await modal.onWillDismiss().then((result) => {
-      console.log('result :>> ', result);
     }).catch((err) => {
       console.log('err :>> ', err);
     });
   }
 
   async sortProducts() {
-    console.log('productService.sort :>> ', this.productService.sort);
     const actionSheet = await this.actionSheetController.create({
       header: "Sort by",
       mode: "ios",

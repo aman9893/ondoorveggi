@@ -8,20 +8,20 @@
       </span>
       </app-page-header>
     </header>
+  
 
 <ion-content class="bg-gray">
-
-  <!-- <div *ngIf="cart.items.length < 1" class="noitem">
+  <div *ngIf="getCartDetails.length < 1" class="noitem">
     <img  src="assets/images/empty-cart.svg" />
     <h1>Oops!</h1>
-  </div> -->
+  </div>
 
-  <div class="max-w-md mx-auto mt-10 p-4 bg-white rounded-lg shadow-lg">
+  <div   class="max-w-md mx-auto mt-10 p-4 bg-white rounded-lg shadow-lg">
     <div class="flex items-center justify-between">
         <h1 class="text-lg font-bold"><i class="fas fa-shopping-cart"></i> Your Cart</h1>
-        <div class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded">
+        <!-- <div class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded">
             SAVED ₹47.09
-        </div>
+        </div> -->
     </div>
     <p class="text-green-500 mt-2"><i class="fas fa-check-circle"></i> Free Delivery unlocked, apply coupon to avail</p>
 
@@ -34,40 +34,23 @@
         </div>
 
         <div class="mt-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-start">
-                    <img src="https://placehold.co/50" alt="Image of Blueberry Imported" class="w-10 h-10">
+      
+            <div  *ngFor="let item of getCartDetails" class="flex items-center justify-between mt-4">
+                <div  class="flex items-start">
+                    <img src="{{item.nutrition_weight}}" alt="Image of Grapes Green Sonaka Seedless" class="w-10 h-10">
                     <div class="ml-2">
-                        <p class="text-sm font-medium text-gray-900">Blueberry Imported</p>
-                        <p class="text-xs text-gray-500">120 g</p>
+                        <p class="text-sm font-medium text-gray-900">{{ item.name }}</p>
+                        <p class="text-xs text-gray-500">{{item.price}}</p>
+                        <p class="text-xs text-gray-500">{{item.unit_name}} {{item.unit_value}}</p>
                     </div>
                 </div>
                 <div class="flex items-center">
-                    <button class="text-red-500 text-lg px-2">-</button>
-                    <span class="px-2">1</span>
-                    <button class="text-pink-500 text-lg px-2">+</button>
+                    <button class="bg-pink-600 text-white rounded-full w-6 h-6 text-center" (click)="decQnt(item.prod_id, item.qty)">-</button>
+                    <span class="px-2">  {{ item.qty }}</span>
+                    <button class="bg-pink-600 text-white rounded-full w-6 h-6 text-center"    (click)="incQnt(item.prod_id, item.qty)">+</button>
                     <div class="ml-4 text-right">
-                        <p class="text-gray-900">₹248</p>
-                        <p class="text-xs line-through text-gray-500">₹255</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex items-center justify-between mt-4">
-                <div class="flex items-start">
-                    <img src="https://placehold.co/50" alt="Image of Grapes Green Sonaka Seedless" class="w-10 h-10">
-                    <div class="ml-2">
-                        <p class="text-sm font-medium text-gray-900">Grapes Green Sonaka Seedless</p>
-                        <p class="text-xs text-gray-500">500 g</p>
-                    </div>
-                </div>
-                <div class="flex items-center">
-                    <button class="text-red-500 text-lg px-2">-</button>
-                    <span class="px-2">1</span>
-                    <button class="text-pink-500 text-lg px-2">+</button>
-                    <div class="ml-4 text-right">
-                        <p class="text-gray-900">₹116</p>
-                        <p class="text-xs line-through text-gray-500">₹150</p>
+                        <p class="text-gray-900">₹{{ item.qty * item.price | number }}</p>
+                        <!-- <p class="text-xs line-through text-gray-500">₹150</p> -->
                     </div>
                 </div>
             </div>
@@ -79,10 +62,9 @@
         <i class="fas fa-plus-circle mr-2"></i> Add More Items
     </button>
 
-    <button class="mt-8 w-full bg-pink-600 text-white font-medium py-3 rounded">
+    <!-- <button class="mt-8 w-full bg-pink-600 text-white font-medium py-3 rounded">
         Add Address to proceed
     </button>
-       <!-- Coupons and Options -->
        <div class="bg-white rounded-xl p-4 shadow-sm mb-4">
         <div class="flex justify-between items-center">
             <div class="flex items-center space-x-2">
@@ -94,7 +76,6 @@
         <p class="text-xs text-gray-500">Explore Now</p>
     </div>
 
-    <!-- Paper Bag Option -->
     <div class="bg-white rounded-xl p-4 shadow-sm mb-4 flex justify-between items-center">
         <div class="flex items-center space-x-2">
             <i class="fas fa-seedling bg-green-100 text-green-600 rounded-full p-2"></i>
@@ -106,15 +87,14 @@
         <div class="w-10 h-5 bg-gray-300 rounded-full flex items-center justify-start p-1">
             <div class="w-4 h-4 bg-green-500 rounded-full"></div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Bill Summary -->
     <div class="bg-white rounded-xl p-4 shadow-sm mb-4">
         <div class="flex justify-between items-baseline mb-2">
             <span class="font-semibold text-sm text-gray-700">To Pay</span>
             <div class="text-right">
-                <span class="line-through text-gray-400 text-xs">₹710.23</span>
-                <span class="text-green-600 font-bold">₹536.14</span>
+                <span class="text-green-600 font-bold">₹{{total}}</span>
             </div>
         </div>
         <p class="text-xs text-gray-500">Incl. all taxes and charges</p>
@@ -125,42 +105,41 @@
         <div class="flex justify-between items-center mb-2">
             <span>Item Total & GST</span>
             <div class="text-right">
-                <span class="line-through text-gray-400 text-xs">₹685.14</span>
-                <span class="text-red-600 font-bold">₹536.14</span>
+                <!-- <span class="line-through text-gray-400 text-xs">₹{{grandTotal}}</span> -->
+                <span class="text-red-600 font-bold">₹{{total}}</span>
             </div>
         </div>
         <div class="flex justify-between items-center mb-2">
             <span>Delivery Fee</span>
             <div class="text-right">
-                <span class="line-through text-gray-400 text-xs">₹25</span>
-                <span class="text-green-600 font-bold">₹0</span>
+                <!-- <span class="line-through text-gray-400 text-xs">₹15</span> -->
+                <span class="text-green-600 font-bold">₹15</span>
             </div>
         </div>
         <div class="flex justify-between items-center mb-4">
-            <span class="text-green-600 font-medium text-xs">Free Delivery applied!</span>
-            <button class="text-sm text-red-500">Remove</button>
+            <span class="text-green-600 font-medium text-xs">Free Handling Charge !</span>
+            <button class="text-sm text-red-500">₹0</button>
         </div>
         <hr class="my-4">
         <div class="flex justify-between items-baseline">
             <span class="font-semibold text-sm text-gray-700">To Pay</span>
             <div class="text-right">
-                <span class="line-through text-gray-400 text-xs">₹710.23</span>
-                <span class="text-green-600 font-bold">₹536.14</span>
-                <span class="text-green-600 text-xs font-medium ml-2">SAVING ₹174.09</span>
+                <!-- <span class="line-through text-gray-400 text-xs">₹710.23</span> -->
+                <span class="text-green-600 font-bold">₹{{grandTotal}}</span>
+                <!-- <span class="text-green-600 text-xs font-medium ml-2">SAVING ₹174.09</span> -->
             </div>
         </div>
     </div>
 
     <!-- Delivery Info -->
     <div class="bg-white rounded-xl p-4 shadow-sm mb-4">
-        <div class="flex justify-between items-center mb-2">
+        <!-- <div class="flex justify-between items-center mb-2">
             <div class="flex items-center space-x-2">
                 <i class="fas fa-comment-dots"></i>
                 <span class="text-sm">Delivery Instructions</span>
             </div>
             <i class="fas fa-chevron-down"></i>
-        </div>
-        <p class="text-xs text-gray-500">Delivery partner will be notified</p>
+        </div> -->
         <hr class="my-4">
         <div class="flex justify-between items-center mb-2">
             <div class="flex items-center space-x-2">

@@ -40,14 +40,12 @@ export class TokenInterService implements HttpInterceptor {
     }
     return next.handle(request).pipe(
       tap(data => {
-        console.log('Data', data);
            if(data.type == 4){
             // this.router.navigate([`/login`]);
         }
       }),
       catchError((error) => {
         this.handleAuthError(error)
-        console.log('Returning caught observable');
         return throwError(error);
       })
     );

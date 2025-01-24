@@ -56,6 +56,7 @@
       </div>
       <div class="app-header-right">
         <mat-icon routerLink="/cart">add_shopping_cart</mat-icon>
+        <ion-badge  routerLink="/cart" slot="start"  color="danger" > {{ (dataService.cartSubject | async) || 0 }}</ion-badge>
         <mat-menu #menu="matMenu">
           <button mat-menu-item routerLink="/profile">
             <mat-icon>person</mat-icon><span>Profile</span>

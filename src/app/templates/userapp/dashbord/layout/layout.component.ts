@@ -30,12 +30,12 @@ export class LayoutComponentUser implements OnInit {
   menulist:any=[]
   mobileview: boolean =false;
   showFiller = false;
+  productlist: any=[];
     constructor(private router: Router,private cdref: ChangeDetectorRef,public dataService: DataService,public authService: AuthService, ) {
     this.mobileview =this.dataService.getIsMobileResolution();
 
     router.events.subscribe((val:any) => {
       if (val instanceof NavigationEnd) {
-        console.log(val.url)
         if(this.mobileview || val.url==='/addcounterbill' || val.url==='/addcustombill'){
           this.drawer.close()
           this.cdref.detectChanges();
@@ -45,6 +45,7 @@ export class LayoutComponentUser implements OnInit {
   }
 
   ngOnInit(): void {
+    this.callproduct()
     this.UserId = this.authService.getUserId();
     // this.getResgiterDataById();
     this.shopType= localStorage.getItem('shop_type')
@@ -90,7 +91,11 @@ export class LayoutComponentUser implements OnInit {
       ]  
   }
 
- 
+  callproduct() {
+    this.dataService.cartlist.subscribe((value: any[]) => {
+      this.productlist = value;
+    });
+  }
 
   getResgiterDataById() {
     this.dataService.getAdminProfileDataById(this.UserId)

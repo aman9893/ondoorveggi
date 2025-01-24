@@ -5,6 +5,9 @@ import { UtilityService } from '../utility/utility.service';
   providedIn: 'root'
 })
 export class CartService {
+  filter(arg0: (item: any) => boolean): CartService {
+    throw new Error('Method not implemented.');
+  }
 
   items: any = [];
   item: any;

@@ -37,6 +37,5 @@ export class Tab3Page implements OnInit{
   }
   getProductData(data: any) {
     this.productDetailsList = data.payload;
-    console.log('this.productList :>> ', this.productDetailsList);
   }
 }

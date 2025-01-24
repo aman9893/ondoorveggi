@@ -64,6 +64,7 @@ import { PageHeaderComponentUser } from './templates/userapp/dashbord/page-heade
 import { DashbordComponentUser } from './templates/userapp/dashbord/dashbord.component';
 import { AddressComponent } from './templates/userapp/address/address.component';
 import { UserprofileComponent } from './templates/userapp/userprofile/userprofile.component';
+import { LoginComponent } from './templates/admin/pages/login/login.component';
 
 
 
@@ -74,7 +75,7 @@ import { UserprofileComponent } from './templates/userapp/userprofile/userprofil
     MoreHisabComponent,
     ListKhataComponent,
     SearchpipeComponent,
-    AddkhataAmtComponent,AddressComponent,UserprofileComponent
+    AddkhataAmtComponent,AddressComponent,UserprofileComponent,LoginComponent
     ,ProductFilterPage,AddToCartPage,TabsPage,Tab3Page,Tab2Page,Tab1Page,LayoutComponentUser,PageHeaderComponentUser,DashbordComponentUser
   ],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, MatButtonModule, ReactiveFormsModule,

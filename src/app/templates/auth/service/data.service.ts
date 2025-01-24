@@ -174,31 +174,37 @@ export class DataService {
 //////////////////////////////menu ///////////////////////////////////
   ///////////////////////////table ////////////////////////////////////////
   updateCategory(data:any){
-    return this.http.put(apiConfig.localhostUrl + apiConfig.updatecategory_list, data);
+    return this.http.post(apiConfig.localhostUrl + apiConfig.updatecategory_list, data);
   }
-  deletecategoryList(id:any){
-    return this.http.delete(apiConfig.localhostUrl + apiConfig.deletecategoryList+'/'+id);
+  deletecategoryList(cat_id:any){
+    let data:{cat_id:any}={cat_id:cat_id};
+    return this.http.post(apiConfig.localhostUrl + apiConfig.deletecategoryList,data);
   }
   adddcategoryList(data:any){
     return this.http.post(apiConfig.localhostUrl + apiConfig.addcategory, data);
   }
   getcategoryList() {
-    return this.http.get(apiConfig.localhostUrl + apiConfig.category_list);
+    return this.http.post(apiConfig.localhostUrl + apiConfig.category_list,{});
   }
 //////////////////////////////menu ///////////////////////////////////
 
 
   updateMenu(data:any){
-    return this.http.put(apiConfig.localhostUrl + apiConfig.updateMenu, data);
+    return this.http.post(apiConfig.localhostUrl + apiConfig.updateMenu, data);
   }
-  deleteMenu(id:any){
-    return this.http.delete(apiConfig.localhostUrl + apiConfig.deleteMenu+'/'+id);
+  deleteMenu(prodid:any){
+    let data:{prod_id:any}={prod_id:prodid};
+    return this.http.delete(apiConfig.localhostUrl + apiConfig.deleteMenu+'/'+prodid);
   }
   saveMenu(data:any){
     return this.http.post(apiConfig.localhostUrl + apiConfig.addMenu, data);
   }
   getMenuInfo() {
-    return this.http.get(apiConfig.localhostUrl + apiConfig.getMenu);
+    return this.http.post(apiConfig.localhostUrl + apiConfig.getMenu,{});
+  }
+  getMenuproductDetials(prodid:any) {
+    let data:{prod_id:any}={prod_id:prodid};
+    return this.http.post(apiConfig.localhostUrl + apiConfig.detailsproduct,data);
   }
   getMenuFilterById(id:any){
     return this.http.get(apiConfig.localhostUrl + apiConfig.filterMenu+'/'+id);

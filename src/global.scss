@@ -24,7 +24,7 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
-
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 /**
  * Ionic Dark Mode
  * -----------------------------------------------------
@@ -277,7 +277,11 @@ a{
 }
 
   
-  
+.button{
+
+  height: 23px;
+
+}
   
   @media only screen and (max-width: 450px) {
       
@@ -287,10 +291,7 @@ a{
        grid-gap: 0px !important; 
       padding: 0px !important;
   }
-  .cardbox .calculator button {
 
-    width: 50px !important;
-}
 .price{
     width: 17% !important;
     float: left;
@@ -1360,10 +1361,8 @@ button, a {
     padding: 10px 0;
   }
   .ser{
-    margin-top: 17px;
-    margin-bottom: 22px;
-    float: left;
-    margin-left: 5px;
+    margin-top: 9px;
+    margin-bottom: 8px;
 }header{
   position: sticky;
   left: 0;
@@ -1371,6 +1370,11 @@ button, a {
   padding: 10px 1px;
   justify-content: space-between;
   align-items: center;
-  top: 46px;
+  top: 50px;
+  background: #ff2f78;
   z-index: 99;
+  /* height: 43px; */
+  margin-bottom: 4px;
+  color: white;
+
 }

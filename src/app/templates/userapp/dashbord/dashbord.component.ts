@@ -40,7 +40,7 @@ export class DashbordComponentUser implements OnInit {
   @ViewChild(MatPaginator) paginator = {} as MatPaginator;
   ngOnInit(): void {
     this.UserId = this.authService.getUserId();
-    this.getResgiterDataById();
+    // this.getResgiterDataById();
     this.mobileview = this.dataService.getIsMobileResolution();
     this.shopType = localStorage.getItem('shop_type')
 

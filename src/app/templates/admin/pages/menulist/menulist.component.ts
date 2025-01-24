@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DataService } from 'src/app/templates/auth/service/data.service';
 import { AuthService } from 'src/app/templates/auth/auth.service';
 import { ConfrimBoxComponent } from '../confrim-box/confrim-box.component';
+import { IonModal } from '@ionic/angular';
 
 @Component({
   selector: 'app-menulist',
@@ -21,16 +22,14 @@ import { ConfrimBoxComponent } from '../confrim-box/confrim-box.component';
   styleUrls: ['./menulist.component.scss'],
   standalone:false
 })
-export class MenulistComponent implements OnInit ,AfterViewInit  {
-  user_id: any;
+export class MenulistComponent implements OnInit  {
   billData: any;
   update_data: any;
   updatebtn: boolean = false;
-  menu_id: any;
-  tableForm!: FormGroup;
-  showDataLoader: boolean= false;
+  productForm!: FormGroup;
+  isModalOpen = false;
 
-
+  @ViewChild(IonModal) modal!: IonModal;
  public displayedColumns:any = ['menu_name', 'menu_price' ,'menu_categories','menu_id' ];
  public dataSource :any;
 
@@ -38,11 +37,12 @@ export class MenulistComponent implements OnInit ,AfterViewInit  {
   @ViewChild(MatPaginator) paginator = {} as MatPaginator;
   categoryDataList: any;
   submitted: boolean=false;
+  productid: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private dataService: DataService,
-    private authService: AuthService,public dialog: MatDialog,
+    public dialog: MatDialog,
     public snackBar: MatSnackBar,private cdref: ChangeDetectorRef,
   ) {}
   
@@ -55,9 +55,30 @@ export class MenulistComponent implements OnInit ,AfterViewInit  {
     this.paginator = mp;
     this.setDataSourceAttributes();
   }
-  ngAfterViewInit() {
-   
+  ngOnInit() {
+    this.createForm();
+    this.getcategoryData();
+    this.getProductApiCall()
   }
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
+
+  getProductApiCall(): void {
+    this.dataService.getMenuInfo().subscribe((data) => this.getProductData(data),
+    (err: Error) => this.errorcall(err));
+  }
+  getProductData(data: any) { 
+    this.billData= data.payload;
+    if( this.billData){
+    this.dataSource =new MatTableDataSource(this.billData);
+    this.setDataSourceAttributes();
+    }
+  }
+ 
+  errorcall(errorcall:any){
+    this.dataService.openSnackBar(errorcall.message,'Dismiss');
+ }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -69,53 +90,25 @@ export class MenulistComponent implements OnInit ,AfterViewInit  {
       this.dataSource.sort = this.sort;
     }
   }
-  showUp() {
-    let element :any = document.querySelector('#goUp');
-    element.scrollIntoView();
-}
-
-  ngOnInit() {
-    this.showDataLoader =true;
-    this.createForm();
-    let UserId = this.authService.getUserId();
-    this.user_id = UserId;
-    this.getTableDatamenu();
-
-    this.getcategoryData();
-
-  }
-  getTableDatamenu(): void {
-    this.dataService.getMenuInfo().subscribe((data) => this.tableData(data),
-    (err: Error) => this.errorcall(err));
-  }
-  tableData(data: any) { 
-    this.showDataLoader = true;
-    this.billData= data;
-    if( this.billData){
-    this.dataSource =new MatTableDataSource(this.billData);
-    this.setDataSourceAttributes();
-    this.showDataLoader = false;
-
-    }
-  }
-
-  errorcall(errorcall:any){
-     this.dataService.openSnackBar(errorcall.message,'Dismiss');
-     this.showDataLoader = false;
-
-  }
-
+ 
   getcategoryData(): void {
     this.dataService.getcategoryList().subscribe((data) => this.categoryData(data));
   }
-
   categoryData(data: any) {
-    this.categoryDataList = data;
+    this.categoryDataList = data.payload;
+  }
 
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
+
+  setEditOpen(isOpen: boolean,element:any) {
+    this.isModalOpen = isOpen;
+    this.edit(element);
   }
 
   createForm() {
-    this.tableForm = this.formBuilder.group({
+    this.productForm = this.formBuilder.group({
       menu_name: new FormControl('', {
         validators: [Validators.required, Validators.maxLength(55)],
         // updateOn: 'blur',
@@ -128,133 +121,132 @@ export class MenulistComponent implements OnInit ,AfterViewInit  {
         // validators: [Validators.required, Validators.maxLength(500)],
         // updateOn: 'blur',
       }),
-      menu_categories: new FormControl(0, {
+      unit_name: new FormControl('', {
         // validators: [Validators.required, Validators.maxLength(500)],
         // updateOn: 'blur',
       }),
+      unit_value: new FormControl('', {
+        // validators: [Validators.required, Validators.maxLength(500)],
+        // updateOn: 'blur',
+      }),
+      status: new FormControl(true, {
+        // validators: [Validators.required, Validators.maxLength(500)],
+        // updateOn: 'blur',
+      }),
+      detail: new FormControl('', {
+        // validators: [Validators.required, Validators.maxLength(500)],
+        // updateOn: 'blur',
+      }),
+      menu_categories: new FormControl('', {
+        // validators: [Validators.required, Validators.maxLength(500)],
+        // updateOn: 'blur',
+      }),
+    
     });
   }
 
-  ErrorMessage() {
-    return '*This is required field';
-  }
+
 
   //---------------------------------------------add file end -------------------------------------
   onSubmit() {
-    let menuname ='no menu';
-    let category_id =this.tableForm.controls['menu_categories'].value;
-    this.categoryDataList .forEach((element: any) => {
-        if(element.category_id == category_id){
-          menuname=element.category_name;
-        }
-    });
-    if (this.tableForm.invalid) {
+    if (this.productForm.invalid) {
       this.submitted = true;
       this.dataService.openSnackBar('* Item Name  And Item Price is mandatory ', 'Dismiss')
       return;
   }
-
-    if (this.tableForm.valid) {
+    if (this.productForm.valid) {
       this.submitted = false;
- 
-      let tableFormData = {
-        user_id: this.user_id,
-        menu_name: this.tableForm.controls['menu_name'].value,
-        menu_price: this.tableForm.controls['menu_price'].value,
-        menu_url: this.tableForm.controls['menu_url'].value,
-        menu_categories: menuname,
-        category_id: this.tableForm.controls['menu_categories'].value,
+      let productdata = {
+        brand_id:1,
+        cat_id: this.productForm.controls['menu_categories'].value,
+        type_id:1,
+        name: this.productForm.controls['menu_name'].value,
+        unit_name:this.productForm.controls['unit_name'].value,
+        unit_value:this.productForm.controls['unit_value'].value,
+        nutrition_weight:this.productForm.controls['menu_url'].value,
+        status:this.productForm.controls['status'].value,
+        price: this.productForm.controls['menu_price'].value,
+        detail:this.productForm.controls['detail'].value,
       };
-      this.dataService.saveMenu(tableFormData).subscribe(
+      this.dataService.saveMenu(productdata).subscribe(
         (data: any) => this.closeDialog(data),
         (err: any) => console.log(err)
       );
     }
-    else{
-     this.showDataLoader =true;
-
-    }
   }
 
   closeDialog(data: any) {
-    this.getTableDatamenu();
-    if(data.status===false){
-      this.dataService.openSnackBar(data.message.sqlMessage, 'Dismiss');
-    }
-    else{
-      this.dataService.openSnackBar(data.message, 'Dismiss');
-    }
+    this.dataService.openSnackBar(data.message, 'Dismiss');
+    this.isModalOpen = false;
+    this.getProductApiCall();
     this.createForm();
-    this.tableForm.reset();
+    this.productForm.reset();
   }
-  cancel(data: any) {}
 
   edit(data: any){
-    this.showUp()
     this.updatebtn =true;
-    this.tableForm.controls['menu_name'].setValue(data.menu_name);
-    this.tableForm.controls['menu_price'].setValue(data.menu_price);
-    this.tableForm.controls['menu_url'].setValue(data.menu_url);
-    this.tableForm.controls['menu_categories'].setValue(data.category_id);
-    this.menu_id= data.menu_id;
+    this.productid=data.prod_id
+    this.productForm.controls['menu_name'].setValue(data.name);
+    this.productForm.controls['menu_price'].setValue(data.price);
+    this.productForm.controls['menu_url'].setValue(data.nutrition_weight);
+    this.productForm.controls['menu_categories'].setValue(data.cat_id);
+    this.productForm.controls['detail'].setValue(data.detail);
+    this.productForm.controls['unit_value'].setValue(data.unit_value);
+    this.productForm.controls['unit_name'].setValue(data.unit_name);
   }
+
   update() {
-    let menuname ='no menu';
-    let category_id =this.tableForm.controls['menu_categories'].value;
-    this.categoryDataList .forEach((element: any) => {
-        if(element.category_id == category_id){
-          menuname=element.category_name;
-        }
-    });
-    this.showDataLoader =true;
-    let tableFormData = {
-      menu_id:this.menu_id,
-      user_id: this.user_id,
-      menu_name: this.tableForm.controls['menu_name'].value,
-      menu_price: this.tableForm.controls['menu_price'].value,
-      menu_url: this.tableForm.controls['menu_url'].value,
-      menu_categories: menuname,
-      category_id: this.tableForm.controls['menu_categories'].value,
+    if (this.productForm.invalid) {
+      this.submitted = true;
+      this.dataService.openSnackBar('* Item Name  And Item Price is mandatory ', 'Dismiss')
+      return;
+  }
+    let product = {
+        prod_id:   this.productid,
+        brand_id:1,
+        cat_id: this.productForm.controls['menu_categories'].value,
+        type_id:1,
+        name: this.productForm.controls['menu_name'].value,
+        unit_name:this.productForm.controls['unit_name'].value,
+        unit_value:this.productForm.controls['unit_value'].value,
+        nutrition_weight:this.productForm.controls['menu_url'].value,
+        status:this.productForm.controls['status'].value,
+        price: this.productForm.controls['menu_price'].value,
+        detail:this.productForm.controls['detail'].value,
     };
-    this.dataService.updateMenu(tableFormData).subscribe(
+    this.dataService.updateMenu(product).subscribe(
       (data: any) => this.updateDialog(data),
       (err: any) => console.log(err)
     );
   }
   updateDialog(data:any){
-    if (data.status === true) {
-      this.menu_id ='';
+    this.dataService.openSnackBar(data.message, 'Dismiss')
+    if (data.status == 1) {
       this.updatebtn = false;
-      this.getTableDatamenu();
-      this.dataService.openSnackBar(data.message, 'Dismiss')
-      this.tableForm.reset();
+      this.isModalOpen = false;
+      this.productForm.reset();
+      this.getProductApiCall()
       this.createForm();
       this.setDataSourceAttributes();
-      this.showDataLoader =false;
     }
   }
   delete(id: any) {
-    this.showDataLoader =true;
     this.dataService
       .deleteMenu(id)
       .subscribe((data) => this.deleteResponse(data));
   }
   deleteResponse(data: any) {
-    if (data.status === true) {
       this.dataService.openSnackBar(data.message, 'Dismiss')
-      this.getTableDatamenu();
-      this.showDataLoader =false;
-    }
-    if (data.status === false) {
-      this.dataService.openSnackBar(data.message, 'Dismiss')
-      this.showDataLoader =false;
-    }
+      if(data.status ==1){
+      this.isModalOpen = false;
+        this.getProductApiCall()
+      }
   }
 
   deleteValue(id:any) {
     let deletedata = {
       flag:'delete',
-      body: 'Want to delete Item? '
+      body: 'Want to delete Product? '
     };
     const dialogRef = this.dialog.open(ConfrimBoxComponent, {
       width: '300px',

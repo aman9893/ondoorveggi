@@ -8,9 +8,7 @@ export interface MenuItem {
   icon?: string;
   link?: string;
   color?: string;
-
   hideFor?: string;
-
   expanded?: boolean;
   subMenu?: MenuItem[];
 }
@@ -25,8 +23,6 @@ export type Menu = MenuItem[];
 })
 export class LayoutComponentUser implements OnInit {
   @ViewChild('drawer') drawer!: MatSidenav ;
-
-
   UserId: any;
   userData: any;
   opened = false;
@@ -50,7 +46,7 @@ export class LayoutComponentUser implements OnInit {
 
   ngOnInit(): void {
     this.UserId = this.authService.getUserId();
-    this.getResgiterDataById();
+    // this.getResgiterDataById();
     this.shopType= localStorage.getItem('shop_type')
       this.menulist = [
         {

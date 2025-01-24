@@ -10,6 +10,7 @@ import { DataService } from 'src/app/templates/auth/service/data.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  standalone:false
 })
 export class LoginComponent implements OnInit {
   loginData: any;
@@ -53,37 +54,18 @@ export class LoginComponent implements OnInit {
         validators: [Validators.required,Validators.maxLength(55)],
         updateOn: 'change',
       }),
-      username: new FormControl(''),
-      company_name: new FormControl('', {
-        validators: [Validators.required,Validators.maxLength(55)],
-        updateOn: 'change',
-      }),
-      shop_address: new FormControl('', {
-        validators: [Validators.required,Validators.maxLength(55)],
-        updateOn: 'change',
-      }),
-      shop_type: new FormControl('restaurant', {
-        validators: [Validators.required,Validators.maxLength(55)],
-        updateOn: 'change',
-      }),
       phone_number: new FormControl('', {
         validators: [Validators.required,Validators.maxLength(55)],
         updateOn: 'change',
       }),
-      gst: new FormControl('NoGst'),
-      company_logo: new FormControl(''),
+   
     });
     if(this.updateFlag === true){
       this.sginupForm.controls['name'].setValue(this.updateValue.name);
-      this.sginupForm.controls['shop_type'].setValue(this.updateValue.shop_type);
       this.sginupForm.controls['email'].setValue(this.updateValue.email);
       this.sginupForm.controls['password'].setValue(this.updateValue.password);
-      this.sginupForm.controls['company_name'].setValue(this.updateValue.company_name);
       this.sginupForm.controls['phone_number'].setValue(this.updateValue.phone_number);
-      this.sginupForm.controls['shop_address'].setValue(this.updateValue.shop_address);
-      this.sginupForm.controls['gst'].setValue(this.updateValue.gst_num);
-      this.sginupForm.controls['company_logo'].setValue(this.updateValue.company_logo);
-      this.sginupForm.controls['username'].setValue(this.updateValue.username);
+  
     }
   }
 
@@ -133,19 +115,11 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.sginupForm.valid) {
     let userData = {
-      name: this.sginupForm['controls']['name'].value,
+      username: this.sginupForm['controls']['name'].value,
       email: this.sginupForm['controls']['email'].value,
       password: this.sginupForm['controls']['password'].value,
-      company_name: this.sginupForm['controls']['company_name'].value,
-      phone_number: this.sginupForm['controls']['phone_number'].value,
-      shop_address: this.sginupForm['controls']['shop_address'].value,
-      shop_type: this.sginupForm['controls']['shop_type'].value,
-      company_logo: '',
-      username:this.sginupForm['controls']['name'].value,
-      gst_num: this.sginupForm['controls']['gst'].value,
-      user_expiry_date: new Date(),
-      trial_days: 14,
-      rolename_id: 1,
+      mobile: this.sginupForm['controls']['phone_number'].value,
+      dervice_token :'',
     };
     this.dataService.registerData(userData).subscribe(
       (data: any) => this.closeDialog(data),
@@ -158,20 +132,16 @@ export class LoginComponent implements OnInit {
   }
 
   closeDialog(data: any) {
-    if (data.status === true) {
       this.loginFormFlg = true;
       this.sginupForm.reset();
       this.registerFormFlg = false;
       this.openSnackBar(data.message, 'Dismiss');
-    }
-    if (data.status === false) {
-      this.openSnackBar(data.message, 'Dismiss');
-    }
   }
   onLogin() {
     let userData = {
       email: this.loginForm['controls']['emailid'].value,
       password: this.loginForm['controls']['password'].value,
+      dervice_token:''
     };
     if (this.loginForm.valid) {
       this.dataService.loginData(userData).subscribe(
@@ -186,17 +156,16 @@ export class LoginComponent implements OnInit {
   }
 
   closeLoginDialog(data: any) {
-    if (data.status === true) {
-      this.loginForm.reset();
-      this.loginData =data;
+    if (data.status == 1 ) {
+      this.loginData =data.payload;
       this.openSnackBar(data.message, 'Dismiss');
-      this.authService.sendToken( this.loginData.token);
-      this.authService.setuserData( this.loginData.data.id);
-      localStorage.setItem('shop_type',this.loginData.data.shop_type)
-      // this.authService.setuserInfo( this.loginData.data);
+      this.authService.sendToken( this.loginData.auth_token);
+      this.authService.setuserData( this.loginData.user_id);
       this.myRoute.navigateByUrl('/home');
+      this.loginForm.reset();
+
     }
-    if (data.status === false) {
+    if (data.status == 0) {
       this.openSnackBar(data.message, 'Dismiss');
     }
   }

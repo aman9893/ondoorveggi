@@ -2,12 +2,13 @@ import {
   HttpErrorResponse,
   HttpEvent,
   HttpHandler,
+  HttpHeaders,
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, Observable, of, retry, throwError } from 'rxjs';
+import { catchError, Observable, of, retry, tap, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -28,14 +29,22 @@ export class TokenInterService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     if (this.authService.getToken() != null || undefined || '') {
       if (this.authService.getToken()) {
+      
         request = request.clone({
           setHeaders: {
             Authorization: `Bearer ${this.authService.getToken()}`,
+            access_token:`${this.authService.getToken()}`,
           },
         });
       }
     }
     return next.handle(request).pipe(
+      tap(data => {
+        console.log('Data', data);
+           if(data.type == 4){
+            // this.router.navigate([`/login`]);
+        }
+      }),
       catchError((error) => {
         this.handleAuthError(error)
         console.log('Returning caught observable');

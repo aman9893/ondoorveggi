@@ -1,107 +1,133 @@
-<app-page-header icon="home">
-    <h3 routerLink="/home">Home</h3>
-    <span class="centertext">
-        Product Management
-    </span>
-</app-page-header>
+<header>
+    <app-page-header icon="home"  >
+      <h3 routerLink="/home">Home</h3>
+      <span  class="centertext">
+        Poduct  management
+      </span>
+      </app-page-header>
+    </header>
 <ion-content class="ion-padding">
+<section class="divmain mt-10">
+        <ion-button expand="block" (click)="setOpen(true)">Add Product</ion-button>
+        <ion-modal [isOpen]="isModalOpen">
+          <ng-template>
+            <ion-header>
+              <ion-toolbar>
+                <ion-buttons slot="start">
+                  <ion-button >Add Product</ion-button>
+                </ion-buttons>
+                <ion-buttons slot="end">
+                    <ion-button (click)="setOpen(false)"><mat-icon>close</mat-icon></ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+            <ion-content >
+                <form class="menu-container" [formGroup]="productForm" autocomplete="off" novalidate>
+                    <ion-list>
+                    <ion-item>
+                        <ion-input label="Product Name"  formControlName="menu_name" placeholder="Enter Item Name" required></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input label="Product Price"  formControlName="menu_price" placeholder="Enter Price " required></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input label="Product Detail"  formControlName="detail" placeholder="Enter Item Detail" required></ion-input>
+                    </ion-item>
 
-<section class="divmain">
-    <section class="wrapper" id="goUp">
-        <!-- <div class="title">
-            Add Item Name
-        </div> -->
-        <form class="menu-container" [formGroup]="tableForm" autocomplete="off" novalidate>
-            <div class="field">
-                <input type="text" formControlName="menu_name" placeholder="Enter Item Name" required>
-                <div *ngIf="submitted && tableForm['controls']['menu_name'].errors" >
-                    <div class="errormsg" *ngIf="tableForm.controls['menu_name'].errors['required']">*Item  Name is required</div>
-                  </div>
-            </div>
-            <div class="field">
-                <input type="number" formControlName="menu_price" placeholder="Enter Item Price">
-                <div *ngIf="submitted && tableForm['controls']['menu_price'].errors" >
-                    <div class="errormsg" *ngIf="tableForm.controls['menu_price'].errors['required']">*Item  Price is required</div>
-                  </div>
-            </div>
-     
-            <div class="field" *ngIf="categoryDataList">
-                <select formControlName="menu_categories" placeholder="Enter Item Categories">
-                    <option *ngIf="categoryDataList.length >0" selected disabled value="0" >Please Select Category</option>
-                    <option *ngIf="categoryDataList.length ===0" selected disabled  value="0" >Please Add The   Category First</option>
-                    <option *ngFor="let item of categoryDataList" value="{{item.category_id}}">{{item.category_name}}
-                    </option>
-                </select>
-                <div *ngIf="submitted && tableForm['controls']['menu_categories'].errors" >
-                    <div class="errormsg" *ngIf="tableForm.controls['menu_categories'].errors['required']">*Please Select Category</div>
-                </div>
-            </div>
-            <div class="field">
-                <input type="text" formControlName="menu_url" placeholder="Enter Item Product Image Url">
-            </div>
-            <div class="field">
-                <button *ngIf="!updatebtn" class="btn" type="submit" (click)="onSubmit()">Save</button>
-                <button *ngIf="updatebtn" class="btn" type="submit" (click)="update()">Update</button>
-            </div>
-            <div *ngIf="billData && billData.length>0" class="grid-wrapper">
-                <div class="container-search ">
-                    <div class="row height d-flex justify-content-left align-items-left">
-                        <div class="form">
-                          <div class="search-wrapper ser">
-                            <input class="search-input" type="text" (keyup)="applyFilter($event)" placeholder="Search">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
-                              stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search"
-                              viewBox="0 0 24 24">
-                              <defs></defs>
-                              <circle cx="11" cy="11" r="8"></circle>
-                              <path d="M21 21l-4.35-4.35"></path>
-                            </svg>
-                          </div>
-                      </div>
-              
+                    <ion-item>
+                        <ion-input label="Product ImgUrl"  formControlName="menu_url" placeholder="Enter Img Url" required></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-input label="Unit Value"  formControlName="unit_name" placeholder="Enter Unit Value" required></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-select label="Unit  Value" formControlName="unit_value" placeholder="Unit  Value">
+                          <ion-select-option value="kg">kg</ion-select-option>
+                          <ion-select-option value="gm">gm</ion-select-option>
+                          <ion-select-option value="pc">pc</ion-select-option>
+                        </ion-select>
+                      </ion-item>
+
+                      <ion-item>
+                        <ion-select label="Category" formControlName="menu_categories" placeholder="Category">
+                          <ion-select-option *ngFor="let item of categoryDataList" value="{{item.cat_id}}">{{item.cat_name}}</ion-select-option>
+                        </ion-select>
+                      </ion-item>
+
+                      <div class="field">
+                        <ion-checkbox  formControlName="status" >Status</ion-checkbox>
+                        </div>
+                    </ion-list>
+                   
+                    <div class="field">
+                        <button *ngIf="!updatebtn" class="btn" type="submit" (click)="onSubmit()">Save</button>
+                        <button *ngIf="updatebtn" class="btn" type="submit" (click)="update()">Update</button>
                     </div>
+                </form>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      
+    <div *ngIf="billData && billData.length>0" class="grid-wrapper">
+        <div class="container-search ">
+            <div class="row height d-flex justify-content-left align-items-left">
+                <div class="form">
+                  <div class="search-wrapper ser">
+                    <input class="search-input" type="text" (keyup)="applyFilter($event)" placeholder="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                      stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search"
+                      viewBox="0 0 24 24">
+                      <defs></defs>
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <path d="M21 21l-4.35-4.35"></path>
+                    </svg>
                   </div>
-
-                <div class="mat-elevation-z8" *ngIf="dataSource">
-                    <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" matSortmatSortStart="desc"
-                        matSort>
-                        <!-- Position Column -->
-                        <ng-container matColumnDef="menu_id">
-                            <th mat-header-cell *matHeaderCellDef> Action </th>
-                            <td mat-cell *matCellDef="let element"> <mat-icon style="color: gery;" class="icons"
-                                    (click)="edit(element)"> edit</mat-icon>
-                                <mat-icon style="color: #c84874;" class="icons" (click)="deleteValue(element.menu_id)">
-                                    delete</mat-icon>
-                            </td>
-                        </ng-container>
-                        <!-- Name Column -->
-                        <ng-container matColumnDef="menu_name">
-                            <th mat-header-cell mat-sort-header *matHeaderCellDef>  Name </th>
-                            <td mat-cell *matCellDef="let element let i = index" >
-                                {{i + 1}} - {{element.menu_name}} </td>
-                        </ng-container>
-                        
-                        <!-- Weight Column -->
-                        <ng-container matColumnDef="menu_price">
-                            <th mat-header-cell mat-sort-header *matHeaderCellDef>  Price </th>
-                            <td mat-cell *matCellDef="let element">
-                                {{element.menu_price}}  ₹ </td>
-                        </ng-container>
-                        <ng-container matColumnDef="menu_categories">
-                            <th mat-header-cell mat-sort-header *matHeaderCellDef>  Category </th>
-                            <td mat-cell *matCellDef="let element">
-                                {{element.menu_categories}}  </td>
-                        </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                    </table>
-                    <mat-paginator [pageSizeOptions]="[5, 10, 20,50,100,150]" showFirstLastButtons
-                        aria-label="Select page of periodic elements">
-                    </mat-paginator>
-                </div>
+              </div>
+      
             </div>
-        </form>
-    </section>
+          </div>
+
+        <div class="mat-elevation-z8" *ngIf="dataSource">
+            <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" matSortmatSortStart="desc"
+                matSort>
+                <!-- Position Column -->
+                <ng-container matColumnDef="menu_id">
+                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                    <td mat-cell *matCellDef="let element"> <mat-icon style="color: gery;" class="icons"
+                            (click)="setEditOpen(true,element)"> edit</mat-icon>
+                        <mat-icon style="color: #c84874;" class="icons" (click)="deleteValue(element.prod_id)">
+                            delete</mat-icon>
+                    </td>
+                </ng-container>
+                <!-- Name Column -->
+                <ng-container matColumnDef="menu_name">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef>  Name </th>
+                    <td mat-cell *matCellDef="let element let i = index" >
+                        {{i + 1}} - {{element.name}} </td>
+                </ng-container>
+                
+                <!-- Weight Column -->
+                <ng-container matColumnDef="menu_price">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef>  Price </th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.price}}  ₹ </td>
+                </ng-container>
+                <ng-container matColumnDef="menu_categories">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef>  Unit /Value </th>
+                    <td mat-cell *matCellDef="let element">
+                       {{element.unit_name}}    {{element.unit_value}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20,50,100,150]" showFirstLastButtons
+                aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+    </div>
+
     <div *ngIf="billData && billData.length === 0" class="width_100">
         <div class="empty-state">
             <div class="empty-state__content">
@@ -118,11 +144,5 @@
         </div>
     
     </div>
-
 </section>
 </ion-content>
-<!-- <div class="loaderwrap" *ngIf="showDataLoader === true">
-    <div class="loader">
-        <mat-spinner [diameter]="60" mode="indeterminate"></mat-spinner>
-    </div>
-</div> -->

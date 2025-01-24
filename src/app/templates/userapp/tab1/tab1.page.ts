@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionSheetController, IonRouterOutlet, ModalController } from '@ionic/angular';
 import { ProductFilterPage } from '../pages/product-filter/product-filter.page';
@@ -10,9 +10,9 @@ import { DataService } from '../../auth/service/data.service';
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
-  standalone:false
+  standalone: false
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit {
 
   // set app banner slides
   slideOpts = {
@@ -26,43 +26,65 @@ export class Tab1Page {
   };
 
   bannerImages: any = [];
-  mobileview: boolean=false;
+  mobileview: boolean = false;
+  productList: any;
   //searchTerm: string;
 
   constructor(
-    public productService : ProductsService,
-    public routerOutlet : IonRouterOutlet,
-    public modalCtrl : ModalController,
-    public cart : CartService,
+    public productService: ProductsService,
+    public routerOutlet: IonRouterOutlet,
+    public modalCtrl: ModalController,
+    public cart: CartService,
     private router: Router,
     private actionSheetController: ActionSheetController,
     private dataService: DataService
   ) {
+
+  }
+  ngOnInit(): void {
     this.mobileview = this.dataService.getIsMobileResolution();
     this.bannerImages = this.productService.bannerImages;
     this.productService.initProductList();
-  }
+    this.getProductApiCall();
 
+  }
   search(event: any) {
     let term = event.target.value;
-    console.log({term});
+    console.log({ term });
     this.productService.searchProducts(term);
   }
+
+  getProductApiCall(): void {
+    this.dataService.getMenuInfo().subscribe((data) => this.getProductData(data),
+      (err: Error) => this.errorcall(err));
+  }
+  errorcall(err: Error): void {
+    throw new Error('Method not implemented.');
+  }
+  getProductData(data: any) {
+    this.productList = data.payload;
+    console.log('this.productList :>> ', this.productList);
+  }
+  goToProductDetails(id:any) {
+    this.router.navigate(['/products', id]);
+  }
+
+
 
   async addToCartModal(item: { id: any; }) {
     console.log('item_id :>> ', item);
     let isAdded = this.cart.isAddedToCart(item.id);
 
-    if ( !isAdded ) {
+    if (!isAdded) {
       this.cart.placeItem(item);
       const modal = await this.modalCtrl.create({
         component: AddToCartPage,
         cssClass: 'add-to-cart-modal',
         presentingElement: this.routerOutlet.nativeEl
       });
-  
+
       await modal.present();
-      
+
       await modal.onWillDismiss().then((result) => {
         console.log('result :>> ', result);
       }).catch((err) => {
@@ -72,7 +94,7 @@ export class Tab1Page {
     } else {
       this.router.navigate(['/tabs/tab2']);
     }
-    
+
   }
 
   async filterPage() {
@@ -83,7 +105,7 @@ export class Tab1Page {
     });
 
     await modal.present();
-    
+
     await modal.onWillDismiss().then((result) => {
       console.log('result :>> ', result);
     }).catch((err) => {
@@ -94,40 +116,40 @@ export class Tab1Page {
   async sortProducts() {
     console.log('productService.sort :>> ', this.productService.sort);
     const actionSheet = await this.actionSheetController.create({
-        header: "Sort by",
-        mode: "ios",
-        cssClass: "sort-products",
-        buttons: [{
-                text: 'Latest Products',
-                role: this.productService.sort.latest ? 'selected' : '',
-                handler: () => {
-                    this.productService.applyLocalSort ( 'id', 'asc', 'latest');
-                }
-            },
-            {
-                text: 'Price - Low to High',
-                role: this.productService.sort.price_lth ? 'selected' : '',
-                handler: () => {
-                  this.productService.applyLocalSort ( 'price', 'desc', 'price_lth' );
-                }
-            },
-            {
-                text: 'Price - High to Low',
-                role: this.productService.sort.price_htl ? 'selected' : '',
-                handler: () => {
-                  this.productService.applyLocalSort ( 'price', 'asc', 'price_htl' );
-                }
-                
-            },
-            {
-              text: 'Cancel',
-              icon: 'close',
-              role: 'cancel',
-              handler: () => {
-                console.log('Cancel clicked');
-              }
-            }
-        ]
+      header: "Sort by",
+      mode: "ios",
+      cssClass: "sort-products",
+      buttons: [{
+        text: 'Latest Products',
+        role: this.productService.sort.latest ? 'selected' : '',
+        handler: () => {
+          this.productService.applyLocalSort('id', 'asc', 'latest');
+        }
+      },
+      {
+        text: 'Price - Low to High',
+        role: this.productService.sort.price_lth ? 'selected' : '',
+        handler: () => {
+          this.productService.applyLocalSort('price', 'desc', 'price_lth');
+        }
+      },
+      {
+        text: 'Price - High to Low',
+        role: this.productService.sort.price_htl ? 'selected' : '',
+        handler: () => {
+          this.productService.applyLocalSort('price', 'asc', 'price_htl');
+        }
+
+      },
+      {
+        text: 'Cancel',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }
+      ]
     });
     await actionSheet.present();
   }

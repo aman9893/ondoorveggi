@@ -89,37 +89,7 @@
                 <div *ngIf="sginupForm.controls['password'].errors['required']">*Password is required</div>
               </div>
              </div>
-             <div class="field" style="    height: 20px;">
-               <label style="font-size: 14px;
-               color: white;
-               font-weight: 500;"> * Shop Type</label>
-              </div>
-             <div class="input-container">
-               <select formControlName="shop_type"   class="input" >
-                  <option value="restaurant">Restaurant </option>
-                  <option value="shop">Shop </option>
-               </select>
-               <div *ngIf="submitted && sginupForm['controls']['shop_type'].errors" >
-                <div *ngIf="sginupForm.controls['shop_type'].errors['required']">*Shop Type is required</div>
-              </div>
-              </div>
-             <div class="input-container">
-               <input type="text" name="company_name"  formControlName="company_name" class="input" placeholder="Shop Name"/>
-               <div *ngIf="submitted && sginupForm['controls']['company_name'].errors" >
-                <div *ngIf="sginupForm.controls['company_name'].errors['required']">*Shop Name is required</div>
-              </div>
-             </div>
-             <div class="input-container">
-               <input type="text" name="shop_address"  formControlName="shop_address" class="input" placeholder="Shop Address"/>
-               <div *ngIf="submitted && sginupForm['controls']['shop_address'].errors" >
-                <div *ngIf="sginupForm.controls['shop_address'].errors['required']">*Shop Address is required</div>
-              </div>
-             </div>
-       
-             <div class="input-container">
-               <input type="number" name="phone"  formControlName="gst" class="input" placeholder="Gst Number"/>
-             </div>
-
+     
             <input type="submit" (click)="onSubmit()"value="Register" class="btn" />
             <div class="signup-link">
                <a routerLink="/forgetpassword">Forgot password?</a>

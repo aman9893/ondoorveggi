@@ -7,14 +7,33 @@ export const apiConfig = {
     // loginData: 'api/app/login',
    
 
-    localhostUrl: "http://localhost:5000/",
+    // localhostUrl: "http://localhost:5000/",
+     localhostUrl: "http://localhost:3001/",
+
+    registerData: 'api/app/sign_up',
+    loginData:'api/admin/login',
+    
+    category_list: 'api/admin/product_category_list',
+    addcategory: 'api/admin/product_category_add',
+    deletecategoryList: 'api/admin/product_category_delete',
+    updatecategory_list: 'api/admin/product_category_update',
+
+    getMenu: 'api/admin/product_list',
+    updateMenu: 'api/admin/product_update',
+    addMenu: 'api/admin/product_add',
+    deleteMenu: 'api/admin/product_delete',
+    detailsproduct: 'api/admin/product_detail',
+
+
+    
+    
     getAllusers:'api/getAllusers',
     deleteUser:'api/delete_user',
     printer:'api/printrecipt',
     forgetPasswordData: 'api/forgetpassword',
     updatePassword:'api/UpdatePassword',
-    registerData: 'api/register',
-    loginData: 'api/login',
+    // registerData: 'api/register',
+    // loginData: 'api/login',
     updateUser: 'api/update_user',
     getAdminProfile: 'api/get_admin_profile',
     getMonthlyData: 'api/get_monthly_data',
@@ -25,10 +44,8 @@ export const apiConfig = {
     addTable: 'api/add_table',
     delete_table: 'api/delete_table',
 
-    getMenu: 'api/get_menu',
-    updateMenu: 'api/update_menu',
-    addMenu: 'api/add_menu',
-    deleteMenu: 'api/delete_menu',
+ 
+
     filterMenu: 'api/filter_menu',
 
     getBill: 'api/bill_list',
@@ -43,10 +60,7 @@ export const apiConfig = {
     deleteContactList: 'api/delete_contact',
     update_contact_list: 'api/update_contact_list',
 
-    category_list: 'api/category_list',
-    addcategory: 'api/add_category',
-    deletecategoryList: 'api/deletecategory',
-    updatecategory_list: 'api/update_category',
+
 
 
     get_attender:'api/get_attender',

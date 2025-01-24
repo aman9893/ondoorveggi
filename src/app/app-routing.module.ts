@@ -21,6 +21,7 @@ import { Tab3Page } from './templates/userapp/tab3/tab3.page';
 import { TabsPage } from './templates/userapp/tabs/tabs.page';
 import { AddressComponent } from './templates/userapp/address/address.component';
 import { UserprofileComponent } from './templates/userapp/userprofile/userprofile.component';
+import { LoginComponent } from './templates/admin/pages/login/login.component';
 
 const routes: Routes = [
   {path: '',component: LayoutComponentUser,
@@ -28,11 +29,12 @@ const routes: Routes = [
         { path: '', redirectTo: 'user', pathMatch: 'full' },
         { path: 'user', component: DashbordComponentUser, },
         { path: 'cart', component: Tab2Page, },
-        { path: 'product', component: Tab3Page, },
+        { path: 'products/:id', component: Tab3Page, },
         { path: 'Orders', component: TabsPage, },
         { path: 'Addresses', component: AddressComponent, },
         { path: 'userprofile', component: UserprofileComponent, },
-        
+        { path: 'login', component: LoginComponent, },
+
     ]
   },
 

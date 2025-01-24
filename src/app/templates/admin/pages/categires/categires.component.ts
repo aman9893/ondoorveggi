@@ -74,10 +74,7 @@ export class CategiresComponent implements OnInit {
       this.dataSource.sort = this.sort;
     }
   }
-  showUp() {
-    let element :any = document.querySelector('#goUp');
-    element.scrollIntoView();
-}
+
   ngOnInit() {
     this.getcategoryData();
     let UserId = this.authService.getUserId();
@@ -90,12 +87,13 @@ export class CategiresComponent implements OnInit {
   }
 
   categoryData(data: any) {
-    this.categoryDataList = data;
+    if(data.status == 1){
+    this.categoryDataList = data.payload;
     this.dataSource =new MatTableDataSource(this.categoryDataList);
     this.showDataLoader = false;
     this.setDataSourceAttributes();
     this.cdref.detectChanges();
-
+    }
   }
   createForm() {
     this.categoryForm = this.formBuilder.group({
@@ -122,8 +120,8 @@ export class CategiresComponent implements OnInit {
 
     if (this.categoryForm.valid) {
       let categoryFormData = {
-        user_id: this.user_id,
-        category_name: this.categoryForm.controls['category_name'].value,
+        color: 'red',
+        cat_name: this.categoryForm.controls['category_name'].value,
       };
       this.dataService.adddcategoryList(categoryFormData).subscribe(
         (data: any) => this.closeDialog(data),
@@ -134,31 +132,34 @@ export class CategiresComponent implements OnInit {
   }
 
   closeDialog(data: any) {
+    if (data.status == 1) {
+      this.dataService.openSnackBar(data.message, 'Dismiss')
+      this.getcategoryData();
+    }
     this.getcategoryData();
   }
   cancel(data: any) {}
 
   edit(data: any){
-    this.showUp();
     this.updatebtn =true;
-    this.categoryForm.controls['category_name'].setValue(data.category_name);
-    this.category_id= data.category_id;
+    this.categoryForm.controls['category_name'].setValue(data.cat_name);
+    this.category_id= data.cat_id;
   }
   update() {
     let categoryFormData = {
-      category_id:this.category_id,
-      user_id: this.user_id,
-      category_name: this.categoryForm.controls['category_name'].value,
+      cat_id:this.category_id,
+      color:'red',
+      cat_name: this.categoryForm.controls['category_name'].value,
     };
     this.dataService.updateCategory(categoryFormData).subscribe(
       (data: any) => this.updateDialog(data),
     );
   }
   updateDialog(data:any){
-    if (data.status === true) {
-      this.dataService.openSnackBar(data.message, 'Dismiss')
-      this.category_id ='';
+    this.dataService.openSnackBar(data.message, 'Dismiss')
 
+    if (data.status == 1) {
+      this.category_id ='';
       this.categoryForm.reset();
       this.getcategoryData();
       this.updatebtn =false;
@@ -171,8 +172,8 @@ export class CategiresComponent implements OnInit {
       .subscribe((data) => this.deleteResponse(data));
   }
   deleteResponse(data: any) {
-    if (data.status === true) {
-      this.dataService.openSnackBar(data.message, 'Dismiss')
+    this.dataService.openSnackBar(data.message, 'Dismiss')
+    if (data.status == 1) {
       this.getcategoryData();
       this.categoryForm.reset();
     }

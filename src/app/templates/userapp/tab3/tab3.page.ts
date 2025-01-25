@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../services/products/products.service';
-import { CartService } from '../services/cart/cart.service';
 import { DataService } from '../../auth/service/data.service';
 import {ActivatedRoute} from '@angular/router';
 @Component({
@@ -15,7 +14,6 @@ export class Tab3Page implements OnInit{
 
   constructor(
     public productService: ProductsService,
-    public cart: CartService,
     private dataService: DataService,private _route : ActivatedRoute
   ) {
    

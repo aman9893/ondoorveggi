@@ -13,72 +13,20 @@
           </svg>
         </div>
       </div>
-
     </div>
   </div>
 
 
-  <!-- 
   <ion-grid>
     <ion-row class="ion-justify-content-between ">
       <ion-col size="3">
-        <div style="font-size: 10px;
-    color: green;" class="font-500">
-          Fresh Vegetables
-        </div>
       </ion-col>
       <ion-col size="6" class="ion-text-right">
         <ion-icon name="funnel{{ productService.isSorted() ? '' : '-outline' }}" class="ion-padding-horizontal" (click)='sortProducts()'></ion-icon>
         <ion-icon data-cy="filter-btn" name="filter{{ productService.isFiltered() ? '' : '-outline' }}" (click)='filterPage()'></ion-icon>
       </ion-col>
     </ion-row>
-    <ion-row data-cy="products-list">
-      <ion-col size="6" size-lg="3" size-md="4" *ngFor='let product of productService.products'>
-        <ion-card class="ion-no-margin">
-          <img [src]="product?.imgurl || 'assets/imgs/divisions.svg'">
-          <ion-card-header>
-            <ion-card-subtitle>{{ product?.category }}</ion-card-subtitle>
-            <ion-card-title class="font-size-1">{{ product?.name }}</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <div class="ion-color-dark">{{ product?.price | currency: 'USD' }}</div>
-            <div>
-              <ion-button data-cy="cart-btn" expand="full" color="danger" size="small" (click)="addToCartModal(product)">
-              {{ cart.isAddedToCart(product?.id) ? 'Added' : 'Add to cart' }}
-            </ion-button></div>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-
-      <div *ngIf="productService.products && productService.products.length === 0" class="noitem">
-        <img src="assets/images/search-icon.svg" />
-        <h1>Oops!</h1>
-      </div>
-    </ion-row>
-  </ion-grid> -->
-
-
-
-
-  <!-- <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-buttons class="backbtn" routerLink="/home" routerDirection="back">
-          <img src="../../assets/back-dark.svg" />
-        </ion-buttons>
-      </ion-buttons>
-  
-      <ion-buttons slot="end">
-        <ion-button class="notification">
-          <ion-icon name="notifications-outline" color="dark"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header> -->
-
-
-
-
+  </ion-grid>
 
   <div class="flex overflow-x-auto pb-4 pt-4">
     <div class="flex-none w-28 mx-2">
@@ -97,7 +45,6 @@
   </div>
 
   <div *ngIf="mobileview" class="grid grid-cols-2 gap-4">
-   
     <div *ngFor='let product of this.productArray' class="bg-white rounded-lg shadow p-4">
       <div (click)="goToProductDetails(product.prod_id)" class="relative">
         <img
@@ -107,12 +54,11 @@
       </div>
       <div class="flex justify-between items-center mt-2">
         <div class="flex items-center">
-          <ion-button size="small"  (click)="addCart(product)">  {{ product.isAdded? 'Added' : 'Add to cart' }}</ion-button>
+          <button (click)="addCart(product)" class="w-full mt-2 bg-red-50 border border-red-400 text-red-500 p-1 text-sm"> {{ product.isAdded? 'Added' : 'Add to cart' }}</button>
         </div>
       </div>
       <p class="mt-2 text-gray-800 ">{{product.name}}</p>
       <p class="text-gray-500">{{product.unit_name}} {{product.unit_value}} - ₹ {{product.price}}</p>
-   
     </div>
   </div>
 
@@ -140,167 +86,21 @@
             <img src="https://placehold.co/40x40" alt="Fresh Fruits icon" class="mr-2">
             Fresh Fruits
           </li>
-          <li class="flex items-center">
-            <img src="https://placehold.co/40x40" alt="Festive Essentials icon" class="mr-2">
-            Festive Essentials
-          </li>
-          <li class="flex items-center">
-            <img src="https://placehold.co/40x40" alt="Leafy, Herbs & Seasonings icon" class="mr-2">
-            Leafy, Herbs & Seasonings
-          </li>
-          <li class="flex items-center">
-            <img src="https://placehold.co/40x40" alt="Exotics & Premium icon" class="mr-2">
-            Exotics & Premium
-          </li>
-          <li class="flex items-center">
-            <img src="https://placehold.co/40x40" alt="Organics & Hydroponics icon" class="mr-2">
-            Organics & Hydroponics
-          </li>
-          <li class="flex items-center">
-            <img src="https://placehold.co/40x40" alt="Cuts & Sprouts icon" class="mr-2">
-            Cuts & Sprouts
-          </li>
-          <li class="flex items-center">
-            <img src="https://placehold.co/40x40" alt="Flowers & Leaves icon" class="mr-2">
-            Flowers & Leaves
-          </li>
         </ul>
       </div>
 
       <!-- Products -->
       <div class="flex-1 grid grid-cols-4 gap-6 p-4">
         <!-- Product Item -->
-        <div class="bg-white shadow-md p-4">
-          <img src="https://placehold.co/120x120" alt="Image of Blueberries" class="mb-2">
-          <h3 class="text-sm">Blueberry Imported</h3>
-          <p class="text-xs">120 g</p>
+        <div *ngFor='let product of this.productArray'  class="bg-white shadow-md p-4">
+          <img   src="{{product.nutrition_weight}}" alt="Image of Blueberries" class="mb-2">
+          <h3 class="text-sm">{{product.name}}</h3>
+          <p class="text-xs">{{product.unit_name}} {{product.unit_value}} </p>
           <div class="flex justify-between items-center mt-2">
-            <span class="text-red-500 font-semibold">₹229</span>
-            <span class="line-through text-gray-400">₹255</span>
+            <span class="text-red-500 font-semibold"> ₹ {{product.price}}</span>
+            <span class="line-through text-gray-400"> ₹ {{product.price}}</span>
           </div>
-          <button class="w-full mt-2 bg-red-50 border border-red-400 text-red-500 p-1 text-sm">Add to Cart</button>
-        </div>
-
-        <!-- Another Product Item -->
-        <div class="bg-white shadow-md p-4">
-          <img src="https://placehold.co/120x120" alt="Image of Spinach" class="mb-2">
-          <h3 class="text-sm">Spinach - Cleaned, without roots</h3>
-          <p class="text-xs">250 g</p>
-          <div class="flex justify-between items-center mt-2">
-            <span class="text-red-500 font-semibold">₹42</span>
-            <span class="line-through text-gray-400">₹76</span>
-          </div>
-          <button class="w-full mt-2 bg-red-50 border border-red-400 text-red-500 p-1 text-sm">Add to Cart</button>
-        </div>
-
-        <!-- Repeat similar structure for more items -->
-
-        <div class="bg-white shadow-md p-4">
-          <img src="https://placehold.co/120x120" alt="Image of Chrysanthemum Yellow" class="mb-2">
-          <h3 class="text-sm">Chrysanthemum Yellow</h3>
-          <p class="text-xs">100 g</p>
-          <div class="flex justify-between items-center mt-2">
-            <span class="text-red-500 font-semibold">₹39</span>
-            <span class="line-through text-gray-400">₹41</span>
-          </div>
-          <button class="w-full mt-2 bg-red-50 border border-red-400 text-red-500 p-1 text-sm">Add to Cart</button>
-        </div>
-
-        <div class="bg-white shadow-md p-4">
-          <img src="https://placehold.co/120x120" alt="Image of Coconut" class="mb-2">
-          <h3 class="text-sm">Coconut</h3>
-          <p class="text-xs">1 pc (Above. 450g)</p>
-          <div class="flex justify-between items-center mt-2">
-            <span class="text-red-500 font-semibold">₹56</span>
-            <span class="line-through text-gray-400">₹72</span>
-          </div>
-          <button class="w-full mt-2 bg-red-50 border border-red-400 text-red-500 p-1 text-sm">Add to Cart</button>
-        </div>
-
-        <div class="bg-white shadow-md p-4">
-          <img src="https://placehold.co/120x120" alt="Image of Betel Leaves" class="mb-2">
-          <h3 class="text-sm">Betel Leaves (Paan)</h3>
-          <p class="text-xs">10 pcs (Approx. 50 g)</p>
-          <div class="flex justify-between items-center mt-2">
-            <span class="text-red-500 font-semibold">₹44</span>
-            <span class="line-through text-gray-400">₹45</span>
-          </div>
-          <button class="w-full mt-2 bg-red-50 border border-red-400 text-red-500 p-1 text-sm">Add to Cart</button>
-        </div>
-
-        <div class="bg-white shadow-md p-4">
-          <img src="https://placehold.co/120x120" alt="Image of Strawberry" class="mb-2">
-          <h3 class="text-sm">Strawberry</h3>
-          <p class="text-xs">1 pack (Approx. 160g)</p>
-          <div class="flex justify-between items-center mt-2">
-            <span class="text-red-500 font-semibold">₹116</span>
-            <span class="line-through text-gray-400">₹149</span>
-          </div>
-          <button class="w-full mt-2 bg-red-50 border border-red-400 text-red-500 p-1 text-sm">Add to Cart</button>
-        </div>
-
-        <div class="bg-white shadow-md p-4">
-          <img src="https://placehold.co/120x120" alt="Image of Carrot" class="mb-2">
-          <h3 class="text-sm">Carrot Local</h3>
-          <p class="text-xs">500 g</p>
-          <div class="flex justify-between items-center mt-2">
-            <span class="text-red-500 font-semibold">₹40</span>
-            <span class="line-through text-gray-400">₹99</span>
-          </div>
-          <button class="w-full mt-2 bg-red-50 border border-red-400 text-red-500 p-1 text-sm">Add to Cart</button>
-        </div>
-
-        <div class="bg-white shadow-md p-4">
-          <img src="https://placehold.co/120x120" alt="Image of Potato" class="mb-2">
-          <h3 class="text-sm">Potato</h3>
-          <p class="text-xs">1 kg</p>
-          <div class="flex justify-between items-center mt-2">
-            <span class="text-red-500 font-semibold">₹51</span>
-            <span class="line-through text-gray-400">₹86</span>
-          </div>
-          <button class="w-full mt-2 bg-red-50 border border-red-400 text-red-500 p-1 text-sm">Add to Cart</button>
-        </div>
-
-        <div class="bg-white shadow-md p-4">
-          <img src="https://placehold.co/120x120" alt="Image of Grapes Red Globe" class="mb-2">
-          <h3 class="text-sm">Grapes Red Globe Imported</h3>
-          <p class="text-xs">250 g</p>
-          <div class="flex justify-between items-center mt-2">
-            <span class="text-red-500 font-semibold">₹145</span>
-            <span class="line-through text-gray-400">₹177</span>
-          </div>
-          <button class="w-full mt-2 bg-red-50 border border-red-400 text-red-500 p-1 text-sm">Add to Cart</button>
-        </div>
-
-        <div class="bg-white shadow-md p-4">
-          <img src="https://placehold.co/120x120" alt="Image of Garlic" class="mb-2">
-          <h3 class="text-sm">Garlic</h3>
-          <p class="text-xs">200 g</p>
-          <div class="flex justify-between items-center mt-2">
-            <span class="text-red-500 font-semibold">₹119</span>
-            <span class="line-through text-gray-400">₹168</span>
-          </div>
-          <button class="w-full mt-2 bg-red-50 border border-red-400 text-red-500 p-1 text-sm">Add to Cart</button>
-        </div>
-
-        <div class="bg-white shadow-md p-4">
-          <img src="https://placehold.co/120x120" alt="Image of Broccoli" class="mb-2">
-          <h3 class="text-sm">Broccoli</h3>
-          <p class="text-xs">1 pc (Approx. 200g)</p>
-          <div class="flex justify-between items-center mt-2">
-            <span class="text-red-500 font-semibold">₹56</span>
-            <span class="line-through text-gray-400">₹108</span>
-          </div>
-          <button class="w-full mt-2 bg-red-50 border border-red-400 text-red-500 p-1 text-sm">Add to Cart</button>
-        </div>
-
-        <div class="bg-white shadow-md p-4">
-          <img src="https://placehold.co/120x120" alt="Image of Pomegranate" class="mb-2">
-          <h3 class="text-sm">Pomegranate</h3>
-          <p class="text-xs">2 pcs (Approx. 440g)</p>
-          <div class="flex justify-between items-center mt-2">
-            <span class="text-red-500 font-semibold">₹174</span>
-          </div>
+          <button (click)="addCart(product)" class="w-full mt-2 bg-red-50 border border-red-400 text-red-500 p-1 text-sm"> {{ product.isAdded? 'Added' : 'Add to cart' }}</button>
         </div>
       </div>
     </div>

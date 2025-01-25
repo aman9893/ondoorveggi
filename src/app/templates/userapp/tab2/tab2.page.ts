@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { DataService } from '../../auth/service/data.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-tab2',
@@ -12,12 +13,15 @@ export class Tab2Page implements OnInit   {
   sticky!: number;
   cartvalue:any = [];
   constructor(
-    public cart : DataService) {}
+    public cart : DataService,private _location: Location) {}
   ngOnInit() {
     this.callproduct()
     this.CartDetails();
     this.loadCart();
     this.cartNumberFunc();
+  }
+  backClicked() {
+    this._location.back();
   }
   callproduct() {
     this.cart.productList.subscribe(value => {

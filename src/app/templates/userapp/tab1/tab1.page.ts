@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionSheetController, IonRouterOutlet, ModalController } from '@ionic/angular';
 import { ProductFilterPage } from '../pages/product-filter/product-filter.page';
-import { CartService } from '../services/cart/cart.service';
 import { ProductsService } from '../services/products/products.service';
-import { AddToCartPage } from '../pages/product-filter/add-to-cart/add-to-cart.page';
 import { DataService } from '../../auth/service/data.service';
 @Component({
   selector: 'app-tab1',
@@ -14,29 +12,16 @@ import { DataService } from '../../auth/service/data.service';
 })
 export class Tab1Page implements OnInit {
 
-  // set app banner slides
-  slideOpts = {
-    initialSlide: 0,
-    speed: 400,
-    loop: true,
-    autoplay: {
-      delay: 4000,
-      disableOnInteraction: false,
-    }
-  };
-
   bannerImages: any = [];
   mobileview: boolean = false;
   productList: any;
   productArray: any;
   getCartDetails: any;
-  //searchTerm: string;
 
   constructor(
     public productService: ProductsService,
     public routerOutlet: IonRouterOutlet,
     public modalCtrl: ModalController,
-    public cart: CartService,
     private router: Router,
     private actionSheetController: ActionSheetController,
     private dataService: DataService
@@ -45,7 +30,6 @@ export class Tab1Page implements OnInit {
   }
   ngOnInit(): void {
     this.mobileview = this.dataService.getIsMobileResolution();
-    this.bannerImages = this.productService.bannerImages;
     this.productService.initProductList();
     this.getProductApiCall();
     this.cartNumberFunc();

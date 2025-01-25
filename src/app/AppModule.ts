@@ -54,7 +54,6 @@ import { CreateBillComponent } from './templates/admin/pages/bill/create-bill/cr
 import { AppAdminRoutingModule } from './templates/admin/pages/adminroute';
 import { HelprequestComponent } from './templates/admin/pages/unprotected-component/helprequest/helprequest.component';
 import { ProductFilterPage } from './templates/userapp/pages/product-filter/product-filter.page';
-import { AddToCartPage } from './templates/userapp/pages/product-filter/add-to-cart/add-to-cart.page';
 import { TabsPage } from './templates/userapp/tabs/tabs.page';
 import { Tab3Page } from './templates/userapp/tab3/tab3.page';
 import { Tab2Page } from './templates/userapp/tab2/tab2.page';
@@ -76,7 +75,7 @@ import { LoginComponent } from './templates/admin/pages/login/login.component';
     ListKhataComponent,
     SearchpipeComponent,
     AddkhataAmtComponent,AddressComponent,UserprofileComponent,LoginComponent
-    ,ProductFilterPage,AddToCartPage,TabsPage,Tab3Page,Tab2Page,Tab1Page,LayoutComponentUser,PageHeaderComponentUser,DashbordComponentUser
+    ,ProductFilterPage,TabsPage,Tab3Page,Tab2Page,Tab1Page,LayoutComponentUser,PageHeaderComponentUser,DashbordComponentUser
   ],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, MatButtonModule, ReactiveFormsModule,
     MatInputModule, ReactiveFormsModule, MatToolbarModule, MatProgressSpinnerModule, CanvasJSAngularChartsModule,AppAdminRoutingModule,

@@ -1,6 +1,13 @@
 
 
 
+<ion-header>
+  <ion-toolbar>
+    <div class="iconhe" >
+      <ion-title>   <mat-icon style="padding-top: 6px;">keyboard_backspace</mat-icon> <ng-content select=".centertext"></ng-content></ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
   <ion-content [fullscreen]="true">
     <div  *ngIf="productDetailsList"  class="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden  mt-10 mb-10">
       <!-- Image Section -->

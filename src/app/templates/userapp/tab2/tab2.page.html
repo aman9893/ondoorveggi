@@ -1,14 +1,13 @@
 
 
-<header>
-    <app-page-header icon="home"  >
-      <h3 routerLink="/home">Home</h3>
-      <span  class="centertext">
-       My Cart
-      </span>
-      </app-page-header>
-    </header>
-  
+
+<ion-header>
+    <ion-toolbar>
+      <div class="iconhe" (click)="backClicked()">
+        <ion-title>   <mat-icon style="padding-top: 6px;">keyboard_backspace</mat-icon> <ng-content select=".centertext"></ng-content></ion-title>
+      </div>
+    </ion-toolbar>
+  </ion-header>
 
 <ion-content class="bg-gray">
   <div *ngIf="getCartDetails.length < 1" class="noitem">
@@ -32,9 +31,7 @@
             </div>
             <h2 class="ml-2 font-semibold text-gray-800">Delivery in 6 mins</h2>
         </div>
-
         <div class="mt-4">
-      
             <div  *ngFor="let item of getCartDetails" class="flex items-center justify-between mt-4">
                 <div  class="flex items-start">
                     <img src="{{item.nutrition_weight}}" alt="Image of Grapes Green Sonaka Seedless" class="w-10 h-10">

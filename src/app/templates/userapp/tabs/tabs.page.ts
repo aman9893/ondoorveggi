@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CartService } from '../services/cart/cart.service';
 
 @Component({
   selector: 'app-tabs',
@@ -10,7 +9,6 @@ import { CartService } from '../services/cart/cart.service';
 export class TabsPage {
 
   constructor(
-    public cart : CartService
   ) {}
 
 }

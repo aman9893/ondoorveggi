@@ -25,11 +25,12 @@ import { LoginComponent } from './templates/admin/pages/login/login.component';
 import { Tab1Page } from './templates/userapp/tab1/tab1.page';
 
 const routes: Routes = [
-  {path: '',component: LayoutComponentUser,
-    children: [
-        { path: '', redirectTo: 'user', pathMatch: 'full' },
+  // {path: '',component: LayoutComponentUser,
+  //   children: [
+        { path: '', redirectTo: 'home', pathMatch: 'full' },
+        { path: 'home', component: LayoutComponentUser, },
         { path: 'veggi', component: Tab1Page, },
-        { path: 'user', component: DashbordComponentUser, },
+        { path: 'home', component: LayoutComponentUser, },
         { path: 'cart', component: Tab2Page, },
         { path: 'products/:id', component: Tab3Page, },
         { path: 'Orders', component: TabsPage, },
@@ -37,8 +38,7 @@ const routes: Routes = [
         { path: 'userprofile', component: UserprofileComponent, },
         { path: 'login', component: LoginComponent, },
 
-    ]
-  },
+  // },
 
 ];
 

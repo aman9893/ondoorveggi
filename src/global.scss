@@ -45,7 +45,9 @@
 
 
 // table page and menu page css 
-
+.mat-drawer-content {
+  overflow: hidden !important;
+}
 table {
   width: 100%;
 }

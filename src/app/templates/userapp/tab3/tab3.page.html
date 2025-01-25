@@ -9,9 +9,9 @@
   </ion-toolbar>
 </ion-header>
   <ion-content [fullscreen]="true">
-    <div  *ngIf="productDetailsList"  class="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden  mt-10 mb-10">
+    <div  *ngIf="productDetailsList"  class="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden  mb-10">
       <!-- Image Section -->
-      <div class="relative divmain">
+      <div class="relative">
         <img src="{{productDetailsList.nutrition_weight}}" alt="Bag of Hawaiian Barbeque Cheese Popcorn surrounded by ingredients" class="w-full">
         <button class="absolute left-2 top-2 w-8 h-8 bg-white text-gray-700 rounded-full flex items-center justify-center shadow-md">
           <i class="fas fa-arrow-left" routerLink="/"></i>

@@ -28,22 +28,6 @@
     </ion-row>
   </ion-grid>
 
-  <div class="flex overflow-x-auto pb-4 pt-4">
-    <div class="flex-none w-28 mx-2">
-      <div class="p-4  rounded-lg shadow">
-        <img src="https://cdn-icons-png.flaticon.com/256/8980/8980191.png" alt="Fruits and Vegetables" class="w-full">
-      </div>
-      <p class="text-center mt-2 text-purple-600 font-semibold">Vegetables</p>
-    </div>
-    <div class="flex-none w-28 mx-2">
-      <div class="p-4 bg-white rounded-lg shadow">
-        <img src="https://cdn-icons-png.flaticon.com/256/5473/5473851.png" alt="Grocery and Kitchen items"
-          class="w-full">
-      </div>
-      <p class="text-center mt-2 text-gray-600">Fruits </p>
-    </div>
-  </div>
-
   <div *ngIf="mobileview" class="grid grid-cols-2 gap-4">
     <div *ngFor='let product of this.productArray' class="bg-white rounded-lg shadow p-4">
       <div (click)="goToProductDetails(product.prod_id)" class="relative">
@@ -65,10 +49,7 @@
 
   <!-- desktop view -->
   <div *ngIf="!mobileview">
-
     <!-- Search Bar -->
-
-
     <!-- Main Content -->
     <div class="flex p-4">
       <!-- Sidebar -->

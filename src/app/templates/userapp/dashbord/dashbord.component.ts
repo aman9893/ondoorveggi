@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { register } from 'swiper/element/bundle';
+register();
 @Component({
   selector: 'app-dashbord-user',
   templateUrl: './dashbord.component.html',
@@ -7,5 +9,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   
 })
 export class DashbordComponentUser {
+
+  
   }
  

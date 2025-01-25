@@ -22,11 +22,13 @@ import { TabsPage } from './templates/userapp/tabs/tabs.page';
 import { AddressComponent } from './templates/userapp/address/address.component';
 import { UserprofileComponent } from './templates/userapp/userprofile/userprofile.component';
 import { LoginComponent } from './templates/admin/pages/login/login.component';
+import { Tab1Page } from './templates/userapp/tab1/tab1.page';
 
 const routes: Routes = [
   {path: '',component: LayoutComponentUser,
     children: [
         { path: '', redirectTo: 'user', pathMatch: 'full' },
+        { path: 'veggi', component: Tab1Page, },
         { path: 'user', component: DashbordComponentUser, },
         { path: 'cart', component: Tab2Page, },
         { path: 'products/:id', component: Tab3Page, },

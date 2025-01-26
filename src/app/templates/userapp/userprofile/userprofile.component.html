@@ -1,15 +1,15 @@
 
 
-<header>
-  <app-page-header icon="home"  >
-    <h3 routerLink="/home">Home</h3>
-    <span  class="centertext">
-      Profile
-    </span>
-    </app-page-header>
-  </header>
-<ion-content >
+
+
+
 <ion-content class="bg-gray">
+  <div class="divmain" >
+    <div class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
+      <button class="text-xl" routerLink="/home"><i class="fas fa-arrow-left"></i></button>
+      <h1 class="text-lg font-bold">Profile</h1>
+      <button class="text-xl"><i class="fas  fa-user-circle"></i></button>
+  </div>
 <div class="bg-white  rounded-lg shadow-md  mt-10 mb-10">
   <div class="border-b p-4 flex justify-between items-center">
       <h2 class="text-center text-lg font-semibold">Hello Aman Jain </h2>
@@ -33,5 +33,6 @@
           <button type="submit" class="w-full bg-pink-500 text-white py-3 rounded-lg font-semibold shadow-md">Save & Continue</button>
       </form>
   </div>
+</div>
 </div>
 </ion-content>

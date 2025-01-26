@@ -85,7 +85,7 @@ export class LayoutComponentUser implements OnInit {
         {
           title: 'Customer Support',
           icon: 'headset_mic',
-          link: '/Orders',
+          link: '/help',
           color: '##000'
         },
       ]  

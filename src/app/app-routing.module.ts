@@ -23,6 +23,7 @@ import { AddressComponent } from './templates/userapp/address/address.component'
 import { UserprofileComponent } from './templates/userapp/userprofile/userprofile.component';
 import { LoginComponent } from './templates/admin/pages/login/login.component';
 import { Tab1Page } from './templates/userapp/tab1/tab1.page';
+import { HelpSuppportComponent } from './templates/userapp/pages/help-suppport/help-suppport.component';
 
 const routes: Routes = [
   // {path: '',component: LayoutComponentUser,
@@ -37,6 +38,9 @@ const routes: Routes = [
         { path: 'Addresses', component: AddressComponent, },
         { path: 'userprofile', component: UserprofileComponent, },
         { path: 'login', component: LoginComponent, },
+        { path: 'help', component: HelpSuppportComponent, },
+
+        
 
   // },
 

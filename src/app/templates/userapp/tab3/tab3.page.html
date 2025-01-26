@@ -1,15 +1,8 @@
 
 
-
-<ion-header>
-  <ion-toolbar>
-    <div class="iconhe" >
-      <ion-title>   <mat-icon style="padding-top: 6px;">keyboard_backspace</mat-icon> <ng-content select=".centertext"></ng-content></ion-title>
-    </div>
-  </ion-toolbar>
-</ion-header>
   <ion-content [fullscreen]="true">
-    <div  *ngIf="productDetailsList"  class="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden  mb-10">
+    <div>
+    <div  *ngIf="productDetailsList"  class="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden ">
       <!-- Image Section -->
       <div class="relative">
         <img src="{{productDetailsList.nutrition_weight}}" alt="Bag of Hawaiian Barbeque Cheese Popcorn surrounded by ingredients" class="w-full">
@@ -56,17 +49,15 @@
           View all coupons
         </button> -->
            <!-- View Cart Section -->
-      <div class="p-4 bg-white flex justify-between items-center">
-        <button class="flex items-center font-semibold text-lg text-red-600">
-          <i class="fas fa-shopping-cart mr-2"></i>
-          View Cart
-        </button>
-        <div class="flex items-center">
-          <button class="p-2 text-xl bg-gray-200 rounded-tl rounded-bl"><i class="fas fa-minus"></i></button>
-          <span class="px-4 py-2 text-lg font-medium">1</span>
-          <button class="p-2 text-xl bg-gray-200 rounded-tr rounded-br"><i class="fas fa-plus"></i></button>
+           <div class="fixed bottom-0 left-0 right-0 p-4 bg-white mt-2">
+            <div class="flex items-center justify-center space-x-2 bg-pink-500 text-white py-2 px-4 rounded-lg">
+                <button class="flex items-center">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="ml-2">Add to Cart</span>
+                </button>
+            </div>
         </div>
       </div>
-      </div>
+    </div>
     </div>
   </ion-content>

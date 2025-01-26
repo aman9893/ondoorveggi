@@ -20,13 +20,16 @@
         <ion-buttons  color="dark" slot="start">
           <ion-menu-button color="dark"></ion-menu-button>
         </ion-buttons>
-        <ion-title>      
-          <div class="flex   justify-between">
-          <h1 class="text-lg font-bold"> <ion-text class="titlehed"> Ondoor<span class="headlinecolor">Veggi</span> </ion-text></h1>
-          <button class="text-xl text-right"><i class="fas fa-shopping-cart text-gray-500 text-lg"></i>
-            <ion-badge  routerLink="/cart" slot="start"  color="danger" > {{ (dataService.cartSubject | async) || 0 }}</ion-badge>
-          </button>
-          <button [matMenuTriggerFor]="menu" class="text-xl text-right"><i class="fas fa-user text-gray-500 text-lg"></i></button>
+        <ion-title>    
+          <h1 class="text-lg font-bold "> <ion-text class="titlehed"> Ondoor<span class="headlinecolor">Veggi</span> </ion-text></h1>
+        
+          <div class="flex justify-end ">
+            <div><button class="text-xl text-right"><i class="fas fa-shopping-cart text-gray-500 text-lg"></i>
+              <ion-badge  routerLink="/cart" slot="start"  color="danger" > {{ (dataService.cartSubject | async) || 0 }}</ion-badge>
+            </button></div>
+            <div>          <button [matMenuTriggerFor]="menu" class="text-xl text-right"><i class="fas fa-user text-gray-500 text-lg"></i></button>
+            </div>
+
       </div>
         </ion-title>
       </ion-toolbar>

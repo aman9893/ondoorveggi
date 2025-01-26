@@ -2,15 +2,22 @@
 <ion-menu contentId="main-content">
     <ion-header>
       <ion-toolbar>
-        <ion-title>Menu Content</ion-title>
+        <ion-title>  <div class=" sidehed flex items-center mb-8 mt-10">
+            <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_lVAvXIIadUsaJoRHTHqNef3JsmsM8uoTlg&s"  alt="Profile icon" class="rounded-full h-10">
+            <div class="ml-3">
+                <p class="font-bold">Aman jain</p>
+                <p>9806701954</p>
+            </div>
+        </div></ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      
-      <ion-item *ngFor="let p of menulist"  routerDirection="root" [routerLink]="[p.link]" lines="none" detail="false" >
-        <mat-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></mat-icon>
-        <ion-label>{{ p.title }}</ion-label>
-      </ion-item>  
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+            <ion-item  routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
+              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
     </ion-content>
   </ion-menu>
   <div class="ion-page" id="main-content">
@@ -19,7 +26,7 @@
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title>Menu</ion-title>
+        <ion-title>   <ion-text class="titlehed"> Ondoor<span class="headlinecolor">Veggi</span> </ion-text></ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding"> 
@@ -97,9 +104,9 @@
     <div class="fixed bottom-0 left-0 right-0 bg-white shadow flex justify-around text-xs py-3 border-t">
         <a href="#" class="text-center">
             <div class="bg-purple-500 text-white rounded-full w-10 h-10 flex items-center justify-center mx-auto">
-                Z
+              O
             </div>
-            Zepto
+            OnDoorVeggi
         </a>
         <a href="#" class="text-center">
             <i class="fas fa-th text-gray-500 text-lg"></i>

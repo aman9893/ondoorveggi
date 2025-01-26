@@ -24,6 +24,7 @@ import { UserprofileComponent } from './templates/userapp/userprofile/userprofil
 import { LoginComponent } from './templates/admin/pages/login/login.component';
 import { Tab1Page } from './templates/userapp/tab1/tab1.page';
 import { HelpSuppportComponent } from './templates/userapp/pages/help-suppport/help-suppport.component';
+import { UserLoginComponent } from './templates/userapp/user-login/user-login.component';
 
 const routes: Routes = [
   // {path: '',component: LayoutComponentUser,
@@ -38,6 +39,9 @@ const routes: Routes = [
         { path: 'userprofile', component: UserprofileComponent, },
         { path: 'login', component: LoginComponent, },
         { path: 'help', component: HelpSuppportComponent, },
+        { path: 'loginuser', component: UserLoginComponent, },
+
+        
   // },
 
 ];

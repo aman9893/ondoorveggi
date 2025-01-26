@@ -65,6 +65,7 @@ import { AddressComponent } from './templates/userapp/address/address.component'
 import { UserprofileComponent } from './templates/userapp/userprofile/userprofile.component';
 import { LoginComponent } from './templates/admin/pages/login/login.component';
 import { HelpSuppportComponent } from './templates/userapp/pages/help-suppport/help-suppport.component';
+import { UserLoginComponent } from './templates/userapp/user-login/user-login.component';
 
 
 
@@ -76,7 +77,7 @@ import { HelpSuppportComponent } from './templates/userapp/pages/help-suppport/h
     ListKhataComponent,
     SearchpipeComponent,
     AddkhataAmtComponent,AddressComponent,UserprofileComponent,LoginComponent
-    ,ProductFilterPage,TabsPage,Tab3Page,Tab2Page,Tab1Page,LayoutComponentUser,PageHeaderComponentUser,DashbordComponentUser,HelpSuppportComponent
+    ,ProductFilterPage,TabsPage,Tab3Page,Tab2Page,Tab1Page,LayoutComponentUser,PageHeaderComponentUser,DashbordComponentUser,HelpSuppportComponent,UserLoginComponent
   ],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, MatButtonModule, ReactiveFormsModule,
     MatInputModule, ReactiveFormsModule, MatToolbarModule, MatProgressSpinnerModule, CanvasJSAngularChartsModule,AppAdminRoutingModule,

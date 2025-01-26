@@ -29,9 +29,8 @@ const routes: Routes = [
   // {path: '',component: LayoutComponentUser,
   //   children: [
         { path: '', redirectTo: 'home', pathMatch: 'full' },
-        { path: 'home', component: LayoutComponentUser, },
+        { path: 'home', component: DashbordComponentUser, },
         { path: 'veggi', component: Tab1Page, },
-        { path: 'home', component: LayoutComponentUser, },
         { path: 'cart', component: Tab2Page, },
         { path: 'products/:id', component: Tab3Page, },
         { path: 'Orders', component: TabsPage, },
@@ -39,9 +38,6 @@ const routes: Routes = [
         { path: 'userprofile', component: UserprofileComponent, },
         { path: 'login', component: LoginComponent, },
         { path: 'help', component: HelpSuppportComponent, },
-
-        
-
   // },
 
 ];

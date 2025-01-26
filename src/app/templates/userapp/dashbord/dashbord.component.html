@@ -1,91 +1,129 @@
+
+<ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu Content</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      
+      <ion-item *ngFor="let p of menulist"  routerDirection="root" [routerLink]="[p.link]" lines="none" detail="false" >
+        <mat-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></mat-icon>
+        <ion-label>{{ p.title }}</ion-label>
+      </ion-item>  
+    </ion-content>
+  </ion-menu>
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding"> 
+    
+        
+        
+  
   <div class="divmainwrap">
- <!-- Search Bar -->
- <!-- <swiper-container  effect="autoplay">
-     <swiper-slide> <img src="https://img.freepik.com/free-photo/organic-vegetables-fruits-displayed-rustic-wooden-table_157027-2879.jpg" alt="A bowl with pasta dish" class="mx-auto mt-2 mb-4"></swiper-slide>
-     <swiper-slide> <img src="https://previews.123rf.com/images/liudmilachernetska/liudmilachernetska2302/liudmilachernetska230296307/198385902-many-fresh-vegetables-as-background-top-view-banner-design.jpg" alt="A bowl with pasta dish" class="mx-auto mt-2 mb-4"></swiper-slide>
-     <swiper-slide> <img src="https://img.freepik.com/premium-vector/fresh-vegetables-with-banner_1308-6884.jpg" alt="A bowl with pasta dish" class="mx-auto mt-2 mb-4"></swiper-slide>
-   </swiper-container> -->
- <!-- New In Store Section -->
- <div class="p-4">
-     <h2 class="font-bold text-lg text-gray-800">New In Store</h2>
-     <div class="grid grid-cols-2 gap-4 mt-4">
-
-         <!-- Cafe -->
-         <div class="text-center border p-1 rounded-md bg-white shadow"   routerLink="/veggi" >
-             <p class="text-sm font-bold">Vegetable</p>
-             <img src="https://4.imimg.com/data4/AY/TE/IMOB-27708947/c__data_users_defapps_appdata_internetexplorer_temp_sav.jpg" alt="A bowl with pasta dish" class="mx-auto mt-2 mb-2">
-             <p class="text-blue-500 text-xs">Upto <strong>20%</strong> OFF</p>
-         </div>
-
-         <!-- Toys -->
-         <div class="text-center border p-1 rounded-md bg-white shadow">
-             <p class="text-sm font-bold">Fruits</p>
-             <img src="https://www.fastandup.in/nutrition-world/wp-content/uploads/2023/06/fruit-min.png" alt="Teddy bear and a ball" class="mx-auto mt-2 mb-2">
-             <p class="text-blue-500 text-xs">Upto <strong>20%%</strong> OFF</p>
-         </div>
-
-         <!-- Fashion -->
-         <div class="text-center border p-1 rounded-md bg-white shadow">
-             <p class="text-sm font-bold">Milk</p>
-             <img src="https://www.heritagefoods.in/static/images/detailslider/mega/standardized-milk.jpg" alt="Sunglasses and accessories" class="mx-auto mt-2 mb-2">
-             <p class="text-blue-500 text-xs">Upto <strong>2%</strong> OFF</p>
-         </div>
-         <div class="text-center border p-1 rounded-md bg-white shadow">
-          <p class="text-sm font-bold">coconut</p>
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUDqfTNakBvPmGDicVpyEsYn9CIbsX27aXQA&s" alt="Sunglasses and accessories" class="mx-auto mt-2 mb-2">
-          <p class="text-blue-500 text-xs">Upto <strong>5%</strong> OFF</p>
-      </div>
-     </div>
- </div>
-
- <!-- Grocery & Kitchen Section -->
- <!-- <div class="p-4">
-     <div class="flex justify-between items-center">
-         <h2 class="font-bold text-lg text-gray-800">Grocery & Kitchen</h2>
-         <a href="#" class="text-red-500 text-sm">See All ></a>
-     </div>
-     <div class="flex space-x-4 mt-4">
-
-         <div class="text-center">
-             <img src="https://placehold.co/100" alt="Assorted fruits and vegetables" class="mx-auto rounded-full mb-2 shadow">
-             <p class="text-sm font-bold text-gray-700">Fruits &<br> Vegetables</p>
-         </div>
-
-         <div class="text-center">
-             <img src="https://placehold.co/100" alt="Milk, bread, and eggs" class="mx-auto rounded-full mb-2 shadow">
-             <p class="text-sm font-bold text-gray-700">Dairy, Bread<br> & Eggs</p>
-         </div>
-
-         <div class="text-center">
-             <img src="https://placehold.co/100" alt="Pack of flour and a jar of oil" class="mx-auto rounded-full mb-2 shadow">
-             <p class="text-sm font-bold text-gray-700">Atta, Rice,<br> Oil & Dals</p>
-         </div>
-
-     </div>
- </div> -->
-
- <!-- Footer Navigation -->
- <div class="fixed bottom-0 left-0 right-0 bg-white shadow flex justify-around text-xs py-3 border-t">
-     <a href="#" class="text-center">
-         <div class="bg-purple-500 text-white rounded-full w-10 h-10 flex items-center justify-center mx-auto">
-             Z
-         </div>
-         Zepto
-     </a>
-     <a href="#" class="text-center">
-         <i class="fas fa-th text-gray-500 text-lg"></i>
-         <div>Categories</div>
-     </a>
-     <a href="#" class="text-center">
-          <i class=" fas fa-search text-gray-500 text-lg"></i>
-          <div>Search</div> 
-     </a>
-     <a href="#" class="text-center">
-         <i class="fas fa-shopping-cart text-gray-500 text-lg"></i>
-         <div>Cart</div>
-     </a>
- </div>
-
-  </div>
-
+    <!-- Search Bar -->
+    <!-- <swiper-container  effect="autoplay">
+        <swiper-slide> <img src="https://img.freepik.com/free-photo/organic-vegetables-fruits-displayed-rustic-wooden-table_157027-2879.jpg" alt="A bowl with pasta dish" class="mx-auto mt-2 mb-4"></swiper-slide>
+        <swiper-slide> <img src="https://previews.123rf.com/images/liudmilachernetska/liudmilachernetska2302/liudmilachernetska230296307/198385902-many-fresh-vegetables-as-background-top-view-banner-design.jpg" alt="A bowl with pasta dish" class="mx-auto mt-2 mb-4"></swiper-slide>
+        <swiper-slide> <img src="https://img.freepik.com/premium-vector/fresh-vegetables-with-banner_1308-6884.jpg" alt="A bowl with pasta dish" class="mx-auto mt-2 mb-4"></swiper-slide>
+      </swiper-container> -->
+    <!-- New In Store Section -->
+    <div class="p-4">
+        <h2 class="font-bold text-lg text-gray-800">New In Store</h2>
+        <div class="grid grid-cols-2 gap-4 mt-4">
    
+            <!-- Cafe -->
+            <div class="text-center border p-1 rounded-md bg-white shadow"   routerLink="/veggi" >
+                <p class="text-sm font-bold">Vegetable</p>
+                <img src="https://4.imimg.com/data4/AY/TE/IMOB-27708947/c__data_users_defapps_appdata_internetexplorer_temp_sav.jpg" alt="A bowl with pasta dish" class="mx-auto mt-2 mb-2">
+                <p class="text-blue-500 text-xs">Upto <strong>20%</strong> OFF</p>
+            </div>
+   
+            <!-- Toys -->
+            <div class="text-center border p-1 rounded-md bg-white shadow">
+                <p class="text-sm font-bold">Fruits</p>
+                <img src="https://www.fastandup.in/nutrition-world/wp-content/uploads/2023/06/fruit-min.png" alt="Teddy bear and a ball" class="mx-auto mt-2 mb-2">
+                <p class="text-blue-500 text-xs">Upto <strong>20%%</strong> OFF</p>
+            </div>
+   
+            <!-- Fashion -->
+            <div class="text-center border p-1 rounded-md bg-white shadow">
+                <p class="text-sm font-bold">Milk</p>
+                <img src="https://www.heritagefoods.in/static/images/detailslider/mega/standardized-milk.jpg" alt="Sunglasses and accessories" class="mx-auto mt-2 mb-2">
+                <p class="text-blue-500 text-xs">Upto <strong>2%</strong> OFF</p>
+            </div>
+            <div class="text-center border p-1 rounded-md bg-white shadow">
+             <p class="text-sm font-bold">coconut</p>
+             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUDqfTNakBvPmGDicVpyEsYn9CIbsX27aXQA&s" alt="Sunglasses and accessories" class="mx-auto mt-2 mb-2">
+             <p class="text-blue-500 text-xs">Upto <strong>5%</strong> OFF</p>
+         </div>
+        </div>
+    </div>
+   
+    <!-- Grocery & Kitchen Section -->
+    <!-- <div class="p-4">
+        <div class="flex justify-between items-center">
+            <h2 class="font-bold text-lg text-gray-800">Grocery & Kitchen</h2>
+            <a href="#" class="text-red-500 text-sm">See All ></a>
+        </div>
+        <div class="flex space-x-4 mt-4">
+   
+            <div class="text-center">
+                <img src="https://placehold.co/100" alt="Assorted fruits and vegetables" class="mx-auto rounded-full mb-2 shadow">
+                <p class="text-sm font-bold text-gray-700">Fruits &<br> Vegetables</p>
+            </div>
+   
+            <div class="text-center">
+                <img src="https://placehold.co/100" alt="Milk, bread, and eggs" class="mx-auto rounded-full mb-2 shadow">
+                <p class="text-sm font-bold text-gray-700">Dairy, Bread<br> & Eggs</p>
+            </div>
+   
+            <div class="text-center">
+                <img src="https://placehold.co/100" alt="Pack of flour and a jar of oil" class="mx-auto rounded-full mb-2 shadow">
+                <p class="text-sm font-bold text-gray-700">Atta, Rice,<br> Oil & Dals</p>
+            </div>
+   
+        </div>
+    </div> -->
+   
+    <!-- Footer Navigation -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white shadow flex justify-around text-xs py-3 border-t">
+        <a href="#" class="text-center">
+            <div class="bg-purple-500 text-white rounded-full w-10 h-10 flex items-center justify-center mx-auto">
+                Z
+            </div>
+            Zepto
+        </a>
+        <a href="#" class="text-center">
+            <i class="fas fa-th text-gray-500 text-lg"></i>
+            <div>Categories</div>
+        </a>
+        <a href="#" class="text-center">
+             <i class=" fas fa-search text-gray-500 text-lg"></i>
+             <div>Search</div> 
+        </a>
+        <a href="#" class="text-center">
+            <i class="fas fa-shopping-cart text-gray-500 text-lg"></i>
+            <div>Cart</div>
+        </a>
+    </div>
+   
+     </div>
+   
+      
+    
+    
+    </ion-content>
+  </div>
+  
+  
+  
+  
+  

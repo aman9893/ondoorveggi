@@ -37,7 +37,6 @@ export class LayoutComponentUser implements OnInit {
     router.events.subscribe((val:any) => {
       if (val instanceof NavigationEnd) {
         if(this.mobileview || val.url==='/addcounterbill' || val.url==='/addcustombill'){
-          this.drawer.close()
           this.cdref.detectChanges();
         }
       }
@@ -46,9 +45,6 @@ export class LayoutComponentUser implements OnInit {
 
   ngOnInit(): void {
     this.callproduct()
-    this.UserId = this.authService.getUserId();
-    // this.getResgiterDataById();
-    this.shopType= localStorage.getItem('shop_type')
       this.menulist = [
         {
           title: 'Home',

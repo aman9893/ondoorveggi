@@ -15,14 +15,24 @@
     </ion-content>
   </ion-menu>
   <div class="ion-page" id="main-content">
-    <ion-header >
+
+    
+    <ion-header [translucent]="true">
       <ion-toolbar>
-        <ion-title>Title</ion-title>
+        <ion-buttons slot="start"  color="dark" >
+          <ion-menu-button color="dark"></ion-menu-button>
+        </ion-buttons>
+        <ion-title slot="start" ><ion-text class="titlehed"> Ondoor<span class="headlinecolor">Veggi</span> </ion-text></ion-title>
         <ion-buttons [collapse]="true" slot="end">
-          <ion-button>Button</ion-button>
+          <i class="fas fa-shopping-cart text-gray-500 text-lg">
+          <ion-badge  routerLink="/cart" slot="start"  color="danger" > {{ (dataService.cartSubject | async) || 0 }}</ion-badge>
+          </i>
+
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
+
+   
     <ion-content class="ion-padding"> 
       <mat-menu #menu="matMenu">
         <button mat-menu-item routerLink="/profile">

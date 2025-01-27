@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   constructor(private myRoute: Router ) { }
+
+  public currentUserSubject!: BehaviorSubject<any>;
+  public currentUser!: Observable<any>;
   
   sendToken(token: string) {
     localStorage.setItem("LoggedInUser", token)
@@ -16,6 +20,7 @@ export class AuthService {
 
   setuserData(userdata: any) {
     localStorage.setItem("UserData", userdata)
+    this.currentUserSubject.next(userdata);
   }
   
   getUserId(){

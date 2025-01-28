@@ -22,10 +22,16 @@ export class DataService {
   cartlist = new BehaviorSubject<any>([]);
   cartSubject = new Subject<number>();
 
+    banners = [
+    { id: '1', banner: 'assets/banners/1.jpg', active: true },
+    { id: '2', banner: 'assets/banners/2.jpg', active: true },
+    { id: '3', banner: 'assets/banners/3.jpg', active: true },
+  ];
 
 
-
-
+  getBanners() {
+    return this.banners;
+  }
   // user Apis
 
 
@@ -43,6 +49,11 @@ export class DataService {
     return this.http.post(apiConfig.localhostUrl + apiConfig.userproduct_category_list, data);
   }
   
+  getuseroductDetials(prodid:any) {
+    let data:{prod_id:any}={prod_id:prodid};
+    return this.http.post(apiConfig.localhostUrl + apiConfig.userdetailsproduct,data);
+  }
+
 
 
   inProduct(product:any) {

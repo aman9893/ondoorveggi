@@ -1,7 +1,7 @@
 
 <ion-menu contentId="main-content">
     <ion-header>
-      <ion-toolbar  color="tertiary">
+      <ion-toolbar >
         <ion-title>Aman Jain</ion-title>
         
       </ion-toolbar>
@@ -20,13 +20,15 @@
   </ion-menu>
   <div class="ion-page" id="main-content">
 
-    
     <ion-header [translucent]="true">
       <ion-toolbar>
         <ion-buttons slot="start"  color="dark" >
           <ion-menu-button color="dark"></ion-menu-button>
         </ion-buttons>
+     
         <ion-title slot="start" ><ion-text class="titlehed"> Ondoor<span class="headlinecolor">Veggi</span> </ion-text></ion-title>
+        <ion-title slot="start" > <i class="fas fa-location text-gray-500 text-lg"> New Delhi </i> </ion-title>
+
         <ion-buttons [collapse]="true" slot="end">
           <i class="fas fa-shopping-cart text-gray-500 text-lg">
           <ion-badge  routerLink="/cart" slot="start"  color="danger" > {{ (dataService.cartSubject | async) || 0 }}</ion-badge>
@@ -36,7 +38,8 @@
       </ion-toolbar>
     </ion-header>
 
-   
+    <app-banner [bannerImages]="banners"></app-banner>
+
     <ion-content class="ion-padding"> 
       <mat-menu #menu="matMenu">
         <button mat-menu-item routerLink="/profile">

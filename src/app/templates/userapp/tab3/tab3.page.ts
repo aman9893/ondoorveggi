@@ -27,7 +27,7 @@ export class Tab3Page implements OnInit{
 
   }
   getProductDetailsApiCall(id:any): void {
-    this.dataService.getMenuproductDetials(id).subscribe((data) => this.getProductData(data),
+    this.dataService.getuseroductDetials(id).subscribe((data) => this.getProductData(data),
       (err: Error) => this.errorcall(err));
   }
   errorcall(err: Error): void {

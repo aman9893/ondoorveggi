@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, computed, inject, OnInit, ViewChild } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import { AuthService } from '../../auth/auth.service';
 import { DataService } from '../../auth/service/data.service';
 import { Router } from '@angular/router';
+
+
 register();
 @Component({
   selector: 'app-dashbord-user',
@@ -44,9 +46,11 @@ export class DashbordComponentUser implements OnInit{
   public selectedIndex = 0;
   categoryDataList: any;
   mobileview: boolean= false;
+  banners:any
  constructor(public dataService: DataService,public authService: AuthService, private router:Router){}
   ngOnInit(): void {
     this.mobileview = this.dataService.getIsMobileResolution();
+    this.banners =this.dataService.getBanners();
 
    this.getCategaryapiCall();
   }

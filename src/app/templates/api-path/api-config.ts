@@ -13,6 +13,7 @@ export const apiConfig = {
      userloginApi:'api/app/login',
      usercategory_list:'api/app/explore_category_list',
      userproduct_category_list:'api/app/explore_category_items_list',
+     userdetailsproduct: 'api/app/product_detail',
      
 
 

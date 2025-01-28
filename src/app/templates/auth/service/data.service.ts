@@ -23,6 +23,28 @@ export class DataService {
   cartSubject = new Subject<number>();
 
 
+
+
+
+  // user Apis
+
+
+  userloginData(data:any) {
+    return this.http.post(apiConfig.localhostUrl + apiConfig.userloginApi, data);
+  }
+  
+  usercategoryList(data:any) {
+    return this.http.post(apiConfig.localhostUrl + apiConfig.usercategory_list, data);
+  }
+  
+  userProductcategoryList(id:any) {
+    let data:any={cat_id:id};
+
+    return this.http.post(apiConfig.localhostUrl + apiConfig.userproduct_category_list, data);
+  }
+  
+
+
   inProduct(product:any) {
     for (let p of this.cartDataList) {
       if (p.menu_id === product.menu_id) {
@@ -115,7 +137,8 @@ export class DataService {
     return this.http.post(apiConfig.localhostUrl + apiConfig.printer, content );
   }
   
-  
+
+ 
   registerData(data:any) {
     return this.http.post(apiConfig.localhostUrl + apiConfig.registerData, data);
   }

@@ -8,8 +8,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class AuthService {
   constructor(private myRoute: Router ) { }
 
-  public currentUserSubject!: BehaviorSubject<any>;
-  public currentUser!: Observable<any>;
+  public currentToken!: BehaviorSubject<any>;
+  public currentUser!: BehaviorSubject<any>;
   
   sendToken(token: string) {
     localStorage.setItem("LoggedInUser", token)
@@ -20,7 +20,6 @@ export class AuthService {
 
   setuserData(userdata: any) {
     localStorage.setItem("UserData", userdata)
-    this.currentUserSubject.next(userdata);
   }
   
   getUserId(){

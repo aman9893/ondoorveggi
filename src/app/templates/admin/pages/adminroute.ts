@@ -11,12 +11,13 @@ import { MenulistComponent } from './menulist/menulist.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TaxComponent } from './tax/tax.component';
 import { HelprequestComponent } from './unprotected-component/helprequest/helprequest.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {path: '',component: LayoutComponent,
     children: [
         { path: '', redirectTo: 'main-page', pathMatch: 'full' },
-  { path: 'home', component: DashbordComponent, },
+  { path: 'admin', component: DashbordComponent, },
   { path: 'contact', component: ListContactBookComponent, },
   { path: 'Khatabook', component: ListKhataComponent   },
   { path: 'product-list', component: MenulistComponent, },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'tax', component: TaxComponent, },
   { path: 'bill', component: BillCounterComponent, },
   { path: 'counterbill', component: AddBillCounetrComponent, },
+  { path: 'loginadmin', component: LoginComponent, },
     ]
   },
 

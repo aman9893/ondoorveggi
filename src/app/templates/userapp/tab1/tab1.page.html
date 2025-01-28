@@ -32,7 +32,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <div class="grid grid-cols-2 gap-4">
+  <div *ngIf="mobileview " class="grid grid-cols-2 gap-4">
     <div *ngFor='let product of this.productArray' class="bg-white rounded-lg shadow p-4">
       <div (click)="goToProductDetails(product.prod_id)" class="relative">
         <img
@@ -55,6 +55,31 @@
       <p class="text-gray-500">{{product.unit_name}} {{product.unit_value}} - ₹ {{product.price}}</p>
     </div>
   </div>
+
+  <div *ngIf="!mobileview " class="grid grid-cols-4 gap-4">
+    <div *ngFor='let product of this.productArray' class="bg-white rounded-lg shadow p-4">
+      <div (click)="goToProductDetails(product.prod_id)" class="relative">
+        <img
+          src="{{product.nutrition_weight}}"
+          alt="Apples" class="rounded-lg w-full">
+        <!-- <span class="absolute top-2 left-2 bg-purple-600 text-white text-sm px-2 py-1 rounded-full">9% Off</span> -->
+      </div>
+      <div class="flex justify-between items-center mt-2">
+        <div class="flex items-center">
+            <button  (click)="addCart(product)"  class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-200 via-red-300 to-yellow-200 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-yellow-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400">
+                <span class="relative px-4 py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                    {{ product.isAdded? 'Added' : 'Add to cart' }}
+                </span>
+                </button>
+            <!-- <button type="button" (click)="addCart(product)"  class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-3 py-2 text-center me-2 mb-2">{{ product.isAdded? 'Added' : 'Add to cart' }}</button> -->
+          <!-- <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "> </button> -->
+        </div>
+      </div>
+      <p class="mt-2 text-gray-800 ">{{product.name}}</p>
+      <p class="text-gray-500">{{product.unit_name}} {{product.unit_value}} - ₹ {{product.price}}</p>
+    </div>
+  </div>
+
   <div routerLink="/cart" class="fixed bottom-0 left-0 right-0 p-4 bg-white mt-2">
     <div class="flex items-center justify-center space-x-2 bg-pink-500 text-white py-2 px-4 rounded-lg">
         <span>2 Items | ₹99</span>

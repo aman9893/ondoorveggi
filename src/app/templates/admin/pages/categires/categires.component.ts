@@ -101,6 +101,10 @@ export class CategiresComponent implements OnInit {
         validators: [Validators.required, Validators.maxLength(55)],
         updateOn: 'change',
       }),
+      image: new FormControl('', {
+        validators: [Validators.required, Validators.maxLength(1000)],
+        updateOn: 'change',
+      }),
     });
   }
 
@@ -121,6 +125,7 @@ export class CategiresComponent implements OnInit {
     if (this.categoryForm.valid) {
       let categoryFormData = {
         color: 'red',
+        image:this.categoryForm.controls['image'].value,
         cat_name: this.categoryForm.controls['category_name'].value,
       };
       this.dataService.adddcategoryList(categoryFormData).subscribe(
@@ -143,11 +148,13 @@ export class CategiresComponent implements OnInit {
   edit(data: any){
     this.updatebtn =true;
     this.categoryForm.controls['category_name'].setValue(data.cat_name);
+    this.categoryForm.controls['image'].setValue(data.image);
     this.category_id= data.cat_id;
   }
   update() {
     let categoryFormData = {
       cat_id:this.category_id,
+      image:this.categoryForm.controls['image'].value,
       color:'red',
       cat_name: this.categoryForm.controls['category_name'].value,
     };

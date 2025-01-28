@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import { AuthService } from '../../auth/auth.service';
 import { DataService } from '../../auth/service/data.service';
+import { Router } from '@angular/router';
 register();
 @Component({
   selector: 'app-dashbord-user',
@@ -41,18 +42,36 @@ export class DashbordComponentUser implements OnInit{
   
   ];
   public selectedIndex = 0;
- constructor(public dataService: DataService,public authService: AuthService, ){}
+  categoryDataList: any;
+  mobileview: boolean= false;
+ constructor(public dataService: DataService,public authService: AuthService, private router:Router){}
   ngOnInit(): void {
-      const path = window.location.pathname.split("folder/")[1];
-      if (path !== undefined) {
-        this.selectedIndex = this.appPages.findIndex(
-          page => page.title.toLowerCase() === path.toLowerCase()
-        );
-      }
+    this.mobileview = this.dataService.getIsMobileResolution();
+
+   this.getCategaryapiCall();
   }
   logout() {
     this.authService.logout();
   }
+
+  getCategaryapiCall(): void {
+    this.dataService.usercategoryList('').subscribe((data) => this.categoryData(data),
+      (err: Error) => this.errorcall(err));
+  }
+  errorcall(err: any): void {
+    this.dataService.openSnackBar(err,'dismiss')
+  }
+
+    categoryData(data: any) {
+      if(data.status == 1){
+      this.categoryDataList = data.payload;
+      console.log(   this.categoryDataList)
+      }
+    }
+
+    goToProductLIst(id: any) {
+      this.router.navigate(['/productlist', id]);
+    }
 
   }
  

@@ -31,13 +31,12 @@ const routes: Routes = [
   //   children: [
         { path: '', redirectTo: 'home', pathMatch: 'full' },
         { path: 'home', component: DashbordComponentUser, },
-        { path: 'veggi', component: Tab1Page, },
+        { path: 'productlist/:id', component: Tab1Page, },
         { path: 'cart', component: Tab2Page, },
         { path: 'products/:id', component: Tab3Page, },
         { path: 'Orders', component: TabsPage, },
         { path: 'Addresses', component: AddressComponent, },
         { path: 'userprofile', component: UserprofileComponent, },
-        { path: 'login', component: LoginComponent, },
         { path: 'help', component: HelpSuppportComponent, },
         { path: 'loginuser', component: UserLoginComponent, },
 

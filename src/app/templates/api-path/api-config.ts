@@ -10,6 +10,16 @@ export const apiConfig = {
     // localhostUrl: "http://localhost:5000/",
      localhostUrl: "http://localhost:3001/",
 
+     userloginApi:'api/app/login',
+     usercategory_list:'api/app/explore_category_list',
+     userproduct_category_list:'api/app/explore_category_items_list',
+     
+
+
+
+
+
+
     registerData: 'api/app/sign_up',
     loginData:'api/admin/login',
     

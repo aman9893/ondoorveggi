@@ -59,34 +59,29 @@
     <!-- New In Store Section -->
     <div class="p-4">
         <h2 class="font-bold text-lg text-gray-800">New In Store</h2>
-        <div class="grid grid-cols-2 gap-4 mt-4">
+        <div  *ngIf="categoryDataList && mobileview" class="grid grid-cols-2 gap-4 mt-4">
    
             <!-- Cafe -->
-            <div class="text-center border p-1 rounded-md bg-white shadow"   routerLink="/veggi" >
-                <p class="text-sm font-bold">Vegetable</p>
-                <img src="https://4.imimg.com/data4/AY/TE/IMOB-27708947/c__data_users_defapps_appdata_internetexplorer_temp_sav.jpg" alt="A bowl with pasta dish" class="mx-auto mt-2 mb-2">
+            <div  *ngFor="let cate of categoryDataList"  class="text-center border p-1 rounded-md bg-white shadow"  >
+                <p class="text-sm font-bold">{{cate.cat_name}}</p>
+                <img  src="{{cate.image}}" alt="A bowl with pasta dish" class="mx-auto mt-2 mb-2" (click)="goToProductLIst(cate.cat_id)">
                 <p class="text-blue-500 text-xs">Upto <strong>20%</strong> OFF</p>
             </div>
    
-            <!-- Toys -->
-            <div class="text-center border p-1 rounded-md bg-white shadow">
-                <p class="text-sm font-bold">Fruits</p>
-                <img src="https://www.fastandup.in/nutrition-world/wp-content/uploads/2023/06/fruit-min.png" alt="Teddy bear and a ball" class="mx-auto mt-2 mb-2">
-                <p class="text-blue-500 text-xs">Upto <strong>20%%</strong> OFF</p>
-            </div>
-   
-            <!-- Fashion -->
-            <div class="text-center border p-1 rounded-md bg-white shadow">
-                <p class="text-sm font-bold">Milk</p>
-                <img src="https://www.heritagefoods.in/static/images/detailslider/mega/standardized-milk.jpg" alt="Sunglasses and accessories" class="mx-auto mt-2 mb-2">
-                <p class="text-blue-500 text-xs">Upto <strong>2%</strong> OFF</p>
-            </div>
-            <div class="text-center border p-1 rounded-md bg-white shadow">
-             <p class="text-sm font-bold">coconut</p>
-             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUDqfTNakBvPmGDicVpyEsYn9CIbsX27aXQA&s" alt="Sunglasses and accessories" class="mx-auto mt-2 mb-2">
-             <p class="text-blue-500 text-xs">Upto <strong>5%</strong> OFF</p>
+       
          </div>
-        </div>
+
+         <div  *ngIf="categoryDataList && !mobileview" class="grid grid-cols-4 gap-4 mt-4">
+   
+          <!-- Cafe -->
+          <div  *ngFor="let cate of categoryDataList"  class="text-center border p-1 rounded-md bg-white shadow"  >
+              <p class="text-sm font-bold">{{cate.cat_name}}</p>
+              <img  src="{{cate.image}}" alt="A bowl with pasta dish" class="mx-auto mt-2 mb-2" (click)="goToProductLIst(cate.cat_id)">
+              <p class="text-blue-500 text-xs">Upto <strong>20%</strong> OFF</p>
+          </div>
+ 
+     
+       </div>
     </div>
    
     <!-- Grocery & Kitchen Section -->

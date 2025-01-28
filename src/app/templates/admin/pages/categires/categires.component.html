@@ -23,6 +23,15 @@
         <div class="errormsg" *ngIf="categoryForm.controls['category_name'].errors['required']">*Category name is
           required</div>
       </div>
+      <mat-form-field appearance="outline">
+        <input matInput type="text" formControlName="image" placeholder="Enter image Name" >
+     
+        <mat-icon matSuffix>list</mat-icon>
+    </mat-form-field>
+      <div *ngIf="submitted && categoryForm['controls']['image'].errors">
+        <div class="errormsg" *ngIf="categoryForm.controls['image'].errors['required']">*Category image is
+          required</div>
+      </div>
         <div class="field">
           <button *ngIf="!updatebtn" class="btn" type="submit" (click)="onSubmit()">Save</button>
           <button *ngIf="updatebtn" class="btn" type="submit" [disabled]="!categoryForm.valid"

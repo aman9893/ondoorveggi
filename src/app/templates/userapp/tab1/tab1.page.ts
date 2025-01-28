@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ActionSheetController, IonRouterOutlet, ModalController } from '@ionic/angular';
 import { ProductFilterPage } from '../pages/product-filter/product-filter.page';
 import { ProductsService } from '../services/products/products.service';
@@ -17,42 +17,47 @@ export class Tab1Page implements OnInit {
   productList: any;
   productArray: any;
   getCartDetails: any;
+  id: any | null;
 
   constructor(
     public productService: ProductsService,
     public routerOutlet: IonRouterOutlet,
     public modalCtrl: ModalController,
     private router: Router,
-    private actionSheetController: ActionSheetController,
+    private actionSheetController: ActionSheetController,private _route : ActivatedRoute,
     private dataService: DataService
   ) {
+    this.mobileview = this.dataService.getIsMobileResolution();
 
   }
   ngOnInit(): void {
-    this.mobileview = this.dataService.getIsMobileResolution();
-    this.productService.initProductList();
-    this.getProductApiCall();
-    this.cartNumberFunc();
-
+   console.log(  this.mobileview ,'kjhk')
+    this._route.paramMap.subscribe((params)=>{
+      this. id = params.get('id');
+       this.getProductApiCall(this.id);
+ 
+      });
+      this.productService.initProductList();
+      this.cartNumberFunc();
   }
   search(event: any) {
     let term = event.target.value;
     this.productService.searchProducts(term);
   }
 
-  getProductApiCall(): void {
-    this.dataService.getMenuInfo().subscribe((data) => this.getProductData(data),
+  getProductApiCall(id:any): void {
+    this.dataService.userProductcategoryList(id).subscribe((data) => this.getProductData(data),
       (err: Error) => this.errorcall(err));
   }
-  errorcall(err: Error): void {
-    throw new Error('Method not implemented.');
+  errorcall(err: any): void {
+    console.log(err)
   }
   getProductData(data: any) {
     this.productList = data.payload;
-    this.productArray = this.productList.map((prod: any) => { return { ...prod, qty: 1 } });
+    this.productArray = this.productList?.map((prod: any) => { return { ...prod, qty: 1 } });
     this.getCartDetails = JSON.parse(localStorage.getItem('localCart')!);
 
-    this.productArray.forEach((a: any) => {
+    this.productArray?.forEach((a: any) => {
       this.getCartDetails.forEach((b: any) => {
         if (a.prod_id === b.prod_id) {
           a.isAdded =true
@@ -122,7 +127,7 @@ export class Tab1Page implements OnInit {
     this.cartNumber =
       cartValue.length;
     this.dataService.cartSubject.next(this.cartNumber);
-    this. getProductApiCall()
+    this. getProductApiCall(this.id)
 
   }
 

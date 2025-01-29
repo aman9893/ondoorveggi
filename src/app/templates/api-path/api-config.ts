@@ -7,9 +7,9 @@ export const apiConfig = {
     // loginData: 'api/app/login',
    
 
-    // localhostUrl: "http://localhost:5000/",
-     localhostUrl: "http://localhost:3001/",
-
+    // localhostUrl: "https://ondoorbackend.vercel.app/",
+     localhostUrl: "https://ondoorbackend.onrender.com/",
+ // localhostUrl: "http://localhost:5000/",
      userloginApi:'api/app/login',
      usercategory_list:'api/app/explore_category_list',
      userproduct_category_list:'api/app/explore_category_items_list',

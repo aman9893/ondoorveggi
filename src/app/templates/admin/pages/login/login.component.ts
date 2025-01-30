@@ -23,8 +23,6 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private dataService: DataService,
     public authService: AuthService,
-    private activatedRoute : ActivatedRoute
-
   ) {}
   updateFlag: boolean = false;
   sginupForm!: FormGroup;
@@ -35,7 +33,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.authService.logout();
-
     this.createForm();
     this.loginFormData();
   }

@@ -25,15 +25,14 @@ import { LoginComponent } from './templates/admin/pages/login/login.component';
 import { Tab1Page } from './templates/userapp/tab1/tab1.page';
 import { HelpSuppportComponent } from './templates/userapp/pages/help-suppport/help-suppport.component';
 import { UserLoginComponent } from './templates/userapp/user-login/user-login.component';
+import { ProductDetailsComponent } from './templates/userapp/product-details/product-details.component';
 
 const routes: Routes = [
   // {path: '',component: LayoutComponentUser,
   //   children: [
         { path: '', redirectTo: 'home', pathMatch: 'full' },
         { path: 'home', component: DashbordComponentUser, },
-        { path: 'productlist/:id', component: Tab1Page, },
         { path: 'cart', component: Tab2Page, },
-        { path: 'products/:id', component: Tab3Page, },
         { path: 'Orders', component: TabsPage, },
         { path: 'Addresses', component: AddressComponent, },
         { path: 'userprofile', component: UserprofileComponent, },

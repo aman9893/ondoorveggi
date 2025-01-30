@@ -24,7 +24,6 @@ export class UserLoginComponent  implements OnInit {
     private formBuilder: FormBuilder,
     private dataService: DataService,
     public authService: AuthService,
-    private activatedRoute : ActivatedRoute
 
   ) {}
   updateFlag: boolean = false;
@@ -35,8 +34,6 @@ export class UserLoginComponent  implements OnInit {
   editdata:any
 
   ngOnInit() {
-    this.authService.logout();
-
     this.createForm();
     this.loginFormData();
   }
@@ -161,6 +158,8 @@ export class UserLoginComponent  implements OnInit {
       this.loginData =data.payload;
       this.openSnackBar(data.message, 'Dismiss');
       this.authService.sendToken( this.loginData.auth_token);
+      this.myRoute.navigateByUrl('/home');
+
       this.authService.setuserData( this.loginData);
       this.authService.currentToken.next( this.loginData.auth_token)
       this.authService.currentUser.next( this.loginData)

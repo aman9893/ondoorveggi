@@ -1,15 +1,16 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from  '@angular/common/http';
 import { apiConfig } from '../../api-path/api-config';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, Subject } from 'rxjs';
+import {Location} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  constructor(private http :HttpClient,private snackBar: MatSnackBar,) { 
+  constructor(private http :HttpClient,private snackBar: MatSnackBar,private _location: Location,) { 
     if (window.innerWidth < 768) {
       this.isMobileResolution = true;
     } else {
@@ -22,6 +23,8 @@ export class DataService {
   cartlist = new BehaviorSubject<any>([]);
   cartSubject = new Subject<number>();
 
+  productlistemit: EventEmitter<any> = new EventEmitter();
+
     banners = [
     { id: '1', banner: 'assets/banners/1.jpg', active: true },
     { id: '2', banner: 'assets/banners/2.jpg', active: true },
@@ -33,7 +36,9 @@ export class DataService {
     return this.banners;
   }
   // user Apis
-
+  backClicked() {
+    this._location.back();
+  }
 
   userloginData(data:any) {
     return this.http.post(apiConfig.localhostUrl + apiConfig.userloginApi, data);

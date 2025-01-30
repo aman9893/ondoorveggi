@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionSheetController, IonRouterOutlet, ModalController } from '@ionic/angular';
 import { ProductFilterPage } from '../pages/product-filter/product-filter.page';
@@ -16,29 +16,34 @@ export class Tab1Page implements OnInit {
   mobileview: boolean = false;
   productList: any;
   productArray: any;
+  value=false;
   getCartDetails: any;
   id: any | null;
-
+  @Input() productid!: any;
   constructor(
     public productService: ProductsService,
     public routerOutlet: IonRouterOutlet,
     public modalCtrl: ModalController,
     private router: Router,
     private actionSheetController: ActionSheetController,private _route : ActivatedRoute,
-    private dataService: DataService
+    public dataService: DataService
   ) {
     this.mobileview = this.dataService.getIsMobileResolution();
 
   }
   ngOnInit(): void {
-   console.log(  this.mobileview ,'kjhk')
-    this._route.paramMap.subscribe((params)=>{
-      this. id = params.get('id');
-       this.getProductApiCall(this.id);
- 
-      });
-      this.productService.initProductList();
-      this.cartNumberFunc();
+       this.iddata()
+      
+  }
+
+  iddata(){
+    this.dataService.productlistemit.subscribe({
+      next: (event: any) => {
+        this.getProductApiCall(event);
+      //   this.productService.initProductList();
+      // this.cartNumberFunc();
+      }
+  })
   }
   search(event: any) {
     let term = event.target.value;
@@ -54,11 +59,12 @@ export class Tab1Page implements OnInit {
   }
   getProductData(data: any) {
     this.productList = data.payload;
+    console.log( this.productList)
     this.productArray = this.productList?.map((prod: any) => { return { ...prod, qty: 1 } });
     this.getCartDetails = JSON.parse(localStorage.getItem('localCart')!);
-
+    this.value =true;
     this.productArray?.forEach((a: any) => {
-      this.getCartDetails.forEach((b: any) => {
+      this.getCartDetails?.forEach((b: any) => {
         if (a.prod_id === b.prod_id) {
           a.isAdded =true
         }
@@ -125,9 +131,8 @@ export class Tab1Page implements OnInit {
         (localStorage.getItem
           ('localCart')!);
     this.cartNumber =
-      cartValue.length;
+      cartValue?.length;
     this.dataService.cartSubject.next(this.cartNumber);
-    this. getProductApiCall(this.id)
 
   }
 
@@ -147,7 +152,7 @@ export class Tab1Page implements OnInit {
 
 
   goToProductDetails(id: any) {
-    this.router.navigate(['/products', id]);
+    this.router.navigate(['/productsdetails', id]);
   }
 
   addToCartproduct(item: any) {

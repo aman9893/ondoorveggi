@@ -67,6 +67,7 @@ import { LoginComponent } from './templates/admin/pages/login/login.component';
 import { HelpSuppportComponent } from './templates/userapp/pages/help-suppport/help-suppport.component';
 import { UserLoginComponent } from './templates/userapp/user-login/user-login.component';
 import { BannerComponent } from './templates/userapp/banner/banner.component';
+import { ProductDetailsComponent } from './templates/userapp/product-details/product-details.component';
 
 
 
@@ -78,8 +79,8 @@ import { BannerComponent } from './templates/userapp/banner/banner.component';
     ListKhataComponent,
     SearchpipeComponent,
     AddkhataAmtComponent,AddressComponent,UserprofileComponent,LoginComponent
-    ,ProductFilterPage,TabsPage,Tab3Page,Tab2Page,Tab1Page,LayoutComponentUser,PageHeaderComponentUser,DashbordComponentUser,HelpSuppportComponent,UserLoginComponent,
-    BannerComponent
+    ,ProductFilterPage,TabsPage,Tab3Page,Tab2Page,Tab1Page,LayoutComponentUser,PageHeaderComponentUser,DashbordComponentUser,HelpSuppportComponent,UserLoginComponent,ProductDetailsComponent
+    ,BannerComponent
 
 
 

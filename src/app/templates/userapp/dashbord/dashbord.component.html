@@ -33,17 +33,7 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
-    <app-banner [bannerImages]="banners"></app-banner>
-    <ion-content class="ion-padding"> 
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/profile">
-          <mat-icon>person</mat-icon><span>Profile</span>
-        </button>
-        <button mat-menu-item (click)="logout()">
-          <mat-icon>power_settings_new</mat-icon> <span>Logout</span>
-        </button>
-      </mat-menu>
-  
+  <ion-content > 
   <div class="divmainwrap">
     <div class="p-4 p-3 mb-10">
         <h2 class="font-bold text-lg text-gray-800">New In Store</h2>
@@ -99,33 +89,38 @@
     <!---------------------------------------------------- list page-------------------------------------- -->
     <ion-content *ngIf="productlistpage" >
       <ion-header>
-        <ion-toolbar>
+        <!-- <ion-toolbar>
           <ion-buttons slot="start">
             <ion-button (click)="closeProductlistModal()" >   <mat-icon>keyboard_arrow_left</mat-icon>Vegetables</ion-button>
           </ion-buttons>
           <ion-buttons slot="end">
             <ion-icon name="funnel{{ productService.isSorted() ? '' : '-outline' }}" class="ion-padding-horizontal" (click)='sortProducts()'></ion-icon>
           </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-  
-      <div class="divmainwrap">
-        <div class="container-search  ">
-          <div class="row height justify-content-left align-items-left">
-            <div class="form">
-              <div class="search-wrapper ">
-                <input class="search-input" type="text" (ionChange)="search($event)" placeholder="Search">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
-                  stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search"
-                  viewBox="0 0 24 24">
-                  <defs></defs>
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <path d="M21 21l-4.35-4.35"></path>
-                </svg>
+        </ion-toolbar> -->
+        <div class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
+          <button class="text-xl" (click)="closeProductlistModal()" ><i class="fas fa-arrow-left"></i></button>
+          <h1 class="text-lg font-bold">Vegetables</h1>
+          <div class="container-search  ">
+            <div class="row height justify-content-left align-items-left">
+              <div class="form">
+                <div class="search-wrapper ">
+                  <input class="search-input" type="text" (ionChange)="search($event)" placeholder="Search">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search"
+                    viewBox="0 0 24 24">
+                    <defs></defs>
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="M21 21l-4.35-4.35"></path>
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+      </div>
+      </ion-header>
+  
+      <div class="divmainwrap">
+    
         <div  class="grid grid-cols-2 gap-4">
           <div *ngFor='let product of productArray' class="bg-white rounded-lg shadow p-4">
             <div class="relative">

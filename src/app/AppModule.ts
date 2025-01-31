@@ -55,7 +55,6 @@ import { AppAdminRoutingModule } from './templates/admin/pages/adminroute';
 import { HelprequestComponent } from './templates/admin/pages/unprotected-component/helprequest/helprequest.component';
 import { ProductFilterPage } from './templates/userapp/pages/product-filter/product-filter.page';
 import { TabsPage } from './templates/userapp/tabs/tabs.page';
-import { Tab3Page } from './templates/userapp/tab3/tab3.page';
 import { Tab2Page } from './templates/userapp/tab2/tab2.page';
 import { Tab1Page } from './templates/userapp/tab1/tab1.page';
 import { LayoutComponentUser } from './templates/userapp/dashbord/layout/layout.component';
@@ -68,6 +67,7 @@ import { HelpSuppportComponent } from './templates/userapp/pages/help-suppport/h
 import { UserLoginComponent } from './templates/userapp/user-login/user-login.component';
 import { BannerComponent } from './templates/userapp/banner/banner.component';
 import { ProductDetailsComponent } from './templates/userapp/product-details/product-details.component';
+import { UserCartComponent } from './templates/userapp/user-cart/user-cart.component';
 
 
 
@@ -79,8 +79,8 @@ import { ProductDetailsComponent } from './templates/userapp/product-details/pro
     ListKhataComponent,
     SearchpipeComponent,
     AddkhataAmtComponent,AddressComponent,UserprofileComponent,LoginComponent
-    ,ProductFilterPage,TabsPage,Tab3Page,Tab2Page,Tab1Page,LayoutComponentUser,PageHeaderComponentUser,DashbordComponentUser,HelpSuppportComponent,UserLoginComponent,ProductDetailsComponent
-    ,BannerComponent
+    ,ProductFilterPage,TabsPage,Tab2Page,Tab1Page,LayoutComponentUser,PageHeaderComponentUser,DashbordComponentUser,HelpSuppportComponent,UserLoginComponent,ProductDetailsComponent
+    ,BannerComponent,UserCartComponent
 
 
 

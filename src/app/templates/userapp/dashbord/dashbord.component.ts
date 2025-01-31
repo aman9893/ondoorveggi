@@ -1,11 +1,10 @@
 import { Component, computed, inject, OnInit, ViewChild } from '@angular/core';
-import { register } from 'swiper/element/bundle';
 import { AuthService } from '../../auth/auth.service';
 import { DataService } from '../../auth/service/data.service';
 import { Router } from '@angular/router';
 import { ProductsService } from '../services/products/products.service';
-import { ActionSheetController } from '@ionic/angular';
-import { UserprofileComponent } from '../userprofile/userprofile.component';
+import { ActionSheetController, IonModal, ModalController, NavController } from '@ionic/angular';
+import { UserCartComponent } from '../user-cart/user-cart.component';
 
 @Component({
   selector: 'app-dashbord-user',
@@ -54,12 +53,17 @@ export class DashbordComponentUser implements OnInit{
   productlistpage: boolean =true;
   productdetailspage: boolean =false;
   searchText: any;
- constructor(public dataService: DataService,public authService: AuthService, private router:Router, public productService: ProductsService,
-    private actionSheetController: ActionSheetController,){}
+  @ViewChild(IonModal) modal!: IonModal;
+  prod_id: any;
+ constructor(public dataService: DataService,public authService: AuthService, private router:Router, public productService: ProductsService,public navCtrl: NavController,
+  private modalCtrl: ModalController,
+  private actionSheetCtrl: ActionSheetController
+ ){}
   ngOnInit(): void {
     this.mobileview = this.dataService.getIsMobileResolution();
     this.banners =this.dataService.getBanners();
     this.getCategaryapiCall();
+    
   }
   logout() {
     this.authService.logout();
@@ -84,7 +88,9 @@ export class DashbordComponentUser implements OnInit{
       this.productModelValue = isOpen;
       this.productlistpage=true;
       this.productdetailspage =false;
+      this.prod_id =id;
       this.getProductApiCall(id)
+      this.cartNumberFunc();
   }
 
   closeProductlistModal(){
@@ -99,8 +105,10 @@ export class DashbordComponentUser implements OnInit{
     getProductData(data: any) {
       this.productList = data.payload;
       console.log( this.productList)
+      this.getCartDetails = JSON.parse(localStorage.getItem('localCart')!);
       this.productArray = this.productList?.map((prod: any) => { return { ...prod, qty: 1 } });
       this.productArray?.forEach((a: any) => {
+        console.log('hii')
         this.getCartDetails?.forEach((b: any) => {
           if (a.prod_id === b.prod_id) {
             a.isAdded =true
@@ -139,45 +147,45 @@ export class DashbordComponentUser implements OnInit{
 // _____________________________________________________Endlogic____________________________________________________________________________
 
 
-  async sortProducts() {
-    const actionSheet = await this.actionSheetController.create({
-      header: "Sort by",
-      mode: "ios",
-      cssClass: "sort-products",
-      buttons: [{
-        text: 'Latest Products',
-        role: this.productService.sort.latest ? 'selected' : '',
-        handler: () => {
-          this.productService.applyLocalSort('id', 'asc', 'latest');
-        }
-      },
-      {
-        text: 'Price - Low to High',
-        role: this.productService.sort.price_lth ? 'selected' : '',
-        handler: () => {
-          this.productService.applyLocalSort('price', 'desc', 'price_lth');
-        }
-      },
-      {
-        text: 'Price - High to Low',
-        role: this.productService.sort.price_htl ? 'selected' : '',
-        handler: () => {
-          this.productService.applyLocalSort('price', 'asc', 'price_htl');
-        }
+  // async sortProducts() {
+  //   const actionSheet = await this.actionSheetController.create({
+  //     header: "Sort by",
+  //     mode: "ios",
+  //     cssClass: "sort-products",
+  //     buttons: [{
+  //       text: 'Latest Products',
+  //       role: this.productService.sort.latest ? 'selected' : '',
+  //       handler: () => {
+  //         this.productService.applyLocalSort('id', 'asc', 'latest');
+  //       }
+  //     },
+  //     {
+  //       text: 'Price - Low to High',
+  //       role: this.productService.sort.price_lth ? 'selected' : '',
+  //       handler: () => {
+  //         this.productService.applyLocalSort('price', 'desc', 'price_lth');
+  //       }
+  //     },
+  //     {
+  //       text: 'Price - High to Low',
+  //       role: this.productService.sort.price_htl ? 'selected' : '',
+  //       handler: () => {
+  //         this.productService.applyLocalSort('price', 'asc', 'price_htl');
+  //       }
 
-      },
-      {
-        text: 'Cancel',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }
-      ]
-    });
-    await actionSheet.present();
-  }
+  //     },
+  //     {
+  //       text: 'Cancel',
+  //       icon: 'close',
+  //       role: 'cancel',
+  //       handler: () => {
+  //         console.log('Cancel clicked');
+  //       }
+  //     }
+  //     ]
+  //   });
+  //   await actionSheet.present();
+  // }
       
   inc(prod: any) {
     prod.qty! += 1
@@ -186,60 +194,65 @@ export class DashbordComponentUser implements OnInit{
     if (prod.qty != 1) {
       prod.qty! -= 1
     }
-
   }
-  itemsCart: any[] = [];
-  addCart(category: any) {
-   
+// _____________________________________________________Add to cart start____________________________________________________________________________
+
+
+async presentModal() {
+  // this.closeProductlistModal()
+  const modal = await this.modalCtrl.create({
+    component: UserCartComponent,
+    breakpoints: [0, 0.3, 0.6, 0.8],
+    initialBreakpoint: 0.5,
+    cssClass: 'custom-modal'
+  });
+  await modal.present();
+}
+
+
+  itemsCart: any= [];
+
+  addCart(productValue: any) {
+    console.log('esto es en addCart', productValue)
     console.log('esto es en addCart', this.productArray)
     let cartDataNull =localStorage.getItem('localCart');
     if (cartDataNull == null) {
       let storeDataGet: any[] = [];
-      storeDataGet.push(category);
+      storeDataGet.push(productValue);
       localStorage.setItem('localCart',JSON.stringify(storeDataGet));
     }
     else {
-      let id = category.prod_id;
+      let id = productValue.prod_id;
       let index: number = -1;
       this.itemsCart =JSON.parse(localStorage.getItem('localCart')!);
-      for
-        (let i = 0; i < this.itemsCart.length;
-        i++) {
+      for(let i = 0; i < this.itemsCart.length;i++) {
         if (id ==this.itemsCart[i].prod_id) {
-          this.itemsCart[i].qty =
-          category.qty
+          this.itemsCart[i].qty = productValue.qty
           index = i;
           break;
         }
       }
       if (index == -1) {
-        this.itemsCart.push(category);
-        localStorage.setItem
-          ('localCart', JSON.stringify
-            (this.itemsCart));
+        this.itemsCart.push(productValue);
+        localStorage.setItem ('localCart', JSON.stringify (this.itemsCart));
       }
       else {
-        localStorage.setItem
-          ('localCart', JSON.stringify
-            (this.itemsCart));
+        localStorage.setItem('localCart', JSON.stringify (this.itemsCart));
       }
     }
     this.cartNumberFunc();
+    this.getProductApiCall(this.prod_id)
   }
 
   cartNumber: number = 0;
 
   cartNumberFunc() {
-    let cartValue =
-      JSON.parse
-        (localStorage.getItem
-          ('localCart')!);
-    this.cartNumber =
-      cartValue?.length;
+    let cartValue =JSON.parse(localStorage.getItem('localCart')!);
+    this.getProductApiCall(this.prod_id)
+    console.log(  this.cartNumber)
+    this.cartNumber =cartValue?.length;
     this.dataService.cartSubject.next(this.cartNumber);
-
   }
-
  
   }
  

@@ -17,7 +17,6 @@ import { AppAdminRoutingModule } from './templates/admin/pages/adminroute';
 import { LayoutComponentUser } from './templates/userapp/dashbord/layout/layout.component';
 import { DashbordComponentUser } from './templates/userapp/dashbord/dashbord.component';
 import { Tab2Page } from './templates/userapp/tab2/tab2.page';
-import { Tab3Page } from './templates/userapp/tab3/tab3.page';
 import { TabsPage } from './templates/userapp/tabs/tabs.page';
 import { AddressComponent } from './templates/userapp/address/address.component';
 import { UserprofileComponent } from './templates/userapp/userprofile/userprofile.component';
@@ -37,7 +36,7 @@ const routes: Routes = [
         { path: 'Addresses', component: AddressComponent, },
         { path: 'userprofile', component: UserprofileComponent, },
         { path: 'help', component: HelpSuppportComponent, },
-        { path: 'loginuser', component: UserLoginComponent, },
+        { path: 'login', component: UserLoginComponent, },
 
         
   // },

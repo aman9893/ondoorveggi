@@ -53,7 +53,7 @@ export class DashbordComponentUser implements OnInit{
   productDetailsList: any;
   productlistpage: boolean =true;
   productdetailspage: boolean =false;
-
+  searchText: any;
  constructor(public dataService: DataService,public authService: AuthService, private router:Router, public productService: ProductsService,
     private actionSheetController: ActionSheetController,){}
   ngOnInit(): void {
@@ -138,11 +138,6 @@ export class DashbordComponentUser implements OnInit{
 
 // _____________________________________________________Endlogic____________________________________________________________________________
 
-
-  search(event: any) {
-    let term = event.target.value;
-    this.productService.searchProducts(term);
-  }
 
   async sortProducts() {
     const actionSheet = await this.actionSheetController.create({

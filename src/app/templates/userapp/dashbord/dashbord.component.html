@@ -87,7 +87,7 @@
  
 
     <!---------------------------------------------------- list page-------------------------------------- -->
-    <ion-content *ngIf="productlistpage" >
+    <ion-content [fullscreen]="true" *ngIf="productlistpage" >
       <ion-header>
         <!-- <ion-toolbar>
           <ion-buttons slot="start">
@@ -104,7 +104,7 @@
             <div class="row height justify-content-left align-items-left">
               <div class="form">
                 <div class="search-wrapper ">
-                  <input class="search-input" type="text" (ionChange)="search($event)" placeholder="Search">
+                  <input class="search-input" type="text"  [(ngModel)]="searchText" placeholder="Search">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search"
                     viewBox="0 0 24 24">
@@ -119,10 +119,9 @@
       </div>
       </ion-header>
   
-      <div class="divmainwrap">
-    
+      <div class="divmainwraplist">
         <div  class="grid grid-cols-2 gap-4">
-          <div *ngFor='let product of productArray' class="bg-white rounded-lg shadow p-4">
+          <div *ngFor='let product of productArray  | searchFilter: searchText' class="bg-white rounded-lg shadow p-4">
             <div class="relative">
               <img
                 src="{{product.nutrition_weight}}"
@@ -140,8 +139,8 @@
                 <!-- <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "> </button> -->
               </div>
             </div>
-            <p class="mt-2 text-gray-800 ">{{product.name}}</p>
-            <p class="text-gray-500">{{product.unit_name}} {{product.unit_value}} - ₹ {{product.price}}</p>
+            <p class="mt-2 text-gray-800 font-semibold ">{{product.name}}</p>
+            <p class="text-gray-500 font-semibold">{{product.unit_name}} {{product.unit_value}} - ₹ {{product.price}}</p>
           </div>
         </div>
       
@@ -183,8 +182,8 @@
     </ion-content>
   <!---------------------------------------------------- detials page-------------------------------------- -->
 
-    <ion-content *ngIf="productdetailspage" [fullscreen]="true">
-      <div>
+    <ion-content  [fullscreen]="true" *ngIf="productdetailspage" [fullscreen]="true">
+      <div class="divmainwrapDetails">
       <div   class="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden ">
         <div class="relative">
           <img src="{{productDetailsList.nutrition_weight}}" alt="Bag of Hawaiian Barbeque Cheese Popcorn surrounded by ingredients" class="w-full">

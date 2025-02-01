@@ -158,9 +158,8 @@ export class UserLoginComponent  implements OnInit {
       this.loginData =data.payload;
       this.openSnackBar(data.message, 'Dismiss');
       this.authService.sendToken( this.loginData.auth_token);
+      this.authService.setuserData( this.loginData.user_id);
       this.myRoute.navigateByUrl('/home');
-
-      this.authService.setuserData( this.loginData);
       this.authService.currentToken.next( this.loginData.auth_token)
       this.authService.currentUser.next( this.loginData)
       this.myRoute.navigateByUrl('/home');

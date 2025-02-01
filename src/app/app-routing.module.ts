@@ -25,13 +25,14 @@ import { Tab1Page } from './templates/userapp/tab1/tab1.page';
 import { HelpSuppportComponent } from './templates/userapp/pages/help-suppport/help-suppport.component';
 import { UserLoginComponent } from './templates/userapp/user-login/user-login.component';
 import { ProductDetailsComponent } from './templates/userapp/product-details/product-details.component';
+import { UserCartComponent } from './templates/userapp/user-cart/user-cart.component';
 
 const routes: Routes = [
   // {path: '',component: LayoutComponentUser,
   //   children: [
         { path: '', redirectTo: 'home', pathMatch: 'full' },
         { path: 'home', component: DashbordComponentUser, },
-        { path: 'cart', component: Tab2Page, },
+        { path: 'cart', component: UserCartComponent, },
         { path: 'Orders', component: TabsPage, },
         { path: 'Addresses', component: AddressComponent, },
         { path: 'userprofile', component: UserprofileComponent, },

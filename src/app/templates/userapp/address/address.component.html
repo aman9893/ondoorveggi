@@ -1,6 +1,6 @@
 
 <ion-content class="bg-gray">
-    <div class="divmain" >
+    <div *ngIf="updateFlag"  class="divmain" >
         <div class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
           <button class="text-xl" routerLink="/home"><i class="fas fa-arrow-left"></i></button>
           <h1 class="text-lg font-bold">Address</h1>
@@ -9,17 +9,14 @@
 <div class="bg-white  rounded-lg shadow-md  mt-10 mb-10">
   <div class="border-b p-4 flex justify-between items-center">
       <h2 class="text-center text-lg font-semibold">Enter Address Details</h2>
-      <button>
-          <i class="fas fa-times"></i>
-      </button>
   </div>
   <div class="p-4">
       <div class="flex justify-between items-center mb-4">
           <h3 class="font-semibold">Saved Location</h3>
-          <a href="#" class="text-red-500">Change</a>
+          <a  class="text-red-500"(click)="getCurrentLocation()" >Change</a>
       </div>
       <div class="bg-purple-500 rounded-lg text-white p-4 mb-4">
-          <div class="flex items-center">
+          <div class="flex items-center"(click)="openMapsApp()" >
               <i class="fas fa-map-marker-alt mr-2"></i>
               <div>
                   <h4 class="font-bold">Gopal Nagar</h4>
@@ -27,28 +24,55 @@
               </div>
           </div>
       </div>
-      <form>
-          <div class="mb-4">
-              <label for="house-number" class="block text-sm font-semibold">House No. & Floor*</label>
-              <input type="text" id="house-number" value="sdfsf" class="w-full border-gray-300 rounded-lg p-2 mt-1 focus:outline-none focus:ring focus:border-blue-300"/>
+      <form  [formGroup]="addressForm" >
+        <div>
+            <label for="houseno" class="mb-2  block mb-2 text-sm font-medium text-gray-900 dark:text-white">House No. & Floor*</label>
+            <input id="houseno"  formControlName="houseno"
+              class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+              type="houseno" placeholder="houseno" required />
           </div>
-          <div class="mb-4">
-              <label for="building-block" class="block text-sm font-semibold">Building & Block No.*</label>
-              <input type="text" id="building-block" value="fsdfs" class="w-full border-gray-300 rounded-lg p-2 mt-1 focus:outline-none focus:ring focus:border-blue-300"/>
+          <div class="mt-2">
+            <label for="building" class="mb-2  dark:text-gray-400 text-lg">Building & Block No.*</label>
+            <input id="building"  formControlName="building"
+              class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+              type="building" placeholder="building" required />
           </div>
-          <div class="mb-4">
-              <label for="landmark" class="block text-sm font-semibold">Landmark & Area Name (Optional)</label>
-              <input type="text" id="landmark" value="sdfdsf" class="w-full border-gray-300 rounded-lg p-2 mt-1 focus:outline-none focus:ring focus:border-blue-300"/>
+          <div  class="mt-2">
+            <label for="city" class="mb-2  dark:text-gray-400 text-lg">City</label>
+            <input id="city"  formControlName="city"
+              class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+              type="city" placeholder="city" required />
           </div>
-          <div class="mb-4">
-              <h3 class="font-semibold">Add Address Label</h3>
+       
+          <div  class="mt-2">
+            <label for="state" class="mb-2  dark:text-gray-400 text-lg">State</label>
+            <input id="state"  formControlName="state"
+              class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+              type="state" placeholder="state" required />
+          </div>
+          <div  class="mt-2">
+            <label for="postal_code" class="mb-2  dark:text-gray-400 text-lg ">Postal Code</label>
+            <input id="postal_code"  formControlName="postal_code"
+              class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+              type="text" placeholder="postal_code" required />
+          </div>
+          <div  class="mt-2">
+            <label for="mobile" class="mb-2  dark:text-gray-400 text-lg ">phone Number</label>
+            <input id="mobile"  formControlName="mobile"
+              class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+              type="text" placeholder="mobile" required />
+          </div>
+          <div class="mt-4 mb-4">
+              <h3 class="mb-2  dark:text-gray-400 text-lg ">Type</h3>
               <div class="flex space-x-2 mt-2">
-                  <button type="button" class="bg-purple-600 text-white px-4 py-1 rounded-full">Home</button>
-                  <button type="button" class="border border-gray-300 px-4 py-1 rounded-full">Work</button>
-                  <button type="button" class="border border-gray-300 px-4 py-1 rounded-full">Other</button>
+                <ion-radio-group [allowEmptySelection]="true" formControlName="type_name">
+                    <ion-radio value="home"> <button type="button" class="bg-purple-600 text-white px-4 py-1 rounded-full">Home</button></ion-radio>
+                    <ion-radio value="work">  <button type="button" class=" ml-4 bg-purple-600 text-white px-4 py-1 rounded-full">Work</button></ion-radio>
+                  </ion-radio-group>
+                 
               </div>
           </div>
-          <button type="submit" class="w-full bg-pink-500 text-white py-3 rounded-lg font-semibold shadow-md">Save & Continue</button>
+          <button (click)=" addressFormSubmit()" type="submit" class="w-full bg-pink-500 text-white py-3 rounded-lg font-semibold shadow-md">Save & Continue</button>
       </form>
   </div>
 </div>

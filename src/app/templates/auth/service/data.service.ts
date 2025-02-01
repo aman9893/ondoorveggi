@@ -58,7 +58,23 @@ export class DataService {
     let data:{prod_id:any}={prod_id:prodid};
     return this.http.post(apiConfig.localhostUrl + apiConfig.userdetailsproduct,data);
   }
+  
+  getUserProfileDataById(userid:any){
+    let data:{user_id:any}={user_id:userid};
+    return this.http.post(apiConfig.localhostUrl + apiConfig.userProfileApi,data);
+  }
 
+  updateUserProfile(data:any){
+    return this.http.post(apiConfig.localhostUrl + apiConfig.updateuserProfileData,data);
+  }
+
+  userAddressSave(data:any){
+    return this.http.post(apiConfig.localhostUrl + apiConfig.userAddressSave,data);
+  }
+  getUserAddressId(userid:any){
+    let data:{user_id:any}={user_id:userid};
+    return this.http.post(apiConfig.localhostUrl + apiConfig.userAddressFetch,data);
+  }
 
 
   inProduct(product:any) {

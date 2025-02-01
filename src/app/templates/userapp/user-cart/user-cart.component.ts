@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../auth/service/data.service';
 import {Location} from '@angular/common';
 import { ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-user-cart',
   templateUrl: './user-cart.component.html',
@@ -14,19 +15,23 @@ export class UserCartComponent  implements OnInit {
   cartvalue:any = [];
 
 
-  constructor(public cart : DataService,private _location: Location,public modalController: ModalController) {}
+  constructor(public cart : DataService,private _location: Location,public modalController: ModalController,public route:Router,) {}
 
   dismissModal() {
-    this.modalController.dismiss();
+    if(this._location.path() =='/cart'){
+      this.route.navigateByUrl('/home')
+    }
+    else{
+      this.modalController.dismiss();
+
+    }
   }
   ngOnInit() {
     // this.callproduct()
     this.CartDetails();
     this.cartNumberFunc();
   }
-  backClicked() {
-    this._location.back();
-  }
+
   callproduct() {
     this.cart.productList.subscribe(value => {
       value.forEach((item: any) => {

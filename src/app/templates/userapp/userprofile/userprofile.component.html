@@ -10,27 +10,39 @@
       <h1 class="text-lg font-bold">Profile</h1>
       <button class="text-xl"><i class="fas  fa-user-circle"></i></button>
   </div>
-<div class="bg-white  rounded-lg shadow-md  mt-10 mb-10">
+<div *ngIf="updateFlag"   class="bg-white  rounded-lg shadow-md  mt-10 mb-10">
   <div class="border-b p-4 flex justify-between items-center">
-      <h2 class="text-center text-lg font-semibold">Hello Aman Jain </h2>
+      <h2 class="text-center text-lg font-semibold">Hello {{this.updateValue.username}} </h2>
   </div>
   <div class="p-4">
       
-      <form>
-          <div class="mb-4">
-              <label for="house-number" class="block text-sm font-semibold">Full name</label>
-              <input type="text" id="house-number" value="sdfsf" class="w-full border-gray-300 rounded-lg p-2 mt-1 focus:outline-none focus:ring focus:border-blue-300"/>
+      <form  [formGroup]="profileForm" >
+        <div>
+            <label for="name" class="mb-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white">User Name</label>
+            <input id="name"  formControlName="name"
+              class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+              type="name" placeholder="name" required />
           </div>
-          <div class="mb-4">
-              <label for="building-block" class="block text-sm font-semibold">Phone Number</label>
-              <input type="text" id="building-block" value="fsdfs" class="w-full border-gray-300 rounded-lg p-2 mt-1 focus:outline-none focus:ring focus:border-blue-300"/>
+          <div class="mt-2">
+            <label for="email" class="mb-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+            <input id="email"  formControlName="email"
+              class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+              type="email" placeholder="Email" required />
           </div>
-          <div class="mb-4">
-              <label for="landmark" class="block text-sm font-semibold">Address</label>
-              <input type="text" id="landmark" value="sdfdsf" class="w-full border-gray-300 rounded-lg p-2 mt-1 focus:outline-none focus:ring focus:border-blue-300"/>
+          <div  class="mt-2">
+            <label for="phone" class="mb-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>
+            <input id="phone"  formControlName="phone_number"
+              class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+              type="phone" placeholder="phone" required />
           </div>
        
-          <button type="submit" class="w-full bg-pink-500 text-white py-3 rounded-lg font-semibold shadow-md">Save & Continue</button>
+          <div  class="mt-2">
+            <label for="password" class="mb-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+            <input id="password"  formControlName="password"
+              class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+              type="password" placeholder="password" required />
+          </div>
+          <button (click)="onUpdasteSubmit()" type="submit" class="w-full bg-pink-500 mt-5 text-white py-3 rounded-lg font-semibold shadow-md">Save & Continue</button>
       </form>
   </div>
 </div>

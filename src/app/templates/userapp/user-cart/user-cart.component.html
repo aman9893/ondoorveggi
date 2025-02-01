@@ -47,7 +47,7 @@
 
     <p class="mt-4 font-medium">Missed something?</p>
     <button class="bg-black text-white font-medium text-sm mt-2 px-4 py-2 rounded flex items-center">
-        <i class="fas fa-plus-circle mr-2"></i> Add More Items
+        <i  (click)="dismissModal()" class="fas fa-plus-circle mr-2"></i> Add More Items
     </button>
 
     <!-- <button class="mt-8 w-full bg-pink-600 text-white font-medium py-3 rounded">
@@ -79,19 +79,19 @@
 
     <!-- Bill Summary -->
     <div class="bg-white rounded-xl p-4 shadow-sm mb-4">
-        <div class="flex justify-between items-baseline mb-2">
+        <!-- <div class="flex justify-between items-baseline mb-2">
             <span class="font-semibold text-sm text-gray-700">To Pay</span>
             <div class="text-right">
                 <span class="text-green-600 font-bold">₹{{total}}</span>
             </div>
-        </div>
-        <p class="text-xs text-gray-500">Incl. all taxes and charges</p>
-        <hr class="my-4">
+        </div> -->
+        <!-- <p class="text-xs text-gray-500">Incl. all taxes and charges</p>
+        <hr class="my-4"> -->
 
         <!-- Detailed Summary -->
-        <h3 class="font-bold text-gray-700 mb-2">Bill Summary</h3>
+        <h3 class="font-bold text-gray-700 mb-0">Bill Summary</h3>
         <div class="flex justify-between items-center mb-2">
-            <span>Item Total & GST</span>
+            <span>Item Total</span>
             <div class="text-right">
                 <!-- <span class="line-through text-gray-400 text-xs">₹{{grandTotal}}</span> -->
                 <span class="text-red-600 font-bold">₹{{total}}</span>
@@ -104,7 +104,7 @@
                 <span class="text-green-600 font-bold">₹15</span>
             </div>
         </div>
-        <div class="flex justify-between items-center mb-4">
+        <div class="flex justify-between items-center mb-2">
             <span class="text-green-600 font-medium text-xs">Free Handling Charge !</span>
             <button class="text-sm text-red-500">₹0</button>
         </div>
@@ -113,22 +113,21 @@
             <span class="font-semibold text-sm text-gray-700">To Pay</span>
             <div class="text-right">
                 <!-- <span class="line-through text-gray-400 text-xs">₹710.23</span> -->
-                <span class="text-green-600 font-bold">₹{{grandTotal}}</span>
+                <span class="text-green-600 font-bold">₹{{total +15}} </span>
                 <!-- <span class="text-green-600 text-xs font-medium ml-2">SAVING ₹174.09</span> -->
             </div>
         </div>
     </div>
 
     <!-- Delivery Info -->
-    <div class="bg-white rounded-xl p-4 shadow-sm mb-4">
-        <!-- <div class="flex justify-between items-center mb-2">
+    <!-- <div class="bg-white rounded-xl p-4 shadow-sm ">
+     <div class="flex justify-between items-center mb-2">
             <div class="flex items-center space-x-2">
                 <i class="fas fa-comment-dots"></i>
                 <span class="text-sm">Delivery Instructions</span>
             </div>
             <i class="fas fa-chevron-down"></i>
-        </div> -->
-        <hr class="my-4">
+        </div> 
         <div class="flex justify-between items-center mb-2">
             <div class="flex items-center space-x-2">
                 <i class="fas fa-hand-holding-usd"></i>
@@ -146,11 +145,11 @@
             <i class="fas fa-chevron-down"></i>
         </div>
         <p class="text-xs text-gray-500">Learn more about how we ensure their safety</p>
-    </div>
+    </div> -->
 
     <!-- Delivery to Address and Pay Button -->
     <div class="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-lg">
-        <div class="flex justify-between items-center mb-4">
+        <div class="flex justify-between items-center mb-2">
             <div class="flex items-center space-x-2">
                 <i class="fas fa-map-marker-alt text-purple-500"></i>
                 <div class="flex flex-col">
@@ -160,7 +159,7 @@
             </div>
             <i class="fas fa-chevron-down"></i>
         </div>
-        <button class="w-full bg-pink-500 text-white rounded-full py-3 font-bold">Click to Pay ₹536.14</button>
+        <button class="w-full bg-pink-500 text-white rounded-full py-3 font-bold">Click to Pay ₹{{total +15}}</button>
     </div>
 </div>
 

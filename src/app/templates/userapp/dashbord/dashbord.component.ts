@@ -202,7 +202,7 @@ async presentModal() {
   // this.closeProductlistModal()
   const modal = await this.modalCtrl.create({
     component: UserCartComponent,
-    breakpoints: [0, 0.35, 1.1, 0.85],
+    breakpoints: [0, 0.25, 1, 0.75],
     initialBreakpoint: 0.55,
     cssClass: 'custom-modal'
   });

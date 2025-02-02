@@ -130,7 +130,7 @@ export class AddressComponent  implements OnInit {
  }
  
  public openMapsApp() {
-  window.location.href = 'https://www.google.com/maps/@' + this.location.lng +','+this.location.lat;
+  window.location.href = 'https://www.google.com/maps/dir/?api=1&' + this.location.lng +','+this.location.lat;
 }
 
   getCurrentLocation() {

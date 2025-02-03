@@ -119,8 +119,8 @@
       </div>
       </ion-header>
   
-      <div class="divmainwraplist">
-        <div  class="grid grid-cols-2 gap-4">
+      <div  class="divmainwraplist">
+        <div *ngIf="mobileview "  class="grid grid-cols-2 gap-4">
           <div *ngFor='let product of productArray  | searchFilter: searchText' class="bg-white rounded-lg shadow p-4">
             <div class="relative">
               <img

@@ -1,0 +1,108 @@
+<ion-content *ngIf="showorder" class="bg-gray">
+    <div class="divmain">
+        <div
+            class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
+            <button class="text-xl" routerLink="/home"><i class="fas fa-arrow-left"></i></button>
+            <h1 class="text-lg font-bold">Orders</h1>
+            <button class="text-xl"><i class="fas fa-money-check"></i></button>
+        </div>
+        <div class="w-3/4 p-5 mt-10">
+            <!-- Orders List -->
+            <div class="space-y-5">
+
+                <!-- Order 1 -->
+                <div *ngFor="let order of orderdatalist" class="bg-white rounded-lg p-4 shadow">
+                    <div (click)="showOrderDetilas(showdetails,order.orders_id)">
+                        <div 
+                        class="flex justify-between items-center">
+                        <div class="flex space-x-3">
+                            <img src="https://i.ebayimg.com/images/g/QKAAAOSwTqZiHG9M/s-l1200.jpg" alt="Product image"
+                                class="rounded imgsize">
+                        </div>
+                        <span class="text-xl font-bold">₹{{order.total_amt}} </span>
+                    </div>
+                    <div class="mt-2">
+                        <p class="font-semibold">Order delivered <i class="fas fa-check-circle text-green-500"></i></p>
+                        <p class="text-gray-500">Placed at {{order.created_date| date:'medium' }} </p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>
+
+<!-- ----------------------------Details page----------------------------------------- -->
+
+<ion-content *ngIf="showdetails">
+    <div class="">
+        <div class="bg-white shadow-md p-4 rounded-md">
+            <div class="flex justify-between items-center mb-4">
+                <div class="flex items-center" (click)="backlistpage()" >
+                    <i class="fas fa-chevron-left text-lg"></i>
+                    <h1 class="ml-2 text-lg font-medium">Order <span class="font-bold">#{{orderDetailsData.invoic}}</span></h1>
+                </div>
+                <button class="flex items-center space-x-1 text-gray-600">
+                    <i class="far fa-question-circle"></i>
+                    <span>Help</span>
+                </button>
+            </div>
+            <hr>
+            <h2 class="mt-4 text-lg font-medium mb-2">{{product_details_value.product_details.length}} in order</h2>
+            <div *ngFor="let productd of product_details_value.product_details" class="mb-4 flex items-center">
+                <img src="https://placehold.co/100x100" alt="DesiDiya String LED Rice Light - Gold"
+                    class="w-16 h-16 rounded-md mr-4">
+                <div>
+                    <h3 class="text-md font-medium">{{productd.name}}</h3>
+                    <p class="text-gray-600 text-sm">{{productd.unit_name}} - {{productd.unit_value}}</p>
+                    <div class="flex justify-between items-center mt-1">
+                        <span class="text-lg font-medium">₹{{productd.price}} </span>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="mt-4 mb-4">
+                <h3 class="text-lg font-medium mb-2 flex items-center">
+                    <i class="fas fa-file-invoice text-lg mr-2"></i>
+                    Bill Summary
+                </h3>
+                <div class="flex justify-between items-center mb-1">
+                    <span>Item Total <i class="fas fa-info-circle text-gray-400"></i></span>
+                    <div class="flex items-center">
+                        <span class="text-lg font-medium ml-2">₹{{orderDetailsData.subtoal}}</span>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center mb-1">
+                    <span>Delivery Fee</span>
+                    <div class="flex items-center">
+                        <span class="text-lg font-medium ml-2">₹{{orderDetailsData.delivery_amt}}</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="flex justify-between items-center mt-2">
+                    <span class="font-medium">Total Bill</span>
+                    <div class="flex items-center">
+                        <span class="text-lg font-bold ml-2">₹{{orderDetailsData.total_amt}}</span>
+                    </div>
+                </div>
+                <!-- <div class="text-green-600 font-bold text-sm mt-1">SAVED ₹2326.09</div> -->
+            </div>
+            <hr>
+            <div class="mt-4">
+                <h3 class="text-lg font-medium mb-2">Order Details</h3>
+                <div class="flex justify-between">
+                    <span class="font-medium">Order ID</span>
+                    <span>#{{orderDetailsData.invoic}} <i class="fas fa-copy text-gray-400"></i></span>
+                </div>
+                <div class="mt-2">
+                    <h4 class="font-medium">Delivery Address</h4>
+                    <p>{{orderDetailsData.address}} {{orderDetailsData.area_id}} {{orderDetailsData.city}} {{orderDetailsData.Maharashtra}}{{orderDetailsData.postal_code}} </p>
+                </div>
+                <div class="mt-2">
+                    <h4 class="font-medium">Order Placed</h4>
+                    <p>{{orderDetailsData.created_date| date:'medium' }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

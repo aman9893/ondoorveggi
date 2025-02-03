@@ -72,7 +72,6 @@ export class UserprofileComponent  implements OnInit {
       this.createForm();
      }
     }
-
   }
 
 

@@ -3,6 +3,7 @@ import { DataService } from '../../auth/service/data.service';
 import {Location} from '@angular/common';
 import { ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 @Component({
   selector: 'app-user-cart',
   templateUrl: './user-cart.component.html',
@@ -13,9 +14,11 @@ export class UserCartComponent  implements OnInit {
 
 
   cartvalue:any = [];
+  UserId: any;
 
 
-  constructor(public cart : DataService,private _location: Location,public modalController: ModalController,public route:Router,) {}
+  constructor(public cart : DataService,private _location: Location,public modalController: ModalController,public route:Router,  public dataService :DataService,private router:Router,
+     public authService:AuthService,) {}
 
   dismissModal() {
     if(this._location.path() =='/cart'){
@@ -27,62 +30,33 @@ export class UserCartComponent  implements OnInit {
     }
   }
   ngOnInit() {
-    // this.callproduct()
+    this.UserId = this.authService.getUserId();
     this.CartDetails();
     this.cartNumberFunc();
   }
-
-  callproduct() {
-    this.cart.productList.subscribe(value => {
-      value.forEach((item: any) => {
-        item.quantity = 1;
-        this.cartvalue.push(item);
-      });
-    });
-  }
-
 
   placeOrder() {
   }
 
 
-  grandTotal:any ;
+  grandSubTotal:any ;
+  grandtotal:any;
   calcGrandTotal() {
-    this.grandTotal = 0
-     this.cartvalue.forEach((item: any)=> {
-      let total = item.quantity * item.price;
-      this.grandTotal += total;
+    this.grandSubTotal = 0
+    this.grandtotal = 0
+     this.getCartDetails.forEach((item: any)=> {
+      let total = item.qty * item.price;
+      this.grandSubTotal += total;
     });
-    console.log(this.cartvalue);
+    this.grandtotal =this.grandSubTotal +15;
+    console.log(this.grandtotal);
    
-  }
-
-  incrementQty(item: any) {
-    this.cartvalue.map((a: any, index: any) => {
-      if (item.prod_id === a.prod_id) {
-        item.quantity++;
-       this.calcGrandTotal();
-      }
-    })
-   
-  }
-
-  decrementQty(item:any) {
-    item.quantity--;
-    this.cartvalue.map((a: any, index: any) => {
-      if (item.quantity ==0 &&item.prod_id === a.prod_id) {
-        this.cartvalue.splice(index, 1);
-      }
-    })
-    this.calcGrandTotal();
   }
 
   removeItem(id:any) {
     // this.cart = this.cart.filter(item => item.id !== id);
     this.calcGrandTotal();
   }
-
-
 
   getCartDetails: any = [];
 
@@ -126,6 +100,8 @@ export class UserCartComponent  implements OnInit {
         return acc + val.price * val.qty;
       }, 0);
     }
+    this.calcGrandTotal();
+
   }
 
   removeall() {
@@ -161,4 +137,35 @@ export class UserCartComponent  implements OnInit {
     this.cart.cartSubject.next(this.cartNumber);
   }
 
-}
+  onSubmit() {
+    console.log(this.getCartDetails)
+      let r = Math.random().toString(36).substring(7);
+      let orderForm = {
+        user_id: this.UserId,
+        address_id:0,
+        invoic: r,
+        discount_amt: 0,
+        product_details: this.getCartDetails,
+        total_amt: this.grandtotal,
+        delivery_amt:  15,
+        subtoal:  this.grandSubTotal,
+        order_status: 1,
+        tax: 0,
+        payment_type: 1,
+      };
+      console.log(orderForm)
+      this.dataService.UserOrderSubmit(orderForm).subscribe(
+        (data: any) => this.closeDialog(data),
+      );
+    }
+
+    closeDialog(data: any) {
+      if (data.status === true) {
+        this.removeall();
+        this.dataService.openSnackBar(data.message, 'Dismiss');
+        this.router.navigateByUrl('/home');
+      }
+    }
+  }
+
+

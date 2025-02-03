@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { Tab2Page } from './tab2.page';
+import { UserorderlistComponent } from './userorderlist.component';
 
-describe('Tab2Page', () => {
-  let component: Tab2Page;
-  let fixture: ComponentFixture<Tab2Page>;
+describe('UserorderlistComponent', () => {
+  let component: UserorderlistComponent;
+  let fixture: ComponentFixture<UserorderlistComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [Tab2Page],
+      declarations: [ UserorderlistComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Tab2Page);
+    fixture = TestBed.createComponent(UserorderlistComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

@@ -76,6 +76,24 @@ export class DataService {
     return this.http.post(apiConfig.localhostUrl + apiConfig.userAddressFetch,data);
   }
 
+  UserOrderSubmit(data:any){
+    return this.http.post(apiConfig.localhostUrl + apiConfig.userAddOrder,data);
+  }
+
+  getUserOrdersData(UserId:any){
+    let data:{user_id:any}={user_id:UserId};
+    return this.http.post(apiConfig.localhostUrl + apiConfig.userOrderlist,data);
+  }
+
+
+  getUserOrdersDataById(orderid:any){
+    console.log(orderid)
+    let data:{orderid:any}={orderid:orderid};
+    return this.http.post(apiConfig.localhostUrl + apiConfig.userOrderlistByid,data);
+  }
+
+
+
 
   inProduct(product:any) {
     for (let p of this.cartDataList) {

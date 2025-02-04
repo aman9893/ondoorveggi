@@ -67,6 +67,7 @@ import { BannerComponent } from './templates/userapp/banner/banner.component';
 import { ProductDetailsComponent } from './templates/userapp/product-details/product-details.component';
 import { UserCartComponent } from './templates/userapp/user-cart/user-cart.component';
 import { UserorderlistComponent } from './templates/userapp/userorderlist/userorderlist.component';
+import { SettingComponent } from './templates/userapp/setting/setting.component';
 
 
 
@@ -79,7 +80,7 @@ import { UserorderlistComponent } from './templates/userapp/userorderlist/useror
     SearchpipeComponent,
     AddkhataAmtComponent,AddressComponent,UserprofileComponent,LoginComponent
     ,ProductFilterPage,UserorderlistComponent,Tab1Page,LayoutComponentUser,PageHeaderComponentUser,DashbordComponentUser,HelpSuppportComponent,UserLoginComponent,ProductDetailsComponent
-    ,BannerComponent,UserCartComponent
+    ,BannerComponent,UserCartComponent,SettingComponent
 
 
 

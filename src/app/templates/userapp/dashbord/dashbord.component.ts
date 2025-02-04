@@ -3,7 +3,7 @@ import { AuthService } from '../../auth/auth.service';
 import { DataService } from '../../auth/service/data.service';
 import { Router } from '@angular/router';
 import { ProductsService } from '../services/products/products.service';
-import { ActionSheetController, IonModal, ModalController, NavController } from '@ionic/angular';
+import { ActionSheetController, IonModal, MenuController, ModalController, NavController } from '@ionic/angular';
 import { UserCartComponent } from '../user-cart/user-cart.component';
 
 @Component({
@@ -55,7 +55,8 @@ export class DashbordComponentUser implements OnInit{
   searchText: any;
   @ViewChild(IonModal) modal!: IonModal;
   prod_id: any;
- constructor(public dataService: DataService,public authService: AuthService, private router:Router, public productService: ProductsService,public navCtrl: NavController,
+ constructor(public dataService: DataService,public authService: AuthService,
+  public menuCtrl: MenuController, private router:Router, public productService: ProductsService,public navCtrl: NavController,
   private modalCtrl: ModalController,
   private actionSheetCtrl: ActionSheetController
  ){}
@@ -68,7 +69,12 @@ export class DashbordComponentUser implements OnInit{
   logout() {
     this.authService.logout();
   }
-
+  openMenu() {
+    this.menuCtrl.open();
+  }
+  openEnd() {  
+    this.menuCtrl.close();
+    }
   // _______________________________________getCategaryapiCall__________________________________________________________
 
   getCategaryapiCall(): void {

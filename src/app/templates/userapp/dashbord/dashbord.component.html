@@ -3,8 +3,8 @@
 <ng-container>
   <ion-menu contentId="main-content">
     <ion-header>
-      <ion-toolbar >
-        <ion-title>Aman Jain</ion-title>
+      <ion-toolbar (click)="openEnd()" >
+        <ion-title  slot="start"><i class="fas fa-chevron-left text-lg"></i> Aman Jain</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
@@ -15,16 +15,12 @@
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-list>
-        
           </ion-menu-toggle>
     </ion-content>
   </ion-menu>
   <div class="ion-page" id="main-content">
     <ion-header [translucent]="true">
       <ion-toolbar>
-        <ion-buttons slot="start"  color="dark" >
-          <ion-menu-button color="dark"></ion-menu-button>
-        </ion-buttons>
         <ion-title slot="start" ><ion-text class="titlehed"> Ondoor<span class="headlinecolor">Veggi</span> </ion-text></ion-title>
         <ion-buttons [collapse]="true" slot="end">
           <i class="fas fa-shopping-cart text-gray-500 text-lg" routerLink="/cart">
@@ -54,17 +50,17 @@
        </div>
     </div>
     <div class="fixed bottom-0 left-0 right-0 bg-white shadow flex justify-around text-xs py-3 border-t">
-        <a  routerLink="/home" class="text-center">
-            <i class="fas fa-home text-gray-500 text-lg"></i>
-            <div>Home</div>
+        <a  (click)="openMenu()"  class="text-center">
+            <i class="fas fa-user-circle text-gray-500 text-lg"></i>
+            <div>Profile</div>
         </a>
         <a  routerLink="/home" class="text-center">
             <i class="fas fa-th text-gray-500 text-lg"></i>
             <div>Categories</div>
         </a>
-        <a href="#" class="text-center">
-             <i class=" fas fa-search text-gray-500 text-lg"></i>
-             <div>Search</div> 
+        <a href="/Orders" class="text-center">
+             <i class=" fas fa-list text-gray-500 text-lg"></i>
+             <div>Orders</div> 
         </a>
         <a routerLink="/cart" class="text-center">
             <i class="fas fa-shopping-cart text-gray-500 text-lg"></i>

@@ -2,9 +2,11 @@
     <div class="divmain">
         <div
             class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
-            <button class="text-xl" routerLink="/home"><i class="fas fa-arrow-left"></i></button>
-            <h1 class="text-lg font-bold">Orders</h1>
-            <button class="text-xl"><i class="fas fa-money-check"></i></button>
+          
+            <div class="flex items-center" routerLink="/home" >
+                <i class="fas fa-chevron-left text-lg"></i>
+                <h1 class="ml-2 text-lg font-medium">Orders </h1>
+            </div>
         </div>
         <div class="w-3/4 p-5 mt-10">
             <!-- Orders List -->
@@ -22,7 +24,15 @@
                         <span class="text-xl font-bold">₹{{order.total_amt}} </span>
                     </div>
                     <div class="mt-2">
-                        <p class="font-semibold">Order delivered <i class="fas fa-check-circle text-green-500"></i></p>
+                        <p class="font-semibold"> 
+                             <span *ngIf="order.order_status == 1"> Order Received </span>
+                             <span *ngIf="order.order_status == 2"> Order Picked </span>
+                             <span *ngIf="order.order_status == 3"> Out For Delivery</span>
+                             <span *ngIf="order.order_status == 4"> Order Delivered</span>
+                             <span *ngIf="order.order_status == 5"> Order Cancel</span>
+                             <span *ngIf="order.order_status == 6"> Order  declined</span>
+
+                            <i class="fas fa-check-circle text-green-500"></i></p>
                         <p class="text-gray-500">Placed at {{order.created_date| date:'medium' }} </p>
                     </div>
                     </div>
@@ -34,7 +44,7 @@
 
 <!-- ----------------------------Details page----------------------------------------- -->
 
-<ion-content *ngIf="showdetails">
+<ion-content *ngIf="showdetails && orderDetailsData">
     <div class="">
         <div class="bg-white shadow-md p-4 rounded-md">
             <div class="flex justify-between items-center mb-4">
@@ -50,7 +60,7 @@
             <hr>
             <h2 class="mt-4 text-lg font-medium mb-2">{{product_details_value.product_details.length}} in order</h2>
             <div *ngFor="let productd of product_details_value.product_details" class="mb-4 flex items-center">
-                <img src="https://placehold.co/100x100" alt="DesiDiya String LED Rice Light - Gold"
+                <img src={{productd.nutrition_weight}} alt="DesiDiya String LED Rice Light - Gold"
                     class="w-16 h-16 rounded-md mr-4">
                 <div>
                     <h3 class="text-md font-medium">{{productd.name}}</h3>
@@ -96,7 +106,7 @@
                 </div>
                 <div class="mt-2">
                     <h4 class="font-medium">Delivery Address</h4>
-                    <p>{{orderDetailsData.address}} {{orderDetailsData.area_id}} {{orderDetailsData.city}} {{orderDetailsData.Maharashtra}}{{orderDetailsData.postal_code}} </p>
+                    <p>{{orderDetailsData.roadno}}  {{orderDetailsData.address}} {{orderDetailsData.city}} {{orderDetailsData.Maharashtra}}{{orderDetailsData.postal_code}} </p>
                 </div>
                 <div class="mt-2">
                     <h4 class="font-medium">Order Placed</h4>

@@ -63,7 +63,7 @@ export class AddressComponent  implements OnInit {
       
        });
        if(this.updateFlag === true){
-         this.addressForm.controls['houseno'].setValue(this.useraddress.name);
+         this.addressForm.controls['houseno'].setValue(this.useraddress.roadno);
          this.addressForm.controls['building'].setValue(this.useraddress.address);
          this.addressForm.controls['city'].setValue(this.useraddress.city);
          this.addressForm.controls['state'].setValue(this.useraddress.state);
@@ -108,8 +108,8 @@ export class AddressComponent  implements OnInit {
      if (this.addressForm.valid) {
      let userData = {
        user_id:this.UserId,
-       name: this.addressForm['controls']['houseno'].value,
-       address: this.addressForm['controls']['building'].value,
+       address: this.addressForm['controls']['houseno'].value,
+       roadno : this.addressForm['controls']['building'].value,
        city: this.addressForm['controls']['city'].value,
        state: this.addressForm['controls']['state'].value,
        postal_code: this.addressForm['controls']['postal_code'].value,

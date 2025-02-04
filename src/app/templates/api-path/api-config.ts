@@ -8,8 +8,8 @@ export const apiConfig = {
    
 
     // localhostUrl: "https://ondoorbackend.vercel.app/",
-     localhostUrl: "https://ondoorbackend.onrender.com/",
-    //  localhostUrl: "http://localhost:3001/",
+    //  localhostUrl: "https://ondoorbackend.onrender.com/",
+     localhostUrl: "http://localhost:3001/",
 
 
      userloginApi:'api/app/login',
@@ -27,9 +27,9 @@ export const apiConfig = {
      userAddressFetch: 'api/app/delivery_address',
 
 
-
-
-
+     userAddOrder: 'api/app/userAddorder',
+     userOrderlist:'api/app/userOrderlist',
+     userOrderlistByid:'api/app/userOrderlistDetialsById',
 
 
 

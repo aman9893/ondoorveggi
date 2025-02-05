@@ -1,73 +1,162 @@
-
-
 <ng-container>
   <ion-menu contentId="main-content">
-    <ion-header>
-      <ion-toolbar (click)="openEnd()" >
-        <ion-title  slot="start"><i class="fas fa-chevron-left text-lg"></i> Aman Jain</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <div class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
+
+      <div class="flex items-center" (click)="openEnd()">
+        <i class="fas fa-chevron-left text-lg"></i>
+        <h1 class="ml-2 text-lg font-medium"> Setting </h1>
+      </div>
+    </div>
+
     <ion-content class="ion-padding">
-        <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-          <ion-list>
-            <ion-item  routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" >
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-list>
-          </ion-menu-toggle>
+      <div class="headside">
+        <div class="flex items-center mb-6">
+          <img src="https://cdn-icons-png.flaticon.com/512/303/303593.png" style="height: 48px;" alt="User avatar" class="rounded-full">
+          <div class="ml-3">
+            <h2 class="text-lg font-semibold">aman jain</h2>
+            <p class="text-sm text-gray-500">9806701954</p>
+          </div>
+        </div>
+        <ul>
+          <li class="flex items-center justify-between py-3 border-t border-b">
+            <div class="flex items-center">
+              <i class="fas fa-shopping-bag mr-3"></i>
+              <span class="text-lg">Orders</span>
+            </div>
+            <i class="fas fa-chevron-right text-pink-500"></i>
+          </li>
+          <li class="flex items-center justify-between py-3 border-b">
+            <div class="flex items-center">
+              <i class="fas fa-headset mr-3"></i>
+              <span class="text-lg">Customer Support</span>
+            </div>
+            <i class="fas fa-chevron-right text-pink-500"></i>
+          </li>
+          <li class="flex items-center justify-between py-3 border-b">
+            <div class="flex items-center">
+              <i class="fas fa-heart mr-3"></i>
+              <span class="text-lg">Manage Referrals</span>
+            </div>
+            <i class="fas fa-chevron-right text-pink-500"></i>
+          </li>
+          <li class="flex items-center justify-between py-3 border-b">
+            <div class="flex items-center">
+              <i class="fas fa-map-marker-alt mr-3"></i>
+              <span class="text-lg">Addresses</span>
+            </div>
+            <i class="fas fa-chevron-right text-pink-500"></i>
+          </li>
+          <li class="flex items-center justify-between py-3 border-b">
+            <div class="flex items-center">
+              <i class="fas fa-user mr-3"></i>
+              <span class="text-lg">Profile</span>
+            </div>
+            <i class="fas fa-chevron-right text-pink-500"></i>
+          </li>
+          <li class="flex items-center justify-between py-3 border-b">
+            <div class="flex items-center">
+              <i class="fas fa-wallet mr-3"></i>
+              <span class="text-lg">Wallet</span>
+            </div>
+            <i class="fas fa-chevron-right text-pink-500"></i>
+          </li>
+        </ul>
+        <div class="flex justify-center mt-6">
+          <button class="px-6 py-2 bg-white border rounded shadow-sm text-red-600">Log Out</button>
+        </div>
+      </div>
     </ion-content>
   </ion-menu>
   <div class="ion-page" id="main-content">
-    <ion-header [translucent]="true">
-      <ion-toolbar>
-        <ion-title slot="start" ><ion-text class="titlehed"> Ondoor<span class="headlinecolor">Veggi</span> </ion-text></ion-title>
-        <ion-buttons [collapse]="true" slot="end">
-          <i class="fas fa-shopping-cart text-gray-500 text-lg" routerLink="/cart">
-          <ion-badge  routerLink="/cart" slot="start"  color="danger" > {{ (dataService.cartSubject | async) || 0 }}</ion-badge>
-          </i>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-  <ion-content > 
-  <div class="divmainwrap">
-    <div class="p-4 p-3 mb-10">
-        <h2 class="font-bold text-lg text-gray-800">New In Store</h2>
-        <div  *ngIf="categoryDataList && mobileview" class="grid grid-cols-2 gap-4 mt-4">
-   
-            <div  *ngFor="let cate of categoryDataList"  class="text-center border p-1 rounded-md bg-white shadow"  >
-                <p class="text-sm font-bold">{{cate.cat_name}}</p>
-                <img  src="{{cate.image}}" alt="A bowl with pasta dish" class="mx-auto mt-2 mb-2" (click)="goToProductLIstDialogByCategaryPage(true,cate.cat_id)">
-                <p class="text-blue-500 text-xs">Upto <strong>20%</strong> OFF</p>
-            </div>
-         </div>
-         <div  *ngIf="categoryDataList && !mobileview" class="grid grid-cols-4 gap-4 mt-4">
-          <div  *ngFor="let cate of categoryDataList"  class="text-center border p-1 rounded-md bg-white shadow"  >
-              <p class="text-sm font-bold">{{cate.cat_name}}</p>
-              <img  src="{{cate.image}}" alt="A bowl with pasta dish" class="mx-auto mt-2 mb-2" (click)="goToProductLIstDialogByCategaryPage(true,cate.cat_id)">
-              <p class="text-blue-500 text-xs">Upto <strong>20%</strong> OFF</p>
-          </div>
-       </div>
+
+    <!-- Header -->
+    <div class="bg-purple-900 text-white text-center p-2">
+      <ion-title slot="start"><ion-text class="titlehed"> Ondoor<span class="headlinecolor">Veggi</span>
+        </ion-text></ion-title>
+      <!-- <ion-buttons [collapse]="true" slot="end">
+        <i class="fas fa-shopping-cart text-gray-500 text-lg" routerLink="/cart">
+          <ion-badge routerLink="/cart" slot="start" color="danger"> {{ (dataService.cartSubject | async) || 0
+            }}</ion-badge>
+        </i>
+      </ion-buttons> -->
+      <div class="flex justify-between items-center px-4 ml-6">
+        <div class="flex items-center">
+          <i class="fas fa-map-marker-alt"></i>
+          <span class="ml-2">Other - Gopalnagar Society, 40...</span>
+          <i class="fas fa-chevron-down ml-1"></i>
+        </div>
+      </div>
+
     </div>
-    <div class="fixed bottom-0 left-0 right-0 bg-white shadow flex justify-around text-xs py-3 border-t">
-        <a  (click)="openMenu()"  class="text-center">
+
+    <!-- Search -->
+
+    <!-- Banner -->
+    <div class="p-4">
+      <div
+        class="bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg flex items-center justify-between p-6 text-white">
+        <div>
+          <h2 class="text-l font-semibold">Fresh Vegetables</h2>
+          <p>We combine a passion for quality vegetables</p>
+          <button class="bg-white text-blue-600 font-semibold py-2 px-4 rounded mt-4">Order Now</button>
+        </div>
+        <img src="https://nationaltoday.com/wp-content/uploads/2022/05/Fresh-Veggies-1200x834.jpg" alt="Collection of smoking accessories, mints, and related products"
+          class="h-24 rounded">
+      </div>
+      <ion-header [translucent]="true">
+
+      </ion-header>
+    </div>
+
+
+
+    <ion-content>
+      <div class="divmainwrap">
+
+        <!-- Product Grid -->
+        <div *ngIf="mobileview && categoryDataList " class="p-4 grid grid-cols-2 gap-4">
+          <!-- Product 1 -->
+          <div *ngFor="let cate of categoryDataList" class="bg-white rounded-lg shadow-md p-4 relative">
+            <div (click)="goToProductLIstDialogByCategaryPage(true,cate.cat_id)">
+              <div class="absolute top-2 left-2 bg-red-600 text-white text-xs px-2 py-1 rounded-full">20% Off</div>
+              <img src="{{cate.image}}" alt="Fresh tomatoes in a basket" class="rounded mb-2">
+              <div class="flex items-center text-gray-500 text-xs mb-1">
+                <i class="fas fa-clock mr-1"></i><span>10 Mins</span>
+              </div>
+              <h3 class="text-sm font-semibold cattit">{{cate.cat_name}}</h3>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 p-3 mb-10">
+          <div *ngIf="categoryDataList && !mobileview" class="grid grid-cols-4 gap-4 mt-4">
+          <h2 class="font-bold text-lg text-gray-800">New In Store</h2>
+            <div *ngFor="let cate of categoryDataList" class="text-center border p-1 rounded-md bg-white shadow">
+              <p class="text-sm font-bold">{{cate.cat_name}}</p>
+              <img src="{{cate.image}}" alt="A bowl with pasta dish" class="mx-auto mt-2 mb-2"
+                (click)="goToProductLIstDialogByCategaryPage(true,cate.cat_id)">
+              <p class="text-blue-500 text-xs">Upto <strong>20%</strong> OFF</p>
+            </div>
+          </div>
+        </div>
+        <div class="fixed bottom-0 left-0 right-0 bg-white shadow flex justify-around text-xs py-3 border-t">
+          <a (click)="openMenu()" class="text-center">
             <i class="fas fa-user-circle text-gray-500 text-lg"></i>
             <div>Profile</div>
-        </a>
-        <a  routerLink="/home" class="text-center">
+          </a>
+          <a routerLink="/home" class="text-center">
             <i class="fas fa-th text-gray-500 text-lg"></i>
             <div>Categories</div>
-        </a>
-        <a href="/Orders" class="text-center">
-             <i class=" fas fa-list text-gray-500 text-lg"></i>
-             <div>Orders</div> 
-        </a>
-        <a routerLink="/cart" class="text-center">
+          </a>
+          <a href="/Orders" class="text-center">
+            <i class=" fas fa-list text-gray-500 text-lg"></i>
+            <div>Orders</div>
+          </a>
+          <a routerLink="/cart" class="text-center">
             <i class="fas fa-shopping-cart text-gray-500 text-lg"></i>
             <div>Cart</div>
-        </a>
-    </div>
-  </div>
+          </a>
+        </div>
+      </div>
     </ion-content>
   </div>
 </ng-container>
@@ -76,14 +165,14 @@
 
 
 <!-- _____________________________________________________open list page________________________________________________________________________ -->
-  
-  
-<ion-modal [isOpen]="productModelValue"  >
-  <ng-template >
- 
+
+
+<ion-modal [isOpen]="productModelValue">
+  <ng-template>
+
 
     <!---------------------------------------------------- list page-------------------------------------- -->
-    <ion-content [fullscreen]="true" *ngIf="productlistpage" >
+    <ion-content [fullscreen]="true" *ngIf="productlistpage">
       <ion-header>
         <!-- <ion-toolbar>
           <ion-buttons slot="start">
@@ -93,14 +182,17 @@
             <ion-icon name="funnel{{ productService.isSorted() ? '' : '-outline' }}" class="ion-padding-horizontal" (click)='sortProducts()'></ion-icon>
           </ion-buttons>
         </ion-toolbar> -->
-        <div class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
-          <button class="text-xl" (click)="closeProductlistModal()" ><i class="fas fa-arrow-left"></i></button>
-          <h1 class="text-lg font-bold">Vegetables</h1>
+        <div
+          class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
+          <div class="flex items-center"  (click)="closeProductlistModal()" >
+            <i class="fas fa-chevron-left text-lg"></i>
+            <h1 class="ml-2 text-lg font-medium">Vegetables </h1>
+        </div>
           <div class="container-search  ">
             <div class="row height justify-content-left align-items-left">
               <div class="form">
                 <div class="search-wrapper ">
-                  <input class="search-input" type="text"  [(ngModel)]="searchText" placeholder="Search">
+                  <input class="search-input" type="text" [(ngModel)]="searchText" placeholder="Search">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search"
                     viewBox="0 0 24 24">
@@ -112,138 +204,142 @@
               </div>
             </div>
           </div>
-      </div>
+        </div>
       </ion-header>
-  
-      <div  class="divmainwraplist">
-        <div *ngIf="mobileview "  class="grid grid-cols-2 gap-4">
+
+      <div class="divmainwraplist">
+        <div *ngIf="mobileview " class="grid grid-cols-2 gap-4">
           <div *ngFor='let product of productArray  | searchFilter: searchText' class="bg-white rounded-lg shadow p-4">
             <div class="relative">
-              <img
-                src="{{product.nutrition_weight}}"
-                alt="Apples" class="rounded-lg w-full"  (click)="goToProductDetailsPageByProductId(true,product.prod_id)">
+              <img src="{{product.nutrition_weight}}" alt="Apples" class="rounded-lg w-full"
+                (click)="goToProductDetailsPageByProductId(true,product.prod_id)">
               <!-- <span class="absolute top-2 left-2 bg-purple-600 text-white text-sm px-2 py-1 rounded-full">9% Off</span> -->
             </div>
             <div class="flex justify-between items-center mt-2">
               <div class="flex items-center">
-                  <button  (click)="addCart(product)"  class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-200 via-pink-300 to-pink-200 group-hover:from-red-200 group-hover:via-pink-300 group-hover:to-pink-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-pink-100 dark:focus:ring-pink-400">
-                      <span class="relative px-3 py-1 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                          {{ product.isAdded? 'Added' : 'Add to cart' }}
-                      </span>
-                      </button>
+                <button (click)="addCart(product)"
+                  class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-200 via-pink-300 to-pink-200 group-hover:from-red-200 group-hover:via-pink-300 group-hover:to-pink-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-pink-100 dark:focus:ring-pink-400">
+                  <span
+                    class="relative px-3 py-1 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                    {{ product.isAdded? 'Added' : 'Add to cart' }}
+                  </span>
+                </button>
 
-                      <!-- <div  (click)="addCart(product)"  class="add-button">Add</div> -->
-                  <!-- <button type="button" (click)="addCart(product)"  class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-3 py-2 text-center me-2 mb-2">{{ product.isAdded? 'Added' : 'Add to cart' }}</button> -->
+                <!-- <div  (click)="addCart(product)"  class="add-button">Add</div> -->
+                <!-- <button type="button" (click)="addCart(product)"  class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-3 py-2 text-center me-2 mb-2">{{ product.isAdded? 'Added' : 'Add to cart' }}</button> -->
                 <!-- <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "> </button> -->
               </div>
             </div>
             <p class="mt-2 text-gray-800 font-semibold ">{{product.name}}</p>
-            <p class="text-gray-500 font-semibold">{{product.unit_name}} {{product.unit_value}} - ₹ {{product.price}}</p>
+            <p class="text-gray-500 font-semibold">{{product.unit_name}} {{product.unit_value}} - ₹ {{product.price}}
+            </p>
           </div>
         </div>
-      
-  
-    <div *ngIf="!mobileview " class="grid grid-cols-4 gap-4">
-      <div *ngFor='let product of this.productArray' class="bg-white rounded-lg shadow p-4">
-        <div (click)="goToProductDetailsPageByProductId(true,product.prod_id)" class="relative">
-          <img
-            src="{{product.nutrition_weight}}"
-            alt="Apples" class="rounded-lg w-full">
-          <!-- <span class="absolute top-2 left-2 bg-purple-600 text-white text-sm px-2 py-1 rounded-full">9% Off</span> -->
-        </div>
-        <div class="flex justify-between items-center mt-2">
-          <div class="flex items-center">
-              <button  (click)="addCart(product)"  class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-200 via-red-300 to-rgb(237 74 155)-200 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-pink-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400">
-                  <span class="relative px-4 py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                      {{ product.isAdded? 'Added' : 'Add to cart' }}
+
+
+        <div *ngIf="!mobileview " class="grid grid-cols-4 gap-4">
+          <div *ngFor='let product of this.productArray' class="bg-white rounded-lg shadow p-4">
+            <div (click)="goToProductDetailsPageByProductId(true,product.prod_id)" class="relative">
+              <img src="{{product.nutrition_weight}}" alt="Apples" class="rounded-lg w-full">
+              <!-- <span class="absolute top-2 left-2 bg-purple-600 text-white text-sm px-2 py-1 rounded-full">9% Off</span> -->
+            </div>
+            <div class="flex justify-between items-center mt-2">
+              <div class="flex items-center">
+                <button (click)="addCart(product)"
+                  class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-200 via-red-300 to-rgb(237 74 155)-200 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-pink-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400">
+                  <span
+                    class="relative px-4 py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                    {{ product.isAdded? 'Added' : 'Add to cart' }}
                   </span>
-                  </button>
-              <!-- <button type="button" (click)="addCart(product)"  class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-3 py-2 text-center me-2 mb-2">{{ product.isAdded? 'Added' : 'Add to cart' }}</button> -->
-            <!-- <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "> </button> -->
+                </button>
+                <!-- <button type="button" (click)="addCart(product)"  class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-3 py-2 text-center me-2 mb-2">{{ product.isAdded? 'Added' : 'Add to cart' }}</button> -->
+                <!-- <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "> </button> -->
+              </div>
+            </div>
+            <p class="mt-2 text-gray-800 ">{{product.name}}</p>
+            <p class="text-gray-500">{{product.unit_name}} {{product.unit_value}} - ₹ {{product.price}}</p>
           </div>
         </div>
-        <p class="mt-2 text-gray-800 ">{{product.name}}</p>
-        <p class="text-gray-500">{{product.unit_name}} {{product.unit_value}} - ₹ {{product.price}}</p>
-      </div>
-    </div>
-  
-    <div (click)="presentModal()" class="fixed bottom-0 left-0 right-0 p-4 bg-white mt-2">
-      <div class="flex items-center justify-center space-x-2 bg-pink-500 text-white py-2 px-4 rounded-lg">
-          <span>{{cartNumber}} Items </span>
-          <button class="flex items-center">
+
+        <div (click)="presentModal()" class="fixed bottom-0 left-0 right-0 p-4 bg-white mt-2">
+          <div class="flex items-center justify-center space-x-2 bg-pink-500 text-white py-2 px-4 rounded-lg">
+            <span>{{cartNumber}} Items </span>
+            <button class="flex items-center">
               <i class="fas fa-shopping-cart"></i>
               <span class="ml-2">View Cart</span>
-          </button>
-      </div>
-  </div>
-  </div>
-    </ion-content>
-  <!---------------------------------------------------- detials page-------------------------------------- -->
-
-    <ion-content  [fullscreen]="true" *ngIf="productdetailspage && productDetailsList" [fullscreen]="true">
-      <div class="divmainwrapDetails">
-      <div   class="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden ">
-        <div class="relative">
-          <img src="{{productDetailsList.nutrition_weight}}" alt="Bag of Hawaiian Barbeque Cheese Popcorn surrounded by ingredients" class="w-full">
-          <button class="absolute left-2 top-2 w-8 h-8 bg-white text-gray-700 rounded-full flex items-center justify-center shadow-md">
-            <i class="fas fa-arrow-left" (click)="goToListPage()"></i>
-          </button>
-          <button class="absolute right-2 top-2 w-8 h-8 bg-white text-gray-700 rounded-full flex items-center justify-center shadow-md">
-            <i class="fas fa-heart"></i>
-          </button>
-          <button class="absolute right-2 top-12 w-8 h-8 bg-white text-gray-700 rounded-full flex items-center justify-center shadow-md">
-            <i class="fas fa-share-alt"></i>
-          </button>
+            </button>
+          </div>
         </div>
-        
-        <!-- Product Details Section -->
-        <div class="p-4">
-          <h2 class="text-lg font-semibold mb-1">{{productDetailsList.name}}</h2>
-          <p class="text-gray-500 mb-2">Net Qty: {{productDetailsList.unit_name}} {{productDetailsList.unit_value}}</p>
-          <div class="flex items-center mb-2">
-            <p class="text-lg font-bold text-green-600 mr-2">₹{{productDetailsList.price}} </p>
-            <!-- <p class="text-sm text-green-600 font-semibold mr-2">24% Off</p> -->
-            <!-- <p class="text-sm text-gray-400 line-through">MRP ₹49</p> -->
-            <p class="text-xs text-gray-400">(incl. of all taxes)</p>
+      </div>
+    </ion-content>
+    <!---------------------------------------------------- detials page-------------------------------------- -->
+
+    <ion-content [fullscreen]="true" *ngIf="productdetailspage && productDetailsList" [fullscreen]="true">
+      <div class="divmainwrapDetails">
+        <div class="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden ">
+          <div class="relative">
+            <img src="{{productDetailsList.nutrition_weight}}"
+              alt="Bag of Hawaiian Barbeque Cheese Popcorn surrounded by ingredients" class="w-full">
+            <button
+              class="absolute left-2 top-2 w-8 h-8 bg-white text-gray-700 rounded-full flex items-center justify-center shadow-md">
+              <i class="fas fa-arrow-left" (click)="goToListPage()"></i>
+            </button>
+            <button
+              class="absolute right-2 top-2 w-8 h-8 bg-white text-gray-700 rounded-full flex items-center justify-center shadow-md">
+              <i class="fas fa-heart"></i>
+            </button>
+            <button
+              class="absolute right-2 top-12 w-8 h-8 bg-white text-gray-700 rounded-full flex items-center justify-center shadow-md">
+              <i class="fas fa-share-alt"></i>
+            </button>
           </div>
-          <div class="flex items-center text-green-600 mb-2">
-            <i class="fas fa-bolt mr-2"></i>
-            <p class="text-sm">Get it in 10 minutes</p>
-          </div>
-          <!-- <button class="w-full py-2 text-green-700 bg-green-100 rounded flex items-center justify-center">
+
+          <!-- Product Details Section -->
+          <div class="p-4">
+            <h2 class="text-lg font-semibold mb-1">{{productDetailsList.name}}</h2>
+            <p class="text-gray-500 mb-2">Net Qty: {{productDetailsList.unit_name}} {{productDetailsList.unit_value}}
+            </p>
+            <div class="flex items-center mb-2">
+              <p class="text-lg font-bold text-green-600 mr-2">₹{{productDetailsList.price}} </p>
+              <!-- <p class="text-sm text-green-600 font-semibold mr-2">24% Off</p> -->
+              <!-- <p class="text-sm text-gray-400 line-through">MRP ₹49</p> -->
+              <p class="text-xs text-gray-400">(incl. of all taxes)</p>
+            </div>
+            <div class="flex items-center text-green-600 mb-2">
+              <i class="fas fa-bolt mr-2"></i>
+              <p class="text-sm">Get it in 10 minutes</p>
+            </div>
+            <!-- <button class="w-full py-2 text-green-700 bg-green-100 rounded flex items-center justify-center">
             View all 4700BC products
           </button> -->
-        </div>
-    
-        <!-- Coupons & Offers Section -->
-        <div class="p-4 bg-gray-50 mb-3">
-          <h3 class="text-md font-semibold mb-3">Description</h3>
-          <div class="flex items-center bg-white p-3 mb-3 rounded shadow">
-            <div class="w-2/3">
-              <p class="text-sm ">{{productDetailsList.detail}}</p>
-            </div>
-         
           </div>
-          <!-- <button class="w-full py-2 text-red-600 hover:text-red-700 font-semibold">
+
+          <!-- Coupons & Offers Section -->
+          <div class="p-4 bg-gray-50 mb-3">
+            <h3 class="text-md font-semibold mb-3">Description</h3>
+            <div class="flex items-center bg-white p-3 mb-3 rounded shadow">
+              <div class="w-2/3">
+                <p class="text-sm ">{{productDetailsList.detail}}</p>
+              </div>
+
+            </div>
+            <!-- <button class="w-full py-2 text-red-600 hover:text-red-700 font-semibold">
             View all coupons
           </button> -->
-             <!-- View Cart Section -->
-             <div class="fixed bottom-0 left-0 right-0 p-4 bg-white mt-2">
+            <!-- View Cart Section -->
+            <div class="fixed bottom-0 left-0 right-0 p-4 bg-white mt-2">
               <div class="flex items-center justify-center space-x-2 bg-pink-500 text-white py-2 px-4 rounded-lg">
-                  <button  class="flex items-center">
-                      <i class="fas fa-shopping-cart"></i>
-                      <span class="ml-2">Add to Cart</span>
-                  </button>
+                <button class="flex items-center">
+                  <i class="fas fa-shopping-cart"></i>
+                  <span class="ml-2">Add to Cart</span>
+                </button>
               </div>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </ion-content>
 
-<!-- -------------------------------------end ---------------------------------------------------------------->
-
-
+    <!-- -------------------------------------end ---------------------------------------------------------------->
   </ng-template>
 </ion-modal>
-  

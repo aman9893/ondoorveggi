@@ -1,15 +1,5 @@
 
 
-ion-menu::part(backdrop) {
-  background-color: rgba(235, 234, 235, 0.5);
-}
-
-ion-menu::part(container) {
-  border-radius: 0 20px 20px 0;
-
-  box-shadow: 4px 0px 16px rgba(230, 230, 230, 0.18);
-}
-
 .divmainwrap{
   margin-top: 10px;
   margin-bottom: 90px;
@@ -27,36 +17,10 @@ ion-menu::part(container) {
 }
 
 
-
-
-.add-button
- {
-  background-color: #ff4997;
-  color: #fff;
-  font-weight: 500;
-  border-radius: .5rem;
-  padding: 2px 20px 0px 20px;
-  text-align: center;
-  cursor: pointer;
-  font-size: 13px;
+.headside{
+  margin-top: 65px;
 }
-
-.custom-modal {
-  --backdrop-opacity: 1;
-  backdrop-filter: blur(3px);
-
-  &::part(backdrop) {
-      background: #000;
-  }
-
-  &::part(handle) {
-      background: var(--ion-color-primary);
-      width: 150px;
-      height: 6px;
-  }
-
-  &::part(content) {
-      border-radius: 0px;
-      box-shadow: 0px 0px 20px 5px rgb(0 0 0 / 32%);
-  }
+.cattit{
+  text-align: center;
+    color: #212121b0;
 }

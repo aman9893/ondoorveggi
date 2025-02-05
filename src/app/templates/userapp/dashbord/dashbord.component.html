@@ -86,39 +86,33 @@
           <i class="fas fa-chevron-down ml-1"></i>
         </div>
       </div>
-
     </div>
 
     <!-- Search -->
 
     <!-- Banner -->
-    <div class="p-4">
+    <div class="p-1">
       <div
-        class="bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg flex items-center justify-between p-6 text-white">
+        class="bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg flex items-center justify-between p-2 text-white">
         <div>
           <h2 class="text-l font-semibold">Fresh Vegetables</h2>
-          <p>We combine a passion for quality vegetables</p>
-          <button class="bg-white text-blue-600 font-semibold py-2 px-4 rounded mt-4">Order Now</button>
+          <button class="bg-white text-blue-600 font-semibold py-2 px-2 rounded mt-2">Order Now</button>
         </div>
         <img src="https://nationaltoday.com/wp-content/uploads/2022/05/Fresh-Veggies-1200x834.jpg" alt="Collection of smoking accessories, mints, and related products"
           class="h-24 rounded">
       </div>
-      <ion-header [translucent]="true">
-
-      </ion-header>
     </div>
 
 
 
     <ion-content>
-      <div class="divmainwrap">
-
+      <div class="">
         <!-- Product Grid -->
-        <div *ngIf="mobileview && categoryDataList " class="p-4 grid grid-cols-2 gap-4">
+        <div *ngIf="mobileview && categoryDataList " class="p-1 grid grid-cols-2 gap-4">
           <!-- Product 1 -->
           <div *ngFor="let cate of categoryDataList" class="bg-white rounded-lg shadow-md p-4 relative">
             <div (click)="goToProductLIstDialogByCategaryPage(true,cate.cat_id)">
-              <div class="absolute top-2 left-2 bg-red-600 text-white text-xs px-2 py-1 rounded-full">20% Off</div>
+              <div class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded-full">20% Off</div>
               <img src="{{cate.image}}" alt="Fresh tomatoes in a basket" class="rounded mb-2">
               <div class="flex items-center text-gray-500 text-xs mb-1">
                 <i class="fas fa-clock mr-1"></i><span>10 Mins</span>

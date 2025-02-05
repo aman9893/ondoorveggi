@@ -34,7 +34,6 @@
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
 
 // global app styles
 @import "./theme/app.scss";
@@ -378,26 +377,7 @@ a{
   --message-btn: #fff;
 }
 
-.dark:root {
-  --app-container: #1f1d2b;
-  --app-container: #111827;
-  --main-color: #fff;
-  --secondary-color: rgba(255,255,255,.8);
-  --projects-section: #1f2937;
-  --link-color: rgba(255,255,255,.8);
-  --link-color-hover: rgba(195, 207, 244, 0.1);
-  --link-color-active-bg: rgba(195, 207, 244, 0.2);
-  --button-bg: #1f2937;
-  --search-area-bg: #1f2937;
-  --message-box-hover: #243244;
-  --message-box-border: rgba(255,255,255,.1);
-  --star: #ffd92c;
-  --light-font: rgba(255,255,255,.8);
-  --more-list-bg: #2f3142;
-  --more-list-bg-hover:  rgba(195, 207, 244, 0.1);
-  --more-list-shadow: rgba(195, 207, 244, 0.1);
-  --message-btn: rgba(195, 207, 244, 0.1);
-}
+
 
 
 
@@ -814,9 +794,6 @@ button, a {
   
   .dark & {
     color: var(--secondary-color);
-    
-    
-    
     input:checked + label {
       color: var(--star);
     }

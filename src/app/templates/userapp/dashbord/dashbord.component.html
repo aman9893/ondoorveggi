@@ -18,51 +18,45 @@
           </div>
         </div>
         <ul>
-          <li class="flex items-center justify-between py-3 border-t border-b">
-            <div class="flex items-center">
-              <i class="fas fa-shopping-bag mr-3"></i>
-              <span class="text-lg">Orders</span>
-            </div>
-            <i class="fas fa-chevron-right text-pink-500"></i>
-          </li>
-          <li class="flex items-center justify-between py-3 border-b">
-            <div class="flex items-center">
-              <i class="fas fa-headset mr-3"></i>
-              <span class="text-lg">Customer Support</span>
-            </div>
-            <i class="fas fa-chevron-right text-pink-500"></i>
-          </li>
-          <li class="flex items-center justify-between py-3 border-b">
-            <div class="flex items-center">
-              <i class="fas fa-heart mr-3"></i>
-              <span class="text-lg">Manage Referrals</span>
-            </div>
-            <i class="fas fa-chevron-right text-pink-500"></i>
-          </li>
-          <li class="flex items-center justify-between py-3 border-b">
-            <div class="flex items-center">
-              <i class="fas fa-map-marker-alt mr-3"></i>
-              <span class="text-lg">Addresses</span>
-            </div>
-            <i class="fas fa-chevron-right text-pink-500"></i>
-          </li>
-          <li class="flex items-center justify-between py-3 border-b">
+          <li class="flex items-center justify-between py-3 border-b"  routerLink="/userprofile">
             <div class="flex items-center">
               <i class="fas fa-user mr-3"></i>
               <span class="text-lg">Profile</span>
             </div>
             <i class="fas fa-chevron-right text-pink-500"></i>
           </li>
-          <li class="flex items-center justify-between py-3 border-b">
+          <li class="flex items-center justify-between py-3 border-t border-b" routerLink="/Orders">
             <div class="flex items-center">
-              <i class="fas fa-wallet mr-3"></i>
-              <span class="text-lg">Wallet</span>
+              <i class="fas fa-shopping-bag mr-3"></i>
+              <span class="text-lg"  >Orders</span>
+            </div>
+            <i class="fas fa-chevron-right text-pink-500"></i>
+          </li>
+          <li class="flex items-center justify-between py-3 border-b" routerLink="/cart">
+            <div class="flex items-center">
+              <i class="fas fa-heart mr-3"></i>
+              <span class="text-lg">Cart</span>
+            </div>
+            <i class="fas fa-chevron-right text-pink-500"></i>
+          </li>
+          <li class="flex items-center justify-between py-3 border-b" routerLink="/Addresses">
+            <div class="flex items-center">
+              <i class="fas fa-map-marker-alt mr-3"></i>
+              <span class="text-lg">Addresses</span>
+            </div>
+            <i class="fas fa-chevron-right text-pink-500"></i>
+          </li>
+          <li class="flex items-center justify-between py-3 border-b"  routerLink="/help">
+            <div class="flex items-center">
+              <i class="fas fa-headset mr-3"></i>
+              <span class="text-lg">Customer Support</span>
             </div>
             <i class="fas fa-chevron-right text-pink-500"></i>
           </li>
         </ul>
         <div class="flex justify-center mt-6">
-          <button class="px-6 py-2 bg-white border rounded shadow-sm text-red-600">Log Out</button>
+          <ion-button  class="mt-10"  fill="outline">Log Out
+        </ion-button>
         </div>
       </div>
     </ion-content>
@@ -70,7 +64,7 @@
   <div class="ion-page" id="main-content">
 
     <!-- Header -->
-    <div class="bg-purple-900 text-white text-center p-2">
+    <div class="headbg text-white text-center p-2">
       <ion-title slot="start"><ion-text class="titlehed"> Ondoor<span class="headlinecolor">Veggi</span>
         </ion-text></ion-title>
       <!-- <ion-buttons [collapse]="true" slot="end">
@@ -79,10 +73,13 @@
             }}</ion-badge>
         </i>
       </ion-buttons> -->
-      <div class="flex justify-between items-center px-4 ml-6">
-        <div class="flex items-center">
+      <div *ngIf="useraddress" class="flex justify-between items-center px-4 ml-6">
+        <div (click)="presentModalAddress()" class="flex items-center">
           <i class="fas fa-map-marker-alt"></i>
-          <span class="ml-2">Other - Gopalnagar Society, 40...</span>
+          <span class="ml-2"> 
+            {{useraddress.address}}
+            {{useraddress.roadno}} 
+        </span>
           <i class="fas fa-chevron-down ml-1"></i>
         </div>
       </div>

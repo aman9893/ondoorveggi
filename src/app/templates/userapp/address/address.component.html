@@ -1,81 +1,163 @@
-
 <ion-content class="bg-gray">
-    <div  class="divmain" >
-        <div class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
-          <div class="flex items-center" routerLink="/home" >
-            <i class="fas fa-chevron-left text-lg"></i>
-            <h1 class="ml-2 text-lg font-medium">Address </h1>
+  <div class="divmain">
+ 
+
+    <!-- __________________________________________________________________________________________ -->
+
+
+
+    <div  *ngIf="showaddrsspage" >
+      <div class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
+        <div class="flex items-center" (click)="showback()">
+          <i class="fas fa-chevron-left text-lg"></i>
+          <h1 class="ml-2 text-lg font-medium">Address </h1>
         </div>
       </div>
-<div class="bg-white  rounded-lg shadow-md  mt-10 mb-10">
-  <div class="border-b p-4 flex justify-between items-center">
-      <h2 class="text-center text-lg font-semibold">Enter Address Details</h2>
-  </div>
-  <div class="p-4">
-      <div class="flex justify-between items-center mb-4">
-          <h3 class="font-semibold">Saved Location</h3>
-          <a  class="text-red-500"(click)="getCurrentLocation()" >Change</a>
-      </div>
-      <div class="bg-purple-500 rounded-lg text-white p-4 mb-4">
-          <div class="flex items-center"(click)="openMapsApp()" >
+      <div class="bg-white  rounded-lg shadow-md  mt-10 mb-10">
+        <div class="border-b p-4 flex justify-between items-center">
+          <h2 class="text-center text-lg font-semibold">Enter Address Details</h2>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="font-semibold">Saved Location</h3>
+            <a class="text-red-500" (click)="getCurrentLocation()">Change</a>
+          </div>
+          <div class="bg-purple-500 rounded-lg text-white p-4 mb-4">
+            <div class="flex items-center" (click)="openMapsApp()">
               <i class="fas fa-map-marker-alt mr-2"></i>
               <div>
-                  <h4 class="font-bold">Gopal Nagar</h4>
-                  <p class="text-sm">202, Gopal Nagar, Hyder Nagar, Kukatpally, Hyderabad,...</p>
+                <h4 class="font-bold">Gopal Nagar</h4>
+                <p class="text-sm">202, Gopal Nagar, Hyder Nagar, Kukatpally, Hyderabad,...</p>
               </div>
+            </div>
           </div>
-      </div>
-      <form  *ngIf="updateFlag"  [formGroup]="addressForm" >
-        <div>
-            <label for="houseno" class="mb-2  block mb-2 text-sm font-medium text-gray-900 dark:text-white">House No. & Floor*</label>
-            <input id="houseno"  formControlName="houseno"
-              class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
-              type="houseno" placeholder="houseno" required />
-          </div>
-          <div class="mt-2">
-            <label for="building" class="mb-2  dark:text-gray-400 text-lg">Building & Block No.*</label>
-            <input id="building"  formControlName="building"
-              class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
-              type="building" placeholder="building" required />
-          </div>
-          <div  class="mt-2">
-            <label for="city" class="mb-2  dark:text-gray-400 text-lg">City</label>
-            <input id="city"  formControlName="city"
-              class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
-              type="city" placeholder="city" required />
-          </div>
-       
-          <div  class="mt-2">
-            <label for="state" class="mb-2  dark:text-gray-400 text-lg">State</label>
-            <input id="state"  formControlName="state"
-              class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
-              type="state" placeholder="state" required />
-          </div>
-          <div  class="mt-2">
-            <label for="postal_code" class="mb-2  dark:text-gray-400 text-lg ">Postal Code</label>
-            <input id="postal_code"  formControlName="postal_code"
-              class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
-              type="text" placeholder="postal_code" required />
-          </div>
-          <div  class="mt-2">
-            <label for="mobile" class="mb-2  dark:text-gray-400 text-lg ">phone Number</label>
-            <input id="mobile"  formControlName="mobile"
-              class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
-              type="text" placeholder="mobile" required />
-          </div>
-          <div class="mt-4 mb-4">
+          <form  [formGroup]="addressForm">
+            <div>
+              <label for="houseno" class="mb-2  block mb-2 text-sm font-medium text-gray-900 dark:text-white">House No. &
+                Floor*</label>
+              <input id="houseno" formControlName="houseno"
+                class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+                type="houseno" placeholder="houseno" required />
+            </div>
+            <div class="mt-2">
+              <label for="building" class="mb-2  dark:text-gray-400 text-lg">Building & Road No.*</label>
+              <input id="building" formControlName="roadno"
+                class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+                type="building" placeholder="building" required />
+            </div>
+            <div class="mt-2">
+              <label for="city" class="mb-2  dark:text-gray-400 text-lg">City</label>
+              <input id="city" formControlName="city"
+                class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+                type="city" placeholder="City" required />
+            </div>
+  
+            <div class="mt-2">
+              <label for="state" class="mb-2  dark:text-gray-400 text-lg">State</label>
+              <input id="state" formControlName="state"
+                class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+                type="state" placeholder="State" required />
+            </div>
+            <div class="mt-2">
+              <label for="postal_code" class="mb-2  dark:text-gray-400 text-lg ">Postal Code</label>
+              <input id="postal_code" formControlName="postal_code"
+                class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+                type="text" placeholder="Postal Code" required />
+            </div>
+            <div class="mt-2">
+              <label for="mobile" class="mb-2  dark:text-gray-400 text-lg ">phone Number</label>
+              <input id="mobile" formControlName="mobile"
+                class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+                type="text" placeholder="Mobile" required />
+            </div>
+            <div class="mt-4 mb-4">
               <h3 class="mb-2  dark:text-gray-400 text-lg ">Type</h3>
               <div class="flex space-x-2 mt-2">
                 <ion-radio-group [allowEmptySelection]="true" formControlName="type_name">
-                    <ion-radio value="home"> <button type="button" class="bg-purple-600 text-white px-4 py-1 rounded-full">Home</button></ion-radio>
-                    <ion-radio value="work">  <button type="button" class=" ml-4 bg-purple-600 text-white px-4 py-1 rounded-full">Work</button></ion-radio>
-                  </ion-radio-group>
-                 
+                  <ion-radio value="home"> <button type="button"
+                      class="bg-purple-600 text-white px-4 py-1 rounded-full">Home</button></ion-radio>
+                  <ion-radio value="work"> <button type="button"
+                      class=" ml-4 bg-purple-600 text-white px-4 py-1 rounded-full">Work</button></ion-radio>
+                </ion-radio-group>
+  
               </div>
+            </div>
+            <button *ngIf="updateFlag" (click)=" addressUpdateSubmit()" type="submit"
+            class="w-full bg-pink-500 text-white py-3 rounded-lg font-semibold shadow-md">Update & Continue</button>
+            <button *ngIf="!updateFlag" (click)=" addressFormSubmit()" type="submit"
+              class="w-full bg-pink-500 text-white py-3 rounded-lg font-semibold shadow-md">Save & Continue</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- __________________________________________________________________________________________ -->
+
+    <div *ngIf="addressshowvalue" class="bg-white flex flex-col items-center justify-center">
+      <div class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
+        <div class="flex items-center" (click)="dismissModal()">
+          <i class="fas fa-chevron-left text-lg"></i>
+          <h1 class="ml-2 text-lg font-medium">Address </h1>
+        </div>
+      </div>
+      <div class="bg-white w-full max-w-md p-4">
+        <div class="flex items-start space-x-2">
+          <i class="fas fa-map-marker-alt text-purple-600 mt-1"></i>
+          <div>
+            <h3 class="text-black font-bold">Home</h3>
+            <p class="text-gray-600">
+            {{useraddress.address}}
+            {{useraddress.roadno}} 
+            {{useraddress.city}} 
+            {{useraddress.state}} 
+            {{useraddress.postal_code}} 
+
+          </p>
           </div>
-          <button (click)=" addressFormSubmit()" type="submit" class="w-full bg-pink-500 text-white py-3 rounded-lg font-semibold shadow-md">Save & Continue</button>
-      </form>
+          <div class="flex space-x-2 ml-auto">
+            <i (click)="addaddress()" class="fas fa-pen text-gray-600"></i>
+            <i id="present-alert"  (click)="setOpen(true,'')" class="fas fa-trash text-gray-600"></i>
+          </div>
+        </div>
+        <button (click)="addaddress()" class="mt-10 w-full py-3 bg-pink-500 text-white font-semibold rounded-full">
+           Update Address
+        </button>
+      </div>
+    </div>
+
+
+
+    <!-- __________________________________________________________________________________________ -->
+
+    <div *ngIf="addressshowNovalue" class="bg-white flex justify-center items-center p-10">
+      <div class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
+        <div class="flex items-center" (click)="dismissModal()">
+          <i class="fas fa-chevron-left text-lg"></i>
+          <h1 class="ml-2 text-lg font-medium">Address </h1>
+        </div>
+      </div>
+      <div class="text-center">
+        <img src="https://www.zeptonow.com/_next/image?url=https%3A%2F%2Fcdn.zeptonow.com%2Fapp%2Fimages%2Fcone-icon.png&w=384&q=75" alt="Illustration of an ice cream cone with colorful elements around it"
+          class="mx-auto mb-6">
+        <h1 class="text-lg font-bold mb-2">No Address Added</h1>
+        <p class="text-gray-500 mb-8">To see the saved address here, add your work or home address</p>
+        <button class="bg-pink-500 text-white py-2 px-4 rounded-full"  (click)="addaddress()" >Add New Address</button>
+      </div>
+    </div>
+    <!-- __________________________________________________________________________________________ -->
+
+
+
   </div>
-</div>
-</div>
 </ion-content>
+
+<!-- /------------------------------ address list----------------------------------- -->
+<ion-action-sheet
+  [isOpen]="isActionSheetOpen"
+  header="Are Sure for Delete Address"
+  [buttons]="actionSheetButtons"
+  (didDismiss)="setOpen(false,$event)"
+></ion-action-sheet>
+
+<!-- /------------------------------no address----------------------------------- -->
+

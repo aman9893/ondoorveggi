@@ -10,8 +10,9 @@
         </div>
     </div>
     <div class="divmaincart">
-    <button type="button"  (click)="dismissModal()" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Browse Product</button>
-
+    <ion-button  class="mt-10"  (click)="dismissModal()" fill="outline">Browse Product
+        <ion-icon slot="end" name="cart"></ion-icon>
+    </ion-button>
         <img class="mt-10" src="assets/images/empty-cart.svg" />
         <icon-text>Your cart is empty</icon-text>
     </div>
@@ -161,17 +162,22 @@
 
     <!-- Delivery to Address and Pay Button -->
     <div class="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-lg">
-        <div class="flex justify-between items-center mb-2">
-            <div class="flex items-center space-x-2">
+        <div *ngIf="addressshowvalue" class="flex justify-between items-center mb-2">
+            <div (click)="presentModal()" class="flex items-center space-x-2">
                 <i class="fas fa-map-marker-alt text-purple-500"></i>
                 <div class="flex flex-col">
                     <span class="font-semibold text-sm">Delivering to other</span>
-                    <p class="text-xs">101, rajeshwari building 11 b road, Gopalnagar Society</p>
+                    <p class="text-xs">  {{useraddress.address}}
+                        {{useraddress.roadno}} 
+                        {{useraddress.city}} 
+                        {{useraddress.state}} 
+                        {{useraddress.postal_code}} </p>
                 </div>
             </div>
             <i class="fas fa-chevron-down"></i>
         </div>
-        <button type="submit" (click)="onSubmit()" class="w-full bg-pink-500 text-white rounded-full py-3 font-bold">Click to Pay ₹{{total +15}}</button>
+        <button  *ngIf="!addressshowvalue" type="submit" (click)="goingaddressapage()" class="w-full bg-pink-500 text-white rounded-full py-3 font-bold">Add Address</button>
+        <button   *ngIf="addressshowvalue" type="submit" (click)="onSubmit()" class="w-full bg-pink-500 text-white rounded-full py-3 font-bold">Click to Pay ₹{{total +15}}</button>
     </div>
 </div>
 

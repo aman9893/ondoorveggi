@@ -4,6 +4,8 @@ import {Location} from '@angular/common';
 import { ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
+import { AddressComponent } from '../address/address.component';
+import { WindowRefService } from '../../auth/service/window-ref.service';
 @Component({
   selector: 'app-user-cart',
   templateUrl: './user-cart.component.html',
@@ -15,10 +17,15 @@ export class UserCartComponent  implements OnInit {
 
   cartvalue:any = [];
   UserId: any;
+  useraddress: any = true;
+  addressshowvalue: boolean =false;
 
 
   constructor(public cart : DataService,private _location: Location,public modalController: ModalController,public route:Router,  public dataService :DataService,private router:Router,
-     public authService:AuthService,) {}
+     public authService:AuthService,private winRef: WindowRefService,) {
+      this.UserId = this.authService.getUserId();
+      this.getUserAddressValue();
+     }
 
   dismissModal() {
     if(this._location.path() =='/cart'){
@@ -30,7 +37,7 @@ export class UserCartComponent  implements OnInit {
     }
   }
   ngOnInit() {
-    this.UserId = this.authService.getUserId();
+ 
     this.CartDetails();
     this.cartNumberFunc();
   }
@@ -133,7 +140,7 @@ export class UserCartComponent  implements OnInit {
   cartNumber: number = 0;
   cartNumberFunc() {
     var cartValue = JSON.parse(localStorage.getItem('localCart')!);
-    this.cartNumber = cartValue.length;
+    this.cartNumber = cartValue?.length;
     this.cart.cartSubject.next(this.cartNumber);
   }
 
@@ -166,6 +173,39 @@ export class UserCartComponent  implements OnInit {
         this.router.navigateByUrl('/home');
       }
     }
+
+    async presentModal() {
+      const modal = await this.modalController.create({
+        component: AddressComponent,
+        breakpoints: [0, 0.25, 1, 0.75],
+        initialBreakpoint: 0.55,
+        cssClass: 'custom-modal'
+      });
+      await modal.present();
+    }
+
+    getUserAddressValue() {
+      this.dataService.getUserAddressId(this.UserId)
+        .subscribe(
+          data => this.getUseraddress(data),
+        )
+    }
+    getUseraddress(data:any) {
+      if (data.status == 1 ) {
+       if(data.payload && data.payload.length > 0){
+        this.useraddress = data.payload[0];
+        this.addressshowvalue = true;
+       }
+       
+       else{
+        this.addressshowvalue = false;
+       }
+      }
+    }
+    goingaddressapage(){
+      this.modalController.dismiss();
+    }
+    
   }
 
 

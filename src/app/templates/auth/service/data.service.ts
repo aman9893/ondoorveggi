@@ -23,6 +23,8 @@ export class DataService {
   cartlist = new BehaviorSubject<any>([]);
   cartSubject = new Subject<number>();
 
+  productdialog: EventEmitter<any> = new EventEmitter();
+
   productlistemit: EventEmitter<any> = new EventEmitter();
 
     banners = [
@@ -71,6 +73,10 @@ export class DataService {
   userAddressSave(data:any){
     return this.http.post(apiConfig.localhostUrl + apiConfig.userAddressSave,data);
   }
+
+  userUpdateAddressSave(data:any){
+    return this.http.post(apiConfig.localhostUrl + apiConfig.update_delivery_address,data);
+  }
   getUserAddressId(userid:any){
     let data:{user_id:any}={user_id:userid};
     return this.http.post(apiConfig.localhostUrl + apiConfig.userAddressFetch,data);
@@ -92,6 +98,11 @@ export class DataService {
     return this.http.post(apiConfig.localhostUrl + apiConfig.userOrderlistByid,data);
   }
 
+  deleteUserAddress(address_id:any){
+    let data:{address_id:any}={address_id:address_id};
+    return this.http.post(apiConfig.localhostUrl + apiConfig.UserAddreesDelete,data);
+
+  }
 
 
 

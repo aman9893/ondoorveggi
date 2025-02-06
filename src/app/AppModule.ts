@@ -80,7 +80,7 @@ import { SettingComponent } from './templates/userapp/setting/setting.component'
     SearchpipeComponent,
     AddkhataAmtComponent,AddressComponent,UserprofileComponent,LoginComponent
     ,ProductFilterPage,UserorderlistComponent,Tab1Page,LayoutComponentUser,PageHeaderComponentUser,DashbordComponentUser,HelpSuppportComponent,UserLoginComponent,ProductDetailsComponent
-    ,BannerComponent,UserCartComponent,SettingComponent
+    ,BannerComponent,UserCartComponent,SettingComponent,
 
 
 

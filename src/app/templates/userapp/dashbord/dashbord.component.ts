@@ -5,15 +5,16 @@ import { Router } from '@angular/router';
 import { ProductsService } from '../services/products/products.service';
 import { ActionSheetController, IonModal, MenuController, ModalController, NavController } from '@ionic/angular';
 import { UserCartComponent } from '../user-cart/user-cart.component';
+import { AddressComponent } from '../address/address.component';
 
 @Component({
   selector: 'app-dashbord-user',
   templateUrl: './dashbord.component.html',
   styleUrls: ['./dashbord.component.scss'],
   standalone: false
-  
+
 })
-export class DashbordComponentUser implements OnInit{
+export class DashbordComponentUser implements OnInit {
   public appPages = [
     {
       title: "Profile",
@@ -40,103 +41,139 @@ export class DashbordComponentUser implements OnInit{
       url: "/help",
       icon: "headset"
     },
-  
+
   ];
   categoryDataList: any;
-  mobileview: boolean= false;
-  banners:any
-  productModelValue: boolean= false;
+  mobileview: boolean = false;
+  banners: any
+  productModelValue: boolean = false;
   productList: any;
   productArray: any;
   getCartDetails: any;
   productDetailsList: any;
-  productlistpage: boolean =true;
-  productdetailspage: boolean =false;
+  productlistpage: boolean = true;
+  productdetailspage: boolean = false;
   searchText: any;
   @ViewChild(IonModal) modal!: IonModal;
   prod_id: any;
- constructor(public dataService: DataService,public authService: AuthService,
-  public menuCtrl: MenuController, private router:Router, public productService: ProductsService,public navCtrl: NavController,
-  private modalCtrl: ModalController,
-  private actionSheetCtrl: ActionSheetController
- ){}
-  ngOnInit(): void {
-    this.mobileview = this.dataService.getIsMobileResolution();
-    this.banners =this.dataService.getBanners();
-    this.getCategaryapiCall();
-    
+  useraddress: any;
+  addressshowvalue: boolean = false;
+  UserId: any;
+  constructor(public dataService: DataService, public authService: AuthService, public route: Router,
+    public menuCtrl: MenuController, private router: Router, public productService: ProductsService, public navCtrl: NavController,
+    private modalCtrl: ModalController,
+    private actionSheetCtrl: ActionSheetController
+  ) {
   }
+  ngOnInit(): void {
+    this.UserId = this.authService.getUserId();
+    this.mobileview = this.dataService.getIsMobileResolution();
+    this.banners = this.dataService.getBanners();
+    this.getCategaryapiCall();
+    this.getUserAddressValue();
+  }
+
+  getUserAddressValue() {
+    this.dataService.getUserAddressId(this.UserId)
+      .subscribe(
+        data => this.getUseraddress(data),
+      )
+  }
+  getUseraddress(data: any) {
+    if (data.status == 1) {
+      if (data.payload && data.payload.length > 0) {
+        this.useraddress = data.payload[0];
+        this.addressshowvalue = true;
+      }
+
+      else {
+        this.addressshowvalue = false;
+      }
+    }
+  }
+
+  async presentModalAddress() {
+    const modal = await this.modalCtrl.create({
+      component: AddressComponent,
+      breakpoints: [0, 0.25, 1, 0.75],
+      initialBreakpoint: 0.55,
+      cssClass: 'custom-modal'
+    });
+    await modal.present();
+  }
+
   logout() {
     this.authService.logout();
   }
   openMenu() {
     this.menuCtrl.open();
   }
-  openEnd() {  
+  openEnd() {
     this.menuCtrl.close();
-    }
+  }
   // _______________________________________getCategaryapiCall__________________________________________________________
+
 
   getCategaryapiCall(): void {
     this.dataService.usercategoryList('').subscribe((data) => this.categoryData(data),
       (err: Error) => this.apiErrorHandal(err));
   }
- 
+
 
   categoryData(data: any) {
-      if(data.status == 1){
+    if (data.status == 1) {
       this.categoryDataList = data.payload;
-      }
+    }
   }
   // _______________________________________getCategaryapiCall end__________________________________________________________
 
-  goToProductLIstDialogByCategaryPage(isOpen: boolean,id:any) {
-      this.productModelValue = isOpen;
-      this.productlistpage=true;
-      this.productdetailspage =false;
-      this.prod_id =id;
-      this.getProductApiCall(id)
-      this.cartNumberFunc();
+  goToProductLIstDialogByCategaryPage(isOpen: boolean, id: any) {
+    this.productModelValue = isOpen;
+    this.productlistpage = true;
+    this.productdetailspage = false;
+    this.prod_id = id;
+    this.getProductApiCall(id)
+    this.cartNumberFunc();
   }
 
-  closeProductlistModal(){
-    this.productModelValue =false;
+  closeProductlistModal() {
+    this.productModelValue = false;
   }
   // _______________________________________getProductApiCall__________________________________________________________
-    
-  getProductApiCall(id:any): void {
-      this.dataService.userProductcategoryList(id).subscribe((data) => this.getProductData(data),
+
+  getProductApiCall(id: any): void {
+    this.dataService.userProductcategoryList(id).subscribe((data) => this.getProductData(data),
       (err: Error) => this.apiErrorHandal(err));
   }
-    getProductData(data: any) {
-      this.productList = data.payload;
-      console.log( this.productList)
-      this.getCartDetails = JSON.parse(localStorage.getItem('localCart')!);
-      this.productArray = this.productList?.map((prod: any) => { return { ...prod, qty: 1 } });
-      this.productArray?.forEach((a: any) => {
-        console.log('hii')
-        this.getCartDetails?.forEach((b: any) => {
-          if (a.prod_id === b.prod_id) {
-            a.isAdded =true
-          }
-        });
+  getProductData(data: any) {
+    this.productList = data.payload;
+    console.log(this.productList)
+    this.getCartDetails = JSON.parse(localStorage.getItem('localCart')!);
+    this.productArray = this.productList?.map((prod: any) => { return { ...prod, qty: 1 } });
+    this.productArray?.forEach((a: any) => {
+      console.log('hii')
+      this.getCartDetails?.forEach((b: any) => {
+        if (a.prod_id === b.prod_id) {
+          a.isAdded = true
+        }
       });
-    }
+    });
+  }
 
- apiErrorHandal(err: any): void {
-    this.dataService.openSnackBar(err,'dismiss')
+  apiErrorHandal(err: any): void {
+    this.dataService.openSnackBar(err, 'dismiss')
   }
 
   // _______________________________________ go  ToProductDetailsPageByProductId end__________________________________________________________
-  
-  goToProductDetailsPageByProductId(isOpen: boolean,id:any) {
-    this. getProductDetailsApiCall(id)
-    this.productlistpage=false;
-    this.productdetailspage =true;
+
+  goToProductDetailsPageByProductId(isOpen: boolean, id: any) {
+    this.getProductDetailsApiCall(id)
+    this.productlistpage = false;
+    this.productdetailspage = true;
   }
 
 
-  getProductDetailsApiCall(id:any): void {
+  getProductDetailsApiCall(id: any): void {
     this.dataService.getuseroductDetials(id).subscribe((data) => this.getProductDatadetails(data),
       (err: Error) => this.apiErrorHandal(err));
   }
@@ -145,12 +182,12 @@ export class DashbordComponentUser implements OnInit{
     this.productDetailsList = data;
   }
 
-  goToListPage(){
-    this.productlistpage=true;
-    this.productdetailspage =false;
+  goToListPage() {
+    this.productlistpage = true;
+    this.productdetailspage = false;
   }
 
-// _____________________________________________________Endlogic____________________________________________________________________________
+  // _____________________________________________________Endlogic____________________________________________________________________________
 
 
   // async sortProducts() {
@@ -192,7 +229,7 @@ export class DashbordComponentUser implements OnInit{
   //   });
   //   await actionSheet.present();
   // }
-      
+
   inc(prod: any) {
     prod.qty! += 1
   }
@@ -201,38 +238,38 @@ export class DashbordComponentUser implements OnInit{
       prod.qty! -= 1
     }
   }
-// _____________________________________________________Add to cart start____________________________________________________________________________
+  // _____________________________________________________Add to cart start____________________________________________________________________________
 
 
-async presentModal() {
-  // this.closeProductlistModal()
-  const modal = await this.modalCtrl.create({
-    component: UserCartComponent,
-    breakpoints: [0, 0.25, 1, 0.75],
-    initialBreakpoint: 0.55,
-    cssClass: 'custom-modal'
-  });
-  await modal.present();
-}
+  async presentModal() {
+    // this.closeProductlistModal()
+    const modal = await this.modalCtrl.create({
+      component: UserCartComponent,
+      breakpoints: [0, 0.25, 1, 0.75],
+      initialBreakpoint: 0.55,
+      cssClass: 'custom-modal'
+    });
+    await modal.present();
+  }
 
 
-  itemsCart: any= [];
+  itemsCart: any = [];
 
   addCart(productValue: any) {
     console.log('esto es en addCart', productValue)
     console.log('esto es en addCart', this.productArray)
-    let cartDataNull =localStorage.getItem('localCart');
+    let cartDataNull = localStorage.getItem('localCart');
     if (cartDataNull == null) {
       let storeDataGet: any[] = [];
       storeDataGet.push(productValue);
-      localStorage.setItem('localCart',JSON.stringify(storeDataGet));
+      localStorage.setItem('localCart', JSON.stringify(storeDataGet));
     }
     else {
       let id = productValue.prod_id;
       let index: number = -1;
-      this.itemsCart =JSON.parse(localStorage.getItem('localCart')!);
-      for(let i = 0; i < this.itemsCart.length;i++) {
-        if (id ==this.itemsCart[i].prod_id) {
+      this.itemsCart = JSON.parse(localStorage.getItem('localCart')!);
+      for (let i = 0; i < this.itemsCart.length; i++) {
+        if (id == this.itemsCart[i].prod_id) {
           this.itemsCart[i].qty = productValue.qty
           index = i;
           break;
@@ -240,10 +277,10 @@ async presentModal() {
       }
       if (index == -1) {
         this.itemsCart.push(productValue);
-        localStorage.setItem ('localCart', JSON.stringify (this.itemsCart));
+        localStorage.setItem('localCart', JSON.stringify(this.itemsCart));
       }
       else {
-        localStorage.setItem('localCart', JSON.stringify (this.itemsCart));
+        localStorage.setItem('localCart', JSON.stringify(this.itemsCart));
       }
     }
     this.cartNumberFunc();
@@ -253,16 +290,14 @@ async presentModal() {
   cartNumber: number = 0;
 
   cartNumberFunc() {
-    let cartValue =JSON.parse(localStorage.getItem('localCart')!);
+    let cartValue = JSON.parse(localStorage.getItem('localCart')!);
     this.getProductApiCall(this.prod_id)
-    console.log(  this.cartNumber)
-    this.cartNumber =cartValue?.length;
+    console.log(this.cartNumber)
+    this.cartNumber = cartValue?.length;
     this.dataService.cartSubject.next(this.cartNumber);
   }
- 
-  }
- 
+
+}
 
 
 
-  

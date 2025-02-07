@@ -1,43 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../auth/service/data.service';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 import { ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
 import { AddressComponent } from '../address/address.component';
 import { WindowRefService } from '../../auth/service/window-ref.service';
+import { PaymentpageComponent } from '../paymentpage/paymentpage.component';
 @Component({
   selector: 'app-user-cart',
   templateUrl: './user-cart.component.html',
   styleUrls: ['./user-cart.component.scss'],
-  standalone:false
+  standalone: false
 })
-export class UserCartComponent  implements OnInit {
+export class UserCartComponent implements OnInit {
 
 
-  cartvalue:any = [];
+  cartvalue: any = [];
   UserId: any;
   useraddress: any = true;
-  addressshowvalue: boolean =false;
+  addressshowvalue: boolean = false;
 
 
-  constructor(public cart : DataService,private _location: Location,public modalController: ModalController,public route:Router,  public dataService :DataService,private router:Router,
-     public authService:AuthService,private winRef: WindowRefService,) {
-      this.UserId = this.authService.getUserId();
-      this.getUserAddressValue();
-     }
+  constructor(public cart: DataService, private _location: Location, public modalController: ModalController, public route: Router, public dataService: DataService, private router: Router,
+    public authService: AuthService, private winRef: WindowRefService,) {
+    this.UserId = this.authService.getUserId();
+    this.getUserAddressValue();
+  }
 
   dismissModal() {
-    if(this._location.path() =='/cart'){
+    if (this._location.path() == '/cart') {
       this.route.navigateByUrl('/home')
     }
-    else{
+    else {
       this.modalController.dismiss();
 
     }
   }
   ngOnInit() {
- 
+
     this.CartDetails();
     this.cartNumberFunc();
   }
@@ -46,21 +47,21 @@ export class UserCartComponent  implements OnInit {
   }
 
 
-  grandSubTotal:any ;
-  grandtotal:any;
+  grandSubTotal: any;
+  grandtotal: any;
   calcGrandTotal() {
     this.grandSubTotal = 0
     this.grandtotal = 0
-     this.getCartDetails.forEach((item: any)=> {
+    this.getCartDetails.forEach((item: any) => {
       let total = item.qty * item.price;
       this.grandSubTotal += total;
     });
-    this.grandtotal =this.grandSubTotal +15;
+    this.grandtotal = this.grandSubTotal + 15;
     console.log(this.grandtotal);
-   
+
   }
 
-  removeItem(id:any) {
+  removeItem(id: any) {
     // this.cart = this.cart.filter(item => item.id !== id);
     this.calcGrandTotal();
   }
@@ -90,7 +91,7 @@ export class UserCartComponent  implements OnInit {
       if (this.getCartDetails[i].prod_id == prod_id) {
         if (qty != 1) this.getCartDetails[i].qty = parseInt(qty) - 1;
       }
-      if(qty == 1){
+      if (qty == 1) {
         this.singleDelete(prod_id);
       }
     }
@@ -144,68 +145,92 @@ export class UserCartComponent  implements OnInit {
     this.cart.cartSubject.next(this.cartNumber);
   }
 
-  onSubmit() {
+  onSubmitForPay() {
     console.log(this.getCartDetails)
-      let r = Math.random().toString(36).substring(7);
-      let orderForm = {
-        user_id: this.UserId,
-        address_id:0,
-        invoic: r,
-        discount_amt: 0,
-        product_details: this.getCartDetails,
-        total_amt: this.grandtotal,
-        delivery_amt:  15,
-        subtoal:  this.grandSubTotal,
-        order_status: 1,
-        tax: 0,
-        payment_type: 1,
-      };
-      console.log(orderForm)
-      this.dataService.UserOrderSubmit(orderForm).subscribe(
-        (data: any) => this.closeDialog(data),
-      );
-    }
+    let r = Math.random().toString(36).substring(7);
+    let orderForm = {
+      user_id: this.UserId,
+      address_id: 0,
+      invoic: r,
+      discount_amt: 0,
+      product_details: this.getCartDetails,
+      total_amt: this.grandtotal,
+      delivery_amt: 15,
+      subtoal: this.grandSubTotal,
+      order_status: 1,
+      tax: 0,
+      payment_type: 1,
+    };
+    console.log(orderForm)
+    this.dataService.UserOrderSubmit(orderForm).subscribe(
+      (data: any) => this.closeDialog(data),
+    );
+  }
 
-    closeDialog(data: any) {
-      if (data.status === true) {
-        this.removeall();
-        this.dataService.openSnackBar(data.message, 'Dismiss');
-        this.router.navigateByUrl('/home');
-      }
+  closeDialog(data: any) {
+    if (data.status === true) {
+      this.removeall();
+      this.dataService.openSnackBar(data.message, 'Dismiss');
+      this.router.navigateByUrl('/home');
     }
+  }
 
-    async presentModal() {
-      const modal = await this.modalController.create({
-        component: AddressComponent,
-        breakpoints: [0, 0.25, 1, 0.75],
-        initialBreakpoint: 0.55,
-        cssClass: 'custom-modal'
-      });
-      await modal.present();
-    }
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: AddressComponent,
+      breakpoints: [0, 0.25, 1, 0.75],
+      initialBreakpoint: 0.55,
+      cssClass: 'custom-modal'
+    });
+    await modal.present();
+  }
 
-    getUserAddressValue() {
-      this.dataService.getUserAddressId(this.UserId)
-        .subscribe(
-          data => this.getUseraddress(data),
-        )
-    }
-    getUseraddress(data:any) {
-      if (data.status == 1 ) {
-       if(data.payload && data.payload.length > 0){
+  getUserAddressValue() {
+    this.dataService.getUserAddressId(this.UserId)
+      .subscribe(
+        data => this.getUseraddress(data),
+      )
+  }
+  getUseraddress(data: any) {
+    if (data.status == 1) {
+      if (data.payload && data.payload.length > 0) {
         this.useraddress = data.payload[0];
         this.addressshowvalue = true;
-       }
-       
-       else{
+      }
+
+      else {
         this.addressshowvalue = false;
-       }
       }
     }
-    goingaddressapage(){
-      this.modalController.dismiss();
-    }
-    
   }
+  goingaddressapage() {
+    this.modalController.dismiss();
+  }
+
+  async presentPaymentModal() {
+    const modal = await this.modalController.create({
+      component: PaymentpageComponent,
+      componentProps: {
+        address: this.useraddress,
+        total: this.grandtotal
+      },
+      breakpoints: [0, 0.25, 1, 0.75],
+      initialBreakpoint: 0.55,
+      cssClass: 'custom-modal'
+    });
+    modal.onDidDismiss()
+      .then((data) => {
+        const value = data['data']; // Here's your selected user!
+        if (value == 'done') {
+          this.onSubmitForPay();
+          this.modalController.dismiss('done');
+        }
+        else {
+          this.modalController.dismiss();
+        }
+      });
+    await modal.present();
+  }
+}
 
 

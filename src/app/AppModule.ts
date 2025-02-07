@@ -53,41 +53,28 @@ import { AddBillCounetrComponent } from './templates/admin/pages/bill-counter/ad
 import { CreateBillComponent } from './templates/admin/pages/bill/create-bill/create-bill.component';
 import { AppAdminRoutingModule } from './templates/admin/pages/adminroute';
 import { HelprequestComponent } from './templates/admin/pages/unprotected-component/helprequest/helprequest.component';
-import { ProductFilterPage } from './templates/userapp/pages/product-filter/product-filter.page';
-import { Tab1Page } from './templates/userapp/tab1/tab1.page';
-import { LayoutComponentUser } from './templates/userapp/dashbord/layout/layout.component';
-import { PageHeaderComponentUser } from './templates/userapp/dashbord/page-header/page-header.component';
 import { DashbordComponentUser } from './templates/userapp/dashbord/dashbord.component';
 import { AddressComponent } from './templates/userapp/address/address.component';
 import { UserprofileComponent } from './templates/userapp/userprofile/userprofile.component';
 import { LoginComponent } from './templates/admin/pages/login/login.component';
 import { HelpSuppportComponent } from './templates/userapp/pages/help-suppport/help-suppport.component';
 import { UserLoginComponent } from './templates/userapp/user-login/user-login.component';
-import { BannerComponent } from './templates/userapp/banner/banner.component';
-import { ProductDetailsComponent } from './templates/userapp/product-details/product-details.component';
 import { UserCartComponent } from './templates/userapp/user-cart/user-cart.component';
 import { UserorderlistComponent } from './templates/userapp/userorderlist/userorderlist.component';
-import { SettingComponent } from './templates/userapp/setting/setting.component';
-
-
+import { PaymentpageComponent } from './templates/userapp/paymentpage/paymentpage.component';
 
 @NgModule({
-  declarations: [AppComponent, MenulistComponent, CategiresComponent, AddContactBookComponent, ConfrimBoxComponent, PageHeaderComponent,CreateBillComponent,
-    ListContactBookComponent, AddKhataComponent, DashbordComponent, LayoutComponent, InvoiceComponent,ProfileComponent,TaxComponent,BillCounterComponent,
+  declarations: [AppComponent, MenulistComponent, CategiresComponent, AddContactBookComponent, ConfrimBoxComponent, PageHeaderComponent, CreateBillComponent,
+    ListContactBookComponent, AddKhataComponent, DashbordComponent, LayoutComponent, InvoiceComponent, ProfileComponent, TaxComponent, BillCounterComponent,
     AddBillCounetrComponent,
     MoreHisabComponent,
     ListKhataComponent,
     SearchpipeComponent,
-    AddkhataAmtComponent,AddressComponent,UserprofileComponent,LoginComponent
-    ,ProductFilterPage,UserorderlistComponent,Tab1Page,LayoutComponentUser,PageHeaderComponentUser,DashbordComponentUser,HelpSuppportComponent,UserLoginComponent,ProductDetailsComponent
-    ,BannerComponent,UserCartComponent,SettingComponent,
-
-
-
-
+    AddkhataAmtComponent, AddressComponent, UserprofileComponent, LoginComponent, UserorderlistComponent,
+    DashbordComponentUser, HelpSuppportComponent, UserLoginComponent, UserCartComponent, PaymentpageComponent
   ],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, MatButtonModule, ReactiveFormsModule,
-    MatInputModule, ReactiveFormsModule, MatToolbarModule, MatProgressSpinnerModule, CanvasJSAngularChartsModule,AppAdminRoutingModule,
+    MatInputModule, ReactiveFormsModule, MatToolbarModule, MatProgressSpinnerModule, CanvasJSAngularChartsModule, AppAdminRoutingModule,
     MatSnackBarModule,
     FormsModule,
     MatIconModule,
@@ -101,9 +88,9 @@ import { SettingComponent } from './templates/userapp/setting/setting.component'
   ],
 
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-     provideAnimationsAsync(), { provide: HTTP_INTERCEPTORS, useClass: TokenInterService, multi: true },
-      { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }],
-  
+  provideAnimationsAsync(), { provide: HTTP_INTERCEPTORS, useClass: TokenInterService, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }],
+
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

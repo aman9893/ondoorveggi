@@ -2,7 +2,6 @@ import { Component, computed, inject, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { DataService } from '../../auth/service/data.service';
 import { Router } from '@angular/router';
-import { ProductsService } from '../services/products/products.service';
 import { ActionSheetController, IonModal, MenuController, ModalController, NavController } from '@ionic/angular';
 import { UserCartComponent } from '../user-cart/user-cart.component';
 import { AddressComponent } from '../address/address.component';
@@ -60,7 +59,7 @@ export class DashbordComponentUser implements OnInit {
   addressshowvalue: boolean = false;
   UserId: any;
   constructor(public dataService: DataService, public authService: AuthService, public route: Router,
-    public menuCtrl: MenuController, private router: Router, public productService: ProductsService, public navCtrl: NavController,
+    public menuCtrl: MenuController, private router: Router, public navCtrl: NavController,
     private modalCtrl: ModalController,
     private actionSheetCtrl: ActionSheetController
   ) {
@@ -249,8 +248,20 @@ export class DashbordComponentUser implements OnInit {
       initialBreakpoint: 0.55,
       cssClass: 'custom-modal'
     });
+    
+    modal.onDidDismiss()
+    .then((data) => {
+      const value = data['data']; // Here's your selected user!
+      if(value == 'done'){
+         this.modalCtrl.dismiss();
+      }
+      else{
+        this.modalCtrl.dismiss();
+      }
+  });
     await modal.present();
   }
+  
 
 
   itemsCart: any = [];

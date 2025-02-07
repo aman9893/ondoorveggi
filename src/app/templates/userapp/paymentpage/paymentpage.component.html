@@ -1,0 +1,53 @@
+<div class="max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+  <div class="px-4 py-2 bg-white">
+      <div class="flex justify-between items-center" (click)="placeOPrder('close')">
+          <button class="text-lg"><i class="fas fa-chevron-left"></i></button>
+          <span class="font-semibold text-lg">Payment Options</span>
+          <span></span>
+      </div>
+      <div class="mt-2">
+          <span>To Pay: </span><span class="text-green-600 font-semibold">₹552.73</span>
+      </div>
+  </div>
+  <div class="px-4 py-3 bg-gray-50 mt-2">
+      <div class="flex items-center">
+          <i class="fas fa-map-marker-alt text-pink-500"></i>
+          <span class="ml-2 text-sm">Delivering to <span class="font-semibold">other</span> - 101 rajeswari building 11 b roa</span>
+      </div>
+  </div>
+  <div class="p-4">
+      <!-- <h3 class="font-semibold mb-2">Wallets</h3>
+      <div class="bg-gray-50 rounded-lg p-4 mb-4">
+          <div class="flex justify-between items-center mb-2">
+              <div class="flex items-center">
+                  <img src="https://placehold.co/32x32" alt="Amazon Pay icon" class="w-8 h-8 rounded-full">
+                  <span class="ml-2">Amazon Pay Balance</span>
+              </div>
+              <span class="text-red-500">Link</span>
+          </div>
+          <div class="flex justify-between items-center">
+              <div class="flex items-center">
+                  <img src="https://placehold.co/32x32" alt="Mobikwik Wallet icon" class="w-8 h-8 rounded-full">
+                  <span class="ml-2">Mobikwik Wallet</span>
+              </div>
+              <input type="radio" name="wallet" class="form-radio">
+          </div> 
+      </div> -->
+
+      <h3 class="font-semibold mt-4 mb-2">Pay On Delivery</h3>
+      <div class="bg-gray-50 rounded-lg p-4">
+          <div class="flex justify-between items-center">
+              <div class="flex items-center">
+                  <img src="https://placehold.co/32x32" alt="Cash on Delivery icon" class="w-8 h-8 rounded-full">
+                  <div class="ml-2">
+                      <div>Cash On Delivery</div>
+                      <div class="text-sm text-gray-500">Pay by Cash/UPI on delivery</div>
+                  </div>
+              </div>
+              <input type="radio" name="delivery" class="form-radio">
+          </div>
+      </div>
+  </div>
+  <button   type="submit" (click)="placeOPrder('done')" class="w-full bg-pink-500 text-white rounded-full py-3 font-bold">Order Place</button>
+
+</div>

@@ -1,6 +1,6 @@
 <div class="max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
   <div class="px-4 py-2 bg-white">
-      <div class="flex justify-between items-center" (click)="placeOPrder('close')">
+      <div class="flex justify-between items-center" (click)="placeOPrder('noPayment')">
           <button class="text-lg"><i class="fas fa-chevron-left"></i></button>
           <span class="font-semibold text-lg">Payment Options</span>
           <span></span>
@@ -48,6 +48,6 @@
           </div>
       </div>
   </div>
-  <button   type="submit" (click)="placeOPrder('done')" class="w-full bg-pink-500 text-white rounded-full py-3 font-bold">Order Place</button>
+  <button   type="submit" (click)="placeOPrder('Payment')" class="w-full bg-pink-500 text-white rounded-full py-3 font-bold">Order Place</button>
 
 </div>

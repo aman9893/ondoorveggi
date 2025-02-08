@@ -14,34 +14,6 @@ import { AddressComponent } from '../address/address.component';
 
 })
 export class DashbordComponentUser implements OnInit {
-  public appPages = [
-    {
-      title: "Profile",
-      url: "/userprofile",
-      icon: "person-circle"
-    },
-    {
-      title: "Orders",
-      url: "/Orders",
-      icon: "list-circle"
-    },
-    {
-      title: "Cart",
-      url: "/cart",
-      icon: "cart"
-    },
-    {
-      title: "Addresses",
-      url: "/Addresses",
-      icon: "location"
-    },
-    {
-      title: "Customer Support",
-      url: "/help",
-      icon: "headset"
-    },
-
-  ];
   categoryDataList: any;
   mobileview: boolean = false;
   banners: any
@@ -58,11 +30,12 @@ export class DashbordComponentUser implements OnInit {
   useraddress: any;
   addressshowvalue: boolean = false;
   UserId: any;
+  catname: any;
   constructor(public dataService: DataService, public authService: AuthService, public route: Router,
     public menuCtrl: MenuController, private router: Router, public navCtrl: NavController,
     private modalCtrl: ModalController,
-    private actionSheetCtrl: ActionSheetController
   ) {
+    this. cartValueUpdate();
   }
   ngOnInit(): void {
     this.UserId = this.authService.getUserId();
@@ -84,7 +57,6 @@ export class DashbordComponentUser implements OnInit {
         this.useraddress = data.payload[0];
         this.addressshowvalue = true;
       }
-
       else {
         this.addressshowvalue = false;
       }
@@ -126,7 +98,8 @@ export class DashbordComponentUser implements OnInit {
   }
   // _______________________________________getCategaryapiCall end__________________________________________________________
 
-  goToProductLIstDialogByCategaryPage(isOpen: boolean, id: any) {
+  goToProductLIstDialogByCategaryPage(isOpen: boolean, id: any, catname: any) {
+    this.catname = catname;
     this.productModelValue = isOpen;
     this.productlistpage = true;
     this.productdetailspage = false;
@@ -146,11 +119,9 @@ export class DashbordComponentUser implements OnInit {
   }
   getProductData(data: any) {
     this.productList = data.payload;
-    console.log(this.productList)
     this.getCartDetails = JSON.parse(localStorage.getItem('localCart')!);
     this.productArray = this.productList?.map((prod: any) => { return { ...prod, qty: 1 } });
     this.productArray?.forEach((a: any) => {
-      console.log('hii')
       this.getCartDetails?.forEach((b: any) => {
         if (a.prod_id === b.prod_id) {
           a.isAdded = true
@@ -178,7 +149,14 @@ export class DashbordComponentUser implements OnInit {
   }
 
   getProductDatadetails(data: any) {
-    this.productDetailsList = data;
+    const datalist = {
+      qty: 1,
+      isAdded: false,
+    }
+    const updateDetials = { ...data, ...datalist }
+    this.productDetailsList = updateDetials;
+    console.log(this.productDetailsList)
+    this.cartNumberFunc();
   }
 
   goToListPage() {
@@ -186,89 +164,45 @@ export class DashbordComponentUser implements OnInit {
     this.productdetailspage = false;
   }
 
-  // _____________________________________________________Endlogic____________________________________________________________________________
+  // _____________________________________________________=================Endlogic======================____________________________________________
 
 
-  // async sortProducts() {
-  //   const actionSheet = await this.actionSheetController.create({
-  //     header: "Sort by",
-  //     mode: "ios",
-  //     cssClass: "sort-products",
-  //     buttons: [{
-  //       text: 'Latest Products',
-  //       role: this.productService.sort.latest ? 'selected' : '',
-  //       handler: () => {
-  //         this.productService.applyLocalSort('id', 'asc', 'latest');
-  //       }
-  //     },
-  //     {
-  //       text: 'Price - Low to High',
-  //       role: this.productService.sort.price_lth ? 'selected' : '',
-  //       handler: () => {
-  //         this.productService.applyLocalSort('price', 'desc', 'price_lth');
-  //       }
-  //     },
-  //     {
-  //       text: 'Price - High to Low',
-  //       role: this.productService.sort.price_htl ? 'selected' : '',
-  //       handler: () => {
-  //         this.productService.applyLocalSort('price', 'asc', 'price_htl');
-  //       }
-
-  //     },
-  //     {
-  //       text: 'Cancel',
-  //       icon: 'close',
-  //       role: 'cancel',
-  //       handler: () => {
-  //         console.log('Cancel clicked');
-  //       }
-  //     }
-  //     ]
-  //   });
-  //   await actionSheet.present();
-  // }
-
-  inc(prod: any) {
-    prod.qty! += 1
-  }
-  dec(prod: any) {
-    if (prod.qty != 1) {
-      prod.qty! -= 1
-    }
-  }
-  // _____________________________________________________Add to cart start____________________________________________________________________________
+  // _____________________________________________________Add to cart start__________________________________________________________________________
 
 
-  async presentModal() {
-    // this.closeProductlistModal()
+  async presentViewCartModal() {
     const modal = await this.modalCtrl.create({
       component: UserCartComponent,
       breakpoints: [0, 0.25, 1, 0.75],
       initialBreakpoint: 0.55,
+      componentProps: {
+        address: this.useraddress,
+        catname: this.catname
+      },
       cssClass: 'custom-modal'
     });
-    
+
     modal.onDidDismiss()
-    .then((data) => {
-      const value = data['data']; // Here's your selected user!
-      if(value == 'done'){
-         this.modalCtrl.dismiss();
-      }
-      else{
-        this.modalCtrl.dismiss();
-      }
-  });
+      .then((data) => {
+        const value = data['data']; // Here's your selected user!
+        if (value == 'done') {
+          this.closeProductlistModal();
+        }
+        else {
+
+        }
+      });
     await modal.present();
   }
-  
+
+
+  // __________________________________________________________________________________________________________
+
 
 
   itemsCart: any = [];
 
   addCart(productValue: any) {
-    console.log('esto es en addCart', productValue)
-    console.log('esto es en addCart', this.productArray)
     let cartDataNull = localStorage.getItem('localCart');
     if (cartDataNull == null) {
       let storeDataGet: any[] = [];
@@ -295,20 +229,30 @@ export class DashbordComponentUser implements OnInit {
       }
     }
     this.cartNumberFunc();
-    this.getProductApiCall(this.prod_id)
   }
+
+  cartValueUpdate(){
+    this.dataService.productCartValueUpdate.subscribe((data:any) => this.cartUpdateValue(data),
+    (err: Error) => this.apiErrorHandal(err));
+
+  }
+
+  cartUpdateValue(val:any){
+    this.cartNumberFunc() 
+  }
+
 
   cartNumber: number = 0;
 
   cartNumberFunc() {
     let cartValue = JSON.parse(localStorage.getItem('localCart')!);
     this.getProductApiCall(this.prod_id)
-    console.log(this.cartNumber)
     this.cartNumber = cartValue?.length;
-    this.dataService.cartSubject.next(this.cartNumber);
+    this.getCartDetails?.forEach((b: any) => {
+      if (this.productDetailsList?.prod_id === b.prod_id) {
+        this.productDetailsList.isAdded = true
+      }
+    });
   }
 
 }
-
-
-

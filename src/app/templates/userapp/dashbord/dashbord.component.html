@@ -1,13 +1,11 @@
 <ng-container>
   <ion-menu contentId="main-content">
     <div class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
-
       <div class="flex items-center" (click)="openEnd()">
         <i class="fas fa-chevron-left text-lg"></i>
         <h1 class="ml-2 text-lg font-medium"> Setting </h1>
       </div>
     </div>
-
     <ion-content class="ion-padding">
       <div class="headside">
         <div class="flex items-center mb-6">
@@ -108,7 +106,7 @@
         <div *ngIf="mobileview && categoryDataList " class="p-1 grid grid-cols-2 gap-4">
           <!-- Product 1 -->
           <div *ngFor="let cate of categoryDataList" class="bg-white rounded-lg shadow-md p-4 relative">
-            <div (click)="goToProductLIstDialogByCategaryPage(true,cate.cat_id)">
+            <div (click)="goToProductLIstDialogByCategaryPage(true,cate.cat_id,cate.cat_name)">
               <div class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded-full">20% Off</div>
               <img src="{{cate.image}}" alt="Fresh tomatoes in a basket" class="rounded mb-2">
               <div class="flex items-center text-gray-500 text-xs mb-1">
@@ -124,7 +122,7 @@
             <div *ngFor="let cate of categoryDataList" class="text-center border p-1 rounded-md bg-white shadow">
               <p class="text-sm font-bold">{{cate.cat_name}}</p>
               <img src="{{cate.image}}" alt="A bowl with pasta dish" class="mx-auto mt-2 mb-2"
-                (click)="goToProductLIstDialogByCategaryPage(true,cate.cat_id)">
+                (click)="goToProductLIstDialogByCategaryPage(true,cate.cat_id,cate.cat_name)">
               <p class="text-blue-500 text-xs">Upto <strong>20%</strong> OFF</p>
             </div>
           </div>
@@ -160,24 +158,14 @@
 
 <ion-modal [isOpen]="productModelValue">
   <ng-template>
-
-
     <!---------------------------------------------------- list page-------------------------------------- -->
     <ion-content [fullscreen]="true" *ngIf="productlistpage">
       <ion-header>
-        <!-- <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-button (click)="closeProductlistModal()" >   <mat-icon>keyboard_arrow_left</mat-icon>Vegetables</ion-button>
-          </ion-buttons>
-          <ion-buttons slot="end">
-            <ion-icon name="funnel{{ productService.isSorted() ? '' : '-outline' }}" class="ion-padding-horizontal" (click)='sortProducts()'></ion-icon>
-          </ion-buttons>
-        </ion-toolbar> -->
         <div
           class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
           <div class="flex items-center"  (click)="closeProductlistModal()" >
             <i class="fas fa-chevron-left text-lg"></i>
-            <h1 class="ml-2 text-lg font-medium">Vegetables </h1>
+            <h1 class="ml-2 text-lg font-medium">{{catname}} </h1>
         </div>
           <div class="container-search  ">
             <div class="row height justify-content-left align-items-left">
@@ -226,8 +214,6 @@
             </p>
           </div>
         </div>
-
-
         <div *ngIf="!mobileview " class="grid grid-cols-4 gap-4">
           <div *ngFor='let product of this.productArray' class="bg-white rounded-lg shadow p-4">
             <div (click)="goToProductDetailsPageByProductId(true,product.prod_id)" class="relative">
@@ -252,7 +238,7 @@
           </div>
         </div>
 
-        <div (click)="presentModal()" class="fixed bottom-0 left-0 right-0 p-4 bg-white mt-2">
+        <div (click)="presentViewCartModal()" class="fixed bottom-0 left-0 right-0 p-4 bg-white mt-2">
           <div class="flex items-center justify-center space-x-2 bg-pink-500 text-white py-2 px-4 rounded-lg">
             <span>{{cartNumber}} Items </span>
             <button class="flex items-center">
@@ -320,9 +306,9 @@
             <!-- View Cart Section -->
             <div class="fixed bottom-0 left-0 right-0 p-4 bg-white mt-2">
               <div class="flex items-center justify-center space-x-2 bg-pink-500 text-white py-2 px-4 rounded-lg">
-                <button class="flex items-center">
+                <button class="flex items-center" (click)="addCart(productDetailsList)">
                   <i class="fas fa-shopping-cart"></i>
-                  <span class="ml-2">Add to Cart</span>
+                  <span  class="ml-2">    {{ productDetailsList.isAdded? 'Added' : 'Add to cart' }}</span>
                 </button>
               </div>
             </div>

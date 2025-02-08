@@ -1,69 +1,74 @@
-
-
-
 <ion-content class="bg-gray">
-  <div *ngIf="getCartDetails.length== 0" class="noitem">
-    <div class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
-        <div class="flex items-center"  (click)="dismissModal()" >
-            <i class="fas fa-chevron-left text-lg"></i>
-            <h1 class="ml-2 text-lg font-medium">Your Cart </h1>
-        </div>
-    </div>
-    <div class="divmaincart">
-    <ion-button  class="mt-10"  (click)="dismissModal()" fill="outline">Browse Product
-        <ion-icon slot="end" name="cart"></ion-icon>
-    </ion-button>
-        <img class="mt-10" src="assets/images/empty-cart.svg" />
-        <icon-text>Your cart is empty</icon-text>
-    </div>
-
-  </div>
-  <div *ngIf="getCartDetails.length" class="divmaincart" >
-    <div class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
-        <div class="flex items-center"  (click)="dismissModal()" >
-            <i class="fas fa-chevron-left text-lg"></i>
-            <h1 class="ml-2 text-lg font-medium">Your Cart </h1>
-        </div>
-  </div>
-  <div   class="max-w-md mx-auto  p-1 bg-white rounded-lg shadow-lg ">
-    <!-- <p class="text-green-500 mt-2"><i class="fas fa-check-circle"></i> Free Delivery unlocked, apply coupon to avail</p> -->
-
-    <div class="bg-blue-50  p-4 rounded">
-        <div class="flex items-center">
-            <div class="bg-teal-500 text-white rounded-full p-2">
-                <i class="far fa-clock"></i>
+    <div *ngIf="getCartDetails.length== 0" class="noitem">
+        <div
+            class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
+            <div class="flex items-center" (click)="dismissModal('cartpage')">
+                <i class="fas fa-chevron-left text-lg"></i>
+                <h1 class="ml-2 text-lg font-medium">Your Cart </h1>
             </div>
-            <h2 class="ml-2 font-semibold text-gray-800">Delivery in 6 mins</h2>
         </div>
-        <div class="mt-1">
-            <div  *ngFor="let item of getCartDetails" class="flex items-center justify-between">
-                <div  class="flex items-start">
-                    <img src="{{item.nutrition_weight}}" alt="Image of Grapes Green Sonaka Seedless" class="w-10 h-10">
-                    <div class="ml-2">
-                        <p class="text-sm font-medium text-gray-900">{{ item.name }}</p>
-                        <p class="text-xs text-gray-500">{{item.price}}</p>
-                        <p class="text-xs text-gray-500">{{item.unit_name}} {{item.unit_value}}</p>
-                    </div>
-                </div>
+        <div class="divmaincartno">
+            <div>
+                <ion-icon name="logo-tux" size="large" color="primary"></ion-icon>
+                <br />
+                <icon-text>Your cart is empty</icon-text>
+            </div>
+            <ion-button class="mt-10" (click)="dismissModal('cartpage')" fill="outline">Browse Product
+                <ion-icon slot="end" name="cart"></ion-icon>
+            </ion-button>
+        </div>
+    </div>
+    <div *ngIf="getCartDetails.length" class="divmaincart">
+        <div
+            class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
+            <div class="flex items-center" (click)="dismissModal('cartpage')">
+                <i class="fas fa-chevron-left text-lg"></i>
+                <h1 class="ml-2 text-lg font-medium">Your Cart </h1>
+            </div>
+        </div>
+        <div class="max-w-md mx-auto  p-1 bg-white rounded-lg shadow-lg ">
+            <!-- <p class="text-green-500 mt-2"><i class="fas fa-check-circle"></i> Free Delivery unlocked, apply coupon to avail</p> -->
+
+            <div class="bg-blue-50  p-4 rounded">
                 <div class="flex items-center">
-                    <button class="bg-pink-600 text-white rounded-full w-6 h-6 text-center" (click)="decQnt(item.prod_id, item.qty)">-</button>
-                    <span class="px-2">  {{ item.qty }}</span>
-                    <button class="bg-pink-600 text-white rounded-full w-6 h-6 text-center"    (click)="incQnt(item.prod_id, item.qty)">+</button>
-                    <div class="ml-4 text-right">
-                        <p class="text-gray-900">₹{{ item.qty * item.price | number }}</p>
-                        <!-- <p class="text-xs line-through text-gray-500">₹150</p> -->
+                    <div class="bg-teal-500 text-white rounded-full p-2">
+                        <i class="far fa-clock"></i>
+                    </div>
+                    <h2 class="ml-2 font-semibold text-gray-800">Delivery in 6 mins</h2>
+                </div>
+                <div class="mt-1">
+                    <div *ngFor="let item of getCartDetails" class="flex items-center justify-between">
+                        <div class="flex items-start">
+                            <img src="{{item.nutrition_weight}}" alt="Image of Grapes Green Sonaka Seedless"
+                                class="w-10 h-10">
+                            <div class="ml-2">
+                                <p class="text-sm font-medium text-gray-900">{{ item.name }}</p>
+                                <p class="text-xs text-gray-500">{{item.price}}</p>
+                                <p class="text-xs text-gray-500">{{item.unit_name}} {{item.unit_value}}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <button class="bg-pink-600 text-white rounded-full w-6 h-6 text-center"
+                                (click)="decQnt(item.prod_id, item.qty)">-</button>
+                            <span class="px-2"> {{ item.qty }}</span>
+                            <button class="bg-pink-600 text-white rounded-full w-6 h-6 text-center"
+                                (click)="incQnt(item.prod_id, item.qty)">+</button>
+                            <div class="ml-4 text-right">
+                                <p class="text-gray-900">₹{{ item.qty * item.price | number }}</p>
+                                <!-- <p class="text-xs line-through text-gray-500">₹150</p> -->
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <p class="mt-4 font-medium">Missed something?</p>
-    <button  (click)="dismissModal()" class="bg-black text-white font-medium text-sm mt-2 px-4 py-2 rounded flex items-center">
-        <i class="fas fa-plus-circle mr-2"></i> Add More Items
-    </button>
+            <p class="mt-4 font-medium">Missed something?</p>
+            <button (click)="dismissModal('cartpage')"
+                class="bg-black text-white font-medium text-sm mt-2 px-4 py-2 rounded flex items-center">
+                <i class="fas fa-plus-circle mr-2"></i> Add More Items
+            </button>
 
-    <!-- <button class="mt-8 w-full bg-pink-600 text-white font-medium py-3 rounded">
+            <!-- <button class="mt-8 w-full bg-pink-600 text-white font-medium py-3 rounded">
         Add Address to proceed
     </button>
        <div class="bg-white rounded-xl p-4 shadow-sm mb-4">
@@ -90,50 +95,50 @@
         </div>
     </div> -->
 
-    <!-- Bill Summary -->
-    <div class="bg-white rounded-xl p-4 shadow-sm mb-4">
-        <!-- <div class="flex justify-between items-baseline mb-2">
+            <!-- Bill Summary -->
+            <div class="bg-white rounded-xl p-4 shadow-sm mb-10">
+                <!-- <div class="flex justify-between items-baseline mb-2">
             <span class="font-semibold text-sm text-gray-700">To Pay</span>
             <div class="text-right">
                 <span class="text-green-600 font-bold">₹{{total}}</span>
             </div>
         </div> -->
-        <!-- <p class="text-xs text-gray-500">Incl. all taxes and charges</p>
+                <!-- <p class="text-xs text-gray-500">Incl. all taxes and charges</p>
         <hr class="my-4"> -->
 
-        <!-- Detailed Summary -->
-        <h3 class="font-bold text-gray-700 mb-0">Bill Summary</h3>
-        <div class="flex justify-between items-center mb-2">
-            <span>Item Total</span>
-            <div class="text-right">
-                <!-- <span class="line-through text-gray-400 text-xs">₹{{grandTotal}}</span> -->
-                <span class="text-red-600 font-bold">₹{{total}}</span>
+                <!-- Detailed Summary -->
+                <h3 class="font-bold text-gray-700 mb-0">Bill Summary</h3>
+                <div class="flex justify-between items-center mb-2">
+                    <span>Item Total</span>
+                    <div class="text-right">
+                        <!-- <span class="line-through text-gray-400 text-xs">₹{{grandTotal}}</span> -->
+                        <span class="text-red-600 font-bold">₹{{total}}</span>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center mb-2">
+                    <span>Delivery Fee</span>
+                    <div class="text-right">
+                        <!-- <span class="line-through text-gray-400 text-xs">₹15</span> -->
+                        <span class="text-green-600 font-bold">₹15</span>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-green-600 font-medium text-xs">Free Handling Charge !</span>
+                    <button class="text-sm text-red-500">₹0</button>
+                </div>
+                <hr class="my-4">
+                <div class="flex justify-between items-baseline">
+                    <span class="font-semibold text-sm text-gray-700">To Pay</span>
+                    <div class="text-right">
+                        <!-- <span class="line-through text-gray-400 text-xs">₹710.23</span> -->
+                        <span class="text-green-600 font-bold">₹{{total +15}} </span>
+                        <!-- <span class="text-green-600 text-xs font-medium ml-2">SAVING ₹174.09</span> -->
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="flex justify-between items-center mb-2">
-            <span>Delivery Fee</span>
-            <div class="text-right">
-                <!-- <span class="line-through text-gray-400 text-xs">₹15</span> -->
-                <span class="text-green-600 font-bold">₹15</span>
-            </div>
-        </div>
-        <div class="flex justify-between items-center mb-2">
-            <span class="text-green-600 font-medium text-xs">Free Handling Charge !</span>
-            <button class="text-sm text-red-500">₹0</button>
-        </div>
-        <hr class="my-4">
-        <div class="flex justify-between items-baseline">
-            <span class="font-semibold text-sm text-gray-700">To Pay</span>
-            <div class="text-right">
-                <!-- <span class="line-through text-gray-400 text-xs">₹710.23</span> -->
-                <span class="text-green-600 font-bold">₹{{total +15}} </span>
-                <!-- <span class="text-green-600 text-xs font-medium ml-2">SAVING ₹174.09</span> -->
-            </div>
-        </div>
-    </div>
 
-    <!-- Delivery Info -->
-    <!-- <div class="bg-white rounded-xl p-4 shadow-sm ">
+            <!-- Delivery Info -->
+            <!-- <div class="bg-white rounded-xl p-4 shadow-sm ">
      <div class="flex justify-between items-center mb-2">
             <div class="flex items-center space-x-2">
                 <i class="fas fa-comment-dots"></i>
@@ -160,28 +165,31 @@
         <p class="text-xs text-gray-500">Learn more about how we ensure their safety</p>
     </div> -->
 
-    <!-- Delivery to Address and Pay Button -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-lg">
-        <div *ngIf="addressshowvalue" class="flex justify-between items-center mb-2">
-            <div (click)="presentModal()" class="flex items-center space-x-2">
-                <i class="fas fa-map-marker-alt text-purple-500"></i>
-                <div class="flex flex-col">
-                    <span class="font-semibold text-sm">Delivering to other</span>
-                    <p class="text-xs">  {{useraddress.address}}
-                        {{useraddress.roadno}} 
-                        {{useraddress.city}} 
-                        {{useraddress.state}} 
-                        {{useraddress.postal_code}} </p>
+            <!-- Delivery to Address and Pay Button -->
+            <div class="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-lg">
+                <div *ngIf="addressshowvalue" class="flex justify-between items-center mb-2">
+                    <div (click)="presentAddressModal()" class="flex items-center space-x-2">
+                        <i class="fas fa-map-marker-alt text-purple-500"></i>
+                        <div class="flex flex-col">
+                            <span class="font-semibold text-sm">Delivering to other</span>
+                            <p class="text-xs"> {{useraddress.address}}
+                                {{useraddress.roadno}}
+                                {{useraddress.city}}
+                                {{useraddress.state}}
+                                {{useraddress.postal_code}} </p>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
                 </div>
+                <button *ngIf="!addressshowvalue" type="submit" (click)="presentAddressModal()"
+                    class="w-full bg-pink-500 text-white rounded-full py-3 font-bold">Add Address</button>
+                <button *ngIf="addressshowvalue" type="submit" (click)="presentPaymentModal()"
+                    class="w-full bg-pink-500 text-white rounded-full py-3 font-bold">Click to Pay ₹{{total
+                    +15}}</button>
             </div>
-            <i class="fas fa-chevron-down"></i>
         </div>
-        <button  *ngIf="!addressshowvalue" type="submit" (click)="goingaddressapage()" class="w-full bg-pink-500 text-white rounded-full py-3 font-bold">Add Address</button>
-        <button   *ngIf="addressshowvalue" type="submit" (click)="presentPaymentModal()" class="w-full bg-pink-500 text-white rounded-full py-3 font-bold">Click to Pay ₹{{total +15}}</button>
-    </div>
-</div>
 
-  <!-- <ion-list *ngIf="cart.items.length > 0" class="bg-gray" data-cy="cart-list">
+        <!-- <ion-list *ngIf="cart.items.length > 0" class="bg-gray" data-cy="cart-list">
     <ion-row *ngFor="let product of cart.items;let i = index;" class="rrow" class="ion-no-padding mt-1 bg-white">
         <ion-col size="3">
             <img src="{{product.imgurl || 'assets/images/products.svg'}}" style="height: 100%;"/>
@@ -199,7 +207,7 @@
         </ion-col>
     </ion-row>
   </ion-list> -->
-  </div>
+    </div>
 </ion-content>
 
 <!-- <ion-footer class="ion-no-border">

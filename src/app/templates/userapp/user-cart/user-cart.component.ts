@@ -14,13 +14,10 @@ import { PaymentpageComponent } from '../paymentpage/paymentpage.component';
   standalone: false
 })
 export class UserCartComponent implements OnInit {
-
-
   cartvalue: any = [];
   UserId: any;
   useraddress: any = true;
   addressshowvalue: boolean = false;
-
 
   constructor(public cart: DataService, private _location: Location, public modalController: ModalController, public route: Router, public dataService: DataService, private router: Router,
     public authService: AuthService, private winRef: WindowRefService,) {
@@ -28,24 +25,17 @@ export class UserCartComponent implements OnInit {
     this.getUserAddressValue();
   }
 
-  dismissModal() {
+  dismissModal(cartpage:any) {
     if (this._location.path() == '/cart') {
       this.route.navigateByUrl('/home')
     }
     else {
-      this.modalController.dismiss();
-
+      this.modalController.dismiss(cartpage);
     }
   }
   ngOnInit() {
-
     this.CartDetails();
-    this.cartNumberFunc();
   }
-
-  placeOrder() {
-  }
-
 
   grandSubTotal: any;
   grandtotal: any;
@@ -99,27 +89,6 @@ export class UserCartComponent implements OnInit {
     this.loadCart();
   }
 
-  total: number = 0;
-  loadCart() {
-    if (localStorage.getItem('localCart')) {
-      this.getCartDetails = JSON.parse(localStorage.getItem('localCart')!);
-      console.log(this.getCartDetails)
-      this.total = this.getCartDetails.reduce(function (acc: any, val: any) {
-        return acc + val.price * val.qty;
-      }, 0);
-    }
-    this.calcGrandTotal();
-
-  }
-
-  removeall() {
-    localStorage.removeItem('localCart');
-    this.getCartDetails = [];
-    this.total = 0;
-    this.cartNumber = 0;
-    this.cart.cartSubject.next(this.cartNumber);
-  }
-
   singleDelete(getCartDetail: any) {
     console.log(getCartDetail);
     if (localStorage.getItem('localCart')) {
@@ -132,17 +101,40 @@ export class UserCartComponent implements OnInit {
             JSON.stringify(this.getCartDetails)
           );
           this.loadCart();
-          this.cartNumberFunc();
         }
       }
     }
   }
 
+  total: number = 0;
+  loadCart() {
+    if (localStorage.getItem('localCart')) {
+      this.getCartDetails = JSON.parse(localStorage.getItem('localCart')!);
+      console.log(this.getCartDetails)
+      this.total = this.getCartDetails.reduce(function (acc: any, val: any) {
+        return acc + val.price * val.qty;
+      }, 0);
+    }
+    this.calcGrandTotal();
+    this.cartNumberFunc();
+
+  }
+
+  removeall() {
+    localStorage.removeItem('localCart');
+    this.getCartDetails = [];
+    this.total = 0;
+    this.cartNumber = 0;
+    this.cart.cartSubject.next(this.cartNumber);
+  }
+
+
+
   cartNumber: number = 0;
   cartNumberFunc() {
     var cartValue = JSON.parse(localStorage.getItem('localCart')!);
     this.cartNumber = cartValue?.length;
-    this.cart.cartSubject.next(this.cartNumber);
+    this.cart.productCartValueUpdate.emit(this.cartNumber);
   }
 
   onSubmitForPay() {
@@ -175,14 +167,23 @@ export class UserCartComponent implements OnInit {
     }
   }
 
-  async presentModal() {
+  async presentAddressModal() {
     const modal = await this.modalController.create({
       component: AddressComponent,
       breakpoints: [0, 0.25, 1, 0.75],
       initialBreakpoint: 0.55,
       cssClass: 'custom-modal'
     });
-    await modal.present();
+    modal.onDidDismiss()
+    .then((data) => {
+      const value = data['data']; // Here's your selected user!
+      if (value == 'address') {
+        this. getUserAddressValue();
+      }
+      else {
+      }
+    });
+  await modal.present();
   }
 
   getUserAddressValue() {
@@ -221,12 +222,12 @@ export class UserCartComponent implements OnInit {
     modal.onDidDismiss()
       .then((data) => {
         const value = data['data']; // Here's your selected user!
-        if (value == 'done') {
+        if (value == 'Payment') {
           this.onSubmitForPay();
           this.modalController.dismiss('done');
         }
         else {
-          this.modalController.dismiss();
+         
         }
       });
     await modal.present();

@@ -25,7 +25,7 @@ export class DataService {
 
   productdialog: EventEmitter<any> = new EventEmitter();
 
-  productlistemit: EventEmitter<any> = new EventEmitter();
+  productCartValueUpdate: EventEmitter<any> = new EventEmitter();
 
     banners = [
     { id: '1', banner: 'assets/banners/1.jpg', active: true },

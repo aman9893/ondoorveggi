@@ -158,7 +158,7 @@ export class LoginComponent implements OnInit {
       this.openSnackBar(data.message, 'Dismiss');
       this.authService.sendToken( this.loginData.auth_token);
       this.authService.setuserData( this.loginData.user_id);
-      this.myRoute.navigateByUrl('/home');
+      this.myRoute.navigateByUrl('/adminhome');
       this.loginForm.reset();
 
     }

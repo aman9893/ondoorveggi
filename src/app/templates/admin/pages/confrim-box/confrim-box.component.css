@@ -15,12 +15,12 @@
     color: #ed6056;
     float: left;
     width: 100%;
-    font-size: larger;
+    font-size: 15px;
 }
 .model_delete{
     float: left;
     width: 100%;
-    padding: 10PX;
+    padding: 20PX;
 }
 
 .Modal_explanation {

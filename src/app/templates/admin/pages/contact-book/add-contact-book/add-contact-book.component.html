@@ -8,20 +8,17 @@
 <div [formGroup]="ContactForm" novalidate>
     <div mat-dialog-content>
         <mat-form-field class="width_100" appearance="outline">
-            <mat-label>Full Name</mat-label>
             <input matInput placeholder="Enter FirstName" formControlName="firstName">
             <mat-error *ngIf="ContactForm['controls']['firstName'].invalid">{{ErrorMessage('First Name')}}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="width_100" appearance="outline">
-            <mat-label>Phone</mat-label>
             <input type="number" matInput placeholder="Enter Phone Number" formControlName="phonenumber">
             <mat-error
                 *ngIf="ContactForm['controls']['phonenumber'].invalid">{{ErrorvalidMessage('PhoneNumber')}}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="width_100" appearance="outline">
-            <mat-label>Email </mat-label>
             <input matInput placeholder="Enter Email Id" formControlName="email">
             <mat-error *ngIf="ContactForm['controls']['email'].invalid">{{ErrorvalidMessage('Email')}}</mat-error>
         </mat-form-field>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { DataService } from 'src/app/service/data.service';
+import { DataService } from 'src/app/templates/auth/service/data.service';
 
 @Component({
   selector: 'app-forgetpass',

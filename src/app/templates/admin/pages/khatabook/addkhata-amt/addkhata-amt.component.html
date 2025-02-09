@@ -2,16 +2,18 @@
 <form [formGroup]="khataFom" novalidate>
   <mat-dialog-content>
     <div class="">
+      <label>Add Amount</label>
+
       <mat-form-field appearance="outline">
-        <mat-label>Add Amount</mat-label>
         <input type="number" matInput placeholder="0.00" formControlName="amount">
         <mat-error *ngIf="khataFom['controls']['amount'].invalid">{{getError('Amount')}}</mat-error>
         <mat-icon matSuffix>attach_money</mat-icon>
       </mat-form-field>
     </div>
     <div class="">
+      <label>Amount Type</label>
+
       <mat-form-field class="matamt"   appearance="outline">
-        <mat-label>Amount Type</mat-label>
         <mat-select  formControlName="amount_status">
           <mat-option class="matamt"  *ngFor="let competence of amountType" value="{{competence.id}}">
             {{competence.value}}</mat-option>
@@ -20,8 +22,9 @@
       </mat-form-field>
     </div>
     <div class="">
+      <label>Desciption</label>
+
     <mat-form-field appearance="outline">
-      <mat-label>Desciption</mat-label>
       <textarea matInput formControlName="description" placeholder="Desciption"></textarea>
       <mat-icon matSuffix>menu_book</mat-icon>
     </mat-form-field>

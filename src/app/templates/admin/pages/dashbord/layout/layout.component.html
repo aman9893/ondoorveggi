@@ -3,9 +3,7 @@
   <mat-drawer #drawer class="drawer" mode="side" opened="false">
     <mat-toolbar class="header">
       <button class="profile-btn">
-        <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" />
-        <span *ngIf="userData && userData.company_name" class="title" routerLink="/">{{userData.company_name |
-          titlecase}}</span>
+        <div class="title">Ondoor Veggi Admin</div>
       </button>
       <mat-icon class="close" (click)="drawer.close()">close</mat-icon>
     </mat-toolbar>
@@ -40,9 +38,7 @@
         <mat-icon *ngIf="!drawer.opened" (click)="drawer.toggle()">
           menu
         </mat-icon>
-        <p class="app-name"><span *ngIf="userData && userData.company_name" class="title"
-            routerLink="/">{{userData.company_name | titlecase}}</span></p>
-      
+          <p class="app-name"> {{urlname}}</p>  
       </div>
       <div class="app-header-right">
         <button class="mode-switch" title="Switch Theme">
@@ -71,7 +67,7 @@
           </button>
         </mat-menu>
         <button  [matMenuTriggerFor]="menu" class="profile-btn">
-          <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" />
+        <mat-icon>person</mat-icon>
         </button>
       </div>
 

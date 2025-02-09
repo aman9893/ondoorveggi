@@ -37,7 +37,6 @@ import { AddContactBookComponent } from './templates/admin/pages/contact-book/ad
 import { ListContactBookComponent } from './templates/admin/pages/contact-book/list-contact-book/list-contact-book.component';
 import { DashbordComponent } from './templates/admin/pages/dashbord/dashbord.component';
 import { LayoutComponent } from './templates/admin/pages/dashbord/layout/layout.component';
-import { PageHeaderComponent } from './templates/admin/pages/dashbord/page-header/page-header.component';
 import { AddKhataComponent } from './templates/admin/pages/khatabook/add-khata/add-khata.component';
 import { AddkhataAmtComponent } from './templates/admin/pages/khatabook/addkhata-amt/addkhata-amt.component';
 import { ListKhataComponent } from './templates/admin/pages/khatabook/list-khata/list-khata.component';
@@ -52,7 +51,6 @@ import { BillCounterComponent } from './templates/admin/pages/bill-counter/bill-
 import { AddBillCounetrComponent } from './templates/admin/pages/bill-counter/add-bill-counetr/add-bill-counetr.component';
 import { CreateBillComponent } from './templates/admin/pages/bill/create-bill/create-bill.component';
 import { AppAdminRoutingModule } from './templates/admin/pages/adminroute';
-import { HelprequestComponent } from './templates/admin/pages/unprotected-component/helprequest/helprequest.component';
 import { DashbordComponentUser } from './templates/userapp/dashbord/dashbord.component';
 import { AddressComponent } from './templates/userapp/address/address.component';
 import { UserprofileComponent } from './templates/userapp/userprofile/userprofile.component';
@@ -64,7 +62,7 @@ import { UserorderlistComponent } from './templates/userapp/userorderlist/useror
 import { PaymentpageComponent } from './templates/userapp/paymentpage/paymentpage.component';
 
 @NgModule({
-  declarations: [AppComponent, MenulistComponent, CategiresComponent, AddContactBookComponent, ConfrimBoxComponent, PageHeaderComponent, CreateBillComponent,
+  declarations: [AppComponent, MenulistComponent, CategiresComponent, AddContactBookComponent, ConfrimBoxComponent, CreateBillComponent,
     ListContactBookComponent, AddKhataComponent, DashbordComponent, LayoutComponent, InvoiceComponent, ProfileComponent, TaxComponent, BillCounterComponent,
     AddBillCounetrComponent,
     MoreHisabComponent,

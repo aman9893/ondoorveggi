@@ -1,14 +1,8 @@
-<header>
-    <app-page-header icon="home"  >
-      <h3 routerLink="/home">Home</h3>
-      <span  class="centertext">
-        Poduct  management
-      </span>
-      </app-page-header>
-    </header>
-<ion-content class="ion-padding">
-<section class="divmain mt-10">
-        <ion-button expand="block" (click)="setOpen(true)">Add Product</ion-button>
+<section class="divmainadmin">
+        <button mat-flat-button color="primary" class="action" (click)="setOpen(true)">
+          <mat-icon class="mr-2">add</mat-icon>
+          <span> Add Product </span>
+        </button>
         <ion-modal [isOpen]="isModalOpen">
           <ng-template>
             <ion-header>
@@ -62,8 +56,8 @@
                     </ion-list>
                    
                     <div class="field">
-                        <button *ngIf="!updatebtn" class="btn" type="submit" (click)="onSubmit()">Save</button>
-                        <button *ngIf="updatebtn" class="btn" type="submit" (click)="update()">Update</button>
+                        <button *ngIf="!updatebtn" class="btnsubmit" type="submit" (click)="onSubmit()">Save</button>
+                        <button *ngIf="updatebtn" class="btnsubmit" type="submit" (click)="update()">Update</button>
                     </div>
                 </form>
             </ion-content>
@@ -71,24 +65,14 @@
         </ion-modal>
       
     <div *ngIf="billData && billData.length>0" class="grid-wrapper">
-        <div class="container-search ">
-            <div class="row height d-flex justify-content-left align-items-left">
-                <div class="form">
-                  <div class="search-wrapper ser">
-                    <input class="search-input" type="text" (keyup)="applyFilter($event)" placeholder="Search">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
-                      stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search"
-                      viewBox="0 0 24 24">
-                      <defs></defs>
-                      <circle cx="11" cy="11" r="8"></circle>
-                      <path d="M21 21l-4.35-4.35"></path>
-                    </svg>
-                  </div>
-              </div>
-      
-            </div>
-          </div>
-
+      <div class="container-search ">
+        <div class="bg-white rounded flex items-center w-full max-w-xl mr-4 p-2 shadow-sm border border-gray-200">
+          <button class="outline-none focus:outline-none">
+            <svg class="w-5 text-gray-600 h-5 cursor-pointer" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          </button>
+          <input type="search" (keyup)="applyFilter($event)" placeholder="Search" class="w-full pl-3 text-sm text-black outline-none focus:outline-none bg-transparent" />
+        </div>
+      </div>
         <div class="mat-elevation-z8" *ngIf="dataSource">
             <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" matSortmatSortStart="desc"
                 matSort>
@@ -145,4 +129,3 @@
     
     </div>
 </section>
-</ion-content>

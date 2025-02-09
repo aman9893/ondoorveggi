@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { DataService } from 'src/app/service/data.service';
+import { DataService } from 'src/app/templates/auth/service/data.service';
 
 @Component({
   selector: 'app-login-otp',

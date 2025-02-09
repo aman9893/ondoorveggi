@@ -1,9 +1,3 @@
-<app-page-header icon="home">
-    <h3 routerLink="/home">Home</h3>
-    <span class="centertext">
-        Bill management
-    </span>
-</app-page-header>
 <!-- <div>
     <ion-content class="ion-padding">
         <div *ngIf="menuDataList && menuDataList.length > 0">
@@ -591,180 +585,258 @@
     </div>
 </div> -->
 
-   <!-- Header -->
-   <div class="flex justify-between items-center mb-4">
-    <div class="flex items-center">
-        <img src="https://placehold.co/150x40" alt="Logo" class="mr-2">
-        <span class="text-lg">Order No:-1570</span>
-        <button class="bg-red-500 text-white px-3 py-1 ml-4">NEW ORDER</button>
-    </div>
-    <div>
-        <button class="bg-green-500 text-white px-3 py-1">ONLINE ORDER</button>
-        <button class="bg-red-500 text-white px-3 py-1 ml-2">CANCEL</button>
-    </div>
-</div>
-
-<!-- Main Content -->
-<div class="flex">
-    <!-- Sidebar -->
-    <div class="w-1/3 pr-4">
-        <div class="bg-white p-2 rounded shadow-md mb-4">
-            <div class="flex items-center mb-2">
-                <input type="text" placeholder="Search item" class="border p-2 w-full">
-                <i class="fas fa-search ml-2"></i>
-            </div>
-            <ul class="space-y-2">
-                <li class="bg-yellow-200 p-2 rounded">Popular</li>
-                <li class="p-2 rounded">Appetizers</li>
-                <li class="p-2 rounded">Soup</li>
-                <li class="p-2 rounded">Starter</li>
-                <li class="p-2 rounded">Salad</li>
-                <li class="p-2 rounded">Punjabi</li>
-                <li class="p-2 rounded">South Indian</li>
-                <li class="p-2 rounded">Seafood</li>
-                <li class="p-2 rounded">Gujrati</li>
-            </ul>
-        </div>
-        <div class="grid grid-cols-3 gap-2">
-            <div class="bg-white p-2 rounded text-center shadow-md">Paneer tikka</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Bhel</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Veg. Sandwich</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Pulav</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Garlic toast</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Chana puri</div>
-            <div class="bg-white p-2 rounded text-center shadow-md relative">
-                Dum aloo
-                <span class="bg-blue-500 text-white rounded-full px-2 absolute top-0 right-0">1</span>
-            </div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Balti paneer</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Paneer malai</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Bhaji pav</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Chole puri</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Masala dosa</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Hot dog</div>
-            <div class="bg-white p-2 rounded text-center shadow-md relative">
-                Cheese sandwich
-                <span class="bg-blue-500 text-white rounded-full px-2 absolute top-0 right-0">1</span>
-            </div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Chiken tawa</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Egg curry</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Amritsari fish</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Jaipuri paneer handi</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Hyadrabadi biryani</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Samosha</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Kachori</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Chole bhature</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Prawn curry</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Lababdar paneer</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Green beans</div>
-            <div class="bg-white p-2 rounded text-center shadow-md">Chilly Hoty</div>
-        </div>
-    </div>
-
-    <!-- Right Panel -->
-    <div class="w-2/3 pl-4 bg-white p-4 rounded shadow-md">
-        <div class="flex justify-between mb-2">
-            <ul class="flex space-x-4">
-                <li class="text-red-500">TABLE</li>
-                <li>HOME</li>
-                <li>PARCEL</li>
-            </ul>
-            <div class="flex items-center">
-                <span>Table No.</span>
-                <input type="text" value="10" class="border p-1 w-12 mx-2 text-center">
-                <span>Persons</span>
-                <input type="text" value="6" class="border p-1 w-12 mx-2 text-center">
-                <span>Mihir</span>
-            </div>
-        </div>
-
-        <div class="border-t pt-2">
-            <h3 class="font-bold mb-2">Customer Details</h3>
-
-            <div class="overflow-x-auto">
-                <table class="min-w-full table-auto border-collapse border">
-                    <thead>
-                        <tr class="bg-gray-200">
-                            <th class="border p-2">ITEMS</th>
-                            <th class="border p-2">QTY.</th>
-                            <th class="border p-2">PRICE</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="border p-2">Balti paneer</td>
-                            <td class="border p-2 flex items-center justify-center">
-                                <button class="border rounded bg-gray-300 px-2">-</button>
-                                <span class="px-2">1</span>
-                                <button class="border rounded bg-gray-300 px-2">+</button>
-                            </td>
-                            <td class="border p-2 text-right">190.00</td>
-                        </tr>
-                        <tr>
-                            <td class="border p-2">Cheese sandwich</td>
-                            <td class="border p-2 flex items-center justify-center">
-                                <button class="border rounded bg-gray-300 px-2">-</button>
-                                <span class="px-2">1</span>
-                                <button class="border rounded bg-gray-300 px-2">+</button>
-                            </td>
-                            <td class="border p-2 text-right">80.00</td>
-                        </tr>
-                        <tr>
-                            <td class="border p-2">Corn palak</td>
-                            <td class="border p-2 flex items-center justify-center">
-                                <button class="border rounded bg-gray-300 px-2">-</button>
-                                <span class="px-2">1</span>
-                                <button class="border rounded bg-gray-300 px-2">+</button>
-                            </td>
-                            <td class="border p-2 text-right">320.00</td>
-                        </tr>
-                        <tr>
-                            <td class="border p-2">Hot and sour</td>
-                            <td class="border p-2 flex items-center justify-center">
-                                <button class="border rounded bg-gray-300 px-2">-</button>
-                                <span class="px-2">1</span>
-                                <button class="border rounded bg-gray-300 px-2">+</button>
-                            </td>
-                            <td class="border p-2 text-right">160.00</td>
-                        </tr>
-                        
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="flex justify-between mt-4">
-                <span>Sub Total</span>
-                <span>13</span>
-                <span>1400.00</span>
-            </div>
-            <div class="flex justify-between items-center mt-2">
-                <span>Discount</span>
-                <div class="flex items-center space-x-2">
-                    <label>
-                        <input type="radio" name="discount" checked>
-                        Percentage
-                    </label>
-                    <label>
-                        <input type="radio" name="discount">
-                        Fixed
-                    </label>
-                    <input type="text" value="0.00" class="border p-1 w-16 text-right">
+<!-- Header -->
+<div class="divmainadmin">
+    <section>
+        <ion-toolbar color="danger">
+       
+            <div class="flex justify-between items-center">
+                <div>            
+                     <ion-buttons slot="start">
+                    <ion-back-button default-href="#"> </ion-back-button>Bill List
+                </ion-buttons>
+                </div>
+   
+                <div class="flex items-center">
+                    <span class="text-lg">Order No:-1570</span>
+                    <button class="bg-red-500 text-white px-3 py-1 ml-4">NEW ORDER</button>
                 </div>
             </div>
-            <div class="flex justify-between items-center mt-2">
-                <span>Tax (6%)</span>
-                <span>84.00</span>
-            </div>
-            <div class="flex justify-between items-center mt-4 bg-green-500 text-white p-2 rounded">
-                <span>Total</span>
-                <span>1484.00</span>
-            </div>
-
-            <div class="flex justify-between mt-4">
-                <button class="bg-red-500 text-white px-4 py-2 rounded">SAVE</button>
-                <button class="bg-green-500 text-white px-4 py-2 rounded">SAVE & PRINT</button>
-                <button class="bg-red-500 text-white px-4 py-2 rounded">KOT & PRINT</button>
+        </ion-toolbar>
+        <div class="container-search ">
+            <div class="bg-white rounded flex items-center w-full max-w-xl mr-4 p-2 shadow-sm border border-gray-200">
+                <button class="outline-none focus:outline-none">
+                    <svg class="w-5 text-gray-600 h-5 cursor-pointer" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </button>
+                <input type="search" placeholder="Search"
+                    class="w-full pl-3 text-sm text-black outline-none focus:outline-none bg-transparent" />
             </div>
         </div>
-    </div>
+        <!-- Main Content -->
+        <div class="flex">
+            <!-- Sidebar -->
+            <div class="w-1/1 pr-4">
+                <div class="bg-white p-3 rounded shadow-md mb-4">
+                    <ul class="space-y-2">
+                        <li class="bg-yellow-200 p-4 rounded">Popular</li>
+                        <li class="p-3 rounded">Appetizers</li>
+                        <li class="p-3 rounded">Soup</li>
+                        <li class="p-3  rounded">Starter</li>
+                        <li class="p-3 rounded">Salad</li>
+                        <li class="p-3 rounded">Punjabi</li>
+                        <li class="p-3 rounded">South Indian</li>
+                        <li class="p-3 rounded">Seafood</li>
+                        <li class="p-3  rounded">Gujrati</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="w-2/3">
+                <div class="grid grid-cols-4 gap-3">
+                    <div class="bg-white p-6 rounded text-center shadow-md">Paneer tikka</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Bhel</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Veg. Sandwich</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Pulav</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Garlic toast</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Chana puri</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md relative">
+                        Dum aloo
+                        <span class="bg-blue-500 text-white rounded-full px-2 absolute top-0 right-0">1</span>
+                    </div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Balti paneer</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Paneer malai</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Bhaji pav</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Chole puri</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Masala dosa</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Hot dog</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md relative">
+                        Cheese sandwich
+                        <span class="bg-blue-500 text-white rounded-full px-2 absolute top-0 right-0">1</span>
+                    </div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Chiken tawa</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Egg curry</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Amritsari fish</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Jaipuri paneer handi</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Hyadrabadi biryani</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Samosha</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Kachori</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Chole bhature</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Prawn curry</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Lababdar paneer</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Green beans</div>
+                    <div class="bg-white p-6 rounded text-center shadow-md">Chilly Hoty</div>
+                </div>
+            </div>
+            <!-- Right Panel -->
+            <div class="w-2/2 pl-4 bg-white p-4 rounded shadow-md">
+                <!-- <div class="flex space-x-4 mb-4">
+            <button class="bg-red-500 text-white px-4 py-2 rounded">TABLE</button>
+            <button class="bg-gray-100 px-4 py-2 rounded">HOME</button>
+            <button class="bg-gray-100 px-4 py-2 rounded">PARCEL</button>
+        </div> -->
+                <!-- 
+        <div class="grid grid-cols-3 gap-4 mb-4">
+            <div class="flex flex-col">
+                <label for="table-number">Table No.</label>
+                <input id="table-number" type="text" value="10" class="border p-6">
+            </div>
+            <div class="flex flex-col">
+                <label for="persons">Persons</label>
+                <input id="persons" type="text" value="6" class="border p-6">
+            </div>
+            <div class="flex flex-col">
+                <label for="name">Mihir</label>
+                <input id="name" type="text" value="Mihir" class="border p-6">
+            </div>
+        </div> -->
+                <div class="max-w-md mx-auto mt-0 bg-white rounded-lg shadow-lg">
+                    <!-- Header -->
+                    <div class="py-4 px-6 border-b border-gray-300 flex justify-between items-center">
+                        <h1 class="text-lg font-medium">Customer Details</h1>
+                        <i class="fas fa-angle-down"></i>
+                    </div>
+
+                    <!-- Items List -->
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-left">
+                            <thead>
+                                <tr class="border-b border-gray-300">
+                                    <th class="py-2 px-4">ITEMS</th>
+                                    <th class="py-2 px-4">QTY.</th>
+                                    <th class="py-2 px-4">PRICE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Row 1 -->
+                                <tr class="border-b border-gray-300">
+                                    <td class="py-2 px-4 text-sm">
+                                        <div class="flex items-center">
+                                            <button class="bg-red-500 text-white rounded-full p-1 mr-2"><i
+                                                    class="fas fa-times"></i></button>
+                                            <div>
+                                                <p>Balti paneer</p>
+                                                <span class="text-xs text-gray-500">Jain</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-4">
+                                        <div class="flex items-center space-x-2">
+                                            <button class="bg-gray-300 rounded-full p-1"><i
+                                                    class="fas fa-minus"></i></button>
+                                            <span class="px-2">1</span>
+                                            <button class="bg-gray-300 rounded-full p-1"><i
+                                                    class="fas fa-plus"></i></button>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-4">190.00</td>
+                                </tr>
+                                <!-- Row 2 -->
+                                <tr class="border-b border-gray-300">
+                                    <td class="py-2 px-4">
+                                        <div class="flex items-center">
+                                            <button class="bg-red-500 text-white rounded-full p-1 mr-2"><i
+                                                    class="fas fa-times"></i></button>
+                                            <p>Cheese sandwich</p>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-4">
+                                        <div class="flex items-center space-x-2">
+                                            <button class="bg-gray-300 rounded-full p-1"><i
+                                                    class="fas fa-minus"></i></button>
+                                            <span class="px-2">1</span>
+                                            <button class="bg-gray-300 rounded-full p-1"><i
+                                                    class="fas fa-plus"></i></button>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-4">80.00</td>
+                                </tr>
+                                <!-- Row 3 -->
+                                <tr class="border-b border-gray-300">
+                                    <td class="py-2 px-4">
+                                        <div class="flex items-center">
+                                            <button class="bg-red-500 text-white rounded-full p-1 mr-2"><i
+                                                    class="fas fa-times"></i></button>
+                                            <p>Corn palak</p>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-4">
+                                        <div class="flex items-center space-x-2">
+                                            <button class="bg-gray-300 rounded-full p-1"><i
+                                                    class="fas fa-minus"></i></button>
+                                            <span class="px-2">4</span>
+                                            <button class="bg-gray-300 rounded-full p-1"><i
+                                                    class="fas fa-plus"></i></button>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-4">320.00</td>
+                                </tr>
+                                <!-- Row 4 -->
+                                <tr class="border-b border-gray-300">
+                                    <td class="py-2 px-4">
+                                        <div class="flex items-center">
+                                            <button class="bg-red-500 text-white rounded-full p-1 mr-2"><i
+                                                    class="fas fa-times"></i></button>
+                                            <p>Hot and sour</p>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-4">
+                                        <div class="flex items-center space-x-2">
+                                            <button class="bg-gray-300 rounded-full p-1"><i
+                                                    class="fas fa-minus"></i></button>
+                                            <span class="px-2">2</span>
+                                            <button class="bg-gray-300 rounded-full p-1"><i
+                                                    class="fas fa-plus"></i></button>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-4">160.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="px-6 py-4">
+                        <div class="flex justify-between py-1">
+                            <span>Sub Total</span>
+                            <span>13</span>
+                            <span>1400.00</span>
+                        </div>
+                        <div class="flex items-center py-1">
+                            <span>Discount</span>
+                            <div class="flex items-center ml-3">
+                                <input type="radio" name="discount" id="percentage" class="mr-1">
+                                <label for="percentage" class="mr-4">Percentage</label>
+                                <input type="radio" name="discount" id="fixed" class="mr-1">
+                                <label for="fixed" class="mr-4">Fixed</label>
+                            </div>
+                            <input type="text" class="w-20 border rounded px-2 py-1" placeholder="0.00">
+                        </div>
+                        <div class="flex justify-between py-1">
+                            <span>Tax (6%)</span>
+                            <span>84.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Total -->
+                    <div class="bg-green-600 text-white px-6 py-2">
+                        <div class="flex justify-between">
+                            <span>Total</span>
+                            <span>1484.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex justify-between p-4">
+                        <button class="bg-red-500 text-white px-4 py-2 rounded-full">SAVE</button>
+                        <button class="bg-gray-700 text-white px-4 py-2 rounded-full">SAVE & PRINT</button>
+                        <button class="bg-gray-700 text-white px-4 py-2 rounded-full">KOT & PRINT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>

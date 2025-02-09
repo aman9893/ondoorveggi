@@ -10,27 +10,24 @@ import { ListKhataComponent } from './khatabook/list-khata/list-khata.component'
 import { MenulistComponent } from './menulist/menulist.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TaxComponent } from './tax/tax.component';
-import { HelprequestComponent } from './unprotected-component/helprequest/helprequest.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {path: '',component: LayoutComponent,
     children: [
-        { path: '', redirectTo: 'main-page', pathMatch: 'full' },
-  { path: 'admin', component: DashbordComponent, },
+  { path: '', redirectTo: 'main-page', pathMatch: 'full' },
+  { path: 'adminhome', component: DashbordComponent, },
   { path: 'contact', component: ListContactBookComponent, },
   { path: 'Khatabook', component: ListKhataComponent   },
   { path: 'product-list', component: MenulistComponent, },
   { path: 'category', component: CategiresComponent, },
-  { path: 'help', component: HelprequestComponent, },
   { path: 'profile', component: ProfileComponent, },
   { path: 'tax', component: TaxComponent, },
   { path: 'bill', component: BillCounterComponent, },
   { path: 'counterbill', component: AddBillCounetrComponent, },
-  { path: 'loginadmin', component: LoginComponent, },
     ]
   },
-
+  { path: 'adminlogin', component: LoginComponent},
 ];
 
 @NgModule({

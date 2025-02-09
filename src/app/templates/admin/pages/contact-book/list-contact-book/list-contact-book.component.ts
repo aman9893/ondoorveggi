@@ -36,8 +36,6 @@ export class ListContactBookComponent implements OnInit ,AfterViewInit{
     event.stopPropagation()
   }
 
-
-
   ngOnInit() {
     this.getConatctBookData();
     if (window.screen.width === 360) { // 768px portrait

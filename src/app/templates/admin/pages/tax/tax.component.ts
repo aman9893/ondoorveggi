@@ -89,7 +89,7 @@ export class TaxComponent implements OnInit {
 
   taxdata(data: any) {
     this.gstDatalist = data;
-    console.log(data)
+    this.updatebtn =false;
     this.dataSource =new MatTableDataSource(this.gstDatalist);
     this.setDataSourceAttributes();
   }
@@ -180,7 +180,7 @@ export class TaxComponent implements OnInit {
   deleteValue(id:any) {
     let deletedata = {
       flag:'delete',
-      body: 'Want to delete Attender? '
+      body: 'Want to delete tax Value? '
     };
     const dialogRef = this.dialog.open(ConfrimBoxComponent, {
       width: '300px',

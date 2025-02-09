@@ -60,7 +60,7 @@ export class TokenInterService implements HttpInterceptor {
     if (err.status === 401) {
       //navigate /delete cookies or whatever
       console.log('handled error ' + err.status);
-      this.router.navigate([`/login`]);
+      // this.router.navigate([`/login`]);
       this.showSuccess(err);
       // if you've caught / handled the error, you don't want to rethrow it unless you also want downstream consumers to have to handle it as well.
       return of(err.message);

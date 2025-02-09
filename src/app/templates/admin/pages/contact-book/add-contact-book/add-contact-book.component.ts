@@ -44,7 +44,7 @@ export class AddContactBookComponent implements OnInit {
       contact_status: (1)
     });
     if (this.update_data.flag === 'update') {
-      this.ContactForm.controls['firstName'].setValue(this.first_name1)
+      this.ContactForm.controls['firstName'].setValue(this.updateValue.contact_name)
       this.ContactForm.controls['lastName'].setValue(this.last_name2)
       this.ContactForm.controls['email'].setValue(this.updateValue.contact_email)
       this.ContactForm.controls['phonenumber'].setValue(this.updateValue.contact_number)
@@ -55,7 +55,8 @@ export class AddContactBookComponent implements OnInit {
     let fullName = this.ContactForm.controls['firstName'].value + ' ' + this.ContactForm.controls['lastName'].value;
     let ContactFormData = {
       user_id: this.user_id,
-      contact_name: fullName,
+      contact_name: this.ContactForm.controls['firstName'].value,
+
       contact_number: this.ContactForm.controls['phonenumber'].value,
       contact_email: this.ContactForm.controls['email'].value,
       contact_status: this.ContactForm.controls['contact_status'].value,
@@ -76,7 +77,7 @@ export class AddContactBookComponent implements OnInit {
     let ContactFormData = {
       contact_id: this.updateValue.contact_id,
       user_id: this.user_id,
-      contact_name: fullName,
+      contact_name: this.ContactForm.controls['firstName'].value,
       contact_number: this.ContactForm.controls['phonenumber'].value,
       contact_email: this.ContactForm.controls['email'].value,
       contact_status: this.ContactForm.controls['contact_status'].value,

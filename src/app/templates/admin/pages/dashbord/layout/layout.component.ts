@@ -34,12 +34,40 @@ export class LayoutComponent implements OnInit {
   menulist:any=[]
   mobileview: boolean =false;
   showFiller = false;
-    constructor(private router: Router,private cdref: ChangeDetectorRef,public dataService: DataService,public authService: AuthService, ) {
+  urlname: string='';
+    constructor(private router: Router,private cdref: ChangeDetectorRef,public dataService: DataService,public authService: AuthService) {
     this.mobileview =this.dataService.getIsMobileResolution();
 
     router.events.subscribe((val:any) => {
       if (val instanceof NavigationEnd) {
         console.log(val.url)
+        if(val.url == '/contact'){
+          this.urlname = 'Contacts Management'
+        }
+        else if(val.url == '/category'){
+          this.urlname = 'Category Management'
+        }
+        else if(val.url == '/product-list'){
+          this.urlname = 'Products Management'
+        }
+        else if(val.url == '/tax'){
+          this.urlname = 'Tax Management'
+        }
+        else if(val.url == '/Khatabook'){
+          this.urlname = 'Khatabook Management'
+        }
+        else if(val.url == '/adminhome'){
+          this.urlname = 'Dashborad'
+        }
+        else if(val.url == '/bill'){
+          this.urlname = 'Counter Bill'
+        }
+        else if(val.url == '/counterbill'){
+          this.urlname = 'Add Counter Bill'
+        }
+        
+        
+        
         if(this.mobileview || val.url==='/addcounterbill' || val.url==='/addcustombill'){
           this.drawer.close()
           this.cdref.detectChanges();
@@ -57,7 +85,7 @@ export class LayoutComponent implements OnInit {
         {
           title: 'Home',
           icon: 'home',
-          link: '/home',
+          link: '/adminhome',
           color: '##000'
         },
       
@@ -151,7 +179,7 @@ export class LayoutComponent implements OnInit {
         {
           title: 'Home',
           icon: 'home',
-          link: '/home',
+          link: '/adminhome',
           color: '##000'
         },
         {

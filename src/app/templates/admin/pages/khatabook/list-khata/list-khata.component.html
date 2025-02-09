@@ -1,19 +1,7 @@
-
-  <header>
-    <app-page-header-user icon="home"  >
-      <h3 routerLink="/home">Home</h3>
-      <span  class="centertext">
-        Khata Book Management
-
-      </span>
-      </app-page-header-user>
-    </header>
-    
-<ion-content class="ion-padding ">
-  <div class="mt-10">
+  <div class="divmainadmin">
     <div class="paddingheade">
       <button mat-flat-button color="primary" class="action" (click)="additemStcok('save')">
-        <mat-icon>note</mat-icon> New Khata Customer
+        <mat-icon>add</mat-icon> New Khata Customer
       </button>
     </div>
     <mat-accordion class="example-headers-align">
@@ -120,7 +108,6 @@
     </mat-accordion>
   </div>
 
-</ion-content>
 <div *ngIf="khataItemlist && khataItemlist.length === 0" class="width_100">
   <div class="empty-state">
     <div class="empty-state__content">

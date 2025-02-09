@@ -18,9 +18,7 @@ const routes: Routes = [
         { path: 'Addresses', component: AddressComponent, },
         { path: 'userprofile', component: UserprofileComponent, },
         { path: 'help', component: HelpSuppportComponent, },
-        { path: 'login', component: UserLoginComponent, },
-
-        
+        { path: 'userlogin', component: UserLoginComponent, },
   // },
 
 ];

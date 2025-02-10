@@ -11,6 +11,7 @@ import { MenulistComponent } from './menulist/menulist.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TaxComponent } from './tax/tax.component';
 import { LoginComponent } from './login/login.component';
+import { UserorderlistAdminviewComponent } from '../userorderlist-adminview/userorderlist-adminview.component';
 
 const routes: Routes = [
   {path: '',component: LayoutComponent,
@@ -25,9 +26,14 @@ const routes: Routes = [
   { path: 'tax', component: TaxComponent, },
   { path: 'bill', component: BillCounterComponent, },
   { path: 'counterbill', component: AddBillCounetrComponent, },
+  { path: 'orderlistapp', component: UserorderlistAdminviewComponent, },
+
+  
+
     ]
   },
   { path: 'adminlogin', component: LoginComponent},
+
 ];
 
 @NgModule({

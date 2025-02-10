@@ -65,6 +65,10 @@ export class LayoutComponent implements OnInit {
         else if(val.url == '/counterbill'){
           this.urlname = 'Add Counter Bill'
         }
+        else if(val.url == '/orderlistapp'){
+          this.urlname = 'Online Order'
+        }
+        
         
         
         
@@ -183,11 +187,19 @@ export class LayoutComponent implements OnInit {
           color: '##000'
         },
         {
+          title: 'Ondoor Veggi Order',
+          icon: 'restaurant_menu',
+          link: '/orderlistapp',
+          color: '##000'
+        },
+        {
           title: 'Billing',
           icon: 'restaurant_menu',
           link: '/bill',
           color: '##000'
         },
+
+        
        
         {
           title: 'Khatabook',

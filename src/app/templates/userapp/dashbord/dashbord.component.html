@@ -59,22 +59,16 @@
       </div>
     </ion-content>
   </ion-menu>
-  <div  id="main-content">
 
-    <!-- Header -->
+  <ion-header>
+    <!--==================================== Header address================================================ -->
     <div class="headbg text-white text-center p-2">
       <ion-title slot="start"><ion-text class="titlehed"> Ondoor<span class="headlinecolor">Veggi</span>
         </ion-text></ion-title>
-      <!-- <ion-buttons [collapse]="true" slot="end">
-        <i class="fas fa-shopping-cart text-gray-500 text-lg" routerLink="/cart">
-          <ion-badge routerLink="/cart" slot="start" color="danger"> {{ (dataService.cartSubject | async) || 0
-            }}</ion-badge>
-        </i>
-      </ion-buttons> -->
-      <div *ngIf="useraddress" class="flex justify-between items-center px-4 ml-6">
+      <div *ngIf="useraddress" class="flex justify-between items-center px-4 ml-3">
         <div (click)="presentModalAddress()" class="flex items-center">
           <i class="fas fa-map-marker-alt"></i>
-          <span class="ml-2"> 
+          <span class="ml-1 font-semibold"> 
             {{useraddress.address}}
             {{useraddress.roadno}} 
         </span>
@@ -82,25 +76,27 @@
         </div>
       </div>
     </div>
+  </ion-header>
 
-    <!-- Search -->
 
-    <!-- Banner -->
-    <div class="p-1">
-      <div
-        class="bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg flex items-center justify-between p-2 text-white">
-        <div>
-          <h2 class="text-l font-semibold">Fresh Vegetables</h2>
-          <button class="bg-white text-blue-600 font-semibold py-2 px-2 rounded mt-2">Order Now</button>
+    <!--==================================== main================================================ -->
+
+
+    
+
+
+    <ion-content  [fullscreen]="true" >
+      <div class="p-1">
+        <div
+          class="bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg flex items-center justify-between p-2 text-white">
+          <div>
+            <h2 class="text-l font-semibold">Fresh Vegetables</h2>
+            <button class="bg-white text-blue-600 font-semibold py-2 px-2 rounded mt-2">Order Now</button>
+          </div>
+          <img src="https://nationaltoday.com/wp-content/uploads/2022/05/Fresh-Veggies-1200x834.jpg" alt="Collection of smoking accessories, mints, and related products"
+            class="h-24 rounded">
         </div>
-        <img src="https://nationaltoday.com/wp-content/uploads/2022/05/Fresh-Veggies-1200x834.jpg" alt="Collection of smoking accessories, mints, and related products"
-          class="h-24 rounded">
       </div>
-    </div>
-
-
-
-    <ion-content>
       <div class="">
         <!-- Product Grid -->
         <div *ngIf="mobileview && categoryDataList " class="p-1 grid grid-cols-2 gap-4">
@@ -108,10 +104,7 @@
           <div *ngFor="let cate of categoryDataList" class="bg-white rounded-lg shadow-md p-4 relative">
             <div (click)="goToProductLIstDialogByCategaryPage(true,cate.cat_id,cate.cat_name)">
               <div class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded-full">20% Off</div>
-              <img src="{{cate.image}}" alt="Fresh tomatoes in a basket" class="rounded mb-2">
-              <div class="flex items-center text-gray-500 text-xs mb-1">
-                <i class="fas fa-clock mr-1"></i><span>10 Mins</span>
-              </div>
+              <img src="{{cate.image}}" alt="Fresh tomatoes in a basket" class="rounded mb-2 imgh">
               <h3 class="text-sm font-semibold cattit">{{cate.cat_name}}</h3>
             </div>
           </div>
@@ -127,27 +120,33 @@
             </div>
           </div>
         </div>
-        <div class="fixed bottom-0 left-0 right-0 bg-white shadow flex justify-around text-xs py-3 border-t">
-          <a (click)="openMenu()" class="text-center">
-            <i class="fas fa-user-circle text-gray-500 text-lg"></i>
-            <div>Profile</div>
-          </a>
-          <a routerLink="/home" class="text-center">
-            <i class="fas fa-th text-gray-500 text-lg"></i>
-            <div>Categories</div>
-          </a>
-          <a href="/Orders" class="text-center">
-            <i class=" fas fa-list text-gray-500 text-lg"></i>
-            <div>Orders</div>
-          </a>
-          <a routerLink="/cart" class="text-center">
-            <i class="fas fa-shopping-cart text-gray-500 text-lg"></i>
-            <div>Cart</div>
-          </a>
-        </div>
       </div>
     </ion-content>
-  </div>
+    
+    <!--==================================== footer================================================ -->
+    <div  id="main-content">
+
+    <ion-footer>
+      <div class="fixed bottom-0 left-0 right-0 bg-white shadow flex justify-around text-xs py-3 border-t">
+        <a (click)="openMenu()" class="text-center">
+          <i class="fas fa-user-circle text-gray-500 text-lg"></i>
+          <div>Profile</div>
+        </a>
+        <a routerLink="/home" class="text-center">
+          <i class="fas fa-th text-gray-500 text-lg"></i>
+          <div>Categories</div>
+        </a>
+        <a href="/Orders" class="text-center">
+          <i class=" fas fa-list text-gray-500 text-lg"></i>
+          <div>Orders</div>
+        </a>
+        <a routerLink="/cart" class="text-center">
+          <i class="fas fa-shopping-cart text-gray-500 text-lg"></i>
+          <div>Cart</div>
+        </a>
+      </div>
+    </ion-footer>
+    </div>
 </ng-container>
 
 

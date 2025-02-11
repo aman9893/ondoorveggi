@@ -83,7 +83,7 @@
     
 
 
-    <ion-content  [fullscreen]="true" >
+    <ion-content class="overflow-hidden"  [fullscreen]="true" >
       <div class="p-1">
         <div
           class="bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg flex items-center justify-between p-2 text-white">
@@ -96,7 +96,7 @@
             class="h-24 rounded">
         </div>
       </div>
-      <div class="">
+      <div class=" overflow-hidden">
         <!-- Product Grid -->
         <div *ngIf="mobileview && categoryDataList " class="p-1 grid grid-cols-2 gap-4">
           <!-- Product 1 -->

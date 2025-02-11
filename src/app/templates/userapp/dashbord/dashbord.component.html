@@ -62,9 +62,7 @@
 
   <ion-header>
     <!--==================================== Header address================================================ -->
-    <div class="headbg text-white text-center p-2">
-      <ion-title slot="start"><ion-text class="titlehed"> Ondoor<span class="headlinecolor">Veggi</span>
-        </ion-text></ion-title>
+    <div class="headbg text-white text-center p-3">
       <div *ngIf="useraddress" class="flex justify-between items-center px-4 ml-3">
         <div (click)="presentModalAddress()" class="flex items-center">
           <i class="fas fa-map-marker-alt"></i>
@@ -72,7 +70,7 @@
             {{useraddress.address}}
             {{useraddress.roadno}} 
         </span>
-          <i class="fas fa-chevron-down ml-1"></i>
+          <i class="fas fa-chevron-down ml-0"></i>
         </div>
       </div>
     </div>
@@ -90,8 +88,9 @@
         <div
           class="bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg flex items-center justify-between p-2 text-white">
           <div>
-            <h2 class="text-l font-semibold">Fresh Vegetables</h2>
-            <button class="bg-white text-blue-600 font-semibold py-2 px-2 rounded mt-2">Order Now</button>
+            <ion-title slot="start"><ion-text class="titlehed"> Ondoor<span class="headlinecolor">Veggi</span>
+            </ion-text></ion-title>
+            <ion-text class="subti"> Delivering Excellence, Freshly Packed</ion-text>
           </div>
           <img src="https://nationaltoday.com/wp-content/uploads/2022/05/Fresh-Veggies-1200x834.jpg" alt="Collection of smoking accessories, mints, and related products"
             class="h-24 rounded">

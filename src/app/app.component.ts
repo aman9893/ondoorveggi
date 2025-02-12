@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { IonRouterOutlet, Platform } from '@ionic/angular';
 import { App } from '@capacitor/app';
 import { StatusBar } from '@capacitor/status-bar';
+import { LoaderService } from './templates/auth/service/service/LoaderService';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +16,7 @@ export class AppComponent {
   // https://github.com/ionic-team/ionic-framework/issues/21630#issuecomment-683007162
   @ViewChild(IonRouterOutlet, { static: true }) routerOutlet?: IonRouterOutlet;
 
-  constructor(private platform: Platform) {
+  constructor(private platform: Platform,public loader: LoaderService) {
     // SafeAreaController.injectCSSVariables();
     StatusBar.setOverlaysWebView({ overlay: true }).catch(() => {});
 
@@ -25,4 +27,6 @@ export class AppComponent {
       }
     });
   }
+
+  isLoading: Subject<boolean> = this.loader.isLoading;
 }

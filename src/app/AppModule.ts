@@ -60,6 +60,8 @@ import { UserLoginComponent } from './templates/userapp/user-login/user-login.co
 import { UserCartComponent } from './templates/userapp/user-cart/user-cart.component';
 import { UserorderlistComponent } from './templates/userapp/userorderlist/userorderlist.component';
 import { PaymentpageComponent } from './templates/userapp/paymentpage/paymentpage.component';
+import { AdminAuthGuard } from './templates/auth/admin.gurad';
+import { LoaderService } from './templates/auth/service/service/LoaderService';
 
 @NgModule({
   declarations: [AppComponent, MenulistComponent, CategiresComponent, AddContactBookComponent, ConfrimBoxComponent, CreateBillComponent,
@@ -85,7 +87,7 @@ import { PaymentpageComponent } from './templates/userapp/paymentpage/paymentpag
     MatSidenavModule, MatListModule, MatExpansionModule, MatRadioModule, MatCheckboxModule
   ],
 
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },AdminAuthGuard,LoaderService, LoaderInterceptor,
   provideAnimationsAsync(), { provide: HTTP_INTERCEPTORS, useClass: TokenInterService, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }],
 

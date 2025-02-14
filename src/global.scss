@@ -373,3 +373,13 @@ ion-menu {
     margin-left: 4px;
   }
 }
+
+.custom-popover {
+  --width: 100%;
+}
+
+.full-screen-modal .mat-dialog-container {
+  padding: 1em;
+  width: 100%;
+  height: 100%;
+}

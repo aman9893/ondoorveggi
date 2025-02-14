@@ -2,9 +2,11 @@ import { Component, computed, inject, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { DataService } from '../../auth/service/data.service';
 import { Router } from '@angular/router';
-import { ActionSheetController, IonModal, MenuController, ModalController, NavController } from '@ionic/angular';
+import { ActionSheetController, IonModal, MenuController, ModalController, NavController, PopoverController } from '@ionic/angular';
 import { UserCartComponent } from '../user-cart/user-cart.component';
 import { AddressComponent } from '../address/address.component';
+import { OrderPlacedComponent } from '../order-placed/order-placed.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dashbord-user',
@@ -31,9 +33,10 @@ export class DashbordComponentUser implements OnInit {
   addressshowvalue: boolean = false;
   UserId: any;
   catname: any;
+  readonly dialog = inject(MatDialog);
   constructor(public dataService: DataService, public authService: AuthService, public route: Router,
     public menuCtrl: MenuController, private router: Router, public navCtrl: NavController,
-    private modalCtrl: ModalController,
+    private modalCtrl: ModalController,private popoverCtrl: PopoverController,
   ) {
     this. cartValueUpdate();
   }
@@ -187,14 +190,24 @@ export class DashbordComponentUser implements OnInit {
         const value = data['data']; // Here's your selected user!
         if (value == 'done') {
           this.closeProductlistModal();
+          this.openDialog('2000ms', '1000ms');
         }
         else {
-
         }
       });
     await modal.present();
   }
-
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(OrderPlacedComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: '100%',
+      width: '100%',
+      panelClass: 'full-screen-modal',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
 
   // __________________________________________________________________________________________________________
 

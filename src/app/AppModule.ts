@@ -62,6 +62,7 @@ import { UserorderlistComponent } from './templates/userapp/userorderlist/useror
 import { PaymentpageComponent } from './templates/userapp/paymentpage/paymentpage.component';
 import { AdminAuthGuard } from './templates/auth/admin.gurad';
 import { LoaderService } from './templates/auth/service/service/LoaderService';
+import { OrderPlacedComponent } from './templates/userapp/order-placed/order-placed.component';
 
 @NgModule({
   declarations: [AppComponent, MenulistComponent, CategiresComponent, AddContactBookComponent, ConfrimBoxComponent, CreateBillComponent,
@@ -69,7 +70,7 @@ import { LoaderService } from './templates/auth/service/service/LoaderService';
     AddBillCounetrComponent,
     MoreHisabComponent,
     ListKhataComponent,
-    SearchpipeComponent,
+    SearchpipeComponent,OrderPlacedComponent,
     AddkhataAmtComponent, AddressComponent, UserprofileComponent, LoginComponent, UserorderlistComponent,
     DashbordComponentUser, HelpSuppportComponent, UserLoginComponent, UserCartComponent, PaymentpageComponent
   ],

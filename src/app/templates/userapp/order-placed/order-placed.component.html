@@ -1,0 +1,70 @@
+<div *ngIf="!showNoti"  class="bg-gray-100">
+
+    <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden shadow-lg ">
+        <div class="flex items-center p-4">
+            <i  (click)="  dismissModal()" class="fas fa-arrow-left text-purple-700"></i>
+            <h1 class="text-lg font-semibold ml-2">Order Status</h1>
+            <div class="ml-auto">
+                <button  routerLink="/help" class="flex items-center border rounded-full p-2">
+                    <i class="fas fa-question-circle"></i>
+                    <span class="ml-1 text-sm">Help</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="px-4">
+            <img src="https://lh3.googleusercontent.com/gYE0KowUZ6rICF8vtgJTWAGv3tr6Nnxh4aaWDLVgQPU0gtU7xGwp0VYT9oDmrAInBRJODEV0SAXWMEboQ1vtsl7OzoF8XPeVmFfVQtk=w450" alt="Map showing route with a marker and path">
+        </div>
+
+        <div class="p-4">
+            <div class="flex items-center justify-between mb-2">
+                <h2 class="text-l font-semibold">Your order is on the way</h2>
+                <div class="bg-purple-600 text-white text-sm py-1 px-3 rounded-full">ARRIVING IN 3 mins</div>
+            </div>
+            <div class="flex items-center mb-3">
+                <img src="https://cdn.iconscout.com/icon/free/png-256/free-delivery-boy-icon-download-in-svg-png-gif-file-formats--man-indian-avatar-pack-people-icons-1943818.png" class="w-10 h-10 rounded-full" alt="Avatar of delivery partner">
+                <div class="ml-3">
+                    <h3 class="text-sm font-semibold">ajaya kumar muduli -9806701954</h3>
+                    <p class="text-sm">Delivery Partner</p>
+                </div>
+                <i class="fas fa-phone ml-auto text-red-500"></i>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <img src="https://banner2.cleanpng.com/20180311/aye/av0ihejsk.webp" class="w-10 h-10 rounded-full" alt="Icon representing order items">
+                    <div class="ml-3">
+                        <p class="text-sm">3 items </p>
+                        <p class="text-sm">Delivering to other: 101, rajeswari building 11 b road …</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-green-100 p-4 flex items-center justify-between">
+            <p>To Pay: <span class="text-green-600 font-bold">₹553</span> <span class="text-sm">Ask for QR code to pay via UPI</span></p>
+        </div>
+
+       
+    </div>
+
+</div>
+
+
+<div class="divmain">
+<div *ngIf="showNoti" class="showtemp px-4">
+    <img  class="imgwid" src="../../../../assets/order.gif">
+    <img class="imgwid2" src="https://media.lordicon.com/icons/wired/flat/1103-confetti.gif">
+</div>
+</div>
+<iframe
+type="audio/mp3"
+style="display: none"
+src="https://ia800206.us.archive.org/16/items/SilentRingtone/silence_64kb.mp3"
+>
+</iframe>
+
+<audio autoplay #audio>
+<source [src]="audioPath" type="audio/mp3" />
+</audio>
+<p #options></p>
+<button #button style="visibility: hidden"></button>

@@ -67,13 +67,14 @@
 
       <!--==================================== Header address================================================ -->
     <ion-header >
+      
       <div *ngIf="useraddress" class=" text-black p-2">
         <!-- <p class="additle"> Ondoor<span class="headlinecolor">Veggi</span></p> -->
-        <div class="flex items-center justify-between">
-           <div class="flex items-center space-x-2">
+        <div class="flex ">
+           <div class="flex space-x-2 ">
                 <i  (click)="openMenu()" class="fas fa-user-circle text-3xl"></i>
-                <div  (click)="presentModalAddress()">
-                    <p class=" font-semibold text-center text-lg">Delivery In <span class="minclo">10 Mins</span></p>
+                <div class="textcenter"  (click)="presentModalAddress()">
+                    <p class=" font-semibold textcenter text-lg">Delivery In <span class="minclo">10 Mins</span></p>
                     <p class="addt  text-center">Kukatpally -    {{useraddress.address}} <i class="fas fa-caret-down"></i></p>
                 </div>
             </div> 
@@ -83,7 +84,7 @@
   
 
     <ion-content class="overflow-hidden"  [fullscreen]="true" >
-      <!-- <div class="p-1">
+      <div class="p-1">
         <div
           class="bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg flex items-center justify-between p-2 text-white">
           <div>
@@ -94,7 +95,7 @@
           <img src="https://nationaltoday.com/wp-content/uploads/2022/05/Fresh-Veggies-1200x834.jpg" alt="Collection of smoking accessories, mints, and related products"
             class="h-24 rounded">
         </div>
-      </div> -->
+      </div>
       <div class=" overflow-hidden">
         <!-- Product Grid -->
         <div *ngIf="mobileview && categoryDataList " class="p-1 grid grid-cols-2 gap-4">

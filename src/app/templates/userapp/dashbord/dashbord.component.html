@@ -87,7 +87,7 @@
   <ion-content class="overflow-hidden" [fullscreen]="true">
     <div class="p-o">
       <div
-        class="bg-gradient-to-r from-blue-500 to-cyan-400  flex items-center justify-between p-5 text-white">
+        class="bg-gradient-to-r from-blue-500 to-cyan-400  flex items-center justify-between p-2 text-white">
         <div>
           <ion-text class="titlehed"> Ondoor<span class="headlinecolor">Veggi</span></ion-text>
           <br />
@@ -191,9 +191,19 @@
          
             <div  class="flex justify-around mb-1">
               <div *ngFor="let cate of categoryDataList"  class="flex flex-col items-center"  (click)="goToProductLIstDialogByCategaryPage(true,cate.cat_id,cate.cat_name)">
-                <div class="bg-white rounded-full p-4 mb-2">
-                  <i class="fas fa-apple-alt text-pink-500"></i>
+                <div *ngIf="cate.cat_name == 'Vegetable'" class="bg-white rounded-full p-1 mb-1">
+                <img class="heightdiv" src="https://img.icons8.com/?size=80&id=G2ZpWNtpZGTQ&format=png" >
               </div>
+              <div  *ngIf="cate.cat_name == 'Fruits'" class="bg-white rounded-full p-1 mb-1">
+                <img class="heightdiv" src="https://img.icons8.com/?size=80&id=zFSgaWKLkFJM&format=png" >
+              </div>
+              <div  *ngIf="cate.cat_name == 'Milk'" class="bg-white rounded-full p-1 mb-1">
+                <img class="heightdiv" src="https://img.icons8.com/?size=80&id=rPDqvlJvmebX&format=png" >
+              </div>
+              <div  *ngIf="cate.cat_name == 'Coconut'" class="bg-white rounded-full p-1 mb-1">
+                <img class="heightdiv" src="https://img.icons8.com/?size=50&id=9889&format=png" >
+              </div>
+           
                 <span class="text-gray-600">{{cate.cat_name}}</span>
               </div>
             </div>
@@ -203,26 +213,24 @@
               <div *ngFor='let product of productArray  | searchFilter: searchText' class="bg-white rounded-lg shadow">
                 <div class="relative">
                   <img src="{{product.nutrition_weight}}"  (click)="goToProductDetailsPageByProductId(true,product.prod_id)" alt="Capsicum Green" class="rounded-t-lg">
-                  <div class="absolute top-2 left-2 bg-purple-600 text-white text-xs rounded px-2">46% Off</div>
+                  <div class="absolute top-2 left-2 bg-purple-600 text-white text-xs rounded px-2">12% Off</div>
                 </div>
                 <div class="p-4">
                   <div class="flex justify-between items-center mb-3">
+                    <div class="text-gray-500 text-sm">{{product.unit_name}} {{product.unit_value}} </div>
 
-
-                    <div *ngIf="!product.isAdded"  (click)="addCart(product)" class="bg-pink-500 text-white rounded-full flex items-center justify-center px-2 py-2">
+                    <div *ngIf="!product.isAdded"  (click)="addCart(product)" class="bg-pink-500 px-2 py-1 text-white flex items-center justify-center ">
                       <i class="fas fa-plus"></i>
                     </div>
-                    <div *ngIf="product.isAdded" class="bg-pink-500 text-white rounded flex items-center justify-center px-2 py-2">
-                      <i class="fas fa-minus"></i>
-                      <span class="mx-2">1</span>
-                      <i class="fas fa-plus"></i>
+                    <div *ngIf="product.isAdded" class="bg-pink-500 text-white rounded flex items-center justify-center px-2 py-1">
+                      <i class="fas fa-minus"    (click)="incQnt(product.prod_id, product.qty,'dec')" ></i>
+                      <span class="mx-2">{{product.qty}}</span>
+                      <i class="fas fa-plus"  (click)="incQnt(product.prod_id, product.qty,'inc')"></i>
                     </div>
 
-
-                    <div class="text-xs text-gray-500"><i class="far fa-clock"></i> 6 Mins</div>
                   </div>
                   <h3 class="font-semibold text-lg">{{product.name}}</h3>
-                  <div class="text-gray-500 text-sm">{{product.unit_name}} {{product.unit_value}} </div>
+                 
                   <div class="flex items-center mt-1 text-lg">
                     <span class="font-semibold">₹ {{product.price}}</span>
                     <span class="text-gray-400 line-through ml-2">₹ {{product.price +10}}</span>

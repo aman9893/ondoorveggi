@@ -35,7 +35,27 @@ export class UserCartComponent implements OnInit {
   }
   ngOnInit() {
     this.CartDetails();
+    this.userCartSubscribe();
   }
+
+  userCartSubscribe() {
+    this.dataService.cartEvent
+      .subscribe(
+        data => this.cartEventV(data),
+      )
+  }
+  cartEventV(data:any){
+    console.log(data);
+
+     if(data.type == 'inc'){
+      this.incQnt(data.prod_id, data.qty)
+     }
+     if(data.type == 'dec'){
+      this.incQnt(data.prod_id, data.qty)
+     }
+   
+  }
+
 
   grandSubTotal: any;
   grandtotal: any;
@@ -47,7 +67,6 @@ export class UserCartComponent implements OnInit {
       this.grandSubTotal += total;
     });
     this.grandtotal = this.grandSubTotal + 15;
-    console.log(this.grandtotal);
 
   }
 
@@ -76,7 +95,7 @@ export class UserCartComponent implements OnInit {
   }
 
   decQnt(prod_id: any, qty: any) {
-    console.log(prod_id, qty);
+  
     for (let i = 0; i < this.getCartDetails.length; i++) {
       if (this.getCartDetails[i].prod_id == prod_id) {
         if (qty != 1) this.getCartDetails[i].qty = parseInt(qty) - 1;
@@ -90,7 +109,6 @@ export class UserCartComponent implements OnInit {
   }
 
   singleDelete(getCartDetail: any) {
-    console.log(getCartDetail);
     if (localStorage.getItem('localCart')) {
       this.getCartDetails = JSON.parse(localStorage.getItem('localCart')!);
       for (let i = 0; i < this.getCartDetails.length; i++) {
@@ -110,7 +128,6 @@ export class UserCartComponent implements OnInit {
   loadCart() {
     if (localStorage.getItem('localCart')) {
       this.getCartDetails = JSON.parse(localStorage.getItem('localCart')!);
-      console.log(this.getCartDetails)
       this.total = this.getCartDetails.reduce(function (acc: any, val: any) {
         return acc + val.price * val.qty;
       }, 0);
@@ -138,7 +155,6 @@ export class UserCartComponent implements OnInit {
   }
 
   onSubmitForPay() {
-    console.log(this.getCartDetails)
     let r = Math.random().toString(36).substring(7);
     let orderForm = {
       user_id: this.UserId,
@@ -153,7 +169,6 @@ export class UserCartComponent implements OnInit {
       tax: 0,
       payment_type: 1,
     };
-    console.log(orderForm)
     this.dataService.UserOrderSubmit(orderForm).subscribe(
       (data: any) => this.closeDialog(data),
     );

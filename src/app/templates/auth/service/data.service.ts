@@ -17,6 +17,8 @@ export class DataService {
       this.isMobileResolution = false;
     }
   }
+  cartEvent: EventEmitter<any> = new EventEmitter();
+
 
   cartDataList: any = [];
   productList = new BehaviorSubject<any>([]);

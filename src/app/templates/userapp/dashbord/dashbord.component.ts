@@ -36,7 +36,7 @@ export class DashbordComponentUser implements OnInit {
   readonly dialog = inject(MatDialog);
   constructor(public dataService: DataService, public authService: AuthService, public route: Router,
     public menuCtrl: MenuController, private router: Router, public navCtrl: NavController,
-    private modalCtrl: ModalController,private popoverCtrl: PopoverController,
+    private modalCtrl: ModalController,
   ) {
     this. cartValueUpdate();
   }
@@ -268,4 +268,15 @@ export class DashbordComponentUser implements OnInit {
     });
   }
 
+
+  incQnt(prod_id: any, qty: any,type:any){
+    // let data ={
+    //      prod_id:prod_id,
+    //      qty:qty,
+    //      type:type
+
+    // }
+    // this.dataService.cartEvent.emit(data);
+
+  }
 }

@@ -9,14 +9,15 @@
     <ion-content class="ion-padding">
       <div class="headside">
         <div class="flex items-center mb-6">
-          <img src="https://cdn-icons-png.flaticon.com/512/303/303593.png" style="height: 48px;" alt="User avatar" class="rounded-full">
+          <img src="https://cdn-icons-png.flaticon.com/512/303/303593.png" style="height: 48px;" alt="User avatar"
+            class="rounded-full">
           <div class="ml-3">
             <h2 class="text-lg font-semibold">aman jain</h2>
             <p class="text-sm text-gray-500">9806701954</p>
           </div>
         </div>
         <ul>
-          <li class="flex items-center justify-between py-3 border-b"  routerLink="/userprofile">
+          <li class="flex items-center justify-between py-3 border-b" routerLink="/userprofile">
             <div class="flex items-center">
               <i class="fas fa-user mr-3"></i>
               <span class="text-lg">Profile</span>
@@ -26,7 +27,7 @@
           <li class="flex items-center justify-between py-3 border-t border-b" routerLink="/Orders">
             <div class="flex items-center">
               <i class="fas fa-shopping-bag mr-3"></i>
-              <span class="text-lg"  >Orders</span>
+              <span class="text-lg">Orders</span>
             </div>
             <i class="fas fa-chevron-right text-pink-500"></i>
           </li>
@@ -44,7 +45,7 @@
             </div>
             <i class="fas fa-chevron-right text-pink-500"></i>
           </li>
-          <li class="flex items-center justify-between py-3 border-b"  routerLink="/help">
+          <li class="flex items-center justify-between py-3 border-b" routerLink="/help">
             <div class="flex items-center">
               <i class="fas fa-headset mr-3"></i>
               <span class="text-lg">Customer Support</span>
@@ -53,8 +54,8 @@
           </li>
         </ul>
         <div class="flex justify-center mt-6">
-          <ion-button  class="mt-10"  fill="outline">Log Out
-        </ion-button>
+          <ion-button class="mt-10" fill="outline">Log Out
+          </ion-button>
         </div>
       </div>
     </ion-content>
@@ -62,67 +63,67 @@
 
 
 
-    <!--==================================== main================================================ -->
+  <!--==================================== main================================================ -->
 
 
-      <!--==================================== Header address================================================ -->
-    <ion-header >
-      
-      <div *ngIf="useraddress" class=" text-black p-2">
-        <!-- <p class="additle"> Ondoor<span class="headlinecolor">Veggi</span></p> -->
-        <div class="flex ">
-           <div class="flex space-x-2 ">
-                <i  (click)="openMenu()" class="fas fa-user-circle text-3xl"></i>
-                <div class="textcenter"  (click)="presentModalAddress()">
-                    <p class=" font-semibold textcenter text-lg">Delivery In <span class="minclo">10 Mins</span></p>
-                    <p class="addt  text-center">Kukatpally -    {{useraddress.address}} <i class="fas fa-caret-down"></i></p>
-                </div>
-            </div> 
-        </div>
-        </div>
-    </ion-header>
-  
+  <!--==================================== Header address================================================ -->
+  <ion-header>
 
-    <ion-content class="overflow-hidden"  [fullscreen]="true" >
-      <div class="p-1">
-        <div
-          class="bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg flex items-center justify-between p-2 text-white">
-          <div>
-            <ion-text class="titlehed"> Ondoor<span class="headlinecolor">Veggi</span></ion-text>
-            <br/>
-            <ion-text class="subti"> Delivering Excellence, Freshly Packed </ion-text>
-          </div>
-          <img src="https://nationaltoday.com/wp-content/uploads/2022/05/Fresh-Veggies-1200x834.jpg" alt="Collection of smoking accessories, mints, and related products"
-            class="h-24 rounded">
-        </div>
-      </div>
-      <div class=" overflow-hidden">
-        <!-- Product Grid -->
-        <div *ngIf="mobileview && categoryDataList " class="p-1 grid grid-cols-2 gap-4">
-          <!-- Product 1 -->
-          <div *ngFor="let cate of categoryDataList" class="bg-white rounded-lg shadow-md p-4 relative">
-            <div (click)="goToProductLIstDialogByCategaryPage(true,cate.cat_id,cate.cat_name)">
-              <div class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded-full">20% Off</div>
-              <img src="{{cate.image}}" alt="Fresh tomatoes in a basket" class="rounded mb-2 imgh">
-              <h3 class="text-sm font-semibold cattit">{{cate.cat_name}}</h3>
-            </div>
-          </div>
-        </div>
-        <div class="p-4 p-3 mb-10">
-          <div *ngIf="categoryDataList && !mobileview" class="grid grid-cols-4 gap-4 mt-4">
-            <div *ngFor="let cate of categoryDataList" class="text-center border p-1 rounded-md bg-white shadow">
-              <p class="text-sm font-bold">{{cate.cat_name}}</p>
-              <img src="{{cate.image}}" alt="A bowl with pasta dish" class="mx-auto mt-2 mb-2"
-                (click)="goToProductLIstDialogByCategaryPage(true,cate.cat_id,cate.cat_name)">
-              <p class="text-blue-500 text-xs">Upto <strong>20%</strong> OFF</p>
-            </div>
+    <div *ngIf="useraddress" class=" text-black p-2">
+      <!-- <p class="additle"> Ondoor<span class="headlinecolor">Veggi</span></p> -->
+      <div class="flex ">
+        <div class="flex space-x-2 ">
+          <i (click)="openMenu()" class="fas fa-user-circle text-3xl"></i>
+          <div class="textcenter" (click)="presentModalAddress()">
+            <p class=" font-semibold textcenter text-lg">Delivery In <span class="minclo">10 Mins</span></p>
+            <p class="addt  text-center">Kukatpally - {{useraddress.address}} <i class="fas fa-caret-down"></i></p>
           </div>
         </div>
       </div>
-    </ion-content>
-    
-    <!--==================================== footer================================================ -->
-    <div  id="main-content">
+    </div>
+  </ion-header>
+
+
+  <ion-content class="overflow-hidden" [fullscreen]="true">
+    <div class="p-o">
+      <div
+        class="bg-gradient-to-r from-blue-500 to-cyan-400  flex items-center justify-between p-5 text-white">
+        <div>
+          <ion-text class="titlehed"> Ondoor<span class="headlinecolor">Veggi</span></ion-text>
+          <br />
+          <ion-text class="subti"> Delivering Excellence, Freshly Packed </ion-text>
+        </div>
+        <img src="https://nationaltoday.com/wp-content/uploads/2022/05/Fresh-Veggies-1200x834.jpg"
+          alt="Collection of smoking accessories, mints, and related products" class="h-24 rounded">
+      </div>
+    </div>
+    <div class=" overflow-hidden">
+      <!-- Product Grid -->
+      <div *ngIf="mobileview && categoryDataList " class="p-1 grid grid-cols-2 gap-4">
+        <!-- Product 1 -->
+        <div *ngFor="let cate of categoryDataList" class="bg-white rounded-lg shadow-md p-4 relative">
+          <div (click)="goToProductLIstDialogByCategaryPage(true,cate.cat_id,cate.cat_name)">
+            <div class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded-full">20% Off</div>
+            <img src="{{cate.image}}" alt="Fresh tomatoes in a basket" class="rounded mb-2 imgh">
+            <h3 class="text-sm font-semibold cattit">{{cate.cat_name}}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 p-3 mb-10">
+        <div *ngIf="categoryDataList && !mobileview" class="grid grid-cols-4 gap-4 mt-4">
+          <div *ngFor="let cate of categoryDataList" class="text-center border p-1 rounded-md bg-white shadow">
+            <p class="text-sm font-bold">{{cate.cat_name}}</p>
+            <img src="{{cate.image}}" alt="A bowl with pasta dish" class="mx-auto mt-2 mb-2"
+              (click)="goToProductLIstDialogByCategaryPage(true,cate.cat_id,cate.cat_name)">
+            <p class="text-blue-500 text-xs">Upto <strong>20%</strong> OFF</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+
+  <!--==================================== footer================================================ -->
+  <div id="main-content">
 
     <ion-footer>
       <div class="fixed bottom-0 left-0 right-0 bg-white shadow flex justify-around text-xs py-3 border-t">
@@ -144,7 +145,7 @@
         </a>
       </div>
     </ion-footer>
-    </div>
+  </div>
 </ng-container>
 
 
@@ -158,12 +159,11 @@
     <!---------------------------------------------------- list page-------------------------------------- -->
     <ion-content [fullscreen]="true" *ngIf="productlistpage">
       <ion-header>
-        <div
-          class="fixed z-10 top-0 left-0 right-0 flex p-2 bg-white shadow-lg items-center justify-between border-b">
-          <div class="flex items-center"  (click)="closeProductlistModal()" >
+        <div class="fixed z-10 top-0 left-0 right-0 flex p-2 bg-white shadow-lg items-center justify-between border-b">
+          <div class="flex items-center" (click)="closeProductlistModal()">
             <i class="fas fa-chevron-left text-lg"></i>
             <h1 class="ml-1 text-l font-medium">{{catname}} </h1>
-        </div>
+          </div>
           <div class="container-search  ">
             <div class="row height justify-content-left align-items-left">
               <div class="form">
@@ -183,13 +183,65 @@
         </div>
       </ion-header>
 
+
       <div class="divmainwraplist">
-        <div *ngIf="mobileview " class="grid grid-cols-2 gap-4">
+        <div class="bg-gray-50">
+          <div class="max-w-lg mx-auto ">
+            
+         
+            <div  class="flex justify-around mb-1">
+              <div *ngFor="let cate of categoryDataList"  class="flex flex-col items-center">
+                <div class="bg-white rounded-full p-4 mb-2">
+                  <i class="fas fa-apple-alt text-pink-500"></i>
+              </div>
+                <span class="text-gray-600">{{cate.cat_name}}</span>
+              </div>
+            </div>
+
+
+            <div *ngIf="mobileview " class="grid grid-cols-2 gap-4">
+              <div *ngFor='let product of productArray  | searchFilter: searchText' class="bg-white rounded-lg shadow">
+                <div class="relative">
+                  <img src="{{product.nutrition_weight}}"  (click)="goToProductDetailsPageByProductId(true,product.prod_id)" alt="Capsicum Green" class="rounded-t-lg">
+                  <div class="absolute top-2 left-2 bg-purple-600 text-white text-xs rounded px-2">46% Off</div>
+                </div>
+                <div class="p-4">
+                  <div class="flex justify-between items-center mb-3">
+
+
+                    <div *ngIf="!product.isAdded"  (click)="addCart(product)" class="bg-pink-500 text-white rounded-full flex items-center justify-center px-2 py-2">
+                      <i class="fas fa-plus"></i>
+                    </div>
+                    <div *ngIf="product.isAdded" class="bg-pink-500 text-white rounded flex items-center justify-center px-2 py-2">
+                      <i class="fas fa-minus"></i>
+                      <span class="mx-2">1</span>
+                      <i class="fas fa-plus"></i>
+                    </div>
+
+
+                    <div class="text-xs text-gray-500"><i class="far fa-clock"></i> 6 Mins</div>
+                  </div>
+                  <h3 class="font-semibold text-lg">{{product.name}}</h3>
+                  <div class="text-gray-500 text-sm">{{product.unit_name}} {{product.unit_value}} </div>
+                  <div class="flex items-center mt-1 text-lg">
+                    <span class="font-semibold">₹ {{product.price}}</span>
+                    <span class="text-gray-400 line-through ml-2">₹ {{product.price}}23363</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="divmainwraplist">
+        <!-- <div *ngIf="mobileview " class="grid grid-cols-2 gap-4">
           <div *ngFor='let product of productArray  | searchFilter: searchText' class="bg-white rounded-lg shadow p-4">
             <div class="relative">
               <img src="{{product.nutrition_weight}}" alt="Apples" class="rounded-lg w-full"
                 (click)="goToProductDetailsPageByProductId(true,product.prod_id)">
-              <!-- <span class="absolute top-2 left-2 bg-purple-600 text-white text-sm px-2 py-1 rounded-full">9% Off</span> -->
             </div>
             <div class="flex justify-between items-center mt-2">
               <div class="flex items-center">
@@ -200,22 +252,17 @@
                     {{ product.isAdded? 'Added' : 'Add to cart' }}
                   </span>
                 </button>
-
-                <!-- <div  (click)="addCart(product)"  class="add-button">Add</div> -->
-                <!-- <button type="button" (click)="addCart(product)"  class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-3 py-2 text-center me-2 mb-2">{{ product.isAdded? 'Added' : 'Add to cart' }}</button> -->
-                <!-- <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "> </button> -->
               </div>
             </div>
             <p class="mt-2 text-gray-800 font-semibold ">{{product.name}}</p>
             <p class="text-gray-500 font-semibold">{{product.unit_name}} {{product.unit_value}} - ₹ {{product.price}}
             </p>
           </div>
-        </div>
+        </div> -->
         <div *ngIf="!mobileview " class="grid grid-cols-4 gap-4">
           <div *ngFor='let product of this.productArray' class="bg-white rounded-lg shadow p-4">
             <div (click)="goToProductDetailsPageByProductId(true,product.prod_id)" class="relative">
               <img src="{{product.nutrition_weight}}" alt="Apples" class="rounded-lg w-full">
-              <!-- <span class="absolute top-2 left-2 bg-purple-600 text-white text-sm px-2 py-1 rounded-full">9% Off</span> -->
             </div>
             <div class="flex justify-between items-center mt-2">
               <div class="flex items-center">
@@ -305,7 +352,7 @@
               <div class="flex items-center justify-center space-x-2 bg-pink-500 text-white py-2 px-4 rounded-lg">
                 <button class="flex items-center" (click)="addCart(productDetailsList)">
                   <i class="fas fa-shopping-cart"></i>
-                  <span  class="ml-2">    {{ productDetailsList.isAdded? 'Added' : 'Add to cart' }}</span>
+                  <span class="ml-2"> {{ productDetailsList.isAdded? 'Added' : 'Add to cart' }}</span>
                 </button>
               </div>
             </div>

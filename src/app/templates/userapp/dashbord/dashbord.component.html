@@ -190,7 +190,7 @@
             
          
             <div  class="flex justify-around mb-1">
-              <div *ngFor="let cate of categoryDataList"  class="flex flex-col items-center">
+              <div *ngFor="let cate of categoryDataList"  class="flex flex-col items-center"  (click)="goToProductLIstDialogByCategaryPage(true,cate.cat_id,cate.cat_name)">
                 <div class="bg-white rounded-full p-4 mb-2">
                   <i class="fas fa-apple-alt text-pink-500"></i>
               </div>

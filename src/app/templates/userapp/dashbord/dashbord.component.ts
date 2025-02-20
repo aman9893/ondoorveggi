@@ -48,6 +48,10 @@ export class DashbordComponentUser implements OnInit {
     this.getUserAddressValue();
   }
 
+
+
+  
+
   getUserAddressValue() {
     this.dataService.getUserAddressId(this.UserId)
       .subscribe(
@@ -279,4 +283,6 @@ export class DashbordComponentUser implements OnInit {
     // this.dataService.cartEvent.emit(data);
 
   }
+
+  
 }

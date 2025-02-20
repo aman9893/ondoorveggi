@@ -7,12 +7,13 @@ import { HelpSuppportComponent } from './templates/userapp/pages/help-suppport/h
 import { UserLoginComponent } from './templates/userapp/user-login/user-login.component';
 import { UserCartComponent } from './templates/userapp/user-cart/user-cart.component';
 import { UserorderlistComponent } from './templates/userapp/userorderlist/userorderlist.component';
+import { AuthGuardService } from './templates/userapp/servicesmobile/auth-guard.service';
 
 const routes: Routes = [
   // {path: '',component: LayoutComponentUser,
   //   children: [
         { path: '', redirectTo: 'home', pathMatch: 'full' },
-        { path: 'home', component: DashbordComponentUser, },
+        { path: 'home', component: DashbordComponentUser },
         { path: 'cart', component: UserCartComponent, },
         { path: 'Orders', component: UserorderlistComponent, },
         { path: 'Addresses', component: AddressComponent, },

@@ -4,7 +4,7 @@ import { apiConfig } from '../../api-path/api-config';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, Subject } from 'rxjs';
 import {Location} from '@angular/common';
-
+import { CapacitorHttp, HttpResponse } from '@capacitor/core';
 @Injectable({
   providedIn: 'root'
 })

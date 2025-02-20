@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/templates/auth/auth.service';
 import { DataService } from 'src/app/templates/auth/service/data.service';
+import { AuthenticationService } from '../servicesmobile/authentication.service';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class UserLoginComponent  implements OnInit {
     private formBuilder: FormBuilder,
     private dataService: DataService,
     public authService: AuthService,
-
+    private authenticationService: AuthenticationService,
   ) {}
   updateFlag: boolean = false;
   sginupForm!: FormGroup;
@@ -157,11 +158,9 @@ export class UserLoginComponent  implements OnInit {
     if (data.status == 1 ) {
       this.loginData =data.payload;
       this.openSnackBar(data.message, 'Dismiss');
+      this.authenticationService.login(this.loginData.auth_token);
       this.authService.sendToken( this.loginData.auth_token);
       this.authService.setuserData( this.loginData.user_id);
-      this.myRoute.navigateByUrl('/home');
-      this.authService.currentToken.next( this.loginData.auth_token)
-      this.authService.currentUser.next( this.loginData)
       this.myRoute.navigateByUrl('/home');
       this.loginForm.reset();
 

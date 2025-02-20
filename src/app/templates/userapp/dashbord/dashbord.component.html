@@ -1,4 +1,4 @@
-<ng-container>
+<ng-container class="hed">
   <ion-menu contentId="main-content">
     <div class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
       <div class="flex items-center" (click)="openEnd()">
@@ -12,7 +12,7 @@
           <img src="https://cdn-icons-png.flaticon.com/512/303/303593.png" style="height: 48px;" alt="User avatar"
             class="rounded-full">
           <div class="ml-3">
-            <h2 class="text-lg font-semibold">aman jain</h2>
+            <h2 class="text-lg font-semibold">aman jAIN</h2>
             <p class="text-sm text-gray-500">9806701954</p>
           </div>
         </div>
@@ -54,7 +54,7 @@
           </li>
         </ul>
         <div class="flex justify-center mt-6">
-          <ion-button class="mt-10" fill="outline">Log Out
+          <ion-button routerLink="/userlogin" class="mt-10" fill="outline">Log Out
           </ion-button>
         </div>
       </div>
@@ -69,16 +69,16 @@
   <!--==================================== Header address================================================ -->
   <ion-header>
 
-    <div *ngIf="useraddress" class=" text-black p-3" style="    background: #e0e0e07d;">
+    <div *ngIf="useraddress">
       <!-- <p class="additle"> Ondoor<span class="headlinecolor">Veggi</span></p> -->
-      <div class="flex " >
-        <div class="flex space-x-2 ">
+        <div class="maindivhed ">
+          <div class="iocndiv">
           <i (click)="openMenu()" class="fas fa-user-circle text-3xl mt-3"></i>
-          <div class="textcenter" (click)="presentModalAddress()">
-            <p class=" font-semibold textcenter text-lg">Delivery In <span class="minclo">10 Mins</span></p>
-            <p class="addt  text-center">Kukatpally - {{useraddress.address}} <i class="fas fa-caret-down"></i></p>
           </div>
-        </div>
+          <div class="addressdiv" (click)="presentModalAddress()">
+            <p class=" font-semibold text-center text-lg">Delivery In <span class="minclo">10 Mins</span></p>
+            <p class="text-center">Kukatpally - {{useraddress.address}} <i class="fas fa-caret-down"></i></p>
+          </div>
       </div>
     </div>
   </ion-header>

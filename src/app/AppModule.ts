@@ -63,6 +63,8 @@ import { PaymentpageComponent } from './templates/userapp/paymentpage/paymentpag
 import { AdminAuthGuard } from './templates/auth/admin.gurad';
 import { LoaderService } from './templates/auth/service/service/LoaderService';
 import { OrderPlacedComponent } from './templates/userapp/order-placed/order-placed.component';
+import { IonicStorageModule } from '@ionic/storage-angular';
+import { AuthInterceptorService } from './templates/userapp/servicesmobile/auth-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent, MenulistComponent, CategiresComponent, AddContactBookComponent, ConfrimBoxComponent, CreateBillComponent,
@@ -85,11 +87,15 @@ import { OrderPlacedComponent } from './templates/userapp/order-placed/order-pla
     MatTableModule, MatPaginatorModule,
     CommonModule,
     MatAutocompleteModule, MatDialogModule, MatMenuModule, MatSortModule, MatCardModule,
-    MatSidenavModule, MatListModule, MatExpansionModule, MatRadioModule, MatCheckboxModule
+    MatSidenavModule, MatListModule, MatExpansionModule, MatRadioModule, MatCheckboxModule,IonicStorageModule.forRoot()
   ],
 
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },AdminAuthGuard,LoaderService, LoaderInterceptor,
-  provideAnimationsAsync(), { provide: HTTP_INTERCEPTORS, useClass: TokenInterService, multi: true },
+  provideAnimationsAsync(),   {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+  },
   { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }],
 
   bootstrap: [AppComponent],

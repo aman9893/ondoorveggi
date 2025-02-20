@@ -42,6 +42,18 @@
 @import "./theme/course-rive.scss";
 /* You can add global styles to this file, and also import other style files */
 
+body.app-ts-mobile  {
+  margin-top: 20px; // fallback for no safe area support
+  margin-top: constant(safe-area-inset-top); // iOS 11
+  margin-top: env(safe-area-inset-top); // iOS 11.2+
+}
+
+body.app-ts-mobile.app-android-safe-area {
+  margin-top: 20px;
+}
+
+
+
 body {
   font-family: 'Roboto', sans-serif;
 }

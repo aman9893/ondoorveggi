@@ -61,7 +61,7 @@ color: white;
 
 
 .minclo{
-  color: #78187b;
+  color: #ffffff;
 }
 .addt{
   font-size: 15px;
@@ -74,4 +74,26 @@ color: white;
   
   background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(70, 9, 121, 1) 35%, #ff4081 100%);
   border-radius: 5px;
+}
+.hed{
+  padding-top: env(safe-area-inset-top);
+}
+
+.maindivhed{
+  float: left;
+  width: 100%;
+  padding: 20px;
+  background: rebeccapurple;
+  color: white;
+  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, .25), 0 18px 36px -18px rgba(0, 0, 0, .3), 0 -12px 36px -8px rgba(0, 0, 0, .025);
+  background: linear-gradient(90deg, #002232, #000000, #000000, #000000, #04002f, #0c1c67, #1a1384, #182374cf);
+}
+.addressdiv{
+  width: 85%;
+  float: left;
+}
+.iocndiv{
+  float: left;
+  width: 10%;
+  margin-left: 10px;
 }

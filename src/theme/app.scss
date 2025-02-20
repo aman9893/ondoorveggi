@@ -1,0 +1,4 @@
+.platform-ios body {
+    padding-top: constant(safe-area-inset-top); /* Status bar height on iOS 11.0 */
+padding-top: env(safe-area-inset-top); /* Status bar height on iOS 11+ */
+}

@@ -74,7 +74,7 @@
               <div class="flex items-center">
                   <i (click)="openMenu()" class="fas fa-user-circle text-3xl mr-2"></i>
                   <div (click)="presentModalAddress()">
-                      <div class="font-semibold">Delivery in 5 Mins</div>
+                      <div class="font-semibold head">Delivery in 5 Mins</div>
                       <div class="text-sm text-gray-200">Kukatpally - {{useraddress.address}} <i class="fas fa-caret-down"></i></div>
                   </div>
               </div>
@@ -125,12 +125,12 @@
    
 
       <div class="bg-white font-sans antialiased">
-        <div class="max-w-5xl mx-auto p-1">
+        <div class="max-w-3xl mx-auto p-1">
             <div  *ngIf="mobileview && categoryDataList " class="grid grid-cols-2 gap-3">
                 <div  *ngFor="let cate of categoryDataList"  class="border rounded-lg p-2 shadow-md" (click)="goToProductLIstDialogByCategaryPage(true,cate.cat_id,cate.cat_name)">
                     <img src="{{cate.image}}"  alt="An image of food representing a cafe" class="w-full h-24 object-cover rounded-t-lg mb-4">
                     <h2 class="text-lg font-semibold mb-1">{{cate.cat_name}}</h2>
-                    <div class="bg-blue-100 text-blue-800 px-2 py-1 rounded-lg inline-block text-sm">Upto <strong class="text-xl">20%</strong> OFF</div>
+                    <div class="bg-blue-100 text-blue-800 px-2 py-1 rounded-lg inline-block text-sm">Upto <strong class="text-l">20%</strong> OFF</div>
                 </div>
             </div>
         </div>

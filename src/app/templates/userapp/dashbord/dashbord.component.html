@@ -193,7 +193,7 @@
         <div class="fixed z-10 top-0 left-0 right-0 flex p-2 bg-white shadow-lg items-center justify-between border-b">
           <div class="flex items-center" (click)="closeProductlistModal()">
             <i class="fas fa-chevron-left text-lg"></i>
-            <h1 class="ml-1 text-l font-medium">{{catname}} </h1>
+            <h1 class="ml-1 text-lg font-medium">{{catname}} </h1>
           </div>
           <div class="container-search  ">
             <div class="row height justify-content-left align-items-left">
@@ -218,8 +218,6 @@
       <div class="divmainwraplist">
         <div class="bg-gray-50">
           <div class="max-w-lg mx-auto ">
-            
-         
             <div  class="flex justify-around mb-1 cata">
               <div *ngFor="let cate of categoryDataList"  class="flex flex-col items-center"  (click)="goToProductLIstDialogByCategaryPage(true,cate.cat_id,cate.cat_name)">
                 <div *ngIf="cate.cat_name == 'Vegetable'" class="bg-white rounded-full p-1 mb-1">

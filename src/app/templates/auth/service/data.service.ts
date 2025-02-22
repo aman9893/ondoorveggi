@@ -95,7 +95,12 @@ export class DataService {
     let data:{user_id:any}={user_id:UserId};
     return this.http.post(apiConfig.localhostUrl + apiConfig.userOrderlist,data);
   }
+  getUserLastOrdersData(UserId:any){
+    let data:{user_id:any}={user_id:UserId};
+    return this.http.post(apiConfig.localhostUrl + apiConfig.userLastOrderlist,data);
+  }
 
+  
 
   getUserOrdersDataById(orderid:any){
     console.log(orderid)

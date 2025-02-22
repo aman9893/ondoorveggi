@@ -31,3 +31,18 @@
 .headside{
   margin-top: 58px;
 }
+
+.recntorder{
+  font-size: 13px;
+  padding-left: 22px;
+  position: fixed;
+  bottom: 71px;
+  width: 100%;
+  color: rgba(0, 0, 0, .87);
+  font-weight: 500;
+  box-shadow: 0 13px 27px -5px #32325d40, 0 8px 16px -8px #0000004d, 0 -6px 16px -6px #00000006;
+  border-radius: 2px;
+  text-transform: capitalize;
+  line-height: 28px;
+  background: #ffffff;
+}

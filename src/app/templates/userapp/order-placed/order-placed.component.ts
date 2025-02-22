@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { ActionSheetController, IonModal, MenuController, ModalController, NavController, PopoverController } from '@ionic/angular';
+import { DataService } from '../../auth/service/data.service';
+import { AuthService } from '../../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order-placed',
@@ -8,13 +10,14 @@ import { ActionSheetController, IonModal, MenuController, ModalController, NavCo
   styleUrls: ['./order-placed.component.scss'],
   standalone:false
 })
-export class OrderPlacedComponent  implements OnInit ,AfterViewInit{
+export class OrderPlacedComponent  implements OnInit {
 
-  readonly dialogRef = inject(MatDialogRef<OrderPlacedComponent>);
 
   showNoti:boolean=true;
   showNotitwo:boolean=true;
-  constructor(private popnotioverCtrl: PopoverController) {}
+  UserId: any;
+  orderdatalist:any=[];
+  constructor( public dataService :DataService,public authService: AuthService,private router: Router) {}
 
   audioPath =
   'https://notificationsounds.com/storage/sounds/file-sounds-881-look-this-is-what-i-was-talking-about.mp3';
@@ -33,10 +36,21 @@ ngAfterViewInit(): void {
 }
 
   ngOnInit() {
+    this.UserId = this.authService.getUserId();
+    this.getUserOrders();
   }
+  
   dismissModal(){
-    this.dialogRef.close();
+    this.router.navigate(['/home']);
+  }
+  getUserOrders() {
+    this.dataService.getUserOrdersData(this.UserId).subscribe((data) => this.getUserOrderslist(data));
   }
 
+  getUserOrderslist(data:any) {
+     this.orderdatalist=[];
+     this.orderdatalist = data[0];
+     console.log(  this.orderdatalist)
+  }
 
 }

@@ -293,5 +293,9 @@ export class DashbordComponentUser implements OnInit {
 
   }
 
+  recentOrder(){
+    this.router.navigate(['/recentorder']);
+  }
+
   
 }

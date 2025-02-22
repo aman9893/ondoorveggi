@@ -8,6 +8,7 @@ import { UserLoginComponent } from './templates/userapp/user-login/user-login.co
 import { UserCartComponent } from './templates/userapp/user-cart/user-cart.component';
 import { UserorderlistComponent } from './templates/userapp/userorderlist/userorderlist.component';
 import { AuthGuardService } from './templates/userapp/servicesmobile/auth-guard.service';
+import { OrderPlacedComponent } from './templates/userapp/order-placed/order-placed.component';
 
 const routes: Routes = [
   // {path: '',component: LayoutComponentUser,
@@ -20,6 +21,7 @@ const routes: Routes = [
         { path: 'userprofile', component: UserprofileComponent, },
         { path: 'help', component: HelpSuppportComponent, },
         { path: 'userlogin', component: UserLoginComponent, },
+        { path: 'recentorder', component: OrderPlacedComponent, },
   // },
 
 ];

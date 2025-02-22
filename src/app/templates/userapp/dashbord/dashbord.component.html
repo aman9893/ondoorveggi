@@ -120,10 +120,6 @@
       </div>
     </div> -->
 
-    <div class=" overflow-hidden">
-      <!-- Product Grid -->
-   
-
       <div class="bg-white font-sans antialiased">
         <div class="max-w-3xl mx-auto p-1">
             <div  *ngIf="mobileview && categoryDataList " class="grid grid-cols-2 gap-3">
@@ -136,7 +132,7 @@
         </div>
       </div>
     
-
+<!------------------------------------------------------ desktop----------------------------------------- -->
 
       <div class="p-4 p-3 mb-10">
         <div *ngIf="categoryDataList && !mobileview" class="grid grid-cols-4 gap-4 mt-4">
@@ -149,13 +145,13 @@
         </div>
       </div>
 
-
-    </div>
+      <div class="recntorder" (click)="recentOrder()"><ion-icon name="locate-outline"></ion-icon>Track your Recent order</div>
   </ion-content>
 
   <!--==================================== footer================================================ -->
-  <div id="main-content">
 
+  <div id="main-content">
+  
     <ion-footer>
       <div class="fixed bottom-0 left-0 right-0 bg-white shadow flex justify-around text-xs py-3 border-t">
         <a (click)="openMenu()" class="text-center">

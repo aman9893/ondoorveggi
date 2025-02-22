@@ -43,14 +43,23 @@ export class DashbordComponentUser implements OnInit {
   ngOnInit(): void {
     this.UserId = this.authService.getUserId();
     this.mobileview = this.dataService.getIsMobileResolution();
-    this.banners = this.dataService.getBanners();
+    this.getAddressEmit()
     this.getCategaryapiCall();
     this.getUserAddressValue();
   }
 
-
-
-  
+  getAddressEmit() {
+    this.dataService.upadteAddress
+      .subscribe(
+        data => this.getUserAddressValueemit(data)
+      )
+  }
+  getUserAddressValueemit(data:any){
+    if(data ==true){
+      console.log('hii')
+      this.getUserAddressValue();
+  }
+}
 
   getUserAddressValue() {
     this.dataService.getUserAddressId(this.UserId)
@@ -96,7 +105,6 @@ export class DashbordComponentUser implements OnInit {
     this.dataService.usercategoryList('').subscribe((data) => this.categoryData(data),
       (err: Error) => this.apiErrorHandal(err));
   }
-
 
   categoryData(data: any) {
     if (data.status == 1) {
@@ -181,7 +189,7 @@ export class DashbordComponentUser implements OnInit {
     const modal = await this.modalCtrl.create({
       component: UserCartComponent,
       breakpoints: [0, 0.25, 1, 0.75],
-      initialBreakpoint: 0.55,
+      initialBreakpoint: 1,
       componentProps: {
         address: this.useraddress,
         catname: this.catname
@@ -201,6 +209,7 @@ export class DashbordComponentUser implements OnInit {
       });
     await modal.present();
   }
+  
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(OrderPlacedComponent, {
       maxWidth: '100vw',

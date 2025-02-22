@@ -1,46 +1,60 @@
 
-
-
-
-
 <ion-content class="bg-gray">
   <div class="divmain" >
     <div class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
-      <button class="text-xl" routerLink="/home"><i class="fas fa-arrow-left"></i></button>
-      <h1 class="text-lg font-bold">Profile</h1>
-      <button class="text-xl"><i class="fas  fa-user-circle"></i></button>
+      <div
+      class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
+      <div class="flex items-center" (click)="dismissModal('userpage')">
+          <i class="fas fa-chevron-left text-lg"></i>
+          <h1 class="ml-2 text-lg font-medium">Your Profile </h1>
+      </div>
+  </div>
   </div>
 <div *ngIf="updateFlag"   class="bg-white  rounded-lg shadow-md  mt-10 mb-10">
   <div class="border-b p-4 flex justify-between items-center">
-      <h2 class="text-center text-lg font-semibold">Hello {{this.updateValue.username}} </h2>
+      <h2 class="text-center text-lg font-semibold">Hello {{this.updateValue.name }} </h2>
   </div>
   <div class="p-4">
       
       <form  [formGroup]="profileForm" >
         <div>
-            <label for="name" class="mb-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white">User Name</label>
+            <label for="name" class="mb-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Full Name *</label>
             <input id="name"  formControlName="name"
               class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
-              type="name" placeholder="name" required />
+              type="name" placeholder="Name" required />
+              <div *ngIf="profileForm.get('name')?.invalid && profileForm.get('name')?.touched">
+                <div *ngIf="profileForm.get('name')?.errors?.['required']"> <p class="text-red-500 text-l  pt-2">* Please Enter Name</p> </div>
+              </div>
           </div>
           <div class="mt-2">
-            <label for="email" class="mb-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+            <label for="email" class="mb-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email *</label>
             <input id="email"  formControlName="email"
               class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
               type="email" placeholder="Email" required />
+              <div *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched">
+                <div *ngIf="profileForm.get('email')?.errors?.['required']"> <p class="text-red-500 text-l  pt-2">* Email is required</p> </div>
+                <div *ngIf="profileForm.get('email')?.errors?.['email']"><p class="text-red-500 text-l  pt-2"> * Invalid email format</p></div>
+              </div>
           </div>
           <div  class="mt-2">
-            <label for="phone" class="mb-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>
-            <input id="phone"  formControlName="phone_number"
+            <label for="phone" class="mb-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mobile Number *</label>
+            <input id="phone"  formControlName="phone_number"  type="tel" id="phone" name="phone" 
               class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
-              type="phone" placeholder="phone" required />
+              placeholder="Mobile No" required />
+              <div *ngIf="profileForm.get('phone_number')?.invalid && profileForm.get('phone_number')?.touched">
+                <div *ngIf="profileForm.get('phone_number')?.errors?.['required']"> <p class="text-red-500 text-l  pt-2">* Please Enter mobile number</p> </div>
+                <div *ngIf="profileForm.get('phone_number')?.errors?.['pattern']"><p class="text-red-500 text-l  pt-2"> * Entered Mobile number is not 10 digit</p></div>
+              </div>
           </div>
        
           <div  class="mt-2">
-            <label for="password" class="mb-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+            <label for="password" class="mb-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password *</label>
             <input id="password"  formControlName="password"
               class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
               type="password" placeholder="password" required />
+              <div *ngIf="profileForm.get('password')?.invalid && profileForm.get('password')?.touched">
+                <div *ngIf="profileForm.get('password')?.errors?.['required']"> <p class="text-red-500 text-l  pt-2">* Please Enter Password</p> </div>
+              </div>
           </div>
           <button (click)="onUpdasteSubmit()" type="submit" class="w-full bg-pink-500 mt-5 text-white py-3 rounded-lg font-semibold shadow-md">Save & Continue</button>
       </form>

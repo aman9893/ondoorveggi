@@ -10,7 +10,7 @@ import { ModalController } from '@ionic/angular';
 export class PaymentpageComponent  implements OnInit {
   address:any;
   total:any;
-
+  cash:string='cash';
   constructor(public modalController: ModalController,) { }
 
   ngOnInit() {

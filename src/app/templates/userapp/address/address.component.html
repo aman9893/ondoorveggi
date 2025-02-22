@@ -1,11 +1,6 @@
 <ion-content class="bg-gray">
   <div class="divmain">
- 
-
     <!-- __________________________________________________________________________________________ -->
-
-
-
     <div  *ngIf="showaddrsspage" >
       <div class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
         <div class="flex items-center" (click)="showback()">
@@ -33,23 +28,32 @@
           </div>
           <form  [formGroup]="addressForm">
             <div>
-              <label for="houseno" class="mb-2  block mb-2 text-sm font-medium text-gray-900 dark:text-white">House No. &
-                Floor*</label>
-              <input id="houseno" formControlName="houseno"
+
+                <label for="building" class="mb-2  dark:text-gray-400 text-lg">Flat No & Floor *</label>
+              <input id="houseno" formControlName="houseno" name="houseno"
                 class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
-                type="houseno" placeholder="houseno" required />
+                type="houseno" placeholder="Flat No & Floor " required />
+                <div *ngIf="addressForm.get('houseno')?.invalid && addressForm.get('houseno')?.touched">
+                  <div *ngIf="addressForm.get('houseno')?.errors?.['required']"> <p class="text-red-500 text-l  pt-2">* Please Enter Flat No & Floor</p> </div>
+                </div>
             </div>
             <div class="mt-2">
-              <label for="building" class="mb-2  dark:text-gray-400 text-lg">Building & Road No.*</label>
+              <label for="building" class="mb-2  dark:text-gray-400 text-lg">Building Name & Road No.*</label>
               <input id="building" formControlName="roadno"
                 class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
                 type="building" placeholder="building" required />
+                <div *ngIf="addressForm.get('roadno')?.invalid && addressForm.get('roadno')?.touched">
+                  <div *ngIf="addressForm.get('roadno')?.errors?.['required']"> <p class="text-red-500 text-l  pt-2">* Please Enter Building Name & Road No</p> </div>
+                </div>
             </div>
             <div class="mt-2">
               <label for="city" class="mb-2  dark:text-gray-400 text-lg">City</label>
               <input id="city" formControlName="city"
                 class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
-                type="city" placeholder="City" required />
+                type="city" placeholder="city" required />
+                <div *ngIf="addressForm.get('city')?.invalid && addressForm.get('city')?.touched">
+                  <div *ngIf="addressForm.get('city')?.errors?.['required']"> <p class="text-red-500 text-l  pt-2">* Please Enter City</p> </div>
+                </div>
             </div>
   
             <div class="mt-2">
@@ -57,18 +61,27 @@
               <input id="state" formControlName="state"
                 class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
                 type="state" placeholder="State" required />
+                <div *ngIf="addressForm.get('state')?.invalid && addressForm.get('state')?.touched">
+                  <div *ngIf="addressForm.get('state')?.errors?.['required']"> <p class="text-red-500 text-l  pt-2">* Please Enter State</p> </div>
+                </div>
             </div>
             <div class="mt-2">
               <label for="postal_code" class="mb-2  dark:text-gray-400 text-lg ">Postal Code</label>
               <input id="postal_code" formControlName="postal_code"
                 class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
                 type="text" placeholder="Postal Code" required />
+                <div *ngIf="addressForm.get('postal_code')?.invalid && addressForm.get('postal_code')?.touched">
+                  <div *ngIf="addressForm.get('postal_code')?.errors?.['required']"> <p class="text-red-500 text-l  pt-2">* Please Enter Postal Code</p> </div>
+                </div>
             </div>
             <div class="mt-2">
-              <label for="mobile" class="mb-2  dark:text-gray-400 text-lg ">phone Number</label>
+              <label for="mobile" class="mb-2  dark:text-gray-400 text-lg ">Mobile Number</label>
               <input id="mobile" formControlName="mobile"
                 class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
-                type="text" placeholder="Mobile" required />
+                type="text" placeholder="Mobile Number" required />
+                <div *ngIf="addressForm.get('mobile')?.invalid && addressForm.get('mobile')?.touched">
+                  <div *ngIf="addressForm.get('mobile')?.errors?.['required']"> <p class="text-red-500 text-l  pt-2">* Please Enter Mobile Number</p> </div>
+                </div>
             </div>
             <div class="mt-4 mb-4">
               <h3 class="mb-2  dark:text-gray-400 text-lg ">Type</h3>
@@ -79,7 +92,6 @@
                   <ion-radio value="work"> <button type="button"
                       class=" ml-4 bg-purple-600 text-white px-4 py-1 rounded-full">Work</button></ion-radio>
                 </ion-radio-group>
-  
               </div>
             </div>
             <button *ngIf="updateFlag" (click)=" addressUpdateSubmit()" type="submit"

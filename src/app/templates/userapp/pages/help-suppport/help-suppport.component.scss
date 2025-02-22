@@ -1,0 +1,48 @@
+/* Body styling */
+.textbodyr {
+
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+
+
+/* Header styling */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2em;
+    color: #2c3e50;
+}
+
+/* Content section styling */
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-top: 20px;
+    color: #2980b9;
+}
+
+p {
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+ul {
+    margin: 10px 0 10px 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+}

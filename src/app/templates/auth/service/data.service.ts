@@ -29,6 +29,9 @@ export class DataService {
 
   productCartValueUpdate: EventEmitter<any> = new EventEmitter();
 
+  upadteAddress: EventEmitter<any> = new EventEmitter();
+
+
     banners = [
     { id: '1', banner: 'assets/banners/1.jpg', active: true },
     { id: '2', banner: 'assets/banners/2.jpg', active: true },
@@ -359,7 +362,7 @@ updateConatactItem(data:any){
 
 openSnackBar(message: string, action: string) {
   this.snackBar.open(message, action, {
-    duration: 3000,
+    duration: 5000,
     panelClass: ['app-bottom-snackbar'],
   });
 }

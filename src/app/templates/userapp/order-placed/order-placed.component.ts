@@ -29,7 +29,7 @@ ngAfterViewInit(): void {
     this.audio.nativeElement.play();
     this.btn.nativeElement.click();
     this.audio.nativeElement.play();
-  }, 8000);
+  }, 4000);
 }
 
   ngOnInit() {

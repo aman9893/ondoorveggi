@@ -5,19 +5,20 @@
 
   <div class="divmain" >
     <div class="fixed z-10 top-0 left-0 right-0 flex p-4 bg-white shadow-lg items-center justify-between p-4 border-b">
-      <button class="text-xl" routerLink="/home"><i class="fas fa-arrow-left"></i></button>
+      <button class="text-xl" routerLink="/home"><i class="fas fa-chevron-left"></i></button>
       <h1 class="text-lg font-bold">Help & Supports</h1>
       <button class="text-xl"><i class="fas fa-handshake"></i></button>
   </div>
+  
 
 <nav class="bg-green-900 text-white p-4">
   <ul class="flex justify-center space-x-8">
-      <li class="cursor-pointer">CONTACT US</li>
-      <li class="cursor-pointer">TERMS & CONDITIONS</li>
+      <li (click) = 'toggleState()' class="cursor-pointer">CONTACT US</li>
+      <li  (click) = 'toggleState()' class="cursor-pointer">TERMS & CONDITIONS</li>
   </ul>
 </nav>
 
-<div class="max-w-md mx-auto my-8 p-4 text-center">
+<div *ngIf="toggleStateValue" class="max-w-md mx-auto my-8 p-4 ">
   <img src="https://www.ondoor.com/maint_img/ondoor-logo.jpg" alt="Illustration of a vendor selling fruits and vegetables" class="w-48 mx-auto">
   <h1 class="text-2xl font-bold text-green-800 mt-4">OnDoorVeggi</h1>
   <p class="mt-2 text-gray-700">If you have any questions or feedback, please reach out to us:</p>
@@ -43,14 +44,81 @@
           <p>ondoorveggigmail.com</p>
       </div>
   </div>
+</div>
 
-  <div class="flex items-center justify-between border-t mt-6 pt-4">
-      <div class="flex items-center">
-          <i class="fas fa-crown mr-2"></i>
-          <p>Headquarters Contact</p>
-      </div>
-      <i class="fas fa-sort-down"></i>
-  </div>
+<div *ngIf="!toggleStateValue" class="max-w-md mx-auto my-8 p-4 textbodyr">
+     
+ 
+    <header>
+      <h1>Terms & Conditions</h1>
+  </header>
+
+  <section class="content">
+      <h2>1. Introduction</h2>
+      <p>OndoorVeggi Online is a sole proprietorship, and all rights to the website Ondoorveggi.com are reserved by OndoorVeggi Online. By using the site, you agree to these terms and conditions.</p>
+
+      <h2>2. Personal Information</h2>
+      <p>We respect your privacy. When you use our site, we may collect personal data, including your name, email, phone number, address, location, and browsing activity. This data helps us improve our services.</p>
+
+      <h2>3. Eligibility</h2>
+      <p>The services are available only to select locations within India. Users must be over 18 or use the site under the supervision of a parent or legal guardian.</p>
+
+      <h2>4. License & Site Access</h2>
+      <p>You are granted limited access to view and use the site for personal, non-commercial purposes. Any commercial use or unauthorized copying of site content is prohibited.</p>
+
+      <h2>5. Account & Registration</h2>
+      <p>You must register to place orders. By registering, you agree to receive promotional communications. You are responsible for keeping your account information accurate.</p>
+
+      <h2>6. Product Images & Pricing</h2>
+      <p>Product images are for illustration purposes only. Prices on the site may change, and the price you pay will be the one at the time of delivery. No additional charges or refunds will be made based on price fluctuations.</p>
+
+      <h2>7. Cancellations</h2>
+      <p>You can cancel orders before the cut-off time. We may cancel orders if fraudulent activity is suspected.</p>
+
+      <h2>8. Returns & Refunds</h2>
+      <p>We offer a "no questions asked" return policy. If you're dissatisfied with a product, it can be returned, and a credit note will be issued for future use. Refunds will be processed within 7 working days.</p>
+
+      <h2>9. Delivery & Shipping</h2>
+      <p>Orders are available 24/7, with deliveries between 6:00 AM and 2:00 PM. Same-day delivery is available. Free shipping for orders above Rs. 250. Any redelivery due to incorrect details will be charged to you.</p>
+
+      <h2>10. User Responsibilities</h2>
+      <p>You agree to:</p>
+      <ul>
+          <li>Use the site for lawful purposes only.</li>
+          <li>Provide accurate information.</li>
+          <li>Ensure delivery details are correct.</li>
+          <li>Read product descriptions before placing an order.</li>
+      </ul>
+
+      <h2>11. Prohibited Uses</h2>
+      <p>You cannot:</p>
+      <ul>
+          <li>Post offensive or illegal content.</li>
+          <li>Violate laws or disrupt other users' experience.</li>
+          <li>Engage in unauthorized access or copy content from the site.</li>
+      </ul>
+
+      <h2>12. Colors</h2>
+      <p>We make every effort to display product colors accurately, but actual colors may vary depending on your device.</p>
+
+      <h2>13. Modifications</h2>
+      <p>We may modify these terms at any time. By continuing to use the site, you accept the updated terms.</p>
+
+      <h2>14. Governing Law</h2>
+      <p>These terms are governed by the laws of India. Any disputes will be resolved through arbitration in Mumbai, India.</p>
+
+      <h2>15. Reviews & Feedback</h2>
+      <p>Any feedback submitted to the site becomes the property of OndoorVeggi.com. We have the right to use it for any purpose without compensating you.</p>
+
+      <h2>16. Copyright & Trademark</h2>
+      <p>All content on the site is owned by OndoorVeggi.com or its licensors. You may not use, copy, or distribute any content without permission.</p>
+
+      <h2>17. Indemnity</h2>
+      <p>You agree to protect OndoorVeggi Online from any claims or liabilities arising from your actions on the site.</p>
+
+      <h2>18. Termination</h2>
+      <p>Either party can terminate this agreement. Upon termination, you must stop using the site and destroy any downloaded materials. Your obligations to pay for any pending orders will remain.</p>
+  </section>
 </div>
 </div>
-</ion-content> --> 
+</ion-content>

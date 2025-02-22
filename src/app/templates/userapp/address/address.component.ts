@@ -40,7 +40,7 @@ export class AddressComponent implements OnInit {
   private createForm() {
     this.addressForm = this.formBuilder.group({
       houseno: new FormControl('', {
-        validators: [Validators.required, Validators.maxLength(55)],
+        validators: [Validators.required, ],
         updateOn: 'change',
       }),
       roadno: new FormControl('', {
@@ -48,11 +48,11 @@ export class AddressComponent implements OnInit {
         updateOn: 'change',
       }),
 
-      city: new FormControl('', {
+      city: new FormControl('Hyderabad', {
         validators: [Validators.required, Validators.maxLength(55)],
         updateOn: 'change',
       }),
-      state: new FormControl('', {
+      state: new FormControl('Telangana', {
         validators: [Validators.required, Validators.maxLength(55)],
         updateOn: 'change',
       }),
@@ -64,7 +64,7 @@ export class AddressComponent implements OnInit {
         validators: [Validators.required, Validators.maxLength(55)],
         updateOn: 'change',
       }),
-      type_name: new FormControl('', {
+      type_name: new FormControl('home', {
         validators: [],
         updateOn: 'change',
       }),
@@ -238,6 +238,7 @@ export class AddressComponent implements OnInit {
   }
   closeDialog(data: any) {
     this.dataService.openSnackBar(data.message, 'Dismiss');
+    this.dataService.upadteAddress.emit(true);
     this.showback()
   }
 

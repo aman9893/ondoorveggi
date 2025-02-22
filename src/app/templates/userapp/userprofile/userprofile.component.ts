@@ -26,6 +26,9 @@ export class UserprofileComponent  implements OnInit {
     this.UserId = this.authService.getUserId();
     this.getUserProfile();
   }
+  dismissModal(data: any) {
+    this.route.navigateByUrl('/home')
+  }
     private createForm() {
       this.profileForm = this.formBuilder.group({
         name: new FormControl('', {
@@ -41,7 +44,7 @@ export class UserprofileComponent  implements OnInit {
           updateOn: 'change',
         }),
         phone_number: new FormControl('', {
-          validators: [Validators.required,Validators.maxLength(55)],
+          validators: [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")],
           updateOn: 'change',
         }),
      
@@ -51,7 +54,6 @@ export class UserprofileComponent  implements OnInit {
         this.profileForm.controls['email'].setValue(this.updateValue.email);
         this.profileForm.controls['password'].setValue(this.updateValue.password);
         this.profileForm.controls['phone_number'].setValue(this.updateValue.mobile);
-    
       }
     }
 
@@ -63,6 +65,7 @@ export class UserprofileComponent  implements OnInit {
   }
 
   getUserProfileRes(data:any) {
+    console.log(data)
     if (data.status == 1 ) {
      this.userData = data.payload[0];
      console.log(data)
@@ -73,8 +76,6 @@ export class UserprofileComponent  implements OnInit {
      }
     }
   }
-
-
   onUpdasteSubmit() {
     if (this.profileForm.valid) {
     let userData = {
@@ -92,11 +93,12 @@ export class UserprofileComponent  implements OnInit {
     }
     else{
       this.submitted = true;
-      this.dataService.openSnackBar('* Please Enter Required Feilds', 'Dismiss');
+      this.dataService.openSnackBar(' Please Enter Required Feilds', 'Dismiss');
     }
   }
   closeDialog(data: any) {
-    this.dataService.openSnackBar(data.message, 'Dismiss');
+    this.dataService.openSnackBar('Your profile is successfully updated', 'Dismiss');
+    this.getUserProfile();
 }
 
 }

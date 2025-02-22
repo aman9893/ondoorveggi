@@ -12,5 +12,9 @@ export class HelpSuppportComponent  implements OnInit {
   constructor() { }
 
   ngOnInit() {}
+  public toggleStateValue: boolean = true;
 
+  public toggleState(){
+    this.toggleStateValue = !this.toggleStateValue;
+  }
 }

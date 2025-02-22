@@ -13,28 +13,17 @@ import { Storage } from '@ionic/storage-angular';
   
 })
 export class AppComponent   implements OnInit{
-  // https://github.com/ionic-team/ionic-framework/issues/21630#issuecomment-683007162
   @ViewChild(IonRouterOutlet, { static: true }) routerOutlet?: IonRouterOutlet;
-
   constructor(private platform: Platform,public loader: LoaderService,private storage: Storage) {
-    // SafeAreaController.injectCSSVariables();
     StatusBar.setOverlaysWebView({ overlay: true }).catch(() => {});
-
-    // By default Ionic doesn't close app on back click, so we handle that here
     this.platform.backButton.subscribeWithPriority(-1, () => {
       if (!this.routerOutlet?.canGoBack()) {
         App.exitApp();
       }
     });
   }
-
-
   async ngOnInit() {
-    // If using a custom driver:
-    // await this.storage.defineDriver(MyCustomDriver)
     await this.storage.create();
-
-    
   }
 
   isLoading: Subject<boolean> = this.loader.isLoading;

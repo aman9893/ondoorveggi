@@ -22,8 +22,22 @@ export class UserCartComponent implements OnInit {
   constructor(public cart: DataService, private _location: Location, public modalController: ModalController, public route: Router, public dataService: DataService, private router: Router,
     public authService: AuthService, private winRef: WindowRefService,) {
     this.UserId = this.authService.getUserId();
+    this.getAddressEmit()
     this.getUserAddressValue();
   }
+
+    getAddressEmit() {
+    this.dataService.upadteAddress
+      .subscribe(
+        data => this.getUserAddressValueemit(data)
+      )
+  }
+  getUserAddressValueemit(data:any){
+    if(data ==true){
+      console.log('hii')
+      this.getUserAddressValue();
+  }
+}
 
   dismissModal(cartpage:any) {
     if (this._location.path() == '/cart') {
@@ -186,7 +200,7 @@ export class UserCartComponent implements OnInit {
     const modal = await this.modalController.create({
       component: AddressComponent,
       breakpoints: [0, 0.25, 1, 0.75],
-      initialBreakpoint: 0.55,
+      initialBreakpoint: 0.8,
       cssClass: 'custom-modal'
     });
     modal.onDidDismiss()
@@ -231,7 +245,7 @@ export class UserCartComponent implements OnInit {
         total: this.grandtotal
       },
       breakpoints: [0, 0.25, 1, 0.75],
-      initialBreakpoint: 0.55,
+      initialBreakpoint: 0.7,
       cssClass: 'custom-modal'
     });
     modal.onDidDismiss()

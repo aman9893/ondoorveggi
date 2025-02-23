@@ -1,4 +1,4 @@
-<div *ngIf="!showNoti" class="bg-gray-100">
+<div *ngIf="!showNoti && orderdatalist" class="bg-gray-100">
 
     <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden shadow-lg ">
         <div class="flex items-center p-4">
@@ -35,21 +35,19 @@
                 <div class="flex items-center">
                     <img src="https://banner2.cleanpng.com/20180311/aye/av0ihejsk.webp" class="w-10 h-10 rounded-full"
                         alt="Icon representing order items">
-                    <div class="ml-3">
-                        <p class="text-sm">3 items </p>
-                        <p class="text-sm">Delivering to other: 101, rajeswari building 11 b road …</p>
+                    <div class="ml-3"(click)="presentViewOrderModal()" >
+                        <p class="text-sm">{{product_details_value.product_details.length}} items  <ion-icon class="ml-3" name="eye-outline"></ion-icon> </p>
+                        <p class="text-sm">Delivering </p>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="bg-green-100 p-4 flex items-center justify-between">
-            <p>To Pay: <span class="text-green-600 font-bold">₹553</span> <span class="text-sm">Ask for QR code to pay
+            <p>To Pay: <span class="text-green-600 font-bold">₹  {{orderdatalist.total_amt}} </span> <span class="text-sm ml-4">Ask for QR code to pay
          via UPI</span></p>
         </div>
-
     </div>
-
 </div>
 
 

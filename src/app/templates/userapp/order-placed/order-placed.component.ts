@@ -3,6 +3,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { DataService } from '../../auth/service/data.service';
 import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { LatetesorderDetailsComponent } from '../latetesorder-details/latetesorder-details.component';
 
 @Component({
   selector: 'app-order-placed',
@@ -17,7 +19,8 @@ export class OrderPlacedComponent  implements OnInit {
   showNotitwo:boolean=true;
   UserId: any;
   orderdatalist:any=[];
-  constructor( public dataService :DataService,public authService: AuthService,private router: Router) {}
+  product_details_value: any;
+  constructor( public dataService :DataService,public authService: AuthService,private router: Router, private modalCtrl: ModalController,) {}
 
   audioPath =
   'https://notificationsounds.com/storage/sounds/file-sounds-881-look-this-is-what-i-was-talking-about.mp3';
@@ -51,6 +54,29 @@ ngAfterViewInit(): void {
      this.orderdatalist=[];
      this.orderdatalist = data[0];
      console.log(  this.orderdatalist)
+     this.product_details_value=(JSON.parse(this.orderdatalist.product_details));
+     console.log(  this.product_details_value)
   }
+  async presentViewOrderModal() {
+    const modal = await this.modalCtrl.create({
+      component: LatetesorderDetailsComponent,
+      breakpoints: [0, 0.25, 1, 0.75],
+      initialBreakpoint: 0.7,
+      componentProps: {
+        orders_id: this.orderdatalist.orders_id,
+        orderpage: true
+      },
+      cssClass: 'custom-modal'
+    });
 
+    modal.onDidDismiss()
+      .then((data) => {
+        const value = data['data']; // Here's your selected user!
+        if (value == 'done') {
+        }
+        else {
+        }
+      });
+    await modal.present();
+  }
 }

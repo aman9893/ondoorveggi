@@ -65,6 +65,7 @@ import { LoaderService } from './templates/auth/service/service/LoaderService';
 import { OrderPlacedComponent } from './templates/userapp/order-placed/order-placed.component';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { AuthInterceptorService } from './templates/userapp/servicesmobile/auth-interceptor.service';
+import { LatetesorderDetailsComponent } from './templates/userapp/latetesorder-details/latetesorder-details.component';
 
 @NgModule({
   declarations: [AppComponent, MenulistComponent, CategiresComponent, AddContactBookComponent, ConfrimBoxComponent, CreateBillComponent,
@@ -74,7 +75,7 @@ import { AuthInterceptorService } from './templates/userapp/servicesmobile/auth-
     ListKhataComponent,
     SearchpipeComponent,OrderPlacedComponent,
     AddkhataAmtComponent, AddressComponent, UserprofileComponent, LoginComponent, UserorderlistComponent,
-    DashbordComponentUser, HelpSuppportComponent, UserLoginComponent, UserCartComponent, PaymentpageComponent
+    DashbordComponentUser, HelpSuppportComponent, UserLoginComponent, UserCartComponent, PaymentpageComponent,LatetesorderDetailsComponent
   ],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, MatButtonModule, ReactiveFormsModule,
     MatInputModule, ReactiveFormsModule, MatToolbarModule, MatProgressSpinnerModule, CanvasJSAngularChartsModule, AppAdminRoutingModule,

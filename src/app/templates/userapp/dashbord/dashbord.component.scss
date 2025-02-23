@@ -33,16 +33,19 @@
 }
 
 .recntorder{
-  font-size: 13px;
-  padding-left: 22px;
+  font-size: 15px;
   position: fixed;
   bottom: 71px;
   width: 100%;
-  color: rgba(0, 0, 0, .87);
+  color: #2d84d1de;
   font-weight: 500;
   box-shadow: 0 13px 27px -5px #32325d40, 0 8px 16px -8px #0000004d, 0 -6px 16px -6px #00000006;
   border-radius: 2px;
   text-transform: capitalize;
-  line-height: 28px;
-  background: #ffffff;
+  line-height: 17px;
+  background: #fff;
+  display: flex
+;
+  padding: 4px;
+  margin: 1px;
 }
